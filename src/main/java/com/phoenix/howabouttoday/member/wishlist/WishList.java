@@ -9,10 +9,10 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity
+
 @DiscriminatorValue("wishlist")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table
+@Entity
 public class WishList extends Reservation {
 }

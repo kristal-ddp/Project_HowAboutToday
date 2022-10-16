@@ -49,7 +49,7 @@
                                             <label class="label-text" th:text="#{checkout_name}">Name</label>
                                             <div class="form-group">
                                                 <span class="la la-user form-icon"></span>
-                                                <input class="form-control" type="text" name="text" th:placeholder="#{checkout_placeholder_name}">
+                                                <input class="form-control" type="text" name="text" th:placeholder="#{checkout_placeholder_name}" th:value="${cart.getMember().getNickname()}">
                                             </div>
                                         </div>
                                     </div><!-- end col-lg-12 -->
@@ -59,7 +59,7 @@
                                             <label class="label-text" th:text="#{checkout_tel}">Phone Number</label>
                                             <div class="form-group">
                                                 <span class="la la-phone form-icon"></span>
-                                                <input class="form-control" type="text" name="text" th:placeholder="#{checkout_placeholder_tel}">
+                                                <input class="form-control" type="text" name="text" th:placeholder="#{checkout_placeholder_tel}" th:value="${cart.getMember().getMemberTel()}">
                                             </div>
                                         </div>
                                     </div><!-- end col-lg-12 -->
@@ -153,11 +153,13 @@
                                             </div><!-- end col-lg-12 -->
                                             <div class="col-lg-12">
                                                 <div class="btn-box">
-                                                     <button class="theme-btn" type="submit" th:text="#{checkout_payment_run}">Confirm Booking</button>
+<!--                                                    <button class="theme-btn" type="submit" th:text="#{checkout_payment_run}">Confirm Booking</button>                                                     <button class="theme-btn" type="submit" th:text="#{checkout_payment_run}">Confirm Booking</button>-->
+
                                                 </div>
                                             </div><!-- end col-lg-12 -->
                                         </div>
                                     </form>
+                                    <button class="theme-btn" onclick="requestPay()" th:text="#{checkout_payment_run}">Confirm Booking</button>
                                 </div><!-- end contact-form-action -->
                             </div><!-- end tab-pane-->
                             <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab">
@@ -233,39 +235,39 @@
                     </div><!-- end form-title-wrap -->
                     <div class="form-content">
                         <div class="card-item shadow-none radius-none mb-0">
-                            <div class="card-img pb-4">
-                                <a href="room-details.html" class="d-block">
-                                    <img src="images/img5.jpg" alt="room-img">
-                                </a>
-                            </div>
+<!--                            <div class="card-img pb-4">-->
+<!--                                <a href="room-details.html" class="d-block">-->
+<!--                                    <img src="images/img5.jpg" alt="room-img">-->
+<!--                                </a>-->
+<!--                            </div>-->
                             <div class="card-body p-0">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <h3 class="card-title">Premium Lake View Room</h3>
-                                        <p class="card-meta">Mariana's hotel, Mexico</p>
+                                        <h3 class="card-title" th:text="${cart.getAccommodation().getAccomName()}">Premium Lake View Room</h3>
+                                        <p class="card-meta" th:text="${cart.getAccommodation().getRegion().getValue()}">Mariana's hotel, Mexico</p>
                                     </div>
-                                    <div>
-                                        <a href="room-details.html" class="btn ml-1"><i class="la la-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>
-                                    </div>
+<!--                                    <div>-->
+<!--                                        <a href="room-details.html" class="btn ml-1"><i class="la la-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>-->
+<!--                                    </div>-->
                                 </div>
                                 <div class="section-block"></div>
                                 <ul class="list-items list-items-2 list-items-flush py-2">
-                                    <li class="font-size-15"><span class="w-auto d-block mb-n1" th:text="#{checkout_booking_check_in}"><i class="la la-calendar mr-1 font-size-17"></i>From</span>12 May 2020 7:40am</li>
-                                    <li class="font-size-15"><span class="w-auto d-block mb-n1" th:text="#{checkout_booking_check_out}"><i class="la la-calendar mr-1 font-size-17"></i>To</span>16 May 2020 8:40am</li>
+                                    <li class="font-size-15"><span class="w-auto d-block mb-n1" th:text="#{checkout_booking_check_in}"><i class="la la-calendar mr-1 font-size-17"></i></span><span th:text="${cart.getReserveUseStartDate()}"></span></li>
+                                    <li class="font-size-15"><span class="w-auto d-block mb-n1" th:text="#{checkout_booking_check_out}"><i class="la la-calendar mr-1 font-size-17"></i></span><span th:text="${cart.getReserveUseEndDate()}"></span></li>
                                 </ul>
                                 <h3 class="card-title pb-3" th:text="#{checkout_booking_detail}">Order Details</h3>
                                 <div class="section-block"></div>
                                 <ul class="list-items list-items-2 py-3">
-                                    <li><span th:text="#{checkout_booking_room_name}">Room Type:</span>영남 알프스</li>
-                                    <li><span th:text="#{checkout_booking_night}">Night:</span>1박</li>
-                                    <li><span th:text="#{checkout_booking_guest}">Guests:</span>성인 2</li>
-                                    <li><span th:text="#{checkout_booking_extra_service}">Extra Services:</span>청소, 세탁, 조식</li>
+                                    <li><span th:text="#{checkout_booking_room_name}">Room name:</span><span th:text="${cart.getRoom().getRoomName()}"></span></li>
+                                    <li><span th:text="#{checkout_booking_night}">Night:</span><span th:text="${cart.getReserveUseEndDate()}"></span></li>
+                                    <li><span th:text="#{checkout_booking_guest}">Guests:</span><span th:text="${cart.getRoom().getMaxGuest()}"></span></li>
+                                    <li><span th:text="#{checkout_booking_extra_service}">Extra Services:</span><span th:text="${cart.getAccommodation().getAccomCategory().getValue()}"></span></li>
                                 </ul>
                                 <div class="section-block"></div>
                                 <ul class="list-items list-items-2 pt-3">
-                                    <li><span th:text="#{checkout_booking_sub_total}">Sub Total:</span>₩ 240,000</li>
+                                    <li><span th:text="#{checkout_booking_sub_total}">Sub Total:</span><span th:text="${cart.getRoom().getPrice()}"></span></li>
                                     <li><span th:text="#{checkout_booking_discount}">Taxes And Fees:</span>₩ 5,000</li>
-                                    <li><span th:text="#{checkout_booking_total_price}">Total Price:</span>₩ 235,000</li>
+                                    <li><span th:text="#{checkout_booking_total_price}">Total Price:</span><span th:text="${cart.getRoom().getPrice()}"></span></li>
                                 </ul>
                             </div>
                         </div><!-- end card-item -->

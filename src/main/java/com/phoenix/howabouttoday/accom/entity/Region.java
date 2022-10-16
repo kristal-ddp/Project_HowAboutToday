@@ -1,8 +1,9 @@
 package com.phoenix.howabouttoday.accom.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.accom.RegionTypeConverter;
+import lombok.*;
+
 import javax.persistence.Id;
 
 import javax.persistence.*;
@@ -11,13 +12,21 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table
 public class Region {
 
-  @Id @GeneratedValue
+  @Id
+  @GeneratedValue
   private Long regionNum;
 
-  private String regionName;
+  @Column(length = 50)
+  @Convert(converter = RegionTypeConverter.class)
+  private RegionType region;
 
-  private int regionParentNum;
+  private RegionType regionParentNum;
+
+  @Builder
+  public Region(RegionType region, RegionType regionParentNum){
+    this.region = region;
+    this.regionParentNum = regionParentNum;
+  }
 }

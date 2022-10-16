@@ -1,15 +1,17 @@
 package com.phoenix.howabouttoday.board.entity;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "board_category")
 public class BoardCategory {
 
     @Id
@@ -25,6 +27,7 @@ public class BoardCategory {
     @OneToMany(mappedBy = "boardCategory", cascade = CascadeType.ALL)
     private List<Board> boardList = new ArrayList<>();
 
+    @Builder
     public BoardCategory(String boardCategoryName, int boardParentNum) {
         this.boardCategoryName = boardCategoryName;
         this.boardParentNum = boardParentNum;

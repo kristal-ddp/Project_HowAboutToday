@@ -4,12 +4,12 @@ package com.phoenix.howabouttoday.accom.entity;
  * TV,TWOBED는 예시로 넣어놓음
  */
 
-public enum FaciltiesName {
+public enum Facility {
     TV("20인치 TV"),TWOBED("2개의 룸");
 
     private String krName;
 
-    FaciltiesName(String krName) {
+    Facility(String krName) {
         this.krName = krName;
     }
 

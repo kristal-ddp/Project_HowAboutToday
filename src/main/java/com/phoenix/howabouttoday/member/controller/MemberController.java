@@ -38,6 +38,36 @@ public class MemberController {
         model.addAttribute("users", users);
     }
 
+
+
+//    @RestController
+//    public class UserController {
+//
+//        private final UserRepository userRepository;
+//
+//        public UserController(UserRepository userRepository) {
+//            this.userRepository = userRepository;
+//        }
+//
+//        @GetMapping("/users")
+//        public Page<User> getAllUsers() {
+//            PageRequest pageRequest = PageRequest.of(0, 5);
+//            return userRepository.findAll(pageRequest);
+//        }
+//
+//        @PostConstruct
+//        public void initializing() {
+//            for (int i = 0; i < 100; i++) {
+//                User user = User.builder()
+//                        .username("User " + i)
+//                        .address("Korea")
+//                        .age(i)
+//                        .build();
+//                userRepository.save(user);
+//            }
+//        }
+//    }
+
    @GetMapping("user-dashboard-booking")
     public String getUserDashboardBooking(Model model) {
 

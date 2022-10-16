@@ -3,51 +3,56 @@ package com.phoenix.howabouttoday.payment;
 
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
+
 @Getter
-@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Orders {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ordersNum;
 
-    @NotNull
+
     @Column(length = 50)
     private String ordersTel;
 
-    @NotNull
-    private Long roomNum;
 
     @Column(length = 50)
-    private String ordersData;
+    private String ordersName;
 
-    @NotNull
-    private Long reserveNum;
 
-    @NotNull
-    private Long ordersPrice;
+    @Column(length = 50)
+    private String ordersDate;
 
-    @NotNull
+
+    private Integer ordersPrice;
+
+
     @Column(length = 50)
     private String ordersType;
 
-    @NotNull
+
     @Column(length = 50)
     private String ordersStatus;
 
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-    private List<Reservation> reservation;    //이미지 fk를 위한 매핑
+    private List<Reservation> reservation = new ArrayList<>(); //이미지 fk를 위한 매핑
 
-
-
-
+    @Builder
+    public Orders(Long ordersNum, String ordersTel, String ordersName, String ordersDate, Integer ordersPrice, String ordersType, String ordersStatus) {
+        this.ordersNum = ordersNum;
+        this.ordersTel = ordersTel;
+        this.ordersName = ordersName;
+        this.ordersDate = ordersDate;
+        this.ordersPrice = ordersPrice;
+        this.ordersType = ordersType;
+        this.ordersStatus = ordersStatus;
+    }
 }

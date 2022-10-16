@@ -14,9 +14,6 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Entity
-@Table
-
-
 public class Reply {
 
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)

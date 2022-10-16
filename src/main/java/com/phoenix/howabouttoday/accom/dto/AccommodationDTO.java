@@ -1,8 +1,10 @@
 package com.phoenix.howabouttoday.accom.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
-
+@Getter
+@Setter
 public class AccommodationDTO {
 
     private int accomNum;//숙소 번호
