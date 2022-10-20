@@ -5,7 +5,7 @@ import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 
 
-import com.phoenix.howabouttoday.payment.Orders;
+import com.phoenix.howabouttoday.payment.entity.Orders;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,9 +28,6 @@ public class Review {
     @Column
     private Long reviewNum;
 
-    @ManyToOne
-    @JoinColumn(name = "reserve_num")
-    private Reservation reservation;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_num")
@@ -38,10 +35,6 @@ public class Review {
 
     private LocalDateTime reviewCreatedDate;
     private LocalDateTime reviewModifyDate;
-
-    @ManyToOne
-    @JoinColumn(name = "order_num")
-    private Orders order;
 
 
     private Double reviewRating;

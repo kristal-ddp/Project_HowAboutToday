@@ -19,6 +19,7 @@ public class RoomImage {
     @Column
     private Long roomNum;
 
+
     @NotNull
     @Column(length = 50)
     private String roomOriginFileName;
@@ -27,7 +28,8 @@ public class RoomImage {
     @Column(length = 50)
     private String roomSaveFileName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="room_roomNum", referencedColumnName = "roomNum")
     private Room room;
 

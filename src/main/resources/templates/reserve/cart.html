@@ -7,11 +7,14 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout/layout">
 
+
+
 <th:block layout:fragment="content">
 <!-- ================================
     START BREADCRUMB AREA
 ================================= -->
 <section class="breadcrumb-area breadcrumb-board">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
     <div class="breadcrumb-wrap">
         <div class="container">
             <div class="row">
@@ -56,51 +59,61 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <th:block th:if="${checkCart}">
+                            <form action="/cart/test" method="get" id="cartForm">
+                            <tr th:each="cart:${cartList}">
+
                                 <th scope="row">
+
                                     <div class="table-content product-content d-flex align-items-center">
+                                        <div class="cart_info_div">
+
+                                            <input type="checkbox" style="margin-right: 20px" class="cart_checkbox" checked="checked" name="cartNum" th:value="${cart.cartNum}">
+                                            <input type="hidden" class="total_price_input" th:value="${cart.getReservePrice()}">
+                                            <input type="hidden" class="count_input" value="1">
+                                        </div>
+
+
+
                                         <a href="room-details.html" class="d-block" th:href="@{/room-details}">
                                             <img src="images/room1.jpg" alt="" class="flex-shrink-0">
                                         </a>
                                        <div class="product-content">
                                            <a href="room-details.html" class="title" th:href="@{/room-details}"
-                                              th:text="|영진호텔 최고의 방|">
+                                              th:text="${cart.getRoomName()}">
                                            호텔 방 이름</a>
                                            <div class="product-info-wrap">
                                                <div class="product-info line-height-24">
                                                    <span class="product-info-label" th:text="|예약 일시:|">예약 일시:</span>
                                                        <span class="product-info-value">
-                                                       <span class="product-check-in" th:text="|2022년 10월 1일|">체크인 날짜</span>
+                                                       <span class="product-check-in" th:text="${cart.getReserveUseStartDate()}">체크인 날짜</span>
                                                        <span class="product-mark">/</span>
-                                                       <span class="product-check-out" th:text="|202년 10월 3일|">체크아웃 날짜</span>
-                                                       <span class="product-nights" th:text="|(2박)|">몇박인지 </span>
+                                                       <span class="product-check-out" th:text="${cart.getReserveUseEndDate()}">체크아웃 날짜</span>
+                                                       <span class="product-nights" th:text="|(${cart.getBetweenDay()}박)|">몇박인지 </span>
                                                     </span>
                                                </div><!-- end product-info -->
                                                <div class="product-info line-height-24">
                                                    <span class="product-info-label" th:text="|인원:|">인원:</span>
-                                                   <span class="product-info-value" th:text="|성인 3명|">성인 명수</span>
-                                               </div><!-- end product-info -->
-                                               <div class="product-info line-height-24">
-                                                   <span class="product-info-label" th:text="|추가 서비스:|">추가서비스:</span>
-                                                   <span class="product-info-value" th:text="|조식, 공항픽업, 주차|">추가서비스 항목</span>
+                                                   <span class="product-info-adult-value" th:text="|성인 ${cart.getReserveAdultCount()}명| ">성인 명수</span>
+                                                   <span class="product-info-child-value" th:text="|아동 ${cart.getReserveChildCount()}명|">아동 명수</span>
                                                </div><!-- end product-info -->
                                            </div>
                                        </div>
                                     </div>
                                 </th>
-                                <td th:text="|50,000원|">숙소 가격</td> <!-- 숙소 가격 필드 -->
+                                <td th:text="|${cart.getReservePrice()}원|">숙소 가격</td> <!-- 숙소 가격 필드 -->
                                 <td>
-                                    <div class="product-info">
-                                        <input type="text" class="form-control" value="1"> <!--수량 필드-->
-                                    </div>
+                                    1
                                 </td>
-                                <td th:text="|50000|">가격 * 수량 = 소계</td> <!-- 소계 필드 (수량필드 조작시 자바스크립트 렌더링 필요)-->
+                                <td th:text="|${cart.getReservePrice()}원|">가격 * 수량 = 소계</td> <!-- 소계 필드 (수량필드 조작시 자바스크립트 렌더링 필요)-->
                                 <td>
                                     <div class="remove-wrap">
-                                        <a th:href="|javascript:void(0)|" href="javascript:void(0)" class="btn font-size-18"><i class="la la-times"></i></a>
+                                        <a th:href="|javascript:void(0)|" href="javascript:void(0)" class="btn font-size-18" th:onclick="deleteById([[${cart.getCartNum}]])" ><i class="la la-times"></i></a>
                                     </div>
                                 </td>
                             </tr>
+                            </form>
+                            </th:block>
                             </tbody>
                         </table>
                     </div>
@@ -114,9 +127,7 @@
                                 <button type="button" class="theme-btn hwt-btn-gray"th:value="|쿠폰 적용|">쿠폰 적용</button>
                             </form> <!-- 쿠폰영역 끝 -->
                         </div><!-- end contact-form-action -->
-                        <div class="btn-box">
-                            <a th:href="@{/cart/edit}" href="" class="theme-btn hwt-btn-gray">[[|장바구니 수정|]]</a> <!-- /cart/edit로 보내서 수량 수정가능하게 적용해야 할듯 -->
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-lg-4 ml-auto">
@@ -128,27 +139,32 @@
                                             <th scope="col" th:text="|가격|">가격</th>
                                         </tr>
                                     </thead>
+                                    <th:block  th:if="${checkCart}" >
                                     <tbody>
                                             <th scope="row">
                                                 <div class="table-content">
-                                                    <h3 class="title" th:text="|소계:|">분류명</h3>
+                                                    <h3 class="title" th:text="|소계:|">totalPrice</h3>
                                                 </div>
                                             </th>
-                                            <td th:text="|50,000원|">50000</td>
+                                            <td class="total_price_td"></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">
                                                 <div class="table-content">
-                                                    <h3 class="title" th:text="|합계:|">분류 명</h3>
+                                                    <h3 class="title" th:text="|합계:|"></h3>
                                                 </div>
                                             </th>
-                                            <td th:text="|50,000원|"></td>
+                                            <td class="total_price_td"></td>
                                         </tr>
                                     </tbody>
+
+
+                                    </th:block>
                                 </table>
                                 <div class="section-block"></div>
                                 <div class="btn-box text-right pt-4">
-                                    <a th:href="@{/checkout}" href="checkout.html" class="theme-btn hwt-btn-gray">[[|결제 진행|]]</a>
+                                    <a th:href="|javascript:void(0)|" href="checkout.html" class="theme-btn hwt-btn-gray" th:onclick="cartSubmit()">[[|결제 진행|]]</a>
+
                                 </div>
                             </div>
                         </div>
@@ -512,25 +528,65 @@
         </div>
     </div>
 </div><!-- end modal-popup -->
+    <script>
+        $(document).ready(function (){
+            setTotalInfo();
+        });
 
-<!-- Template JS Files -->
-<!--<script src="js/jquery-3.4.1.min.js"></script>-->
-<!--<script src="js/jquery-ui.js"></script>-->
-<!--<script src="js/popper.min.js"></script>-->
-<!--<script src="js/bootstrap.min.js"></script>-->
-<!--<script src="js/bootstrap-select.min.js"></script>-->
-<!--<script src="js/moment.min.js"></script>-->
-<!--<script src="js/daterangepicker.js"></script>-->
-<!--<script src="js/owl.carousel.min.js"></script>-->
-<!--<script src="js/jquery.fancybox.min.js"></script>-->
-<!--<script src="js/jquery.countTo.min.js"></script>-->
-<!--<script src="js/animated-headline.js"></script>-->
-<!--<script src="js/jquery.ripples-min.js"></script>-->
-<!--<script src="js/quantity-input.js"></script>-->
-<!--<script src="js/main.js"></script>-->
-<!--</body>-->
-<!--</html>-->
+
+
+        /* 체크여부에따른 정보 변화 */
+        $(".cart_checkbox").on("change",function (){
+
+            setTotalInfo($(".cart_info_div"));
+
+        });
+
+        function setTotalInfo(){
+            let totalPrice =0;
+            let totalCount = 0;
+            let cartNum = [];
+
+            $(".cart_info_div").each(function(index,element){
+
+                if($(element).find(".cart_checkbox").is(":checked")=== true) {
+
+                    totalPrice += parseInt($(element).find(".total_price_input").val());
+                    totalCount += parseInt($(element).find(".count_input").val());
+                    // cartNum.push(parseInt($(element).find(".cartNum_input").val()));
+                    // alert(cartNum);
+                }
+            });
+
+            $(".total_price_td").text(totalPrice.toLocaleString());
+
+        }
+
+
+        /** 장바구니 삭제 **/
+        function deleteById(cartNum) {
+            $.ajax({
+                type: 'DELETE',
+                url: '/rest/cart/'+cartNum,
+            }).done(function(){
+                alert("삭제가 완료되었습니다.");
+                window.location.reload();
+            }).fail(function(error){
+                alert(JSON.stringify(error));
+            });
+        }
+
+        function cartSubmit(){
+
+            document.getElementById("cartForm").submit();
+
+        }
+
+
+    </script>
 
 </th:block>
+
+
 
 </html>

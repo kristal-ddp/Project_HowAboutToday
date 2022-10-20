@@ -1,6 +1,6 @@
 package com.phoenix.howabouttoday.payment.service;
 
-import com.phoenix.howabouttoday.accom.RegionType;
+import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
@@ -8,33 +8,43 @@ import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-import com.phoenix.howabouttoday.payment.AccomCategory;
-import com.phoenix.howabouttoday.payment.Orders;
+import com.phoenix.howabouttoday.global.AccomCategory;
+import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
+import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.entity.Room;
+import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 
 @SpringBootTest
-//@Transactional
+@Transactional
 class AccomodationServiceTest {
 
-    @Autowired
+    private MemberRepository memberRepository;
     private AccommodationRepository accommodationRepository;
-//    private final AccommodationImageRepository accommodationImageRepository;
+    private RoomRepository roomRepository;
+    private OrdersRepository ordersRepository;
 
     @Autowired
-    private MemberRepository memberRepository;
+    public AccomodationServiceTest(MemberRepository memberRepository, AccommodationRepository accommodationRepository, RoomRepository roomRepository, OrdersRepository ordersRepository) {
+        this.memberRepository = memberRepository;
+        this.accommodationRepository = accommodationRepository;
+        this.roomRepository = roomRepository;
+        this.ordersRepository = ordersRepository;
+    }
+
     private ObjectGenerator objectGenerator = new ObjectGenerator();
     @Test
     public void testPaging(){
@@ -60,8 +70,47 @@ class AccomodationServiceTest {
         list.forEach(member -> System.out.println(member.getEmail()));
 
 
-//        Assertions.assertThat(testList.get(0).getClass().getName()).isEqualTo(30);
+    Assertions.assertThat(testList.get(0).getClass().getName()).isEqualTo(30);
 
+    }
+
+    @Test
+    public void makeMember(){
+        final Integer MEMBER_COUNT = 21;
+
+        for (int i = 0; i < MEMBER_COUNT; i++) {
+            memberRepository.save(objectGenerator.createMember());
+        }
+
+        List<Member> testList = memberRepository.findAll();
+        Assertions.assertThat(testList.size()).isEqualTo(MEMBER_COUNT);
+    }
+
+    @Test
+    public void makeAccommodation(){
+        final Integer MEMBER_COUNT = 11;
+
+        for (int i = 0; i < MEMBER_COUNT; i++) {
+            memberRepository.save(objectGenerator.createMember());
+        }
+
+        List<Member> testList = memberRepository.findAll();
+        Assertions.assertThat(testList.size()).isEqualTo(MEMBER_COUNT);
+    }
+
+
+    @Test
+    @Rollback(value = false)
+    public void 생성코드테스트(){
+        Member member = Member.builder().build();
+        memberRepository.save(member);
+        ordersRepository.save(objectGenerator.makeTestData());
+        ordersRepository.save(objectGenerator.makeTestData());
+
+        List<Orders> ordersList = ordersRepository.findAll();
+
+
+        Assertions.assertThat(ordersList.size()).isEqualTo(2);
     }
 
     @Test
@@ -132,8 +181,8 @@ class AccomodationServiceTest {
                 .nickname("noscarna")
                 .memberTel("01045020614")
                 .memberCode(Code.MEMBER)
-                .joinDate(LocalDateTime.now())
-                .withdrawdate(LocalDateTime.now())
+                .joinDate(LocalDate.now())
+                .withdrawdate(LocalDate.now())
                 .memberOriginalFileName("Origin")
                 .memberSaveFileName("save")
                 .build();
@@ -212,14 +261,14 @@ class AccomodationServiceTest {
         Orders newOrder = Orders.builder()
                 .ordersTel("01045020614")
                 .ordersName("김영운")
-                .ordersDate("2022-10-13")
+                .ordersDate(LocalDate.now())
                 .ordersPrice(45000+90000)
                 .ordersType("카드")
                 .ordersStatus("이용 전")
                 .build();
 
-        newOrder.getReservation().add(cart);
-        newOrder.getReservation().add(cart2);
+//        newOrder.getorder().add(cart);
+//        newOrder.getReservation().add(cart2);
 
         System.out.println("하아");
     }
@@ -239,8 +288,8 @@ class AccomodationServiceTest {
                 .nickname("noscarna")
                 .memberTel("01045020614")
                 .memberCode(Code.MEMBER)
-                .joinDate(LocalDateTime.now())
-                .withdrawdate(LocalDateTime.now())
+                .joinDate(LocalDate.now())
+                .withdrawdate(LocalDate.now())
                 .memberOriginalFileName("Origin")
                 .memberSaveFileName("save")
                 .build();

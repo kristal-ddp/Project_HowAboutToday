@@ -1,10 +1,13 @@
 package com.phoenix.howabouttoday.accom.dto;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class AccommodationDTO {
 
     private int accomNum;//숙소 번호
@@ -22,5 +25,27 @@ public class AccommodationDTO {
     private int reserveRange;//예약 가능일 범위(ex. 60 → 오늘부터 +60일까지 예약 가능)
     private String accomOriginFileName;//숙소 이미지 기존 파일 이름
     private String accomSaveFileName;//숙소 이미지 저장 파일 이름
+
+    @Builder
+    public AccommodationDTO(int accomNum,String accomName, String accomTel,int accomCategoryNum,int regionNum,String accomAddress,
+                            Double accomRating,int accomWishListCount,int totalreviewNum,Double latitude,Double longitude,int lowPrice,
+                            int reserveRange,String accomOriginFileName,String accomSaveFileName) {
+        this.accomNum=accomNum;
+        this.accomName=accomName;
+        this.accomTel=accomTel;
+        this.accomCategoryNum=accomCategoryNum;
+        this.regionNum=regionNum;
+        this.accomAddress=accomAddress;
+        this.accomRating=accomRating;
+        this.accomWishListCount=accomWishListCount;
+        this.totalreviewNum=totalreviewNum;
+        this.latitude=latitude;
+        this.longitude=longitude;
+        this.lowPrice=lowPrice;
+        this.reserveRange=reserveRange;
+        this.accomOriginFileName=accomOriginFileName;
+        this.accomSaveFileName=accomSaveFileName;
+    }
+
 
 }

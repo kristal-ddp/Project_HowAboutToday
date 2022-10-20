@@ -1,293 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta http-equiv="content-type" content="text/html; charset=utf-8">-->
-<!--    <meta name="author" content="TechyDevs">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-<!--    <title>Trizen - Travel Booking HTML Template</title>-->
-<!--    &lt;!&ndash; Favicon &ndash;&gt;-->
-<!--    <link rel="icon" href="images/favicon.png">-->
-
-<!--    &lt;!&ndash; Google Fonts &ndash;&gt;-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">-->
-
-<!--    &lt;!&ndash; Template CSS Files &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="css/bootstrap-select.min.css">-->
-<!--    <link rel="stylesheet" href="css/line-awesome.css">-->
-<!--    <link rel="stylesheet" href="css/owl.carousel.min.css">-->
-<!--    <link rel="stylesheet" href="css/owl.theme.default.min.css">-->
-<!--    <link rel="stylesheet" href="css/jquery.fancybox.min.css">-->
-<!--    <link rel="stylesheet" href="css/daterangepicker.css">-->
-<!--    <link rel="stylesheet" href="css/animate.min.css">-->
-<!--    <link rel="stylesheet" href="css/animated-headline.css">-->
-<!--    <link rel="stylesheet" href="css/jquery-ui.css">-->
-<!--    <link rel="stylesheet" href="css/flag-icon.min.css">-->
-<!--    <link rel="stylesheet" href="css/style.css">-->
-<!--</head>-->
-<!--<body>-->
-<!--&lt;!&ndash; start cssload-loader &ndash;&gt;-->
-<!--<div class="preloader" id="preloader">-->
-<!--    <div class="loader">-->
-<!--        <svg class="spinner" viewBox="0 0 50 50">-->
-<!--            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>-->
-<!--        </svg>-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; end cssload-loader &ndash;&gt;-->
-
-<!--&lt;!&ndash; ================================-->
-<!--            START HEADER AREA-->
-<!--================================= &ndash;&gt;-->
-<!--<header class="header-area">-->
-<!--    <div class="header-top-bar padding-right-100px padding-left-100px">-->
-<!--        <div class="container-fluid">-->
-<!--            <div class="row align-items-center">-->
-<!--                <div class="col-lg-6">-->
-<!--                    <div class="header-top-content">-->
-<!--                        <div class="header-left">-->
-<!--                            <ul class="list-items">-->
-<!--                                <li><a href="#"><i class="la la-phone mr-1"></i>(123) 123-456</a></li>-->
-<!--                                <li><a href="#"><i class="la la-envelope mr-1"></i>trizen@example.com</a></li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-lg-6">-->
-<!--                    <div class="header-top-content">-->
-<!--                        <div class="header-right d-flex align-items-center justify-content-end">-->
-<!--                            <div class="header-right-action">-->
-<!--                                <div class="select-contain select&#45;&#45;contain w-auto">-->
-<!--                                    <select class="select-contain-select">-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-id mr-1"></span> Bahasa Indonesia'>Bahasa Indonesia</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-de mr-1"></span> Deutsch'>Deutsch</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-us mr-1"></span> English(US)' selected>English US</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-gb-eng mr-1"></span> English(UK)'>English UK</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-ro mr-1"></span> Romanian'>Romanian</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-es mr-1"></span> Español'>Español</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-fr mr-1"></span> Francais'>Francais</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-it mr-1"></span> Italiano'>Italiano</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-pl mr-1"></span> Polski'>Polski</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-pt mr-1"></span> Portuguese'>Portuguese</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-tr mr-1"></span> Turkish'>Turkish</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-ru mr-1"></span> Russian'>Russian</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-jp mr-1"></span> Japanese'>Japanese</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-cn mr-1"></span> Mandarin'>Mandarin</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-tw mr-1"></span> Mandarin Chinese'>Mandarin Chinese</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-kr mr-1"></span> Korean'>Korean</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-in mr-1"></span> Hindi'>Hindi</option>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="header-right-action">-->
-<!--                                <div class="select-contain select&#45;&#45;contain w-auto">-->
-<!--                                    <select class="select-contain-select">-->
-<!--                                        <option value="1">AED</option>-->
-<!--                                        <option value="2">AUD</option>-->
-<!--                                        <option value="3">BRL</option>-->
-<!--                                        <option value="4">CAD</option>-->
-<!--                                        <option value="5">CHF</option>-->
-<!--                                        <option value="6">CNY</option>-->
-<!--                                        <option value="7">EUR</option>-->
-<!--                                        <option value="8">GBP</option>-->
-<!--                                        <option value="9">HKD</option>-->
-<!--                                        <option value="10">IDR</option>-->
-<!--                                        <option value="11">INR</option>-->
-<!--                                        <option value="12">JPY</option>-->
-<!--                                        <option value="13">KRW</option>-->
-<!--                                        <option value="14">MYR</option>-->
-<!--                                        <option value="15">NZD</option>-->
-<!--                                        <option value="16">PHP</option>-->
-<!--                                        <option value="17">PLN</option>-->
-<!--                                        <option value="18">RUB</option>-->
-<!--                                        <option value="19">SAR</option>-->
-<!--                                        <option value="20">SGD</option>-->
-<!--                                        <option value="21">THB</option>-->
-<!--                                        <option value="22">TRY</option>-->
-<!--                                        <option value="23">TWD</option>-->
-<!--                                        <option value="24" selected>USD</option>-->
-<!--                                        <option value="25">VND</option>-->
-<!--                                        <option value="26">MXN</option>-->
-<!--                                        <option value="27">ARS</option>-->
-<!--                                        <option value="28">INR</option>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="header-right-action">-->
-<!--                                <a href="#" class="theme-btn theme-btn-small theme-btn-transparent mr-1" data-toggle="modal" data-target="#signupPopupForm">Sign Up</a>-->
-<!--                                 <a href="#" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#loginPopupForm">Login</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="header-menu-wrapper padding-right-100px padding-left-100px">-->
-<!--        <div class="container-fluid">-->
-<!--            <div class="row">-->
-<!--                <div class="col-lg-12">-->
-<!--                    <div class="menu-wrapper">-->
-<!--                        <a href="#" class="down-button"><i class="la la-angle-down"></i></a>-->
-<!--                        <div class="logo">-->
-<!--                            <a href="/home"><img src="images/logo.png" alt="logo"></a>-->
-<!--                            <div class="menu-toggler">-->
-<!--                                <i class="la la-bars"></i>-->
-<!--                                <i class="la la-times"></i>-->
-<!--                            </div>&lt;!&ndash; end menu-toggler &ndash;&gt;-->
-<!--                        </div>&lt;!&ndash; end logo &ndash;&gt;-->
-<!--                        <div class="main-menu-content">-->
-<!--                            <nav>-->
-<!--                                <ul>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">Home <i class="la la-angle-down"></i></a>-->
-<!--                                        <ul class="dropdown-menu-item">-->
-<!--                                            <li><a href="/home">Home - main</a></li>-->
-<!--                                            <li><a href="home.html">Home - Hotel</a></li>-->
-<!--                                            <li><a href="index3.html">Home - Activity</a></li>-->
-<!--                                            <li><a href="index4.html">Home - Car</a></li>-->
-<!--                                            <li><a href="index5.html">Home - Cruise</a></li>-->
-<!--                                            <li><a href="index6.html">Home - Flight</a></li>-->
-<!--                                            <li><a href="index7.html">Home - City Tour <span class="badge bg-2 text-white">New</span></a></li>-->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">Tour <i class="la la-angle-down"></i></a>-->
-<!--                                        <ul class="dropdown-menu-item">-->
-<!--                                            <li><a href="tour-fullwidth.html">Tour Full width</a></li>-->
-<!--                                            <li><a href="tour-grid.html">Tour Grid</a></li>-->
-<!--                                            <li><a href="tour-list.html">Tour List</a></li>-->
-<!--                                            <li><a href="tour-left-sidebar.html">Tour Left Sidebar</a></li>-->
-<!--                                            <li><a href="tour-right-sidebar.html">Tour Right Sidebar</a></li>-->
-<!--                                            <li><a href="tour-details.html">Tour details</a></li>-->
-<!--                                            <li><a href="tour-booking.html">Tour Booking</a></li>-->
-<!--                                            <li><a href="tour-search-result.html">Tour Search Result</a></li>-->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">Cruise <i class="la la-angle-down"></i></a>-->
-<!--                                        <ul class="dropdown-menu-item">-->
-<!--                                            <li><a href="cruises.html">Cruises</a></li>-->
-<!--                                            <li><a href="cruises-list.html">Cruise list</a></li>-->
-<!--                                            <li><a href="cruise-sidebar.html">Cruise Sidebar</a></li>-->
-<!--                                            <li><a href="cruise-details.html">Cruise details</a></li>-->
-<!--                                            <li><a href="cruise-booking.html">Cruise Booking</a></li>-->
-<!--                                            <li><a href="cruise-search-result.html">Cruise Search Result</a></li>-->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">Pages <i class="la la-angle-down"></i></a>-->
-<!--                                        <div class="dropdown-menu-item mega-menu">-->
-<!--                                            <ul class="row no-gutters">-->
-<!--                                                <li class="col-lg-3 mega-menu-item">-->
-<!--                                                    <ul>-->
-<!--                                                        <li><a href="add-hotel.html">add hotel </a></li>-->
-<!--                                                        <li><a href="add-flight.html">add flight </a></li>-->
-<!--                                                        <li><a href="add-tour.html">add tour </a></li>-->
-<!--                                                        <li><a href="add-cruise.html">add cruise </a></li>-->
-<!--                                                        <li><a href="add-car.html">add car</a></li>-->
-<!--                                                        <li><a href="/user-dashboard">User Dashboard</a></li>-->
-<!--                                                        <li><a href="admin-dashboard.html">Admin Dashboard</a></li>-->
-<!--                                                        <li><a href="career.html">career <span class="badge bg-2 text-white">New</span></a></li>-->
-<!--                                                    </ul>-->
-<!--                                                </li>-->
-<!--                                                <li class="col-lg-3 mega-menu-item">-->
-<!--                                                    <ul>-->
-<!--                                                        <li><a href="board-details.html">career details<span class="badge bg-2 text-white">New</span></a></li>-->
-<!--                                                        <li><a href="user-profile.html">User profile</a></li>-->
-<!--                                                        <li><a href="become-local-expert.html">Become Local Expert</a></li>-->
-<!--                                                        <li><a href="contact.html">contact</a></li>-->
-<!--                                                        <li><a href="cart.html">Cart</a></li>-->
-<!--                                                        <li><a href="checkout.html">Checkout</a></li>-->
-<!--                                                        <li><a href="recover.html">recover password</a></li>-->
-<!--                                                        <li><a href="payment-received.html">payment received</a></li>-->
-<!--                                                    </ul>-->
-<!--                                                </li>-->
-<!--                                                <li class="col-lg-3 mega-menu-item">-->
-<!--                                                    <ul>-->
-<!--                                                        <li><a href="payment-complete.html">payment complete</a></li>-->
-<!--                                                        <li><a href="destinations.html">Destinations</a></li>-->
-<!--                                                        <li><a href="about.html">about</a></li>-->
-<!--                                                        <li><a href="services.html">Our Services</a></li>-->
-<!--                                                        <li><a href="gallery.html">Gallery</a></li>-->
-<!--                                                        <li><a href="pricing.html">pricing</a></li>-->
-<!--                                                        <li><a href="faq.html">faq</a></li>-->
-<!--                                                    </ul>-->
-<!--                                                </li>-->
-<!--                                                <li class="col-lg-3 mega-menu-item">-->
-<!--                                                    <ul>-->
-<!--                                                        <li><a href="add-new-post.html">add new post</a></li>-->
-<!--                                                        <li><a href="blog-full-width.html">blog full width</a></li>-->
-<!--                                                        <li><a href="blog-grid.html">blog grid</a></li>-->
-<!--                                                        <li><a href="blog-sidebar.html">blog sidebar</a></li>-->
-<!--                                                        <li><a href="blog-single.html">blog details</a></li>-->
-<!--                                                        <li><a href="coming-soon.html">Coming Soon</a></li>-->
-<!--                                                        <li><a href="page-404.html">404 page</a></li>-->
-<!--                                                    </ul>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </div>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">Flight <i class="la la-angle-down"></i></a>-->
-<!--                                        <ul class="dropdown-menu-item">-->
-<!--                                            <li><a href="flight-grid.html">Flight grid</a></li>-->
-<!--                                            <li><a href="flight-list.html">Flight list</a></li>-->
-<!--                                            <li><a href="flight-sidebar.html">Flight sidebar </a></li>-->
-<!--                                            <li><a href="flight-single.html">Flight details</a></li>-->
-<!--                                            <li><a href="flight-booking.html">Flight Booking</a></li>-->
-<!--                                            <li><a href="flight-search-result.html">Flight Search Result</a></li>-->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">Hotel <i class="la la-angle-down"></i></a>-->
-<!--                                        <ul class="dropdown-menu-item">-->
-<!--                                            <li><a href="hotel-grid.html">Hotel grid</a></li>-->
-<!--                                            <li><a href="hotel-list.html">Hotel list</a></li>-->
-<!--                                            <li><a href="hotel-sidebar.html">Hotel sidebar </a></li>-->
-<!--                                            <li><a href="hotel-single.html">Hotel details</a></li>-->
-<!--                                            <li><a href="hotel-booking.html">Hotel Booking</a></li>-->
-<!--                                            <li><a href="hotel-search-result.html">Hotel Search Result</a></li>-->
-<!--                                            <li>-->
-<!--                                                <a href="#">Rooms <i class="la la-plus"></i></a>-->
-<!--                                                <ul class="sub-menu">-->
-<!--                                                    <li><a href="room-list.html">Room List</a></li>-->
-<!--                                                    <li><a href="room-grid.html">Room Grid</a></li>-->
-<!--                                                    <li><a href="room-search-result.html">Search Result</a></li>-->
-<!--                                                    <li><a href="room-search-result-list.html">Search Result list</a></li>-->
-<!--                                                    <li><a href="room-details.html">Room Details</a></li>-->
-<!--                                                </ul>-->
-<!--                                            </li>-->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">car <i class="la la-angle-down"></i></a>-->
-<!--                                        <ul class="dropdown-menu-item">-->
-<!--                                            <li><a href="car-grid.html">car grid</a></li>-->
-<!--                                            <li><a href="car-list.html">car list</a></li>-->
-<!--                                            <li><a href="car-sidebar.html">car sidebar </a></li>-->
-<!--                                            <li><a href="car-single.html">car details</a></li>-->
-<!--                                            <li><a href="car-booking.html">Car Booking</a></li>-->
-<!--                                            <li><a href="car-search-result.html">Car Search Result</a></li>-->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                </ul>-->
-<!--                            </nav>-->
-<!--                        </div>&lt;!&ndash; end main-menu-content &ndash;&gt;-->
-<!--                        <div class="nav-btn">-->
-<!--                            <a href="become-local-expert.html" class="theme-btn">Become Local Expert</a>-->
-<!--                        </div>&lt;!&ndash; end nav-btn &ndash;&gt;-->
-<!--                    </div>&lt;!&ndash; end menu-wrapper &ndash;&gt;-->
-<!--                </div>&lt;!&ndash; end col-lg-12 &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end row &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end container-fluid &ndash;&gt;-->
-<!--    </div>&lt;!&ndash; end header-menu-wrapper &ndash;&gt;-->
-<!--</header>-->
-<!-- ================================
-         END HEADER AREA
-================================= -->
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -332,7 +42,7 @@
 ================================= -->
 
 <!-- ================================
-    END FAQ AREA
+    START FAQ AREA
 ================================= -->
 <section class="faq-area padding-top-100px padding-bottom-70px text-center">
     <div class="container">
@@ -347,7 +57,7 @@
             </div><!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
+                    <a href="#faq" class="d-block">
                         <img src="icon/sale.png" class="header-icon">
                         <span class="d-block info__title hwt-font-title">상품 / 서비스</span>
                     </a>
@@ -421,55 +131,27 @@
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
         <div class="row padding-top-60px hwt-row-board">
-            <div class="col-lg-6 col-board">
+            <div class="col-lg-6 col-board" id="faq">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">상품 / 서비스</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I cancel my booking?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                If I need to cancel my booking, will I pay a fee?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I cancel or change my dates for a non-refundable booking?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                How do I know if my booking was cancelled?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Where can I find my property's cancellation policy?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '상품/서비스'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
@@ -477,51 +159,23 @@
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">예약 / 결제</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                What payment methods are accepted?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I pay with a deposit, or prepayment?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                I’ve been charged. Do I need to do anything?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Where can I see the payment policy for my booking?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Why do I need to provide my card details?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '예약/결제'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
@@ -529,51 +183,23 @@
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">변경 / 취소 / 환불</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                How do I get more information about the room or property's facilities?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Is it possible to get an extra bed or cot for a child?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                How can I get an invoice?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                I can't find my confirmation email. What should I do?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Will I pay the full price for my children?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '변경/취소/환불'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
@@ -581,51 +207,23 @@
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">쿠폰 / 할인</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                What is the Booking Assistant?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Where can I find the Booking Assistant?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                How can the Booking Assistant help me?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Where does the Booking Assistant get information?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I use the Booking Assistant in my language?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '쿠폰/할인'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
@@ -633,42 +231,23 @@
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">포인트</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                What's the difference between a Double room and a Twin room?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                What do "non-refundable" and "free cancellation" mean?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I request an extra bed in my room and will there be extra costs?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Is it possible to get an extra bed or cot for a child?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '포인트'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
@@ -676,42 +255,23 @@
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">후기 / 댓글</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Is breakfast included in the price?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                What does the price include?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Are taxes included in the price?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Do I pay a reservation fee to Tripstar.com?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '후기/댓글'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
@@ -719,42 +279,23 @@
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">회원 / 개인정보</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I use a debit card to complete my reservation?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I make a reservation without a credit card?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Why do I need to give my credit card details?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
-                                Can I make a reservation for myself using someone else’s credit card?
-                                <i class="la la-angle-down"></i>
-                            </a>
-                            <ul class="toggle-drop-menu pt-2">
-                                <li class="line-height-26">Suspendisse ullamcorper lacus et commodo laoreet. Sed sodales aliquet felis, quis volutpat massa imperdiet in. Praesent rutrum malesuada risus, ullamcorper pretium tortor</li>
-                            </ul>
-                        </li>
+                        <th:block th:each="list : ${lists}">
+                            <th:block th:each="boardDetailDTO : ${list}">
+                                <th:block th:if="${boardDetailDTO.boardCategoryName == '회원/개인정보'}">
+                                    <li>
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+                                            <i class="la la-angle-down"></i>
+                                        </a>
+                                        <ul class="toggle-drop-menu pt-2">
+                                            <li class="line-height-26">
+                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </ul>
                 </div><!-- end faq-item -->
         </div><!-- end row -->
@@ -764,134 +305,7 @@
     END FAQ AREA
 ================================= -->
 
-<!-- ================================
-    START CTA AREA
-================================= -->
-<section class="cta-area cta-bg-2 bg-fixed padding-top-60px padding-bottom-60px breadcrumb-board">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-7 hwt-col-left">
-                <div class="section-heading">
-                    <h2 class="sec__title font-size-30 text-white">Contact Us</h2>
-                    <p class="sec__desc text-white pt-1 hwt-font-content">원하는 답변이 없으신가요?</p>
-                </div><!-- end section-heading -->
-            </div><!-- end col-lg-7 -->
-            <div class="col-lg-5 hwt-col-right">
-                <div class="btn-box btn--box text-right">
-                    <a href="contact" class="theme-btn border-0 hwt-btn-white">고객센터</a>
-                </div><!-- end btn-box -->
-            </div><!-- end col-lg-5 -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end cta-area -->
-<!-- ================================
-    END CTA AREA
-================================= -->
-
-<!-- ================================
-       START FOOTER AREA
-================================= -->
-<!--<section class="footer-area section-bg padding-top-100px padding-bottom-30px">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-lg-3 responsive-column">-->
-<!--                <div class="footer-item">-->
-<!--                    <div class="footer-logo padding-bottom-30px">-->
-<!--                        <a href="/home" class="foot__logo"><img src="images/logo.png" alt="logo"></a>-->
-<!--                    </div>&lt;!&ndash; end logo &ndash;&gt;-->
-<!--                    <p class="footer__desc">Morbi convallis bibendum urna ut viverra. Maecenas consequat</p>-->
-<!--                    <ul class="list-items pt-3">-->
-<!--                        <li>3015 Grand Ave, Coconut Grove,<br> Cerrick Way, FL 12345</li>-->
-<!--                        <li>+123-456-789</li>-->
-<!--                        <li><a href="#">trizen@yourwebsite.com</a></li>-->
-<!--                    </ul>-->
-<!--                </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-<!--            <div class="col-lg-3 responsive-column">-->
-<!--                <div class="footer-item">-->
-<!--                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Company</h4>-->
-<!--                    <ul class="list-items list&#45;&#45;items">-->
-<!--                        <li><a href="about.html">About us</a></li>-->
-<!--                        <li><a href="services.html">Services</a></li>-->
-<!--                        <li><a href="#">Jobs</a></li>-->
-<!--                        <li><a href="blog-grid.html">News</a></li>-->
-<!--                        <li><a href="contact.html">Support</a></li>-->
-<!--                        <li><a href="#">Advertising</a></li>-->
-<!--                    </ul>-->
-<!--                </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-<!--            <div class="col-lg-3 responsive-column">-->
-<!--                <div class="footer-item">-->
-<!--                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Other Services</h4>-->
-<!--                    <ul class="list-items list&#45;&#45;items">-->
-<!--                        <li><a href="#">Investor Relations</a></li>-->
-<!--                        <li><a href="#">Trizen.com Rewards</a></li>-->
-<!--                        <li><a href="#">Partners</a></li>-->
-<!--                        <li><a href="#">List My Hotel</a></li>-->
-<!--                        <li><a href="#">All Hotels</a></li>-->
-<!--                        <li><a href="#">TV Ads</a></li>-->
-<!--                    </ul>-->
-<!--                </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-<!--            <div class="col-lg-3 responsive-column">-->
-<!--                <div class="footer-item">-->
-<!--                    <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Other Links</h4>-->
-<!--                    <ul class="list-items list&#45;&#45;items">-->
-<!--                        <li><a href="#">USA Vacation Packages</a></li>-->
-<!--                        <li><a href="#">USA Flights</a></li>-->
-<!--                        <li><a href="#">USA Hotels</a></li>-->
-<!--                        <li><a href="#">USA Car Hire</a></li>-->
-<!--                        <li><a href="#">Create an Account</a></li>-->
-<!--                        <li><a href="#">Trizen Reviews</a></li>-->
-<!--                    </ul>-->
-<!--                </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
-<!--        <div class="row align-items-center">-->
-<!--            <div class="col-lg-8">-->
-<!--                <div class="term-box footer-item">-->
-<!--                    <ul class="list-items list&#45;&#45;items d-flex align-items-center">-->
-<!--                        <li><a href="#">Terms & Conditions</a></li>-->
-<!--                        <li><a href="#">Privacy Policy</a></li>-->
-<!--                        <li><a href="#">Help Center</a></li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </div>&lt;!&ndash; end col-lg-8 &ndash;&gt;-->
-<!--            <div class="col-lg-4">-->
-<!--                <div class="footer-social-box text-right">-->
-<!--                    <ul class="social-profile">-->
-<!--                        <li><a href="#"><i class="lab la-facebook-f"></i></a></li>-->
-<!--                        <li><a href="#"><i class="lab la-twitter"></i></a></li>-->
-<!--                        <li><a href="#"><i class="lab la-instagram"></i></a></li>-->
-<!--                        <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
-<!--    </div>&lt;!&ndash; end container &ndash;&gt;-->
-<!--    <div class="section-block mt-4"></div>-->
-<!--    <div class="container">-->
-<!--        <div class="row align-items-center">-->
-<!--            <div class="col-lg-7">-->
-<!--                <div class="copy-right padding-top-30px">-->
-<!--                    <p class="copy__desc">-->
-<!--                        &copy; Copyright Trizen 2020. Made with-->
-<!--                        <span class="la la-heart"></span> by <a href="https://themeforest.net/user/techydevs/portfolio">TechyDevs</a>-->
-<!--                    </p>-->
-<!--                </div>&lt;!&ndash; end copy-right &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end col-lg-7 &ndash;&gt;-->
-<!--            <div class="col-lg-5">-->
-<!--                <div class="copy-right-content d-flex align-items-center justify-content-end padding-top-30px">-->
-<!--                    <h3 class="title font-size-15 pr-2">We Accept</h3>-->
-<!--                    <img src="images/payment-img.png" alt="">-->
-<!--                </div>&lt;!&ndash; end copy-right-content &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end col-lg-5 &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
-<!--    </div>&lt;!&ndash; end container &ndash;&gt;-->
-<!--</section>&lt;!&ndash; end footer-area &ndash;&gt;-->
-<!-- ================================
-       START FOOTER AREA
-================================= -->
+<th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
 
 <!-- start back-to-top -->
 <div id="back-to-top">
@@ -1023,23 +437,6 @@
         </div>
     </div>
 </div><!-- end modal-popup -->
-
-<!-- Template JS Files -->
-<!--<script src="js/jquery-3.4.1.min.js"></script>-->
-<!--<script src="js/jquery-ui.js"></script>-->
-<!--<script src="js/popper.min.js"></script>-->
-<!--<script src="js/bootstrap.min.js"></script>-->
-<!--<script src="js/bootstrap-select.min.js"></script>-->
-<!--<script src="js/moment.min.js"></script>-->
-<!--<script src="js/daterangepicker.js"></script>-->
-<!--<script src="js/owl.carousel.min.js"></script>-->
-<!--<script src="js/jquery.fancybox.min.js"></script>-->
-<!--<script src="js/jquery.countTo.min.js"></script>-->
-<!--<script src="js/animated-headline.js"></script>-->
-<!--<script src="js/jquery.ripples-min.js"></script>-->
-<!--<script src="js/main.js"></script>-->
-<!--</body>-->
-<!--</html>-->
 
 </th:block>
 

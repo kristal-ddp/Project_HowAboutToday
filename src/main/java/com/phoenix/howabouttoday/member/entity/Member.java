@@ -1,11 +1,12 @@
 package com.phoenix.howabouttoday.member.entity;
 
+import com.phoenix.howabouttoday.payment.entity.Orders;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -18,13 +19,13 @@ public class Member {
   private Long memberNum;
 
   /*로그인할 회원 아이디(이메일)*/
-  @Column(name = "email", nullable = false, length = 50)
+  @Column(name = "email", length = 50)
   private String email;
 
-  @Column(name = "pwd", nullable = false,length = 100) //패스워드
+  @Column(name = "pwd", length = 100) //패스워드
   private String pwd;
 
-  @Column(name= "nickname", nullable = false) //닉네임
+  @Column(name= "nickname") //닉네임
   private String nickname;
 
   @Column(nullable = true)
@@ -34,14 +35,18 @@ public class Member {
   @Enumerated(EnumType.STRING)
   private Code memberCode;
 
-  private LocalDateTime joinDate;
-  private LocalDateTime withdrawdate;
+  private LocalDate joinDate;
+  private LocalDate withdrawdate;
 
   private String memberOriginalFileName;
   private String memberSaveFileName;
 
+  //양방향 매핑을 위해 추가
+  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+  private List<Orders> orders = new ArrayList<>();
+
   @Builder
-  public Member(String email, String pwd, String nickname, String memberTel, Code memberCode, LocalDateTime joinDate, LocalDateTime withdrawdate, String memberOriginalFileName, String memberSaveFileName) {
+  public Member(String email, String pwd, String nickname, String memberTel, Code memberCode, LocalDate joinDate, LocalDate withdrawdate, String memberOriginalFileName, String memberSaveFileName) {
     this.email = email;
     this.pwd = pwd;
     this.nickname = nickname;

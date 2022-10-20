@@ -1,8 +1,7 @@
 package com.phoenix.howabouttoday.room.entity;
 
-import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.payment.AvailableDate;
+import com.phoenix.howabouttoday.room.dto.AvailableDate;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
@@ -38,11 +37,11 @@ public class Room {
     private String roomInfo;//객실 정보
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
-    private List<RoomImage> roomImage;
-
+    private List<RoomImage> roomImage = new ArrayList<>();
 
     //양방향 매핑을 위해 추가
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private List<AvailableDate> availableDate = new ArrayList<>();
 
     @Builder
@@ -55,3 +54,5 @@ public class Room {
         this.accommodation = accommodation;
     }
 }
+
+

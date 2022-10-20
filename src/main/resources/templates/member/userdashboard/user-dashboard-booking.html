@@ -62,24 +62,26 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="user : ${users}">
-<!--                                            <th scope="row"><i class="la la-plane mr-1 font-size-18"></i>Flight</th>-->
-                                            <th scope="row"><img src="/icon/icon_hotel.png" width="30px" style="vertical-align:middle;"><span style="margin-top:50px;font-size:18px;">모텔</span></th>
-                                            <td>
-                                                <div class="table-content">
-                                                    <h3 class="title">울산 영남 알프스 인투</h3>
-                                                </div>
-                                            </td>
-                                            <td>울산광역시 </td>
-                                            <td>2022/09/30</td>
-                                            <td>2022/10/15</td>
-                                            <td th:text="${user}">$350</td>
-                                            <td><span class="badge badge-info py-1 px-2">이용 전</span></td>
-                                            <td>
-                                                <div class="table-content">
-                                                   <button class="theme-btn theme-btn-small" onclick="location.href='/user-dashboard-booking-details'">취소</button>
-                                                </div>
-                                            </td>
+                                        <tr th:each="orderDetails : ${orders}">
+                                            <div th:each="orderDetail : ${orderDetails.getOrdersDetailDtoList()}">
+    <!--                                            <th scope="row"><i class="la la-plane mr-1 font-size-18"></i>Flight</th>-->
+                                                <th scope="row"><img src="/icon/icon_hotel.png" width="30px" style="vertical-align:middle;"><span style="margin-top:50px;font-size:18px;" th:text="${orderDetail.getAccomType()}">모텔</span></th>
+                                                <td>
+                                                    <div class="table-content">
+                                                        <h3 class="title" th:text="${orderDetail.getAccomName()}">울산 영남 알프스 인투</h3>
+                                                    </div>
+                                                </td>
+                                                <td th:text="${orderDetail.getAccomRegion()}">울산광역시 </td>
+                                                <td th:text="${orderDetail.getOrderDate()}">2022/09/30</td>
+                                                <td th:text="${orderDetail.getUsePeriod()}">2022/10/15</td>
+                                                <td th:text="${orderDetail.getAccomRegion()}">이용시간</td>
+                                                <td><span class="badge badge-info py-1 px-2" th:text="${orderDetail.usedStatus}">이용 전</span></td>
+                                                <td>
+                                                    <div class="table-content">
+                                                       <button class="theme-btn theme-btn-small" onclick="location.href='/user-dashboard-booking-details'">취소</button>
+                                                    </div>
+                                                </td>
+                                            </div>
                                         </tr>
                                         </tbody>
                                     </table>

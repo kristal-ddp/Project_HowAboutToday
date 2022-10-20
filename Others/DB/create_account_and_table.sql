@@ -255,33 +255,43 @@ CREATE TABLE REPLY (
   CONSTRAINT FK_34 FOREIGN KEY (reviewNum) REFERENCES REVIEW(reviewNum)on delete cascade
 )AUTO_INCREMENT=1;
 
--- 게시판
+-- (Notice, FAQ, About Us) 게시판
 CREATE TABLE BOARD (
 	boardNum int auto_increment, -- 게시글 번호
 	boardCategoryNum int NOT NULL, -- 게시글 카테고리 번호
 	boardTitle varchar(200) NOT NULL, -- 게시글 제목
 	boardContent varchar(3096) NOT NULL, -- 게시글 내용
-	boardCreate datetime NOT NULL, -- 게시글 작성일
-	PRIMARY KEY (`board_num`),
+	boardCreate datetime NOT NULL, -- 게시일
+	PRIMARY KEY (`boardNum`),
 CONSTRAINT FK_27 FOREIGN KEY (boardCategoryNum) REFERENCES BOARD_CATEGORY(boardCategoryNum) on delete cascade
 )AUTO_INCREMENT=1;
 
--- 게시판 카테고리
+-- (Notice, FAQ, About Us) 게시판 카테고리
 CREATE TABLE BOARD_CATEGORY(
 	boardCategoryNum int auto_increment, -- 게시글 카테고리 번호
 	boardCategoryName varchar(20) NOT NULL, -- 게시글 카테고리 이름
-	boardParentNum int NOT NULL, -- 게시글 카테고리 부모 번호
+	boardParentNum int NOT NULL, -- 게시글 카테고리 상위 번호
 	PRIMARY KEY (`boardCategoryNum`)
 )AUTO_INCREMENT=1;
 
---  게시판 이미지
-CREATE TABLE BOARD_IMAGE (
-    boardImageNum int auto_increment, -- 게시글 이미지 번호
-    boardNum int, -- 게시글 번호
-    boardOriginFileName varchar(100) NOT NULL, -- 게시글 이미지 기존 파일 이름
-    boardSaveFileName varchar(100) NOT NULL, -- 게시글 이미지 기존 파일 이름
-    PRIMARY KEY (`boardImageNum`),
-    CONSTRAINT FK_53 FOREIGN KEY (boardNum) REFERENCES BOARD(boardNum) on delete cascade
+-- Event 게시판
+CREATE TABLE EVENT (
+	eventNum int auto_increment, -- 이벤트 게시글 번호
+	eventTitle varchar(200) NOT NULL, -- 이벤트 게시글 제목
+	eventCreate datetime NOT NULL, -- 이벤트 게시일
+	eventStart datetime NOT NULL, -- 이벤트 시작일
+	eventEnd datetime NOT NULL, -- 이벤트 종료일
+	PRIMARY KEY (`eventNum`)
+)AUTO_INCREMENT=1;
+
+-- Event 게시판 이미지
+CREATE TABLE EVENT_IMAGE (
+    eventImageNum int auto_increment, -- 이벤트 이미지 번호
+    eventNum int, -- 이벤트 게시글 번호
+    eventOriginFileName varchar(100) NOT NULL, -- 기존 파일 이름
+    eventSaveFileName varchar(100) NOT NULL, -- 저장 파일 이름
+    PRIMARY KEY (`eventImageNum`),
+    CONSTRAINT FK_53 FOREIGN KEY (eventNum) REFERENCES EVENT(eventNum) on delete cascade
 )AUTO_INCREMENT=1;
 
 --  결제
@@ -325,5 +335,6 @@ DROP TABLE REPLY;
 DROP TABLE REVIEW_IMAGE;
 DROP TABLE BOARD;
 DROP TABLE BOARD_CATEGORY;
+DROP TABLE EVENT;
 DROP TABLE BOARD_IMAGE;
 

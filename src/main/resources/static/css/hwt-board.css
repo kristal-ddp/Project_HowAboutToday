@@ -88,8 +88,12 @@ n
     flex-direction: column;
 }
 
+.hwt-detail-title {
+    padding: 20px 40px;
+}
+
 .hwt-details-bold {
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .hwt-details-content {
@@ -98,6 +102,11 @@ n
 
 .hwt-details-content p img {
     width: 100%;
+}
+
+.hwt-detail-date {
+    font-size: 12pt;
+    margin-top: 5pt;
 }
 
 .form-bottom-wrap {

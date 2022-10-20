@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout">
+
+<th:block layout:fragment="content">
+<!-- ================================
+    START BREADCRUMB AREA
+================================= -->
+    <section class="breadcrumb-area breadcrumb-board">
+        <div class="breadcrumb-wrap">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-content text-center">
+                            <div class="section-heading">
+                                <h2 class="sec__title text-white">ABOUT US</h2>
+                            </div>
+                        </div><!-- end breadcrumb-content -->
+                    </div><!-- end col-lg-6 -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end breadcrumb-wrap -->
+        <div class="bread-svg-box">
+            <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
+        </div><!-- end bread-svg -->
+    </section><!-- end breadcrumb-area -->
+<!-- ================================
+    END BREADCRUMB AREA
+================================= -->
+
+<!-- ================================
+START CARD AREA
+================================= -->
+<section class="card-area section--padding">
+    <div class="container">
+        <div class="row hwt-row-board">
+
+            <!-- 게시글 존재하지 않을 경우 -->
+            <th:block th:if="${lists.isEmpty()}">
+                게시글이 존재하지 않습니다.
+            </th:block>
+
+            <!-- 게시글 존재할 경우 -->
+            <th:block th:each="boardListDTO: ${lists}">
+                <div class="col-lg-4 responsive-column col-board">
+                    <div class="card-item blog-card">
+                        <input type="hidden" th:value="${boardListDTO.boardNum}">
+
+                        <div class="card-footer d-flex align-items-center justify-content-between hwt-board-list"
+                             th:onclick="|location.href='@{|/aboutUs/${boardListDTO.boardNum}|}'|">
+                            <div class="author-content d-flex hwt-board-title">
+                                <div class="author-bio">
+                                    <a class="author__title" th:text="${boardListDTO.boardTitle}">게시글 제목</a>
+                                </div>
+                            </div>
+                            <div class="post-share">
+                                <ul>
+                                    <li>
+                                        <a><i class="la la-share icon-element hwt-icon"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- end card-item -->
+                </div><!-- end col-lg-4 -->
+            </th:block>
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end card-area -->
+<!-- ================================
+    END CARD AREA
+================================= -->
+
+<!-- ================================
+    START INFO AREA
+================================= -->
+<section class="info-area padding-top-100px padding-bottom-70px">
+    <div class="container">
+        <div class="row hwt-row-board">
+            <div class="col-lg-12">
+                <div class="section-heading text-center">
+                    <h2 class="sec__title">오늘어때 정보</h2>
+                </div><!-- end section-heading -->
+            </div><!-- end col-lg-12 -->
+        </div>
+        <div class="row hwt-row-board hwt-about">
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item" data-toggle="tooltip" data-placement="top">
+                    <div class="card-img">
+                        <img src="images/hwt/about1.jpg" alt="about-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title mb-2">Who We Are?</h3>
+                        <p class="card-text">
+                            누구나 편히 휴식할 수 있도록<br>
+                            정보를 제공하는 회사입니다.
+                        </p>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item ">
+                    <div class="card-img">
+                        <img src="images/hwt/about2.jpg" alt="about-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title mb-2">What We Do?</h3>
+                        <p class="card-text">
+                            행복한 여가를 위한<br>
+                            숙소 예약 서비스를 제공합니다.
+                        </p>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item ">
+                    <div class="card-img">
+                        <img src="images/hwt/about3.jpg" alt="about-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title mb-2">Our Mission</h3>
+                        <p class="card-text">
+                            더 나은 서비스를 위해<br>
+                            오늘어때가 항상 함께합니다.
+                        </p>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end info-area -->
+<!-- ================================
+    END INFO AREA
+================================= -->
+
+<!-- ================================
+    STAR FUNFACT AREA
+================================= -->
+<section class="funfact-area padding-top-100px padding-bottom-90px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading text-center">
+                    <h2 class="sec__title">국내 최고의 숙소 예약 페이지</h2>
+                </div><!-- end section-heading -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+        <div class="counter-box counter-box-2 margin-top-60px mb-0">
+            <div class="row hwt-row-board">
+                <div class="col-lg-3 responsive-column">
+                    <div class="counter-item counter-item-layout-2 d-flex">
+                        <div class="counter-icon flex-shrink-0 hwt-icon-color hwt-icon-bg">
+                            <i class="la la-users"></i>
+                        </div>
+                        <div class="counter-content">
+                            <div>
+                                <span class="counter" data-from="0" data-to="200"  data-refresh-interval="5">0</span>
+                                <span class="count-symbol">+</span>
+                            </div>
+                            <p class="counter__title">이용자</p>
+                        </div><!-- end counter-content -->
+                    </div><!-- end counter-item -->
+                </div><!-- end col-lg-3 -->
+                <div class="col-lg-3 responsive-column">
+                    <div class="counter-item counter-item-layout-2 d-flex">
+                        <div class="counter-icon flex-shrink-0 hwt-icon-color hwt-icon-bg">
+                            <i class="la la-building"></i>
+                        </div>
+                        <div class="counter-content">
+                            <div>
+                                <span class="counter" data-from="0" data-to="3"  data-refresh-interval="5">0</span>
+                                <span class="count-symbol">k</span>
+                            </div>
+                            <p class="counter__title">파트너</p>
+                        </div><!-- end counter-content -->
+                    </div><!-- end counter-item -->
+                </div><!-- end col-lg-3 -->
+                <div class="col-lg-3 responsive-column">
+                    <div class="counter-item counter-item-layout-2 d-flex">
+                        <div class="counter-icon flex-shrink-0 hwt-icon-color hwt-icon-bg">
+                            <i class="la la-globe"></i>
+                        </div>
+                        <div class="counter-content">
+                            <div>
+                                <span class="counter" data-from="0" data-to="400"  data-refresh-interval="5">0</span>
+                                <span class="count-symbol">+</span>
+                            </div>
+                            <p class="counter__title">숙소</p>
+                        </div><!-- end counter-content -->
+                    </div><!-- end counter-item -->
+                </div><!-- end col-lg-3 -->
+                <div class="col-lg-3 responsive-column">
+                    <div class="counter-item counter-item-layout-2 d-flex">
+                        <div class="counter-icon flex-shrink-0 hwt-icon-color hwt-icon-bg">
+                            <i class="la la-check-circle"></i>
+                        </div>
+                        <div class="counter-content">
+                            <div>
+                                <span class="counter" data-from="0" data-to="40"  data-refresh-interval="5">0</span>
+                                <span class="count-symbol">k</span>
+                            </div>
+                            <p class="counter__title">누적 예약</p>
+                        </div><!-- end counter-content -->
+                    </div><!-- end counter-item -->
+                </div><!-- end col-lg-3 -->
+            </div><!-- end row -->
+        </div><!-- end counter-box -->
+    </div><!-- end container -->
+</section>
+<!-- ================================
+    END FUNFACT AREA
+================================= -->
+
+<!-- ================================
+       START TESTIMONIAL AREA
+================================= -->
+<section class="testimonial-area section-bg section-padding padding-top-100px padding-bottom-90px">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4">
+                <div class="section-heading">
+                    <h2 class="sec__title line-height-50">오늘어때<br>평가 및 리뷰</h2>
+<!--                    <p class="sec__desc padding-top-30px">-->
+<!--                        Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero-->
+<!--                    </p>-->
+                </div><!-- end section-heading -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-8">
+                <div class="testimonial-carousel carousel-action">
+                    <div class="testimonial-card">
+                        <div class="testi-desc-box">
+                            <p class="testi__desc">
+                                무계획에 무작정 여행을 왔는데 딱 맞는 조건의 숙소를 저렴한 가격에 간편하고 빠르게 찾았어요.
+                                강력 추천합니다!
+                            </p>
+                        </div>
+                        <div class="author-content d-flex align-items-center">
+                            <div class="author-img">
+                                <img src="images/team8.jpg" alt="testimonial image">
+                            </div>
+                            <div class="author-bio">
+                                <h4 class="author__title">Lugh0205</h4>
+                                <span class="author__meta">2022.10.08</span>
+                                <span class="ratings d-flex align-items-center">
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div><!-- end testimonial-card -->
+                    <div class="testimonial-card">
+                        <div class="testi-desc-box">
+                            <p class="testi__desc">
+                                오늘어때를 이용하면서 불편한 점이라고는 찾아볼 수 없었습니다 ㅎㅎ
+                                복잡하지 않고 간편한게 큰 장점이예요 짱짱짱
+                            </p>
+                        </div>
+                        <div class="author-content d-flex align-items-center">
+                            <div class="author-img">
+                                <img src="images/team9.jpg" alt="testimonial image">
+                            </div>
+                            <div class="author-bio">
+                                <h4 class="author__title">chby05</h4>
+                                <span class="author__meta">2022.10.05</span>
+                                <span class="ratings d-flex align-items-center">
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div><!-- end testimonial-card -->
+                    <div class="testimonial-card">
+                        <div class="testi-desc-box">
+                            <p class="testi__desc">
+                                혼자 놀러가고 싶을 때마다 가격, 퀄리티 등을 만족하는
+                                숙박 검색하는 게 힘들었는데 그 문제를 해결했어요~
+                            </p>
+                        </div>
+                        <div class="author-content d-flex align-items-center">
+                            <div class="author-img">
+                                <img src="images/team10.jpg" alt="testimonial image">
+                            </div>
+                            <div class="author-bio">
+                                <h4 class="author__title">옹키도키</h4>
+                                <span class="author__meta">2022.10.01</span>
+                                <span class="ratings d-flex align-items-center">
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div><!-- end testimonial-card -->
+                    <div class="testimonial-card">
+                        <div class="testi-desc-box">
+                            <p class="testi__desc">
+                                사용자가 많은 이유를 알겠네요. 우선 제휴 가맹점이 많습니다.
+                                당연히 혜택이나 선택의 폭이 크구요.
+                            </p>
+                        </div>
+                        <div class="author-content d-flex align-items-center">
+                            <div class="author-img">
+                                <img src="images/team8.jpg" alt="testimonial image">
+                            </div>
+                            <div class="author-bio">
+                                <h4 class="author__title">댕냥이</h4>
+                                <span class="author__meta">2022.09.30</span>
+                                <span class="ratings d-flex align-items-center">
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                    <i class="la la-star"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div><!-- end testimonial-card -->
+                </div><!-- end testimonial-carousel -->
+            </div><!-- end col-lg-8 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end testimonial-area -->
+<!-- ================================
+       START TESTIMONIAL AREA
+================================= -->
+
+<!-- ================================
+    START INFO AREA
+================================= -->
+<section class="info-area padding-top-150px padding-bottom-60px text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <h2 class="sec__title">오늘어때 팀 역할</h2>
+                </div><!-- end section-heading -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+        <div class="row padding-top-100px">
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item team-card">
+                    <div class="card-img">
+                        <img src="images/hwt/19.JPG" alt="team-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">수정</h3>
+                        <p class="card-text font-size-15 pt-2">
+                            레이아웃 [Header, Footer] / 메인 페이지<br>
+                            공지사항 / 이벤트<br>
+                            FAQ / 오늘어때 정보<br>
+                        </p>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item team-card">
+                    <div class="card-img">
+                        <img src="images/hwt/12.JPG" alt="team-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">영운</h3>
+                        <p class="card-text font-size-15 pt-2">
+                            예약 및 결제<br>
+                            예약내역<br>
+                            예약취소
+                        </p>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item team-card">
+                    <div class="card-img">
+                        <img src="images/hwt/8.JPG" alt="team-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">동우</h3>
+                        <p class="card-text font-size-15 pt-2">
+                            위시리스트<br>
+                            장바구니<br>
+                            쿠폰 / 포인트
+                        </p>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+             <div class="col-lg-4 responsive-column">
+                <div class="card-item team-card">
+                    <div class="card-img">
+                        <img src="images/hwt/15.JPG" alt="team-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">영진</h3>
+                        <p class="card-text font-size-15 pt-2">
+                            로그인 / 회원가입<br>
+                            회원정보 수정 및 탈퇴<br>
+                            고객센터 / 리뷰 [my 리뷰, 숙소 리뷰]
+                        </p>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item team-card">
+                    <div class="card-img">
+                        <img src="images/hwt/3.JPG" alt="team-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">수언</h3>
+                        <p class="card-text font-size-15 pt-2">
+                            날짜 및 인원수 선택<br>
+                            지역 리스트<br>
+                            숙소 리스트
+                        </p>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+            <div class="col-lg-4 responsive-column">
+                <div class="card-item team-card">
+                    <div class="card-img">
+                        <img src="images/hwt/4.JPG" alt="team-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">다영</h3>
+                        <p class="card-text font-size-15 pt-2">
+                            객실 리스트<br>
+                            객실 상세 페이지
+                        </p>
+                    </div>
+                </div><!-- end card-item -->
+            </div><!-- end col-lg-4 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end info-area -->
+<!-- ================================
+    END INFO AREA
+================================= -->
+
+<th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
+
+<!-- start back-to-top -->
+<div id="back-to-top">
+    <i class="la la-angle-up" title="Go top"></i>
+</div>
+<!-- end back-to-top -->
+
+<!-- end modal-shared -->
+<div class="modal-popup">
+    <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
+                        <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="la la-close"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="contact-form-action">
+                        <form method="post">
+                            <div class="input-box">
+                                <label class="label-text">이메일</label>
+                                <div class="form-group">
+                                    <span class="la la-envelope form-icon"></span>
+                                    <input class="form-control" type="text" name="text" placeholder="이메일 주소">
+                                </div>
+                            </div><!-- end input-box -->
+                            <div class="input-box">
+                                <label class="label-text">패스워드</label>
+                                <div class="form-group mb-2">
+                                    <span class="la la-lock form-icon"></span>
+                                    <input class="form-control" type="text" name="text" placeholder="패스워드">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <!--                                    <div class="custom-checkbox mb-0">-->
+                                    <!--                                        <input type="checkbox" id="rememberchb">-->
+                                    <!--                                        <label for="rememberchb">Remember me</label>-->
+                                    <!--                                    </div>-->
+                                    <p class="forgot-password">
+                                        <a href="recover">비밀번호를 잊으셨나요?</a>
+                                    </p>
+                                </div>
+                            </div><!-- end input-box -->
+                            <div class="btn-box pt-3 pb-4">
+                                <button type="button" class="theme-btn w-100">로그인</button>
+                            </div>
+                            <div class="action-box text-center">
+                                <p class="font-size-14">SNS를 통한 로그인</p>
+                                <ul class="social-profile py-3">
+                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
+                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
+                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
+                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div><!-- end contact-form-action -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- end modal-popup -->
+
+</th:block>
+
+</html>

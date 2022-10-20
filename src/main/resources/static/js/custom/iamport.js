@@ -1,23 +1,37 @@
 
-function requestPay() {
+const requestPay = () => {
 
     window.IMP.init('imp73826618');
     window.IMP.request_pay({
         pg: "kcp",
-        pay_method: "card",
-        merchant_uid : 'merchant_'+new Date().getTime(),
-        name : '결제테스트',
-        amount : 140,
-        buyer_email : 'iamport@siot.do',
-        buyer_name : '구매자',
-        buyer_tel : '010-4502-0614',
-        buyer_addr : '서울특별시 강남구 삼성동',
-        buyer_postcode : '123-456'
+        pay_method: pay_method,
+        merchant_uid : merchant_uid,
+        name : name,
+        amount : amount,
+        // amount : 1,
+        buyer_email : buyer_email,
+        buyer_name : buyer_name,
+        buyer_tel : buyer_tel,
+        buyer_addr : buyer_addr,
+        buyer_postcode : buyer_postcode,
     }, function (rsp) { // callback
         if (rsp.success) {
-            alert("결제 성공")
+            successRequest();
         } else {
             alert("실패!!!!!!!!!!!!!!!!!!!")
         }
     });
+}
+
+const successRequest = () => {
+//    조금 더 보안을 지켜서 만들면 아임포트 webhook을 사용해서 이중?체크로
+//    결제 정보 서버로 요청
+
+
+//    필요한 정보
+
+
+    console.log("리다이렉트")
+    location.replace("/paymentSuccess");
+
 }

@@ -30,224 +30,273 @@
     <!-- ================================
         END BREADCRUMB AREA
     ================================= -->
-<!-- ================================
-    START PAYMENT AREA
-================================= -->
-<section class="payment-area section-bg section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="form-box payment-received-wrap mb-0">
-                    <div class="form-content">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="payment-received-list">
-                                    <h3 class="title font-size-24">EnVision Hotel Boston</h3>
-                                    <div class="card-rating">
-                                        <span class="badge badge-warning text-white">4.4/5</span>
-                                        <span class="review__text text-warning">Average</span>
-                                        <span class="rating__text">(30)</span>
+    <!-- ================================
+        START PAYMENT AREA
+
+    ================================= -->
+
+    <!--    <section class="payment-area section-bg section-padding">-->
+    <!--        <div class="container">-->
+    <!--            <div class="row justify-content-md-center">-->
+    <!--                <div class=8>-->
+    <!--                    <div class="form-box payment-received-wrap mb-0">-->
+
+
+    <section class="payment-area padding-top-100px padding-bottom-70px">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-lg-8">
+                    <div class="table-form table-responsive mb-0">
+                        <h3 class="title" th:text="#{payment_details_payment_detail}">Payment Detail</h3>
+                        <hr>
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col" th:text="|숙소|">Product</th>
+                                <th class="table-content text-right" scope="col" th:text="|숙소가격|">Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <div class="table-content product-content d-flex align-items-center">
+                                        <!--                                    <a href="room-details.html" class="d-block" th:href="@{/room-details}">-->
+                                        <!--                                        <img src="images/room1.jpg" alt="" class="flex-shrink-0">-->
+                                        <!--                                    </a>-->
+                                        <div class="product-content">
+                                            <a href="room-details.html" class="title" th:href="@{/room-details}"
+                                               th:text="|dd|">
+                                                호텔 방 이름</a>
+                                            <div class="product-info-wrap">
+                                                <div class="product-info line-height-24">
+                                                    <span class="product-info-label" th:text="|dd|">인원:</span>
+                                                </div><!-- end product-info -->
+                                                <div class="product-info line-height-24">
+                                                    <span class="product-info-label" th:text="|예약 일시:|">예약 일시:</span>
+                                                    <span class="product-info-value">
+                                                       <span class="product-check-in" th:text="|2022년 10월 1일|">체크인 날짜</span>
+                                                       <span class="product-mark">/</span>
+                                                       <span class="product-check-out" th:text="|202년 10월 3일|">체크아웃 날짜</span>
+                                                       <span class="product-nights" th:text="|(2박)|">몇박인지 </span>
+                                                    </span>
+                                                </div><!-- end product-info -->
+                                                <div class="product-info line-height-24">
+                                                    <span class="product-info-label" th:text="|체크인 15:00 / 체크아웃 13:00|">추가서비스:</span>
+                                                </div><!-- end product-info -->
+                                            </div>
+                                        </div>
                                     </div>
-                                    <ul class="list-items list-items-2 py-3">
-                                        <li><span th:text="|#{payment_details_location}:|">Location:</span>Delaware, OH, USA</li>
-                                        <li><span th:text="|#{payment_details_check_in}:|">Check-in:</span>Thu 30 Mar, 2020</li>
-                                        <li><span th:text="|#{payment_details_check_out}:|">Check-out:</span>Sat 01 Jun, 2020</li>
-                                        <li><span th:text="|#{payment_details_booking_details}:|">Booking details:</span>2 Nights, 1 Room, Max 2 Adult(s)</li>
-                                        <li><span th:text="|#{payment_details_room_name}:|">Room name:</span>Luxury View Suite</li>
-                                        <li><span th:text="|#{payment_details_client}:|">Client:</span>David Martin</li>
-                                    </ul>
-                                </div><!-- end card-item -->
-                            </div><!-- end col-lg-6 -->
-                            <div class="col-lg-6">
-                                <div class="card-item card-item-list payment-received-card">
-                                    <div class="card-img">
-                                        <img src="images/img1.jpg" alt="hotel-img">
+                                </th>
+                                <td>
+                                    <div class="table-content text-right" th:text="|88|">숙소 가격</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <div class="table-content product-content d-flex align-items-center">
+                                        <!--                                    <a href="room-details.html" class="d-block" th:href="@{/room-details}">-->
+                                        <!--                                        <img src="images/room1.jpg" alt="" class="flex-shrink-0">-->
+                                        <!--                                    </a>-->
+                                        <div class="product-content">
+                                            <a href="room-details.html" class="title" th:href="@{/room-details}"
+                                               th:text="|dd|">
+                                                호텔 방 이름</a>
+                                            <div class="product-info-wrap">
+                                                <div class="product-info line-height-24">
+                                                    <span class="product-info-label" th:text="|dd|">인원:</span>
+                                                </div><!-- end product-info -->
+                                                <div class="product-info line-height-24">
+                                                    <span class="product-info-label" th:text="|예약 일시:|">예약 일시:</span>
+                                                    <span class="product-info-value">
+                                                       <span class="product-check-in" th:text="|2022년 10월 1일|">체크인 날짜</span>
+                                                       <span class="product-mark">/</span>
+                                                       <span class="product-check-out" th:text="|202년 10월 3일|">체크아웃 날짜</span>
+                                                       <span class="product-nights" th:text="|(2박)|">몇박인지 </span>
+                                                    </span>
+                                                </div><!-- end product-info -->
+                                                <div class="product-info line-height-24">
+                                                    <span class="product-info-label" th:text="|체크인 15:00 / 체크아웃 13:00|">추가서비스:</span>
+                                                </div><!-- end product-info -->
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        <h3 class="card-title" th:text="#{payment_details_night}">2 Nights</h3>
-                                        <div class="section-block"></div>
-                                        <p class="card-text pt-3" th:text="#{payment_details_notice}">Hotel tax 7% not included, Service charge 10% not included</p>
+                                </th>
+                                <td>
+                                    <div class="table-content text-right" th:text="|88|">숙소 가격</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <div class="table-content product-content d-flex align-items-center">
+                                        <!--                                    <a href="room-details.html" class="d-block" th:href="@{/room-details}">-->
+                                        <!--                                        <img src="images/room1.jpg" alt="" class="flex-shrink-0">-->
+                                        <!--                                    </a>-->
+                                        <div class="product-content">
+                                            <a href="room-details.html" class="title" th:href="@{/room-details}"
+                                               th:text="|dd|">
+                                                호텔 방 이름</a>
+                                            <div class="product-info-wrap">
+                                                <div class="product-info line-height-24">
+                                                    <span class="product-info-label" th:text="|dd|">인원:</span>
+                                                </div><!-- end product-info -->
+                                                <div class="product-info line-height-24">
+                                                    <span class="product-info-label" th:text="|예약 일시:|">예약 일시:</span>
+                                                    <span class="product-info-value">
+                                                       <span class="product-check-in" th:text="|2022년 10월 1일|">체크인 날짜</span>
+                                                       <span class="product-mark">/</span>
+                                                       <span class="product-check-out" th:text="|202년 10월 3일|">체크아웃 날짜</span>
+                                                       <span class="product-nights" th:text="|(2박)|">몇박인지 </span>
+                                                    </span>
+                                                </div><!-- end product-info -->
+                                                <div class="product-info line-height-24">
+                                                    <span class="product-info-label" th:text="|체크인 15:00 / 체크아웃 13:00|">추가서비스:</span>
+                                                </div><!-- end product-info -->
+                                            </div>
+                                        </div>
                                     </div>
-                                </div><!-- end card-item -->
-                            </div><!-- end col-lg-6 -->
-                        </div><!-- end row -->
-                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="payment-received-list">
-                                    <h3 class="title">예약완료</h3>
-                                    <p th:text="#{payment_details_message}">Thank you. Your order has been received</p>
-                                    <div class="table-form table-responsive pt-3 pb-3">
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col" th:text="#{payment_details_other_number}">Order</th>
-                                                <th scope="col" th:text="#{payment_details_date}">Date</th>
-                                                <th scope="col" th:text="#{payment_details_total}">Total</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">#121</th>
-                                                <td>
-                                                    <div class="table-content">
-                                                        <h3 class="title">Thu 30 Mar, 2020</h3>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="table-content">
-                                                        <h3 class="title">$88</h3>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                </th>
+                                <td>
+                                    <div class="table-content text-right" th:text="|88|">숙소 가격</div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col" th:text="|결제 내역|">Product</th>
+                                <th class="table-content text-right" scope="col" th:text="|금액|">Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <div class="table-content">
+                                        <p class="title">총 예약 금액</p>
                                     </div>
-                                    <p th:text="#{payment_details_message_details}">Make your payment derectly into our bank account. Please ues your Order ID as the payment reference. Your order wont be shipped until the funds have cleared in our account</p>
-                                </div><!-- end card-item -->
-                            </div><!-- end col-lg-6 -->
-                            <div class="col-lg-6">
-                                <div class="payment-received-list">
-                                    <h3 class="title" th:text="#{payment_details_payment_detail}">Payment Detail</h3>
-                                    <div class="table-form table-layout-2 table-responsive pt-3">
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col" th:text="#{payment_details_room_name}">Room</th>
-                                                <th scope="col" class="text-right">가격</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div class="table-content">
-                                                        <p class="title pb-2">EnVision Hotel Boston</p>
-                                                        <p class="font-size-13 text-gray line-height-20 font-weight-medium"><span class="mr-2 color-text-2">Check In:</span>Thu 30 Mar, 2020</p>
-                                                        <p class="font-size-13 text-gray line-height-20 font-weight-medium"><span class="mr-2 color-text-2">Check Out:</span>Sat 01 Jun, 2020</p>
-                                                    </div>
-                                                </th>
-                                                <td>
-                                                    <div class="table-content text-right">
-                                                        <h3 class="title color-text">$88</h3>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div class="table-content">
-                                                        <p class="title" th:text="#{payment_details_discount}">Subtotal</p>
-                                                    </div>
-                                                </th>
-                                                <td>
-                                                    <div class="table-content text-right">
-                                                        <h3 class="title color-text">$88</h3>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div class="table-content">
-                                                        <p class="title" th:text="#{payment_details_total_price}">Order Total</p>
-                                                    </div>
-                                                </th>
-                                                <td>
-                                                    <div class="table-content text-right">
-                                                        <h3 class="title color-text">$88</h3>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                </th>
+                                <td>
+                                    <div class="table-content text-right">
+                                        <h3 class="title color-text">$264</h3>
                                     </div>
-                                </div><!-- end card-item -->
-                            </div><!-- end col-lg-6 -->
-                             <div class="col-lg-12">
-                                 <div class="section-block mt-3"></div>
-                                 <div class="btn-box text-center pt-4">
-                                     <a href="/user-dashboard-booking" class="theme-btn" th:text="#{payment_details_book_complete}">Book Complete</a>
-                                     <a href="#" class="theme-btn border-0 text-white bg-7" th:text="#{payment_details_book_cancel}">Cancel your booking</a>
-                                 </div>
-                             </div>
-                        </div><!-- end row -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <div class="table-content">
+                                        <p class="title" th:text="#{payment_details_discount}">Subtotal</p>
+                                    </div>
+                                </th>
+                                <td>
+                                    <div class="table-content text-right">
+                                        <h3 class="title color-text">-$24</h3>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <div class="table-content">
+                                        <p class="title" th:text="#{payment_details_total_price}">Order Total</p>
+                                    </div>
+                                </th>
+                                <td>
+                                    <div class="table-content text-right">
+                                        <h3 class="title color-text">$240</h3>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
+
+                    <div class="col-lg-12">
+                        <div class="section-block mt-3"></div>
+                        <div class="btn-box text-center pt-4">
+                            <a href="/user-dashboard-booking" class="theme-btn" th:text="#{payment_details_book_complete}">Book Complete</a>
+                            <a href="#" class="theme-btn border-0 text-white bg-7" th:text="#{payment_details_book_cancel}">Cancel your booking</a>
+                        </div>
+                    </div>
+
                 </div><!-- end payment-card -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
-    </div><!-- end container -->
-</section>
-<!-- ================================
-    END PAYMENT AREA
-================================= -->
+        </div><!-- end container -->
+    </section>
+    <!-- ================================
+        END PAYMENT AREA
+    ================================= -->
 
-<!-- start back-to-top -->
-<div id="back-to-top">
-    <i class="la la-angle-up" title="Go top"></i>
-</div>
-<!-- end back-to-top -->
+    <!-- start back-to-top -->
+    <div id="back-to-top">
+        <i class="la la-angle-up" title="Go top"></i>
+    </div>
+    <!-- end back-to-top -->
 
-<!-- end modal-shared -->
-<div class="modal-popup">
-    <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div>
-                        <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                        <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
+    <!-- end modal-shared -->
+    <div class="modal-popup">
+        <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div>
+                            <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
+                            <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="la la-close"></span>
+                        </button>
                     </div>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="la la-close"></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="contact-form-action">
-                        <form method="post">
-                            <div class="input-box">
-                                <label class="label-text">닉네임</label>
-                                <div class="form-group">
-                                    <span class="la la-user form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="닉네임">
+                    <div class="modal-body">
+                        <div class="contact-form-action">
+                            <form method="post">
+                                <div class="input-box">
+                                    <label class="label-text">닉네임</label>
+                                    <div class="form-group">
+                                        <span class="la la-user form-icon"></span>
+                                        <input class="form-control" type="text" name="text" placeholder="닉네임">
+                                    </div>
+                                </div><!-- end input-box -->
+                                <div class="input-box">
+                                    <label class="label-text">이메일 주소</label>
+                                    <div class="form-group">
+                                        <span class="la la-envelope form-icon"></span>
+                                        <input class="form-control" type="text" name="text" placeholder="이메일 주소">
+                                    </div>
+                                </div><!-- end input-box -->
+                                <div class="input-box">
+                                    <label class="label-text">패스워드</label>
+                                    <div class="form-group">
+                                        <span class="la la-lock form-icon"></span>
+                                        <input class="form-control" type="text" name="text" placeholder="패스워드">
+                                    </div>
+                                </div><!-- end input-box -->
+                                <div class="input-box">
+                                    <label class="label-text">패스워드 확인</label>
+                                    <div class="form-group">
+                                        <span class="la la-lock form-icon"></span>
+                                        <input class="form-control" type="text" name="text" placeholder="패스워드 재입력">
+                                    </div>
+                                </div><!-- end input-box -->
+                                <div class="btn-box pt-3 pb-4">
+                                    <button type="button" class="theme-btn w-100">회원가입</button>
                                 </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">이메일 주소</label>
-                                <div class="form-group">
-                                    <span class="la la-envelope form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="이메일 주소">
+                                <div class="action-box text-center">
+                                    <p class="font-size-14">SNS를 통한 회원가입</p>
+                                    <ul class="social-profile py-3">
+                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
+                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
+                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
+                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
+                                    </ul>
                                 </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">패스워드</label>
-                                <div class="form-group">
-                                    <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="패스워드">
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">패스워드 확인</label>
-                                <div class="form-group">
-                                    <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="패스워드 재입력">
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="btn-box pt-3 pb-4">
-                                <button type="button" class="theme-btn w-100">회원가입</button>
-                            </div>
-                            <div class="action-box text-center">
-                                <p class="font-size-14">SNS를 통한 회원가입</p>
-                                <ul class="social-profile py-3">
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div><!-- end contact-form-action -->
+                            </form>
+                        </div><!-- end contact-form-action -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div><!-- end modal-popup -->
+    </div><!-- end modal-popup -->
 
     <!-- end modal-shared -->
     <div class="modal-popup">
@@ -294,20 +343,20 @@
                                 </div>
                                 <div class="action-box text-center">
                                     <p class="font-size-14">SNS를 통한 로그인</p>
-                                <ul class="social-profile py-3">
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div><!-- end contact-form-action -->
+                                    <ul class="social-profile py-3">
+                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
+                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
+                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
+                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div><!-- end contact-form-action -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div><!-- end modal-popup -->
+    </div><!-- end modal-popup -->
 
 
 </th:block>

@@ -1,15 +1,13 @@
 package com.phoenix.howabouttoday.accom.entity;
 
 
-import com.phoenix.howabouttoday.accom.RegionType;
-import com.phoenix.howabouttoday.accom.RegionTypeConverter;
-import com.phoenix.howabouttoday.payment.AccomCategory;
-import com.phoenix.howabouttoday.payment.AccomCategoryConverter;
+import com.phoenix.howabouttoday.global.AccomCategory;
+import com.phoenix.howabouttoday.global.AccomCategoryConverter;
 import com.phoenix.howabouttoday.room.entity.Room;
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,32 +37,29 @@ public class Accommodation {
     @JoinColumn(name = "region_num")
     private Region region; //숙소 지역 번호
 
-
     @Column(length = 200)
     private String accomAddress;//숙소 주소
-
 
     @Column(precision = 1, scale = 2)
     private Double accomRating;//숙소 평점
 
-
     private Integer totalReviewNum;//숙소의 평점 수
-
 
     private Integer accomWishlistCount; //즐겨찾기 버튼 갯수
 
+    private LocalTime checkIn;
+    private LocalTime checkOut;
 
     @Column(precision = 14, scale = 28)
     private Double latitude; //위도
 
-
     @Column(precision = 14, scale = 31)
     private Double longitude; //경도
-
 
     private Integer lowPrice; //숙소의 객실 최저가
 
     private Integer reserveRange;//예약 가능일 범위(ex. 60 → 오늘부터 +60일까지 예약 가능)
+
 
     //양방향 매핑을 위해 추가
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
@@ -75,7 +70,7 @@ public class Accommodation {
     private List<Room> room = new ArrayList<>();    //이미지 fk를 위한 매핑
 
     @Builder
-    public Accommodation(String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange) {
+    public Accommodation(String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, LocalTime checkIn, LocalTime checkOut) {
         this.accomName = accomName;
         this.accomTel = accomTel;
         this.accomCategory = accomCategory;
@@ -88,6 +83,8 @@ public class Accommodation {
         this.longitude = longitude;
         this.lowPrice = lowPrice;
         this.reserveRange = reserveRange;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
     }
 
 }

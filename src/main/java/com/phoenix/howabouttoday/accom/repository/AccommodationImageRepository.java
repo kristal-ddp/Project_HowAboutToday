@@ -11,8 +11,9 @@ public interface AccommodationImageRepository extends JpaRepository<AccomImage, 
     @Override
     <S extends AccomImage> S save(S entity);
 
-
     @Override
     List<AccomImage> findAll();
     AccomImage findByAccomNum(Long number);
+
+
 }

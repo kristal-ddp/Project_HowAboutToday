@@ -1,6 +1,10 @@
 package com.phoenix.howabouttoday.member.controller;
 
+
+import com.phoenix.howabouttoday.member.Service.MemberService;
+import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.type.CalendarType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +16,32 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
+
+    private final MemberService memberService;
+
+
+    @GetMapping("/member/join")
+    public String join() {
+        return "home";
+    }
+
+
+
+    @PostMapping("/member/join")
+    public String joinProc(MemberDTO memberDTO) {
+        System.out.println("memberDto = " + memberDTO.toString());
+        memberService.join(memberDTO);
+
+
+        return "redirect:/home";
+    }
+
+    @GetMapping("/member/login")
+    public String login() {
+        return "/member/login";
+    }
+
+
 
     @GetMapping("recover")
     public String getRecover(){
@@ -68,16 +98,16 @@ public class MemberController {
 //        }
 //    }
 
-   @GetMapping("user-dashboard-booking")
-    public String getUserDashboardBooking(Model model) {
-
-        addUsers(model);
-        return "member/userdashboard/user-dashboard-booking";
-    }
-    @PostMapping("user-dashboard-booking")
-    public String postUserDashboardBooking() {
-        return "member/userdashboard/user-dashboard-booking";
-    }
+//   @GetMapping("user-dashboard-booking")
+//    public String getUserDashboardBooking(Model model) {
+//
+//        addUsers(model);
+//        return "member/userdashboard/user-dashboard-booking";
+//    }
+//    @PostMapping("user-dashboard-booking")
+//    public String postUserDashboardBooking() {
+//        return "member/userdashboard/user-dashboard-booking";
+//    }
 
     @GetMapping("user-dashboard-profile")
     public String getUserDashboardProfile() {

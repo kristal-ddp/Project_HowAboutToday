@@ -28,9 +28,9 @@ public class Reply {
     @JoinColumn(name = "review_num")
     private Review review;
 
-
     private LocalDateTime replyCreatedDate;
     private LocalDateTime replyModifyDate;
 
+    private String content;
 
 }

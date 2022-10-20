@@ -13,7 +13,7 @@ public class RoomViewService {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long roomViewAmenitiesNum;
+    private Long roomViewServiceNum;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_num")

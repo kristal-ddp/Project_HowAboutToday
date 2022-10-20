@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout">
+
+<th:block layout:fragment="content">
+
+
+    <!-- ================================
+    START BREADCRUMB AREA
+================================= -->
+    <section class="breadcrumb-area breadcrumb-board">
+        <div class="breadcrumb-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-content text-center">
+                            <div class="section-heading">
+                                <h2 class="sec__title text-white">BOOKING DETAILS</h2>
+                            </div>
+                        </div><!-- end breadcrumb-content -->
+                    </div><!-- end col-lg-12 -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end breadcrumb-wrap -->
+        <div class="bread-svg-box">
+            <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
+        </div><!-- end bread-svg -->
+    </section><!-- end breadcrumb-area -->
+    <!-- ================================
+        END BREADCRUMB AREA
+    ================================= -->
+<!-- ================================
+    START PAYMENT AREA
+================================= -->
+<section class="payment-area section-bg section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-box payment-received-wrap mb-0">
+                    <div class="form-content">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="payment-received-list">
+                                    <h3 class="title font-size-24">EnVision Hotel Boston</h3>
+                                    <div class="card-rating">
+                                        <span class="badge badge-warning text-white">4.4/5</span>
+                                        <span class="review__text text-warning">Average</span>
+                                        <span class="rating__text">(30)</span>
+                                    </div>
+                                    <ul class="list-items list-items-2 py-3">
+                                        <li><span th:text="|#{payment_details_location}:|">Location:</span>Delaware, OH, USA</li>
+                                        <li><span th:text="|#{payment_details_check_in}:|">Check-in:</span>Thu 30 Mar, 2020</li>
+                                        <li><span th:text="|#{payment_details_check_out}:|">Check-out:</span>Sat 01 Jun, 2020</li>
+                                        <li><span th:text="|#{payment_details_booking_details}:|">Booking details:</span>2 Nights, 1 Room, Max 2 Adult(s)</li>
+                                        <li><span th:text="|#{payment_details_room_name}:|">Room name:</span>Luxury View Suite</li>
+                                        <li><span th:text="|#{payment_details_client}:|">Client:</span>David Martin</li>
+                                    </ul>
+                                </div><!-- end card-item -->
+                            </div><!-- end col-lg-6 -->
+                            <div class="col-lg-6">
+                                <div class="card-item card-item-list payment-received-card">
+                                    <div class="card-img">
+                                        <img src="images/img1.jpg" alt="hotel-img">
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class="card-title" th:text="#{payment_details_night}">2 Nights</h3>
+                                        <div class="section-block"></div>
+                                        <p class="card-text pt-3" th:text="#{payment_details_notice}">Hotel tax 7% not included, Service charge 10% not included</p>
+                                    </div>
+                                </div><!-- end card-item -->
+                            </div><!-- end col-lg-6 -->
+                        </div><!-- end row -->
+                         <div class="row">
+                            <div class="col-lg-6">
+                                <div class="payment-received-list">
+                                    <h3 class="title">예약완료</h3>
+                                    <p th:text="#{payment_details_message}">Thank you. Your order has been received</p>
+                                    <div class="table-form table-responsive pt-3 pb-3">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col" th:text="#{payment_details_other_number}">Order</th>
+                                                <th scope="col" th:text="#{payment_details_date}">Date</th>
+                                                <th scope="col" th:text="#{payment_details_total}">Total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">#121</th>
+                                                <td>
+                                                    <div class="table-content">
+                                                        <h3 class="title">Thu 30 Mar, 2020</h3>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="table-content">
+                                                        <h3 class="title">$88</h3>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p th:text="#{payment_details_message_details}">Make your payment derectly into our bank account. Please ues your Order ID as the payment reference. Your order wont be shipped until the funds have cleared in our account</p>
+                                </div><!-- end card-item -->
+                            </div><!-- end col-lg-6 -->
+                            <div class="col-lg-6">
+                                <div class="payment-received-list">
+                                    <h3 class="title" th:text="#{payment_details_payment_detail}">Payment Detail</h3>
+                                    <div class="table-form table-layout-2 table-responsive pt-3">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col" th:text="#{payment_details_room_name}">Room</th>
+                                                <th scope="col" class="text-right">가격</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">
+                                                    <div class="table-content">
+                                                        <p class="title pb-2">EnVision Hotel Boston</p>
+                                                        <p class="font-size-13 text-gray line-height-20 font-weight-medium"><span class="mr-2 color-text-2">Check In:</span>Thu 30 Mar, 2020</p>
+                                                        <p class="font-size-13 text-gray line-height-20 font-weight-medium"><span class="mr-2 color-text-2">Check Out:</span>Sat 01 Jun, 2020</p>
+                                                    </div>
+                                                </th>
+                                                <td>
+                                                    <div class="table-content text-right">
+                                                        <h3 class="title color-text">$88</h3>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <div class="table-content">
+                                                        <p class="title" th:text="#{payment_details_discount}">Subtotal</p>
+                                                    </div>
+                                                </th>
+                                                <td>
+                                                    <div class="table-content text-right">
+                                                        <h3 class="title color-text">$88</h3>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <div class="table-content">
+                                                        <p class="title" th:text="#{payment_details_total_price}">Order Total</p>
+                                                    </div>
+                                                </th>
+                                                <td>
+                                                    <div class="table-content text-right">
+                                                        <h3 class="title color-text">$88</h3>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div><!-- end card-item -->
+                            </div><!-- end col-lg-6 -->
+                             <div class="col-lg-12">
+                                 <div class="section-block mt-3"></div>
+                                 <div class="btn-box text-center pt-4">
+                                     <a href="/user-dashboard-booking" class="theme-btn" th:text="#{payment_details_book_complete}">Book Complete</a>
+                                     <a href="#" class="theme-btn border-0 text-white bg-7" th:text="#{payment_details_book_cancel}">Cancel your booking</a>
+                                 </div>
+                             </div>
+                        </div><!-- end row -->
+                    </div>
+                </div><!-- end payment-card -->
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+<!-- ================================
+    END PAYMENT AREA
+================================= -->
+
+<!-- start back-to-top -->
+<div id="back-to-top">
+    <i class="la la-angle-up" title="Go top"></i>
+</div>
+<!-- end back-to-top -->
+
+<!-- end modal-shared -->
+<div class="modal-popup">
+    <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
+                        <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="la la-close"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="contact-form-action">
+                        <form method="post">
+                            <div class="input-box">
+                                <label class="label-text">닉네임</label>
+                                <div class="form-group">
+                                    <span class="la la-user form-icon"></span>
+                                    <input class="form-control" type="text" name="text" placeholder="닉네임">
+                                </div>
+                            </div><!-- end input-box -->
+                            <div class="input-box">
+                                <label class="label-text">이메일 주소</label>
+                                <div class="form-group">
+                                    <span class="la la-envelope form-icon"></span>
+                                    <input class="form-control" type="text" name="text" placeholder="이메일 주소">
+                                </div>
+                            </div><!-- end input-box -->
+                            <div class="input-box">
+                                <label class="label-text">패스워드</label>
+                                <div class="form-group">
+                                    <span class="la la-lock form-icon"></span>
+                                    <input class="form-control" type="text" name="text" placeholder="패스워드">
+                                </div>
+                            </div><!-- end input-box -->
+                            <div class="input-box">
+                                <label class="label-text">패스워드 확인</label>
+                                <div class="form-group">
+                                    <span class="la la-lock form-icon"></span>
+                                    <input class="form-control" type="text" name="text" placeholder="패스워드 재입력">
+                                </div>
+                            </div><!-- end input-box -->
+                            <div class="btn-box pt-3 pb-4">
+                                <button type="button" class="theme-btn w-100">회원가입</button>
+                            </div>
+                            <div class="action-box text-center">
+                                <p class="font-size-14">SNS를 통한 회원가입</p>
+                                <ul class="social-profile py-3">
+                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
+                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
+                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
+                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div><!-- end contact-form-action -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- end modal-popup -->
+
+    <!-- end modal-shared -->
+    <div class="modal-popup">
+        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div>
+                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
+                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="la la-close"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="contact-form-action">
+                            <form method="post">
+                                <div class="input-box">
+                                    <label class="label-text">이메일</label>
+                                    <div class="form-group">
+                                        <span class="la la-envelope form-icon"></span>
+                                        <input class="form-control" type="text" name="text" placeholder="이메일 주소">
+                                    </div>
+                                </div><!-- end input-box -->
+                                <div class="input-box">
+                                    <label class="label-text">패스워드</label>
+                                    <div class="form-group mb-2">
+                                        <span class="la la-lock form-icon"></span>
+                                        <input class="form-control" type="text" name="text" placeholder="패스워드">
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <!--                                    <div class="custom-checkbox mb-0">-->
+                                        <!--                                        <input type="checkbox" id="rememberchb">-->
+                                        <!--                                        <label for="rememberchb">Remember me</label>-->
+                                        <!--                                    </div>-->
+                                        <p class="forgot-password">
+                                            <a href="recover">비밀번호를 잊으셨나요?</a>
+                                        </p>
+                                    </div>
+                                </div><!-- end input-box -->
+                                <div class="btn-box pt-3 pb-4">
+                                    <button type="button" class="theme-btn w-100">로그인</button>
+                                </div>
+                                <div class="action-box text-center">
+                                    <p class="font-size-14">SNS를 통한 로그인</p>
+                                <ul class="social-profile py-3">
+                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
+                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
+                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
+                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div><!-- end contact-form-action -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- end modal-popup -->
+
+
+</th:block>
+
+</html>

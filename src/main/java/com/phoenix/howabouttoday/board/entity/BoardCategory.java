@@ -9,10 +9,12 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 @Entity
 public class BoardCategory {
+
+    // 게시판 : Notice, FAQ, About Us
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +23,7 @@ public class BoardCategory {
     @Column(nullable = false)
     private String boardCategoryName; // 게시글 카테고리 이름
 
-    @Column
+    @Column(nullable = false)
     private int boardParentNum; // 게시글 카테고리 상위 번호
 
     @OneToMany(mappedBy = "boardCategory", cascade = CascadeType.ALL)
