@@ -1,7 +1,7 @@
 
 /**
  * 결제가 완료되면 cart의 내용을 저장할 테이블
- *
+ * 사실 카트와 다른 부분은 거의 없지만, dType을 사용하려면 이렇게 사용해야한다.
  */
 
 
@@ -22,10 +22,5 @@ import javax.persistence.Entity;
 @SuperBuilder
 @Entity
 public class OrdersDetail extends Reservation {
-
-//    public OrdersDetail(Cart cart, Orders orders) {
-//        super(cart.getMember(), cart.getRoom().getAccommodation(), cart.getRoom(), orders, cart.getReserveStatus(), cart.getReserveUseStartDate(), cart.getReserveUseEndDate(), cart.getReservePrice(), cart.getReserveAdultCount(), cart.getReserveChildCount());
-//
-//    }
 
 }

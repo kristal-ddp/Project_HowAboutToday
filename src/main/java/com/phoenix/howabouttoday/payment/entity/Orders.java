@@ -1,6 +1,6 @@
 
 /**
- * 멤버가 가지고 있는 주문정보 테이블
+ * 멤버가 가지고 있는 1번의 주문에 대한 주문정보 테이블
  *
  */
 
@@ -29,7 +29,7 @@ public class Orders {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberNum")
-    private Member member; //숙소 지역 번호
+    private Member member;
 
 
     @Column(length = 50)
@@ -39,17 +39,13 @@ public class Orders {
     @Column(length = 50)
     private String ordersName;
 
-
     @Column(length = 50)
     private LocalDate ordersDate;
 
-
     private Integer ordersPrice;
-
 
     @Column(length = 50)
     private String ordersType;
-
 
     @Column(length = 50)
     private String ordersStatus;

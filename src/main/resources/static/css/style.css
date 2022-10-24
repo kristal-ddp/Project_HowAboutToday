@@ -2332,6 +2332,7 @@ body {
   border-color: rgba(128, 137, 150, 0.2) !important; }
 
 .ck.ck-editor__editable_inline {
+  min-height: 130px; /* hwt */
   padding-right: 25px !important;
   padding-left: 25px !important;
   border-color: rgba(128, 137, 150, 0.2) !important; }

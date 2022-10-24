@@ -24,7 +24,6 @@ public enum AccomCategory {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(String.format("숙소 카테고리에 %s가 존재하지 않습니다.", dbData)));
     }
-
 }
 
 

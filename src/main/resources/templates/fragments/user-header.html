@@ -25,36 +25,36 @@
                         <div class="menu-wrapper">
                             <a href="#" class="down-button"><i class="la la-angle-down"></i></a>
                             <div class="logo">
-                                <a href="home"><img src="/images/hwt/hwt.png" width="250px" alt="logo"></a>
+                                <a href="/home"><img src="/images/hwt/hwt.png" width="250px" alt="logo"></a>
                                 <div class="menu-toggler">
                                     <i class="la la-bars"></i>
                                     <i class="la la-times"></i>
                                 </div><!-- end menu-toggler -->
                             </div><!-- end logo -->
-                            <div class="hwt-header-right user-header-right hwt-header-wrap">
+                            <div class="user-header-right hwt-header-wrap">
                                 <div class="main-menu-content hwt-header-navi user-header-navi">
                                     <nav>
                                         <ul>
                                             <li>
-                                                <a href="home">홈</a>
+                                                <a href="/home">홈</a>
                                             </li>
                                             <li>
                                                 <a href="#">숙소 <i class="la la-angle-down"></i></a>
                                                 <ul class="dropdown-menu-item">
-                                                    <li><a href="hotel-list">호텔</a></li>
-                                                    <li><a href="motel-list">모텔</a></li>
-                                                    <li><a href="pension-PoolVilla-list">펜션/풀빌라</a></li>
-                                                    <li><a href="guestHouse-Hanok-list">게하/한옥</a></li>
+                                                    <li><a href="/hotel-list">호텔</a></li>
+                                                    <li><a href="/motel-list">모텔</a></li>
+                                                    <li><a href="/pension-PoolVilla-list">펜션/풀빌라</a></li>
+                                                    <li><a href="/guestHouse-Hanok-list">게하/한옥</a></li>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <a href="#">게시판 <i class="la la-angle-down"></i></a>
                                                 <ul class="dropdown-menu-item">
-                                                    <li><a href="notice">공지사항</a></li>
-                                                    <li><a href="event">이벤트</a></li>
-                                                    <li><a href="faq">자주 묻는 질문</a></li>
-                                                    <li><a href="contact">고객센터</a></li>
-                                                    <li><a href="aboutUs">오늘어때 정보</a></li>
+                                                    <li><a href="/notice">공지사항</a></li>
+                                                    <li><a href="/event">이벤트</a></li>
+                                                    <li><a href="/faq">자주 묻는 질문</a></li>
+                                                    <li><a href="/contact">고객센터</a></li>
+                                                    <li><a href="/aboutUs">오늘어때 정보</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -63,9 +63,10 @@
 
                                 <!-- 로그인 상태 -->
                                 <div class="header-right-wrap">
+
                                     <!-- 장바구니 아이콘 -->
                                     <div class="header-icon-wrap">
-                                        <a href="cart">
+                                        <a href="/cart">
                                             <img src="icon/cart.png" class="header-icon">
                                         </a>
                                     </div>
@@ -75,37 +76,37 @@
                                         <div class="dropdown">
                                             <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div class="d-flex align-items-center">
-                                                    <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
-                                                    <span class="font-size-14 font-weight-bold" style="color: #000;">수정</span>
+                                                    <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="/images/team8.jpg" alt="team-img"></div>
+                                                    <span class="font-size-14 font-weight-bold" style="color: #000;" th:text="${sessionDTO.nickname}"></span>
                                                 </div>
                                             </a>
                                             <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">
                                                 <div class="dropdown-item drop-reveal-header user-reveal-header">
-                                                    <h6 class="title text-uppercase">Welcome!</h6>
+                                                    <h6 class="title text-uppercase">안녕하세요!</h6>
                                                 </div>
                                                 <div class="list-group drop-reveal-list user-drop-reveal-list">
-                                                    <a href="user-dashboard-profile" class="list-group-item list-group-item-action">
+                                                    <a href="/user-dashboard-profile" class="list-group-item list-group-item-action">
                                                         <div class="msg-body">
                                                             <div class="msg-content">
                                                                 <h3 class="title"><i class="la la-user mr-2"></i>프로필</h3>
                                                             </div>
                                                         </div><!-- end msg-body -->
                                                     </a>
-                                                    <a href="user-dashboard-booking" class="list-group-item list-group-item-action">
+                                                    <a href="/user-dashboard-booking" class="list-group-item list-group-item-action">
                                                         <div class="msg-body">
                                                             <div class="msg-content">
                                                                 <h3 class="title"><i class="la la-shopping-cart mr-2"></i>나의 후기</h3>
                                                             </div>
                                                         </div><!-- end msg-body -->
                                                     </a>
-                                                    <a href="user-dashboard-reviews" class="list-group-item list-group-item-action">
+                                                    <a href="/user-dashboard-reviews" class="list-group-item list-group-item-action">
                                                         <div class="msg-body">
                                                             <div class="msg-content">
                                                                 <h3 class="title"><i class="la la-heart mr-2"></i>위시리스트</h3>
                                                             </div>
                                                         </div><!-- end msg-body -->
                                                     </a>
-                                                    <a href="user-dashboard-settings" class="list-group-item list-group-item-action">
+                                                    <a href="/user-dashboard-settings" class="list-group-item list-group-item-action">
                                                         <div class="msg-body">
                                                             <div class="msg-content">
                                                                 <h3 class="title"><i class="la la-gear mr-2"></i>예약내역</h3>
@@ -117,9 +118,9 @@
                                         </div>
                                     </div><!-- end notification-item -->
 
+                                    <!-- 로그아웃 버튼 -->
                                     <div class="header-right-action">
-                                        <a href="home" class="theme-btn theme-btn-small hwt-btn-gray"
-                                           data-toggle="modal" data-target="#">로그아웃</a>
+                                        <a href="/member/logout" class="theme-btn theme-btn-small hwt-btn-gray">로그아웃</a>
                                     </div>
                                 </div>
     <!--                        <div class="nav-btn">-->

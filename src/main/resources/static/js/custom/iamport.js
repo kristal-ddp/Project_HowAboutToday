@@ -1,5 +1,12 @@
 
+/* iamport 결제 요청 */
 const requestPay = () => {
+
+    const buyer_name = document.querySelector(`#name`).value;
+    const buyer_tel = document.querySelector(`#tel`).value;
+
+    console.log(buyer_name)
+    console.log(buyer_tel)
 
     window.IMP.init('imp73826618');
     window.IMP.request_pay({
@@ -23,15 +30,21 @@ const requestPay = () => {
     });
 }
 
+//성공시 실행할 함수
 const successRequest = () => {
 //    조금 더 보안을 지켜서 만들면 아임포트 webhook을 사용해서 이중?체크로
 //    결제 정보 서버로 요청
 
+    let successForm = document.querySelector('form');
 
-//    필요한 정보
+    successForm.action = '/orders/paymentSuccess';
+    successForm.submit();
 
-
-    console.log("리다이렉트")
-    location.replace("/paymentSuccess");
+    // console.log("리다이렉트")
+    // location.replace("/orders/paymentSuccess");
 
 }
+
+
+
+

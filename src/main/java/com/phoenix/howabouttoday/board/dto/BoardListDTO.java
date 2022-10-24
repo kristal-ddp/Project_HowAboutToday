@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @Getter
@@ -16,7 +16,7 @@ public class BoardListDTO {
 
     private Long boardNum; // 게시글 번호
     private String boardTitle; // 게시글 제목
-    private LocalDateTime boardCreate; // 게시일
+    private LocalDate boardCreate; // 게시일
 
     public BoardListDTO(Board board) {
         this.boardNum = board.getBoardNum();

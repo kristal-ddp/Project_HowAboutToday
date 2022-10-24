@@ -10,12 +10,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class FacilitiesService {
 
     private final FacilitiesRepository facilitiesRepository;
 
     @Transactional
-    public List<Facilities> findByAll() {
+    public List<Facilities> getFacilitiesList() {
         return facilitiesRepository.findAll();
     }
 }

@@ -7,6 +7,11 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/*
+    숙소 별로 시설 종류를 고민해야할 것.
+    숙소 별로 특정 시설로 구분지어 차별성을 줄것.(호텔로 예로 들면 룸서비스,픽업 등등?)
+
+    */
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

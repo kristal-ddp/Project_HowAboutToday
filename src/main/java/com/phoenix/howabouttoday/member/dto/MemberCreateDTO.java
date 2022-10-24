@@ -1,7 +1,7 @@
 package com.phoenix.howabouttoday.member.dto;
 
 
-import com.phoenix.howabouttoday.member.entity.Code;
+import com.phoenix.howabouttoday.member.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 public class MemberCreateDTO {
 
     private Long memberNum;
-    private Code memberCode;
+    private Role memberCode;
 }

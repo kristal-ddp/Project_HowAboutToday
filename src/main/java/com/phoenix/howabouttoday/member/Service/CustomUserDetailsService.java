@@ -3,6 +3,7 @@ package com.phoenix.howabouttoday.member.Service;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
+//import com.phoenix.howabouttoday.payment.controller.member.dto.MemberCreateDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService  {
     private final MemberRepository memberRepository;
     private final HttpSession session;
 
-    /* email이 DB에 있는지 확인 */
+    /* username이 DB에 있는지 확인 */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Member member = memberRepository.findByEmail(email).orElseThrow(() ->

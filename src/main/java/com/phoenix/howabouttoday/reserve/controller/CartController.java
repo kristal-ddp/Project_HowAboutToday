@@ -1,5 +1,7 @@
 package com.phoenix.howabouttoday.reserve.controller;
 
+import com.phoenix.howabouttoday.config.auth.LoginUser;
+import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.reserve.service.CartDto;
@@ -28,20 +30,11 @@ public class CartController {
     private final CartService cartService;
     private final MemberRepository memberRepository;//아직 회원이없어서 테스트용 회원조회에 필요
     @GetMapping
-    public String findAll(Model model){
+    public String findAll(@LoginUser SessionDTO user,
+                          Model model){
 
-        /*
-        세션에 저장된 회원 꺼내는 부분
-         */
-
-
-        /** 테스트용 회원 **/
-        Member testMember = getTestMember();
-        /** ----------------- **/
-
-        /* 현재 로그인한 유저정보 반환 */
-        Long memberNum = testMember.getMemberNum();
-        model.addAttribute("user",testMember);
+        /** 회원 조회 로직 **/
+        Long memberNum = user.getMemberNum();
 
         /* 장바구니 존재 여부 확인 */
         boolean checkCart = cartService.checkHaveCart(memberNum);
@@ -60,10 +53,7 @@ public class CartController {
 
                 Period between = Period.between(cart.getReserveUseStartDate(), cart.getReserveUseStartDate());
 
-
             }
-
-
 
             model.addAttribute("cartList",cartList);
             model.addAttribute("totalPrice",totalPrice);
@@ -72,25 +62,26 @@ public class CartController {
 
         /* 장바구니 존재 여부 반환 */
         model.addAttribute("checkCart",checkCart);
-
+        /*헤더에 필요한 sessionDTO 반환 */
+        model.addAttribute("sessionDTO",user);
 
         return "reserve/cart";
     }
 
 
-
-    @GetMapping("/test")
-    @ResponseBody
-    public String cartList(@RequestParam Long[] cartNum){
-
-        for (Long aLong : cartNum) {
-            System.out.println("aLong = " + aLong);
-        }
-
-
-
-        return "hi";
-    }
+//    OrdersController로 이동
+//    @GetMapping("/test")
+//    @ResponseBody
+//    public String cartList(@RequestParam Long[] cartNum){
+//
+//        for (Long aLong : cartNum) {
+//            System.out.println("aLong = " + aLong);
+//        }
+//
+//
+//
+//        return "hi";
+//    }
 
 
 

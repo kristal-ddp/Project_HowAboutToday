@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout">
+
+<th:block layout:fragment="content">
+<!-- ================================
+    START BREADCRUMB AREA
+================================= -->
+    <section class="breadcrumb-area breadcrumb-board">
+        <div class="breadcrumb-wrap">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-content text-center">
+                            <div class="section-heading">
+                                <h2 class="sec__title text-white">ADD NOTICE</h2>
+                            </div>
+                        </div><!-- end breadcrumb-content -->
+                    </div><!-- end col-lg-6 -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end breadcrumb-wrap -->
+        <div class="bread-svg-box">
+            <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
+        </div><!-- end bread-svg -->
+    </section><!-- end breadcrumb-area -->
+<!-- ================================
+    END BREADCRUMB AREA
+================================= -->
+
+<!-- ================================
+    START FORM AREA
+================================= -->
+<section class="listing-form section--padding hwt-board-form">
+    <div class="container">
+        <div class="row">
+
+            <form th:action="@{notice-add}" th:object="${boardAddDTO}" method="post" class="row board-add-form">
+
+                <!-- Add Form -->
+                <div class="col-lg-8 hwt-col-post">
+                    <div class="form-box">
+
+                        <!-- Main Title -->
+                        <div class="form-title-wrap">
+                            <h3 class="title board-add-title"><i class="la la-gear mr-2 text-gray"></i>게시글 작성</h3>
+                        </div><!-- form-title-wrap -->
+
+                        <div class="form-content contact-form-action">
+
+                            <input type="hidden" th:field="*{memberNum}">
+
+                            <!-- Title -->
+                            <div class="col-lg-12">
+                                <div class="input-box">
+                                    <label class="label-text board-add-text">제목</label>
+                                    <div class="form-group">
+                                        <span class="la la-briefcase form-icon"></span>
+                                        <input th:field="*{boardTitle}" class="form-control board-add-text" type="text" autofocus>
+                                        <div th:each="error : ${#fields.errors('boardTitle')}" th:text="${error}" class="error-message"></div>
+                                    </div>
+                                </div>
+                            </div><!-- end col-lg-12 -->
+
+                            <!-- Content-->
+                            <div class="col-lg-12">
+                                <div class="input-box">
+                                    <label class="label-text board-add-text">내용</label>
+                                    <div class="form-group">
+                                        <span class="la la-pencil form-icon"></span>
+                                        <textarea th:field="*{boardContent}" class="message-control form-control" id="editor" name="message"></textarea>
+                                        <div th:each="error : ${#fields.errors('boardContent')}" th:text="${error}" class="error-message"></div>
+                                    </div>
+                                </div>
+                            </div><!-- end col-lg-12 -->
+
+                        </div><!-- end form-content -->
+                    </div><!-- end form-box -->
+
+                    <!-- Button -->
+                    <div class="submit-box hwt-btn-submit">
+                        <div class="btn-box pt-3">
+                            <button type="button" class="theme-btn hwt-btn-left board-btn-white" onclick="history.back()">뒤로가기</button>
+                            <button type="submit" class="theme-btn">작성하기</button>
+                        </div>
+                    </div><!-- end submit-box -->
+
+                </div><!-- end col-lg-8 -->
+
+            </form>
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end listing-form -->
+<!-- ================================
+    END FORM AREA
+================================= -->
+
+<th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
+
+<!-- start back-to-top -->
+<div id="back-to-top">
+    <i class="la la-angle-up" title="Go top"></i>
+</div>
+<!-- end back-to-top -->
+
+</th:block>
+
+</html>

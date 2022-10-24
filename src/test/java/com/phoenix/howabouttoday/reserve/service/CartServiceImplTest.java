@@ -57,6 +57,11 @@ class CartServiceImplTest {
         assertThat(saveCart.getReserveNum()).isEqualTo(findCart.getReserveNum());
 
     }
+    public void 장바구니_한줄삭제() throws Exception{
+        //given
+        cartService.deleteByNum(5L);
+
+    }
     
     
     @Test
@@ -74,11 +79,6 @@ class CartServiceImplTest {
 
 
     @Test
-    public void 장바구니_한줄삭제() throws Exception{
-        //given
-        cartService.deleteByNum(5L);
-
-    }
 
 
 

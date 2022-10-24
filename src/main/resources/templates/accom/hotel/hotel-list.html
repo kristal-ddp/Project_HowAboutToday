@@ -131,7 +131,7 @@
 <!--                    <div class="menu-wrapper">-->
 <!--                        <a href="#" class="down-button"><i class="la la-angle-down"></i></a>-->
 <!--                        <div class="logo">-->
-<!--                            <a href="/home"><img src="images/logo.png" alt="logo"></a>-->
+<!--                            <a href="/home"><img src="/images/logo.png" alt="logo"></a>-->
 <!--                            <div class="menu-toggler">-->
 <!--                                <i class="la la-bars"></i>-->
 <!--                                <i class="la la-times"></i>-->
@@ -290,13 +290,15 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
       layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
-<!-- ================================
-    START BREADCRUMB AREA
-================================= -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+
+    <!-- ================================
+        START BREADCRUMB AREA
+    ================================= -->
 <section class="breadcrumb-area bread-bg-7">
     <div class="breadcrumb-wrap">
         <div class="container">
@@ -393,24 +395,24 @@
                                     </div>
                                 </div>
                             </div><!-- end sidebar-widget-item -->
-                            <div class="sidebar-widget-item">
-                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
-                                    <label class="font-size-16">성인</label>
-                                    <div class="qtyBtn d-flex align-items-center">
-                                        <div class="qtyDec"><i class="la la-minus"></i></div>
-                                        <input type="text" name="adult" value="0">
-                                        <div class="qtyInc"><i class="la la-plus"></i></div>
-                                    </div>
-                                </div><!-- end qty-box -->
-                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
-                                    <label class="font-size-16">아동</label>
-                                    <div class="qtyBtn d-flex align-items-center">
-                                        <div class="qtyDec"><i class="la la-minus"></i></div>
-                                        <input type="text" name="child" value="0">
-                                        <div class="qtyInc"><i class="la la-plus"></i></div>
-                                    </div>
-                                </div><!-- end qty-box -->
-                            </div><!-- end sidebar-widget-item -->
+<!--                            <div class="sidebar-widget-item">-->
+<!--                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">-->
+<!--                                    <label class="font-size-16">성인</label>-->
+<!--                                    <div class="qtyBtn d-flex align-items-center">-->
+<!--                                        <div class="qtyDec"><i class="la la-minus"></i></div>-->
+<!--                                        <input type="text" name="adult" value="0">-->
+<!--                                        <div class="qtyInc"><i class="la la-plus"></i></div>-->
+<!--                                    </div>-->
+<!--                                </div>&lt;!&ndash; end qty-box &ndash;&gt;-->
+<!--                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">-->
+<!--                                    <label class="font-size-16">아동</label>-->
+<!--                                    <div class="qtyBtn d-flex align-items-center">-->
+<!--                                        <div class="qtyDec"><i class="la la-minus"></i></div>-->
+<!--                                        <input type="text" name="child" value="0">-->
+<!--                                        <div class="qtyInc"><i class="la la-plus"></i></div>-->
+<!--                                    </div>-->
+<!--                                </div>&lt;!&ndash; end qty-box &ndash;&gt;-->
+<!--                            </div>&lt;!&ndash; end sidebar-widget-item &ndash;&gt;-->
                             <div class="btn-box pt-2">
                                 <button class="theme-btn hwt-btn-gray">검 색</button>
                             </div>
@@ -497,206 +499,115 @@
                             </div>
                         </div>
                     </div><!-- end sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="title stroke-shape">지역</h3>
+                        <div class="sidebar-category">
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="ht1">
+                                <label for="ht1">서울</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="ht2">
+                                <label for="ht2">경기</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="ht3">
+                                <label for="ht3">인천</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="ht4">
+                                <label for="ht4">원주</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="ht5">
+                                <label for="ht5">강릉</label>
+                            </div>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" id="ht6">
+                                <label for="ht6">속초</label>
+                            </div>
+                            <div class="collapse" id="hotelThemeMenu">
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="ht7">
+                                    <label for="ht7">Green</label>
+                                </div>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="ht8">
+                                    <label for="ht8">Luxury</label>
+                                </div>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="ht9">
+                                    <label for="ht9">Mid-range</label>
+                                </div>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="ht10">
+                                    <label for="ht10">Party</label>
+                                </div>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="ht11">
+                                    <label for="ht11">Quaint</label>
+                                </div>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="ht12">
+                                    <label for="ht12">Quite</label>
+                                </div>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="ht14">
+                                    <label for="ht14">Romantic</label>
+                                </div>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="ht15">
+                                    <label for="ht15">Standard</label>
+                                </div>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="ht16">
+                                    <label for="ht16">Trendy</label>
+                                </div>
+                            </div>
+                            <a class="btn-text" data-toggle="collapse" href="#hotelThemeMenu" role="button" aria-expanded="false" aria-controls="hotelThemeMenu">
+                                <span class="show-more">더보기 <i class="la la-angle-down"></i></span>
+                                <span class="show-less">줄이기 <i class="la la-angle-up"></i></span>
+                            </a>
+                        </div>
+                    </div><!-- end sidebar-widget -->
                 </div><!-- end sidebar -->
             </div><!-- end col-lg-4 -->
             <!-- 리스트 목록 시작 -->
             <div class="col-lg-8">
-                <div class="card-item card-item-list" th:each="accommodationList : ${accommodationList}">
-                    <div class="card-img" th:each="accomImageList : ${accomImageList}">
-                        <a href="hotel-single" class="d-block" th:href="@{/hotel-single}">
-                            <img th:src="|/data/images/${accomImageList.accomOriginFilename}" alt="hotel-img">
+                <div class="card-item card-item-list" th:each="accommodation : ${accommodationList}">
+                    <div class="card-img">
+                        <a class="d-block" th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}">
+
+                            <img th:src="@{${'/data/images/' + accommodation.getAccommodationImage().get(0).getAccomOriginFilename()}}" alt="hotel-img">
+
+
+
                         </a>
-                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist">
+                        <a th:href="|javascript:void(0)|" th:onclick="saveWish([[${accommodation.getAccomNum()}]])">
+                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">
                             <i class="la la-heart-o"></i>
                         </div>
+                        </a>
                     </div>
                     <div class="card-body">
-                        <h3 class="card-title" ><a th:href="@{/hotel-single}" th:text="${accommodationList.accomName}"></a></h3>
-                        <p class="card-meta" th:text="${accommodationList.accomAddress}"></p>
+                        <h3 class="card-title" ><a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" th:text="${accommodation.getAccomName()}"></a></h3>
+                        <p class="card-meta" th:text="${accommodation.getAccomAddress()}"></p>
                         <div class="card-rating">
-                            <span class="badge text-white" th:text="${accommodationList.accomRating}"></span>
+                            <span class="badge text-white" th:text="${accommodation.getAccomRating()}"></span>
                             <span class="review__text">Average</span>
-                            <span class="rating__text" th:text="|(${accommodationList.totalReviewNum})|"></span>
+                            <span class="rating__text" th:text="|(${accommodation.getTotalReviewNum()})|"></span>
                         </div>
                         <div class="card-price d-flex align-items-center justify-content-between">
                             <p>
                                 <span class="price__from">최소 가격 :</span>
-                                <span class="price__num" th:text="|${accommodationList.lowPrice}~|"></span>
+                                <span class="price__num" th:text="|${accommodation.getLowPrice()}~|"></span>
                             </p>
-                            <a th:href="hotel-single" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>
+                            <a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>
                         </div>
                     </div>
                 </div><!-- end card-item -->
             </div><!-- end col-lg-8 -->
                 <!-- 여기서 끝남ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-                <!--
-                <div class="card-item card-item-list">
-                    <div class="card-img">
-                        <a th:href="hotel-single" class="d-block">
-                            <img src="images/img2.jpg" alt="hotel-img">
-                        </a>
-                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
-                            <i class="la la-heart-o"></i>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">
-                            <a th:href="hotel-single">Best Western Grant Park Hotel</a></h3>
-                        <p class="card-meta">124 E Huron St, Chicago</p>
-                        <div class="card-rating">
-                            <span class="badge text-white">4.4/5</span>
-                            <span class="review__text">Average</span>
-                            <span class="rating__text">(30 Reviews)</span>
-                        </div>
-                        <div class="card-price d-flex align-items-center justify-content-between">
-                            <p>
-                                <span class="price__from">From</span>
-                                <span class="price__num">$58.00</span>
-                                <span class="price__text">Per night</span>
-                            </p>
-                            <a th:href="hotel-single" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div> --><!-- end card-item -->
-
-
-                <!--<div class="card-item card-item-list">
-                    <div class="card-img">
-                        <a th:href="hotel-single" class="d-block">
-                            <img src="images/img3.jpg" alt="hotel-img">
-                        </a>
-                        <span class="badge">Featured</span>
-                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
-                            <i class="la la-heart-o"></i>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title"><a th:href="hotel-single">Hyatt Regency Maui Resort & Spa</a></h3>
-                        <p class="card-meta">200 Nohea Kai Dr, Lahaina, HI</p>
-                        <div class="card-rating">
-                            <span class="badge text-white">4.4/5</span>
-                            <span class="review__text">Average</span>
-                            <span class="rating__text">(30 Reviews)</span>
-                        </div>
-                        <div class="card-price d-flex align-items-center justify-content-between">
-                            <p>
-                                <span class="price__from">From</span>
-                                <span class="price__num">$88.00</span>
-                                <span class="price__text">Per night</span>
-                            </p>
-                            <a th:href="hotel-single" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>&lt;!&ndash; end card-item &ndash;&gt;
-                <div class="card-item card-item-list">
-                    <div class="card-img">
-                        <a th:href="hotel-single" class="d-block">
-                            <img src="images/img4.jpg" alt="hotel-img">
-                        </a>
-                        <span class="badge">Popular</span>
-                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
-                            <i class="la la-heart-o"></i>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title"><a th:href="hotel-single">Four Seasons Resort Maui at Wailea</a></h3>
-                        <p class="card-meta">3900 Wailea Alanui Drive, Kihei, HI</p>
-                        <div class="card-rating">
-                            <span class="badge text-white">4.4/5</span>
-                            <span class="review__text">Average</span>
-                            <span class="rating__text">(30 Reviews)</span>
-                        </div>
-                        <div class="card-price d-flex align-items-center justify-content-between">
-                            <p>
-                                <span class="price__from">From</span>
-                                <span class="price__num">$88.00</span>
-                                <span class="price__text">Per night</span>
-                            </p>
-                            <a th:href="hotel-single" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>&lt;!&ndash; end card-item &ndash;&gt;
-                <div class="card-item card-item-list">
-                    <div class="card-img">
-                        <a th:href="hotel-single" class="d-block">
-                            <img src="images/img5.jpg" alt="hotel-img">
-                        </a>
-                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
-                            <i class="la la-heart-o"></i>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title"><a th:href="hotel-single">Ibis Styles London Heathrow</a></h3>
-                        <p class="card-meta"> 272 Bath Road, Harlington, England</p>
-                        <div class="card-rating">
-                            <span class="badge text-white">4.4/5</span>
-                            <span class="review__text">Average</span>
-                            <span class="rating__text">(30 Reviews)</span>
-                        </div>
-                        <div class="card-price d-flex align-items-center justify-content-between">
-                            <p>
-                                <span class="price__from">From</span>
-                                <span class="price__num">$88.00</span>
-                                <span class="price__text">Per night</span>
-                            </p>
-                            <a th:href="hotel-single" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>&lt;!&ndash; end card-item &ndash;&gt;
-                <div class="card-item card-item-list">
-                    <div class="card-img">
-                        <a th:href="hotel-single" class="d-block">
-                            <img src="images/img6.jpg" alt="hotel-img">
-                        </a>
-                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
-                            <i class="la la-heart-o"></i>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title"><a th:href="hotel-single">Hotel Europe Saint Severin Paris</a></h3>
-                        <p class="card-meta">38-40 Rue Saint Séverin, Paris, Paris</p>
-                        <div class="card-rating">
-                            <span class="badge text-white">4.4/5</span>
-                            <span class="review__text">Average</span>
-                            <span class="rating__text">(30 Reviews)</span>
-                        </div>
-                        <div class="card-price d-flex align-items-center justify-content-between">
-                            <p>
-                                <span class="price__from">From</span>
-                                <span class="price__num">$88.00</span>
-                                <span class="price__text">Per night</span>
-                            </p>
-                            <a th:href="hotel-single" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>&lt;!&ndash; end card-item &ndash;&gt;
-                <div class="card-item card-item-list">
-                    <div class="card-img">
-                        <a th:href="hotel-single" class="d-block">
-                            <img src="images/img5.jpg" alt="hotel-img">
-                        </a>
-                        <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
-                            <i class="la la-heart-o"></i>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title"><a th:href="hotel-single">Grand Desert Resort</a></h3>
-                        <p class="card-meta">Delaware, USA</p>
-                        <div class="card-rating">
-                            <span class="badge text-white">4.4/5</span>
-                            <span class="review__text">Average</span>
-                            <span class="rating__text">(30 Reviews)</span>
-                        </div>
-                        <div class="card-price d-flex align-items-center justify-content-between">
-                            <p>
-                                <span class="price__from">From</span>
-                                <span class="price__num">$88.00</span>
-                                <span class="price__text">Per night</span>
-                            </p>
-                            <a th:href="hotel-single" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>&lt;!&ndash; end card-item &ndash;&gt;-->
         </div><!-- end row -->
         <div class="row">
             <div class="col-lg-12">
@@ -749,7 +660,7 @@
 <!--            <div class="col-lg-3 responsive-column">-->
 <!--                <div class="footer-item">-->
 <!--                    <div class="footer-logo padding-bottom-30px">-->
-<!--                        <a href="/home" class="foot__logo"><img src="images/logo.png" alt="logo"></a>-->
+<!--                        <a href="/home" class="foot__logo"><img src="/images/logo.png" alt="logo"></a>-->
 <!--                    </div>&lt;!&ndash; end logo &ndash;&gt;-->
 <!--                    <p class="footer__desc">Morbi convallis bibendum urna ut viverra. Maecenas consequat</p>-->
 <!--                    <ul class="list-items pt-3">-->
@@ -835,7 +746,7 @@
 <!--            <div class="col-lg-5">-->
 <!--                <div class="copy-right-content d-flex align-items-center justify-content-end padding-top-30px">-->
 <!--                    <h3 class="title font-size-15 pr-2">We Accept</h3>-->
-<!--                    <img src="images/payment-img.png" alt="">-->
+<!--                    <img src="/images/payment-img.png" alt="">-->
 <!--                </div>&lt;!&ndash; end copy-right-content &ndash;&gt;-->
 <!--            </div>&lt;!&ndash; end col-lg-5 &ndash;&gt;-->
 <!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
@@ -867,37 +778,37 @@
                 </div>
                 <div class="modal-body">
                     <div class="contact-form-action">
-                        <form method="post">
+                        <form method="post" action="/member/join">
                             <div class="input-box">
                                 <label class="label-text">닉네임</label>
                                 <div class="form-group">
                                     <span class="la la-user form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="닉네임">
+                                    <input class="form-control" type="text" name="nickname" placeholder="닉네임">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
                                 <label class="label-text">이메일 주소</label>
                                 <div class="form-group">
                                     <span class="la la-envelope form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="이메일 주소">
+                                    <input class="form-control" type="email" name="email" placeholder="이메일 주소">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
                                 <label class="label-text">패스워드</label>
                                 <div class="form-group">
                                     <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="패스워드">
+                                    <input class="form-control" type="password" name="pwd" placeholder="패스워드">
                                 </div>
                             </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">패스워드 확인</label>
-                                <div class="form-group">
-                                    <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="패스워드 재입력">
-                                </div>
-                            </div><!-- end input-box -->
+                            <!--                                    <div class="input-box">-->
+                            <!--                                        <label class="label-text">패스워드 확인</label>-->
+                            <!--                                        <div class="form-group">-->
+                            <!--                                            <span class="la la-lock form-icon"></span>-->
+                            <!--                                            <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
+                            <!--                                        </div>-->
+                            <!--                                    </div>&lt;!&ndash; end input-box &ndash;&gt;-->
                             <div class="btn-box pt-3 pb-4">
-                                <button type="button" class="theme-btn w-100">회원가입</button>
+                                <button type="submit" class="theme-btn w-100">회원가입</button>
                             </div>
                             <div class="action-box text-center">
                                 <p class="font-size-14">SNS를 통한 회원가입</p>
@@ -932,19 +843,19 @@
                     </div>
                     <div class="modal-body">
                         <div class="contact-form-action">
-                            <form method="post">
+                            <form method="post" action="/loginProc">
                                 <div class="input-box">
                                     <label class="label-text">이메일</label>
                                     <div class="form-group">
                                         <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="text" name="text" placeholder="이메일 주소">
+                                        <input class="form-control" type="email" name="email" id="email" placeholder="이메일 주소">
                                     </div>
                                 </div><!-- end input-box -->
                                 <div class="input-box">
                                     <label class="label-text">패스워드</label>
                                     <div class="form-group mb-2">
                                         <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="text" name="text" placeholder="패스워드">
+                                        <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <!--                                    <div class="custom-checkbox mb-0">-->
@@ -957,19 +868,19 @@
                                     </div>
                                 </div><!-- end input-box -->
                                 <div class="btn-box pt-3 pb-4">
-                                    <button type="button" class="theme-btn w-100">로그인</button>
+                                    <button type="submit" id="login" class="theme-btn w-100">로그인</button>
                                 </div>
                                 <div class="action-box text-center">
                                     <p class="font-size-14">SNS를 통한 로그인</p>
-                                <ul class="social-profile py-3">
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div><!-- end contact-form-action -->
+                                    <ul class="social-profile py-3">
+                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
+                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
+                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
+                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div><!-- end contact-form-action -->
                 </div>
             </div>
         </div>
@@ -993,7 +904,29 @@
 <!--<script src="js/main.js"></script>-->
 <!--</body>-->
 <!--</html>-->
+    <script>
 
+        function saveWish(accomNum) {
+
+            $.ajax({
+                url: '/rest/wish/' + accomNum,
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+            }).done(function(result){
+
+                // 이미 찜한 강의라면 찜 삭제 및 true 반환
+                if(result){
+                    alert("위시리스트에서 삭제하였습니다.");
+
+                } else {
+                    alert("위시리스트에 저장하였습니다.");
+                }
+            }).fail(function(error){
+                alert(JSON.stringify(error));
+            });
+        }
+
+    </script>
 </th:block>
 
 </html>

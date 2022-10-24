@@ -312,6 +312,16 @@ CREATE TABLE PAYMENT (
     CONSTRAINT FK_63 FOREIGN KEY (room_num) REFERENCES ROOM(room_num)on delete cascade,
 )AUTO_INCREMENT=1;
 
+-- 리뷰 평점
+
+--CREATE TABLE REVIEW_AVERAGE (
+--
+--    average_num int auto_increment, --pk
+--    average_review int NOT NULL,
+--
+--)
+
+
 
 DROP TABLE MEMBER;
 DROP TABLE COUPON;

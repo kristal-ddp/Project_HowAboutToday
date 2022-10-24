@@ -131,7 +131,7 @@
 <!--                    <div class="menu-wrapper">-->
 <!--                        <a href="#" class="down-button"><i class="la la-angle-down"></i></a>-->
 <!--                        <div class="logo">-->
-<!--                            <a href="/home"><img src="images/logo.png" alt="logo"></a>-->
+<!--                            <a href="/home"><img src="/images/logo.png" alt="logo"></a>-->
 <!--                            <div class="menu-toggler">-->
 <!--                                <i class="la la-bars"></i>-->
 <!--                                <i class="la la-times"></i>-->
@@ -461,7 +461,7 @@
                 <div class="card-item">
                     <div class="card-img">
                         <a th:href="guestHouse-Hanok-single" class="d-block">
-                            <img src="images/img1.jpg" alt="hotel-img">
+                            <img src="/images/img1.jpg" alt="hotel-img">
                         </a>
                         <span class="badge">Bestseller</span>
                         <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
@@ -490,7 +490,7 @@
                 <div class="card-item">
                     <div class="card-img">
                         <a href="hotel-single.html" class="d-block">
-                            <img src="images/img2.jpg" alt="hotel-img">
+                            <img src="/images/img2.jpg" alt="hotel-img">
                         </a>
                         <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
                             <i class="la la-heart-o"></i>
@@ -519,7 +519,7 @@
                 <div class="card-item">
                     <div class="card-img">
                         <a href="hotel-single.html" class="d-block">
-                            <img src="images/img3.jpg" alt="hotel-img">
+                            <img src="/images/img3.jpg" alt="hotel-img">
                         </a>
                         <span class="badge">Featured</span>
                         <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
@@ -549,7 +549,7 @@
                 <div class="card-item">
                     <div class="card-img">
                         <a href="hotel-single.html" class="d-block">
-                            <img src="images/img4.jpg" alt="hotel-img">
+                            <img src="/images/img4.jpg" alt="hotel-img">
                         </a>
                         <span class="badge">Popular</span>
                         <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
@@ -579,7 +579,7 @@
                 <div class="card-item">
                     <div class="card-img">
                         <a href="hotel-single.html" class="d-block">
-                            <img src="images/img5.jpg" alt="hotel-img">
+                            <img src="/images/img5.jpg" alt="hotel-img">
                         </a>
                         <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
                             <i class="la la-heart-o"></i>
@@ -608,7 +608,7 @@
                 <div class="card-item">
                     <div class="card-img">
                         <a href="hotel-single.html" class="d-block">
-                            <img src="images/img6.jpg" alt="hotel-img">
+                            <img src="/images/img6.jpg" alt="hotel-img">
                         </a>
                         <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
                             <i class="la la-heart-o"></i>
@@ -676,7 +676,7 @@
 <!--            <div class="col-lg-3 responsive-column">-->
 <!--                <div class="footer-item">-->
 <!--                    <div class="footer-logo padding-bottom-30px">-->
-<!--                        <a href="/home" class="foot__logo"><img src="images/logo.png" alt="logo"></a>-->
+<!--                        <a href="/home" class="foot__logo"><img src="/images/logo.png" alt="logo"></a>-->
 <!--                    </div>&lt;!&ndash; end logo &ndash;&gt;-->
 <!--                    <p class="footer__desc">Morbi convallis bibendum urna ut viverra. Maecenas consequat</p>-->
 <!--                    <ul class="list-items pt-3">-->
@@ -762,7 +762,7 @@
 <!--            <div class="col-lg-5">-->
 <!--                <div class="copy-right-content d-flex align-items-center justify-content-end padding-top-30px">-->
 <!--                    <h3 class="title font-size-15 pr-2">We Accept</h3>-->
-<!--                    <img src="images/payment-img.png" alt="">-->
+<!--                    <img src="/images/payment-img.png" alt="">-->
 <!--                </div>&lt;!&ndash; end copy-right-content &ndash;&gt;-->
 <!--            </div>&lt;!&ndash; end col-lg-5 &ndash;&gt;-->
 <!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
@@ -794,37 +794,37 @@
                 </div>
                 <div class="modal-body">
                     <div class="contact-form-action">
-                        <form method="post">
+                        <form method="post" action="/member/join">
                             <div class="input-box">
                                 <label class="label-text">닉네임</label>
                                 <div class="form-group">
                                     <span class="la la-user form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="닉네임">
+                                    <input class="form-control" type="text" name="nickname" placeholder="닉네임">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
                                 <label class="label-text">이메일 주소</label>
                                 <div class="form-group">
                                     <span class="la la-envelope form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="이메일 주소">
+                                    <input class="form-control" type="email" name="email" placeholder="이메일 주소">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
                                 <label class="label-text">패스워드</label>
                                 <div class="form-group">
                                     <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="패스워드">
+                                    <input class="form-control" type="password" name="pwd" placeholder="패스워드">
                                 </div>
                             </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">패스워드 확인</label>
-                                <div class="form-group">
-                                    <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="패스워드 재입력">
-                                </div>
-                            </div><!-- end input-box -->
+                            <!--                                    <div class="input-box">-->
+                            <!--                                        <label class="label-text">패스워드 확인</label>-->
+                            <!--                                        <div class="form-group">-->
+                            <!--                                            <span class="la la-lock form-icon"></span>-->
+                            <!--                                            <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
+                            <!--                                        </div>-->
+                            <!--                                    </div>&lt;!&ndash; end input-box &ndash;&gt;-->
                             <div class="btn-box pt-3 pb-4">
-                                <button type="button" class="theme-btn w-100">회원가입</button>
+                                <button type="submit" class="theme-btn w-100">회원가입</button>
                             </div>
                             <div class="action-box text-center">
                                 <p class="font-size-14">SNS를 통한 회원가입</p>
@@ -859,19 +859,19 @@
                     </div>
                     <div class="modal-body">
                         <div class="contact-form-action">
-                            <form method="post">
+                            <form method="post" action="/loginProc">
                                 <div class="input-box">
                                     <label class="label-text">이메일</label>
                                     <div class="form-group">
                                         <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="text" name="text" placeholder="이메일 주소">
+                                        <input class="form-control" type="email" name="email" id="email" placeholder="이메일 주소">
                                     </div>
                                 </div><!-- end input-box -->
                                 <div class="input-box">
                                     <label class="label-text">패스워드</label>
                                     <div class="form-group mb-2">
                                         <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="text" name="text" placeholder="패스워드">
+                                        <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <!--                                    <div class="custom-checkbox mb-0">-->
@@ -884,19 +884,19 @@
                                     </div>
                                 </div><!-- end input-box -->
                                 <div class="btn-box pt-3 pb-4">
-                                    <button type="button" class="theme-btn w-100">로그인</button>
+                                    <button type="submit" id="login" class="theme-btn w-100">로그인</button>
                                 </div>
                                 <div class="action-box text-center">
                                     <p class="font-size-14">SNS를 통한 로그인</p>
-                                <ul class="social-profile py-3">
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div><!-- end contact-form-action -->
+                                    <ul class="social-profile py-3">
+                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
+                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
+                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
+                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div><!-- end contact-form-action -->
                 </div>
             </div>
         </div>

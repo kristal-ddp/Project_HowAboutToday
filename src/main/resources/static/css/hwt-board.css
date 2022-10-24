@@ -67,8 +67,7 @@ n
 
 /* FAQ */
 .hwt-row-board {
-    margin-right: 90px;
-    margin-left: 90px;
+    margin: 0 90px 0;
 }
 
 .col-board {

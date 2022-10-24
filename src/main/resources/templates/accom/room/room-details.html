@@ -132,7 +132,7 @@
 <!--                    <div class="menu-wrapper">-->
 <!--                        <a href="#" class="down-button"><i class="la la-angle-down"></i></a>-->
 <!--                        <div class="logo">-->
-<!--                            <a href="/home"><img src="images/logo.png" alt="logo"></a>-->
+<!--                            <a href="/home"><img src="/images/logo.png" alt="logo"></a>-->
 <!--                            <div class="menu-toggler">-->
 <!--                                <i class="la la-bars"></i>-->
 <!--                                <i class="la la-times"></i>-->
@@ -295,25 +295,15 @@
       layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
-<!-- ================================
-    상단 객실 이미지 시작
-================================= -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+
+    <!-- ================================
+        상단 객실 이미지 시작
+    ================================= -->
 <section class="room-detail-bread">
-    <div class="full-width-slider carousel-action">
+    <div class="full-width-slider carousel-action" th:each="roomImageDTO : ${roomDetailDTO.getRoomImageList()}">
         <div class="full-width-slide-item">
-            <img src="images/img30.jpg" alt="">
-        </div><!-- end full-width-slide-item -->
-        <div class="full-width-slide-item">
-            <img src="images/img31.jpg" alt="">
-        </div><!-- end full-width-slide-item -->
-        <div class="full-width-slide-item">
-            <img src="images/img32.jpg" alt="">
-        </div><!-- end full-width-slide-item -->
-        <div class="full-width-slide-item">
-            <img src="images/img33.jpg" alt="">
-        </div><!-- end full-width-slide-item -->
-        <div class="full-width-slide-item">
-            <img src="images/img34.jpg" alt="">
+            <img th:src="@{${'/images/' + roomImageDTO.getRoomSaveFileName()}}" alt="">
         </div><!-- end full-width-slide-item -->
     </div><!-- end full-width-slider -->
 </section><!-- end room-detail-bread -->
@@ -334,7 +324,6 @@
                             <li><a data-scroll="description" href="#description" class="scroll-link active">상세설명</a></li>
                             <li><a data-scroll="services" href="#services" class="scroll-link">서비스</a></li>
                             <li><a data-scroll="amenities" href="#amenities" class="scroll-link">인기시설</a></li>
-                            <li><a data-scroll="location-map" href="#location-map" class="scroll-link">위치</a></li>
                             <li><a data-scroll="reviews" href="#reviews" class="scroll-link">후기</a></li>
                         </ul>
                     </div>
@@ -349,129 +338,38 @@
                     <div class="single-content-wrap padding-top-60px">
                         <div id="description" class="page-scroll">
                             <div class="single-content-item pb-4">
-                                <h3 class="title font-size-26">방 이름</h3>
+                                <h3 class="title font-size-26" th:text="${roomDetailDTO.roomName}">방 이름</h3>
                                 <p class="pt-2">
-                                    <span class="badge badge-warning text-white font-size-16">4.6</span>
-                                    <span>(4,209개의 리뷰)</span>
+                                    <span class="badge badge-warning text-white font-size-16" th:text="${roomDetailDTO.roomRating}">4.6</span>
+                                    <span th:text="|(${roomDetailDTO.roomReviewNum})|">(4,209개의 리뷰)</span>
                                 </p>
                             </div><!-- end single-content-item -->
 
                             <!-- 기본 정보 -->
                             <div class="section-block"></div>
                             <div class="single-content-item padding-top-30px padding-bottom-40px">
-                                <h3 class="title font-size-20">기본 정보</h3>
-                                <p class="py-3">기본 정보 내용</p>
-                                <h3 class="title font-size-15 font-weight-medium pb-3">이용규칙</h3>
+                                <h3 class="title font-size-20">이용규칙</h3>
+                                <p class="py-3"></p>
                                 <ul class="list-items">
                                     <li><i class="la la-dot-circle mr-2"></i>최대 2인 이용 가능</li>
                                     <li><i class="la la-dot-circle mr-2"></i>금연 객실</li>
                                 </ul>
                             </div><!-- end single-content-item -->
-
-                            <!-- 서비스 -->
                             <div class="section-block"></div>
                         </div><!-- end description -->
+
+                        <!-- 서비스 -->
                         <div id="services" class="page-scroll">
                             <div class="single-content-item padding-top-40px padding-bottom-40px">
                                 <h3 class="title font-size-20">서비스</h3>
-                                <div class="row pt-4">
+                                <div class="row pt-4" th:each="serviceList : ${slist}">
                                     <div class="col-lg-4 responsive-column">
                                         <div class="single-tour-feature d-flex align-items-center mb-3">
                                             <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
                                                 <i class="la la-check-circle"></i>
                                             </div>
                                             <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">주차 가능</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-check-circle"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">조식 뷔페 운영</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-check-circle"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">와이파이</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-check-circle"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">객실 금연</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                     <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-check-circle"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">피트니스</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                     <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-check-circle"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">어메니티</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                     <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-check-circle"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">24시간 데스크</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                     <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-check-circle"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">Laundry</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                     <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-check-circle"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">Own Parking Space</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-check-circle"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">Wake-Up Call</h3>
+                                                <h3 class="title font-size-15 font-weight-medium" th:text="${serviceList.serviceName}">주차 가능</h3>
                                             </div>
                                         </div><!-- end single-tour-feature -->
                                     </div><!-- end col-lg-4 -->
@@ -484,114 +382,14 @@
                         <div id="amenities" class="page-scroll">
                             <div class="single-content-item padding-top-40px padding-bottom-40px">
                                 <h3 class="title font-size-20">인기 시설</h3>
-                                <div class="row pt-4">
+                                <div class="row pt-4" th:each="amenitiesList : ${alist}">
                                     <div class="col-lg-4 responsive-column">
                                         <div class="single-tour-feature d-flex align-items-center mb-3">
                                             <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
                                                 <i class="la la-couch"></i>
                                             </div>
                                             <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">2인 소파</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-television"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">40인치 삼성 LED TV</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-gear"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">의전 서비스</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-wifi"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">무료 와이파이</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-swimming-pool"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">개인 수영장</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-user"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">24시간 룸서비스</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-air-freshener"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">에어컨</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-bullhorn"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">헤어 드라이기</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-bathtub"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">욕조</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-hand-holding-usd"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">구급상자</h3>
-                                            </div>
-                                        </div><!-- end single-tour-feature -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                <i class="la la-luggage-cart"></i>
-                                            </div>
-                                            <div class="single-feature-titles">
-                                                <h3 class="title font-size-15 font-weight-medium">수화물 보관</h3>
+                                                <h3 class="title font-size-15 font-weight-medium" th:text="${amenitiesList.amenitiesName}">2인 소파</h3>
                                             </div>
                                         </div><!-- end single-tour-feature -->
                                     </div><!-- end col-lg-4 -->
@@ -599,17 +397,6 @@
                             </div><!-- end single-content-item -->
                             <div class="section-block"></div>
                         </div><!-- end itinerary -->
-
-                        <!-- 위치 -->
-                        <div id="location-map" class="page-scroll">
-                            <div class="single-content-item padding-top-40px padding-bottom-40px">
-                                <h3 class="title font-size-20">위치</h3>
-                                <div class="map-container padding-top-30px">
-                                    <div id="map"></div>
-                                </div><!-- end map-container -->
-                            </div><!-- end single-content-item -->
-                            <div class="section-block"></div>
-                        </div><!-- end location-map -->
 
                         <!-- 후기 리스트 -->
                         <div id="reviews" class="page-scroll">
@@ -705,7 +492,7 @@
                                 <div class="comments-list padding-top-50px">
                                     <div class="comment">
                                         <div class="comment-avatar">
-                                            <img class="avatar__img" alt="" src="images/team8.jpg">
+                                            <img class="avatar__img" alt="" src="/images/team8.jpg">
                                         </div>
                                         <div class="comment-body">
                                             <div class="meta-data">
@@ -733,7 +520,7 @@
                                     </div><!-- end comments -->
                                     <div class="comment">
                                         <div class="comment-avatar">
-                                            <img class="avatar__img" alt="" src="images/team8.jpg">
+                                            <img class="avatar__img" alt="" src="/images/team8.jpg">
                                         </div>
                                         <div class="comment-body">
                                             <div class="meta-data">
@@ -761,7 +548,7 @@
                                     </div><!-- end comments -->
                                     <div class="comment">
                                         <div class="comment-avatar">
-                                            <img class="avatar__img" alt="" src="images/team10.jpg">
+                                            <img class="avatar__img" alt="" src="/images/team10.jpg">
                                         </div>
                                         <div class="comment-body">
                                             <div class="meta-data">
@@ -929,19 +716,14 @@
                             <h3 class="title stroke-shape">숙박 예약</h3>
                             <div class="sidebar-widget-item">
                                 <div class="contact-form-action">
-                                    <form action="#">
+                                    <form action="#" id="date-form">
                                         <div class="input-box">
-                                            <label class="label-text">체크인</label>
+                                            <label class="label-text">Check in - Check out</label>
                                             <div class="form-group">
                                                 <span class="la la-calendar form-icon"></span>
-                                                <input class="date-picker-single form-control" type="text" name="daterange-single" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="input-box">
-                                            <label class="label-text">체크아웃</label>
-                                            <div class="form-group">
-                                                <span class="la la-calendar form-icon"></span>
-                                                <input class="date-picker-single form-control" type="text" name="daterange-single" readonly>
+
+                                                <input class="date-picker-multiple form-control" type="text" name="daterange" id="checkDate" readonly>
+
                                             </div>
 
                                         </div>
@@ -953,7 +735,7 @@
                                     <label class="font-size-16">성인 </label>
                                     <div class="qtyBtn d-flex align-items-center">
                                         <div class="qtyDec"><i class="la la-minus"></i></div>
-                                        <input type="text" name="qtyInput" value="0">
+                                        <input id="adult-qty" type="text" name="qtyInput" value="0">
                                         <div class="qtyInc"><i class="la la-plus"></i></div>
                                     </div>
                                 </div><!-- end qty-box -->
@@ -961,34 +743,15 @@
                                     <label class="font-size-16">아동 </label>
                                     <div class="qtyBtn d-flex align-items-center">
                                         <div class="qtyDec"><i class="la la-minus"></i></div>
-                                        <input type="text" name="qtyInput" value="0">
+                                        <input type="text" id="child-qty"  class="reserve-qty" name="qtyInput" value="0">
                                         <div class="qtyInc"><i class="la la-plus"></i></div>
                                     </div>
                                 </div><!-- end qty-box -->
                             </div><!-- end sidebar-widget-item -->
-                            <div class="sidebar-widget-item py-4">
-                                <h3 class="title stroke-shape">Extra Services</h3>
-                                <div class="extra-service-wrap">
-                                    <form action="#" method="post" class="extraServiceForm" id="extraServiceForm">
-                                        <div id="checkboxContainPrice">
-                                            <div class="custom-checkbox">
-                                                <input type="checkbox" name="breakfast" id="breakfastChb" value="10.00" />
-                                                <label for="breakfastChb" class="d-flex justify-content-between align-items-center">조식 서비스 <span class="text-black font-weight-regular">₩10,000/ 인</span></label>
-                                            </div>
-                                            <div class="custom-checkbox">
-                                                <input type="checkbox" name="parking" id="parkingChb" value="5.00" />
-                                                <label for="parkingChb" class="d-flex justify-content-between align-items-center">발렛파킹 <span class="text-black font-weight-regular">₩10,000/ 1박</span></label>
-                                            </div>
-                                        </div>
-                                        <div class="total-price pt-3">
-                                            <p class="text-black">숙박</p>
-                                            <p class="d-flex align-items-center"><span class="font-size-17 text-black">₩</span> <input type="text" name="total" class="num" value="80.00" readonly="readonly"/><span>/ 1박</span></p>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div><!-- end sidebar-widget-item -->
                             <div class="btn-box">
+                                <a th:href="|javascript:void(0)|" id="cart-button" class="theme-btn hwt-btn-gray text-center w-100 mb-2 "><i class="la la-shopping-cart mr-2 font-size-18"></i>카트 추가하기</a>
                                 <a href="cart.html" class="theme-btn hwt-btn-gray text-center w-100 mb-2">바로 예약</a>
+
                             </div>
                         </div><!-- end sidebar-widget -->
                         <div class="sidebar-widget single-content-widget">
@@ -1065,7 +828,7 @@
 <!--            <div class="col-lg-3 responsive-column">-->
 <!--                <div class="footer-item">-->
 <!--                    <div class="footer-logo padding-bottom-30px">-->
-<!--                        <a href="/home" class="foot__logo"><img src="images/logo.png" alt="logo"></a>-->
+<!--                        <a href="/home" class="foot__logo"><img src="/images/logo.png" alt="logo"></a>-->
 <!--                    </div>&lt;!&ndash; end logo &ndash;&gt;-->
 <!--                    <p class="footer__desc">Morbi convallis bibendum urna ut viverra. Maecenas consequat</p>-->
 <!--                    <ul class="list-items pt-3">-->
@@ -1151,7 +914,7 @@
 <!--            <div class="col-lg-5">-->
 <!--                <div class="copy-right-content d-flex align-items-center justify-content-end padding-top-30px">-->
 <!--                    <h3 class="title font-size-15 pr-2">We Accept</h3>-->
-<!--                    <img src="images/payment-img.png" alt="">-->
+<!--                    <img src="/images/payment-img.png" alt="">-->
 <!--                </div>&lt;!&ndash; end copy-right-content &ndash;&gt;-->
 <!--            </div>&lt;!&ndash; end col-lg-5 &ndash;&gt;-->
 <!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
@@ -1183,37 +946,37 @@
                 </div>
                 <div class="modal-body">
                     <div class="contact-form-action">
-                        <form method="post">
+                        <form method="post" action="/member/join">
                             <div class="input-box">
                                 <label class="label-text">닉네임</label>
                                 <div class="form-group">
                                     <span class="la la-user form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="닉네임">
+                                    <input class="form-control" type="text" name="nickname" placeholder="닉네임">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
                                 <label class="label-text">이메일 주소</label>
                                 <div class="form-group">
                                     <span class="la la-envelope form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="이메일 주소">
+                                    <input class="form-control" type="email" name="email" placeholder="이메일 주소">
                                 </div>
                             </div><!-- end input-box -->
                             <div class="input-box">
                                 <label class="label-text">패스워드</label>
                                 <div class="form-group">
                                     <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="패스워드">
+                                    <input class="form-control" type="password" name="pwd" placeholder="패스워드">
                                 </div>
                             </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">패스워드 확인</label>
-                                <div class="form-group">
-                                    <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="패스워드 재입력">
-                                </div>
-                            </div><!-- end input-box -->
+                            <!--                                    <div class="input-box">-->
+                            <!--                                        <label class="label-text">패스워드 확인</label>-->
+                            <!--                                        <div class="form-group">-->
+                            <!--                                            <span class="la la-lock form-icon"></span>-->
+                            <!--                                            <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
+                            <!--                                        </div>-->
+                            <!--                                    </div>&lt;!&ndash; end input-box &ndash;&gt;-->
                             <div class="btn-box pt-3 pb-4">
-                                <button type="button" class="theme-btn w-100">회원가입</button>
+                                <button type="submit" class="theme-btn w-100">회원가입</button>
                             </div>
                             <div class="action-box text-center">
                                 <p class="font-size-14">SNS를 통한 회원가입</p>
@@ -1248,19 +1011,19 @@
                     </div>
                     <div class="modal-body">
                         <div class="contact-form-action">
-                            <form method="post">
+                            <form method="post" action="/loginProc">
                                 <div class="input-box">
                                     <label class="label-text">이메일</label>
                                     <div class="form-group">
                                         <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="text" name="text" placeholder="이메일 주소">
+                                        <input class="form-control" type="email" name="email" id="email" placeholder="이메일 주소">
                                     </div>
                                 </div><!-- end input-box -->
                                 <div class="input-box">
                                     <label class="label-text">패스워드</label>
                                     <div class="form-group mb-2">
                                         <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="text" name="text" placeholder="패스워드">
+                                        <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <!--                                    <div class="custom-checkbox mb-0">-->
@@ -1273,19 +1036,19 @@
                                     </div>
                                 </div><!-- end input-box -->
                                 <div class="btn-box pt-3 pb-4">
-                                    <button type="button" class="theme-btn w-100">로그인</button>
+                                    <button type="submit" id="login" class="theme-btn w-100">로그인</button>
                                 </div>
                                 <div class="action-box text-center">
                                     <p class="font-size-14">SNS를 통한 로그인</p>
-                                <ul class="social-profile py-3">
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div><!-- end contact-form-action -->
+                                    <ul class="social-profile py-3">
+                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
+                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
+                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
+                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div><!-- end contact-form-action -->
                 </div>
             </div>
         </div>
@@ -1381,7 +1144,45 @@
 <!--<script src="js/main.js"></script>-->
 <!--</body>-->
 <!--</html>-->
+    <script>
 
+
+        $("#cart-button").click(function(){
+
+            let checkDate = $("#checkDate").val();
+            let adultQty = $("#adult-qty").val();
+            let childQty = $("#child-qty").val();
+
+            cartForm = JSON.stringify({
+                // check_in: check_in,
+                // check_out: check_out,
+                checkDate : checkDate,
+                adultQty: adultQty,
+                childQty: childQty,
+            });
+            // let form = $("#reserve-form").serialize();
+
+
+            $.ajax({
+                type: 'post',
+                url: '/rest/cart',
+                data: cartForm,
+                contentType: 'application/json; charset=utf-8',
+                dataType:"text",
+            }).done(function(result){
+
+                if(result == "true"){
+                    alert("장바구니에 존재하는 객실입니다.");
+                } else{
+                    alert("장바구니에 저장되었습니다.");
+                    window.location.href = '/cart/';
+                }
+            }).fail(function (error){
+                alert(JSON.stringify(error));
+            });
+        });
+
+    </script>
 </th:block>
 
 </html>

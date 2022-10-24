@@ -1,5 +1,7 @@
 package com.phoenix.howabouttoday.member.entity;
 
+import com.phoenix.howabouttoday.board.entity.Board;
+import com.phoenix.howabouttoday.board.entity.Event;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import lombok.*;
 
@@ -7,7 +9,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -31,9 +32,8 @@ public class Member {
   @Column(nullable = true)
   private String memberTel;
 
-
   @Enumerated(EnumType.STRING)
-  private Code memberCode;
+  private Role role;
 
   private LocalDate joinDate;
   private LocalDate withdrawdate;
@@ -45,13 +45,19 @@ public class Member {
   @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
   private List<Orders> orders = new ArrayList<>();
 
+  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+  private List<Board> boardList = new ArrayList<>();
+
+//  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+//  private List<Event> eventList = new ArrayList<>();
+
   @Builder
-  public Member(String email, String pwd, String nickname, String memberTel, Code memberCode, LocalDate joinDate, LocalDate withdrawdate, String memberOriginalFileName, String memberSaveFileName) {
+  public Member(String email, String pwd, String nickname, String memberTel, Role role, LocalDate joinDate, LocalDate withdrawdate, String memberOriginalFileName, String memberSaveFileName) {
     this.email = email;
     this.pwd = pwd;
     this.nickname = nickname;
     this.memberTel = memberTel;
-    this.memberCode = memberCode;
+    this.role = role;
     this.joinDate = joinDate;
     this.withdrawdate = withdrawdate;
     this.memberOriginalFileName = memberOriginalFileName;

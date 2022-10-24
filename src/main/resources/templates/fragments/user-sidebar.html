@@ -12,7 +12,7 @@
 
                 <!-- 이미지 -->
                 <div class="author-img avatar-sm">
-                    <img src="images/hwt/19p.jpg" alt="testimonial image">
+                    <img src="/images/hwt/19p.jpg" alt="testimonial image">
                 </div>
 
                 <!-- nickname -->
@@ -27,19 +27,19 @@
                     or (#request.getRequestURI).equals('/user-dashboard-settings')}"><li class="page-active"></th:block>
                 <th:block th:unless="${(#request.getRequestURI).equals('/user-dashboard-profile')
                     or (#request.getRequestURI).equals('/user-dashboard-settings')}"><li></th:block>
-                <a th:href="@{user-dashboard-profile}" ><i class="la la-user mr-2 text-color-2"></i><span th:text="#{sidebar_myProfile}">프로필</span></a></li>
+                <a th:href="@{/user-dashboard-profile}" ><i class="la la-user mr-2 text-color-2"></i><span th:text="#{sidebar_myProfile}">프로필</span></a></li>
 
                 <th:block th:if="${(#request.getRequestURI).equals('/user-dashboard-reviews')}"><li class="page-active"></th:block>
                 <th:block th:unless="${(#request.getRequestURI).equals('/user-dashboard-reviews')}"><li></th:block>
-                <a th:href="@{user-dashboard-reviews}" ><i class="la la-star mr-2 text-color-3"></i><span th:text="#{sidebar_myReviews}">나의 후기</span></a></li>
+                <a th:href="@{/user-dashboard-reviews}" ><i class="la la-star mr-2 text-color-3"></i><span th:text="#{sidebar_myReviews}">나의 후기</span></a></li>
 
                 <th:block th:if="${(#request.getRequestURI).equals('/user-dashboard-wishlist')}"><li class="page-active"></th:block>
                 <th:block th:unless="${(#request.getRequestURI).equals('/user-dashboard-wishlist')}"><li></th:block>
-                <a th:href="@{user-dashboard-wishlist}" ><i class="la la-heart mr-2 text-color-4"></i><span th:text="#{sidebar_wishList}">위시리스트</span></a></li>
+                <a th:href="@{/user-dashboard-wishlist}" ><i class="la la-heart mr-2 text-color-4"></i><span th:text="#{sidebar_wishList}">위시리스트</span></a></li>
 
                 <th:block th:if="${(#request.getRequestURI).equals('/user-dashboard-booking')}"><li class="page-active"></th:block>
                 <th:block th:unless="${(#request.getRequestURI).equals('/user-dashboard-booking')}"><li></th:block>
-                <a th:href="@{user-dashboard-booking}" ><i class="la la-shopping-cart mr-2"></i><span th:text="#{sidebar_myBooking}">예약 내역</span></a></li>
+                <a th:href="@{/user-dashboard-booking}" ><i class="la la-shopping-cart mr-2"></i><span th:text="#{sidebar_myBooking}">예약 내역</span></a></li>
             </ul>
         </div><!-- end sidebar-menu-wrap -->
     </div>

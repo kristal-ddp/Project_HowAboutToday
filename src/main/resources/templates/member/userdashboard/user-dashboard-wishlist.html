@@ -9,7 +9,7 @@
     START DASHBOARD AREA
 ================================= -->
 <section class="dashboard-area">
-
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <!-- 상단 네비게이터(헤더) 자리 -->
 
 <!-- 상단 네비게이터(헤더) 종료 -->
@@ -30,38 +30,55 @@
         </div><!-- end dashboard-bread -->
         <div class="dashboard-main-content">
             <div class="container-fluid">
-                <div class="row">
+
+                <div class="row" th:unless="${checkWish}">
                     <div class="col-lg-12">
                         <div class="form-box">
                             <div class="form-title-wrap">
                                 <h3 class="title" th:text="'위시 리스트'">Wishlist</h3>
-                                <p class="font-size-14">1 - 6페이지  28개의 결과</p>
+                            </div>
+                            <div class="form-content " style="margin-top: 200px; margin-bottom: 200px;">
+                                <a th:href="@{/#}" class="h3" style="margin-left: 350px;" >아직 찜한 숙소가 없어요. 오늘어때의 숙소를 둘러보세요!</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row" th:if="${checkWish}">
+                    <div class="col-lg-12">
+                        <div class="form-box">
+                            <div class="form-title-wrap">
+                                <h3 class="title" th:text="'위시 리스트'">Wishlist</h3>
+                                <p class="font-size-14" th:text="|${startPage} - ${endPage}페이지   ${wishList.getTotalPages()}개의 결과|">1 - 6페이지  28개의 결과</p>
                             </div>
                             <div class="form-content pt-5 pb-0"><!--아이템카드 시작 -->
                                 <div class="row">
-                                    <div class="col-lg-4 responsive-column">
+                                    <div class="col-lg-4 responsive-column" th:each="wish : ${wishList}">
                                         <div class="card-item">
                                             <div class="card-img">
                                                 <a th:href="@{/hotel-single}" href="hotel-single.html" class="d-block">
                                                     <img src="/images/room1.jpg" alt="hotel-img">
                                                 </a>
                                                 <span class="badge" th:text="'오늘어떄 추천!'">베스트셀러 여부</span>
+                                                <a th:href="|javascript:void(0)|" th:onclick="deleteById([[${wish.wishListNum}]])">
                                                 <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Remove"> <!--리무브구간 자바스크립트로 처리요함 -->
                                                     <i class="la la-heart"></i>
                                                 </div>
+                                                </a>
                                             </div>
                                             <div class="card-body">
-                                                <h3 class="card-title"><a th:href="@{/hotel-single}" href="hotel-single.html" th:text="'영진 호텔'">숙소 이름</a></h3>
-                                                <p class="card-meta" th:text="'강남구 테헤란로 삼원빌딩 4층'" >숙소 주소</p>
+                                                <h3 class="card-title"><a th:href="@{/hotel-single}" href="hotel-single.html" th:text="${wish.accomName}">숙소 이름</a></h3>
+                                                <p class="card-meta" th:text="${wish.accomAdress}" >숙소 주소</p>
                                                 <div class="card-rating">
-                                                    <span class="badge text-white" th:text="|4.4/5|">별점 수치</span>
+                                                    <span class="badge text-white" th:text="${wish.accomRating}">별점 수치</span>
                                                     <span class="review__text" th:text="'평균'">점수 등급</span>
-                                                    <span class="rating__text" th:text="|(30 Reviews)|">리뷰 갯수</span>
+                                                    <span class="rating__text" th:text="${wish.reviewCount}">리뷰 갯수</span>
                                                 </div>
                                                 <div class="card-price d-flex align-items-center justify-content-between">
                                                     <p>
                                                         <span class="price__from" th:text="'1박'">From</span>
-                                                        <span class="price__num" th:text="50000원">숙소 가격</span>
+                                                        <span class="price__num" th:text="${wish.accomPrice}">숙소 가격</span>
 
                                                     </p>
                                                     <a th:href="@{/hotel-single}" href="hotel-single.html" class="btn-text">[[|상세 보기|]]<i class="la la-angle-right"></i></a>
@@ -70,70 +87,6 @@
                                         </div><!-- end card-item -->
 
                                     </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="card-item car-card">
-                                            <div class="card-img">
-                                                <a href="car-single.html" class="d-block">
-                                                    <img src="images/car-img.png" alt="car-img">
-                                                </a>
-                                                <span class="badge">Bestseller</span>
-                                                <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Remove">
-                                                    <i class="la la-heart"></i>
-                                                </div>
-                                            </div>
-                                            <div class="card-body">
-                                                <p class="card-meta">Compact SUV</p>
-                                                <h3 class="card-title"><a href="car-single.html">Toyota Corolla or Similar</a></h3>
-                                                <div class="card-rating">
-                                                    <span class="badge text-white">4.4/5</span>
-                                                    <span class="review__text">Average</span>
-                                                    <span class="rating__text">(30 Reviews)</span>
-                                                </div>
-                                                <div class="card-attributes">
-                                                    <ul class="d-flex align-items-center">
-                                                        <li class="d-flex align-items-center" data-toggle="tooltip" data-placement="top" title="Passenger"><i class="la la-users"></i><span>4</span></li>
-                                                        <li class="d-flex align-items-center" data-toggle="tooltip" data-placement="top" title="Luggage"><i class="la la-suitcase"></i><span>1</span></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="card-price d-flex align-items-center justify-content-between">
-                                                    <p>
-                                                        <span class="price__from">From</span>
-                                                        <span class="price__num">$23.00</span>
-                                                        <span class="price__text">Per day</span>
-                                                    </p>
-                                                    <a href="car-single.html" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card-item -->
-                                    </div><!-- end col-lg-4 -->
-                                    <div class="col-lg-4 responsive-column">
-                                        <div class="card-item ">
-                                            <div class="card-img">
-                                                <a href="tour-details.html" class="d-block">
-                                                    <img src="images/img9.jpg" alt="Destination-img">
-                                                </a>
-                                                <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Remove">
-                                                    <i class="la la-heart"></i>
-                                                </div>
-                                            </div>
-                                            <div class="card-body">
-                                                <h3 class="card-title"><a href="tour-details.html">Empire State Building Admission</a></h3>
-                                                <p class="card-meta">124 E Huron St, New york</p>
-                                                <div class="card-rating">
-                                                    <span class="badge text-white">4.4/5</span>
-                                                    <span class="review__text">Average</span>
-                                                    <span class="rating__text">(30 Reviews)</span>
-                                                </div>
-                                                <div class="card-price d-flex align-items-center justify-content-between">
-                                                    <p>
-                                                        <span class="price__from">From</span>
-                                                        <span class="price__num">$124.00</span>
-                                                    </p>
-                                                    <span class="tour-hour"><i class="la la-clock-o mr-1"></i>Full day</span>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card-item -->
-                                    </div><!-- end col-lg-4 -->
 
                                     <!-- 아이템카드 종료 -->
                                 </div><!-- end row -->
@@ -141,27 +94,44 @@
                         </div><!-- end form-box -->
                     </div><!-- end col-lg-12 -->
                 </div><!-- end row -->
-                <div class="row">
+
+                <div class="row" th:if="${checkWish}">
                     <div class="col-lg-12">
                         <nav aria-label="Page navigation example"> <!--페이징 -->
+
                             <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link page-link-nav" th:href="@{#}" href="#" aria-label="Previous"> <!--이전(페이징) -->
+
+
+
+                                <li class="page-item" th:class="${wishList.first} ? 'disabled'">
+                                    <a class="page-link page-link-nav" th:href="${wishList.first} ? '#' : @{./user-dashboard-wishlist(page=${wishList.number - 1})}" href="#" aria-label="Previous"> <!--이전(페이징) -->
                                         <span aria-hidden="true"><i class="la la-angle-left"></i></span>
                                         <span class="sr-only">Previous</span>
                                     </a>
                                 </li>
-                                <li class="page-item"><a class="page-link page-link-nav" href="#">1</a></li>
-                                <li class="page-item active">
-                                    <a class="page-link page-link-nav" th:href="@{#}" href="#">2 <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="page-item"><a class="page-link page-link-nav" href="#">3</a></li> <!-- 다음(페이징) -->
-                                <li class="page-item">
-                                    <a class="page-link page-link-nav" th:href="@{#}" href="#" aria-label="Next">
+
+                                <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                                    <li class="page-item"  th:if="${page != nowPage}">
+                                        <a class="page-link page-link-nav" href="#"
+                                           th:href="@{/user-dashboard-wishlist(page = ${page - 1})}" th:text="${page}">1</a>
+                                    </li>
+                                    <li class="page-item active"  th:if="${page == nowPage}">
+                                        <a class="page-link page-link-nav"
+                                           th:text="${page}" >1</a>
+                                    </li>
+                                </th:block>
+<!--                                <li class="page-item"><a class="page-link page-link-nav" href="#">1</a></li>-->
+<!--                                <li class="page-item active">-->
+<!--                                    <a class="page-link page-link-nav" th:href="@{/user-dashboard-wishlist}" href="#">2 <span class="sr-only">(current)</span></a>-->
+<!--                                </li>-->
+<!--                                <li class="page-item"><a class="page-link page-link-nav" href="#">3</a></li> &lt;!&ndash; 다음(페이징) &ndash;&gt;-->
+                                <li class="page-item" th:class="${wishList.last} ? 'disabled'">
+                                    <a class="page-link page-link-nav" th:href="${wishList.last} ? '#' : @{./user-dashboard-wishlist(page=${wishList.number + 1})}" href="#" aria-label="Next">
                                         <span aria-hidden="true"><i class="la la-angle-right"></i></span>
                                         <span class="sr-only">Next</span>
                                     </a>
                                 </li>
+
                             </ul>
                         </nav>
                     </div><!-- end col-lg-12 -->
@@ -194,7 +164,21 @@
 <!-- ================================
     END DASHBOARD AREA
 ================================= -->
+<script>
+    function deleteById(wishListNum){
+        $.ajax({
+            type: 'DELETE',
+            url: '/rest/wish/' + wishListNum,
+        }).done(function (){
+            alert("삭제가 완료되었습니다");
+            window.location.reload();
+        }).fail(function(error){
+            alert(JSON.stringify(error));
+        });
+    }
 
+
+</script>
 
 </th:block>
 

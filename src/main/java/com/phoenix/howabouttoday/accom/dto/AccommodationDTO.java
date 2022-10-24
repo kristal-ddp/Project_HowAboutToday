@@ -3,10 +3,8 @@ package com.phoenix.howabouttoday.accom.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
 @NoArgsConstructor
 public class AccommodationDTO {
 

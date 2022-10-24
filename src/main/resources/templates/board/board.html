@@ -35,11 +35,23 @@
 ================================= -->
 <section class="card-area section--padding">
     <div class="container">
+
+        <th:block sec:authorize="hasRole('ADMIN')">
+            <div class="btn-box pt-3 board-list-btn hwt-row-board">
+                <button th:if="${(#request.getRequestURI).equals('/notice')}" type="button" class="theme-btn"
+                        onclick="location.href='admin/notice-add'">작성하기</button>
+                <button th:if="${(#request.getRequestURI).equals('/event')}" type="button" class="theme-btn"
+                        onclick="location.href='admin/event-add'">작성하기</button>
+            </div>
+        </th:block>
+
         <div class="row hwt-row-board">
 
             <!-- 게시글 존재하지 않을 경우 -->
             <th:block th:if="${lists.isEmpty()}">
-                게시글이 존재하지 않습니다.
+                <div class="hwt-empty">
+                    <p>게시글이 존재하지 않습니다.</p>
+                </div>
             </th:block>
 
             <!-- 게시글 존재할 경우 -->
@@ -99,13 +111,16 @@
                 </div><!-- end col-lg-4 -->
             </th:block>
 
-        </div><!-- end row -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="btn-box mt-3 text-center">
-                    <button type="button" class="theme-btn hwt-btn-gray">더보기</button>
-                </div><!-- end btn-box -->
-            </div><!-- end col-lg-12 -->
+            <th:block th:unless="${lists.isEmpty()}">
+                <div class="row hwt-btn-more">
+                    <div class="col-lg-12">
+                        <div class="btn-box mt-3 text-center">
+                            <button type="button" class="theme-btn hwt-btn-gray">더보기</button>
+                        </div><!-- end btn-box -->
+                    </div><!-- end col-lg-12 -->
+                </div><!-- end row -->
+            </th:block>
+
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end card-area -->
@@ -122,131 +137,6 @@
     <i class="la la-angle-up" title="Go top"></i>
 </div>
 <!-- end back-to-top -->
-
-<!-- end modal-shared -->
-<div class="modal-popup">
-    <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div>
-                        <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                        <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
-                    </div>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="la la-close"></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="contact-form-action">
-                        <form method="post">
-                            <div class="input-box">
-                                <label class="label-text">닉네임</label>
-                                <div class="form-group">
-                                    <span class="la la-user form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="닉네임">
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">이메일 주소</label>
-                                <div class="form-group">
-                                    <span class="la la-envelope form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="이메일 주소">
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">패스워드</label>
-                                <div class="form-group">
-                                    <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="패스워드">
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">패스워드 확인</label>
-                                <div class="form-group">
-                                    <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="패스워드 재입력">
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="btn-box pt-3 pb-4">
-                                <button type="button" class="theme-btn w-100">회원가입</button>
-                            </div>
-                            <div class="action-box text-center">
-                                <p class="font-size-14">SNS를 통한 회원가입</p>
-                                <ul class="social-profile py-3">
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div><!-- end contact-form-action -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div><!-- end modal-popup -->
-
-    <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
-                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post">
-                                <div class="input-box">
-                                    <label class="label-text">이메일</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="text" name="text" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group mb-2">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="text" name="text" placeholder="패스워드">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <!--                                    <div class="custom-checkbox mb-0">-->
-                                        <!--                                        <input type="checkbox" id="rememberchb">-->
-                                        <!--                                        <label for="rememberchb">Remember me</label>-->
-                                        <!--                                    </div>-->
-                                        <p class="forgot-password">
-                                            <a href="recover">비밀번호를 잊으셨나요?</a>
-                                        </p>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="button" class="theme-btn w-100">로그인</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 로그인</p>
-                                <ul class="social-profile py-3">
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div><!-- end contact-form-action -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div><!-- end modal-popup -->
 
 </th:block>
 

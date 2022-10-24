@@ -17,7 +17,7 @@ import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.global.AccomCategory;
-import com.phoenix.howabouttoday.room.dto.AvailableDate;
+import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
@@ -310,10 +310,10 @@ public class DataInsertTest {
             RoomImage roomImage2 = objectGenerator.createRoomImage(room);
             RoomImage roomImage3 = objectGenerator.createRoomImage(room);
 
-            room.getRoomImage().add(roomImage0);
-            room.getRoomImage().add(roomImage1);
-            room.getRoomImage().add(roomImage2);
-            room.getRoomImage().add(roomImage3);
+            room.getRoomImageList().add(roomImage0);
+            room.getRoomImageList().add(roomImage1);
+            room.getRoomImageList().add(roomImage2);
+            room.getRoomImageList().add(roomImage3);
 
             accom.getRoom().add(room);
             accom.getRoom().add(room);

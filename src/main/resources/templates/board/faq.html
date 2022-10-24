@@ -3,7 +3,10 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout/layout">
 
+
+
 <th:block layout:fragment="content">
+<div>
 <!-- ================================
     START BREADCRUMB AREA
 ================================= -->
@@ -46,7 +49,7 @@
 ================================= -->
 <section class="faq-area padding-top-100px padding-bottom-70px text-center">
     <div class="container">
-        <div class="row hwt-row-board">
+        <div class="row hwt-row-faq">
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
                     <a href="#" class="d-block">
@@ -59,29 +62,29 @@
                 <div class="icon-box faq-icon-box hwt-icon-box">
                     <a href="#faq" class="d-block">
                         <img src="icon/sale.png" class="header-icon">
-                        <span class="d-block info__title hwt-font-title">상품 / 서비스</span>
+                        <span class="d-block info__title hwt-font-title faq_move">상품 / 서비스</span>
                     </a>
                 </div>
             </div><!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
+                    <a href="#faq2" class="d-block">
                         <img src="icon/pay.png" class="header-icon">
-                        <span class="d-block info__title hwt-font-title">예약 / 결제</span>
+                        <span class="d-block info__title hwt-font-title faq_move">예약 / 결제</span>
                     </a>
                 </div>
             </div><!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
+                    <a href="#faq3" class="d-block">
                         <img src="icon/book.png" class="header-icon">
-                        <span class="d-block info__title hwt-font-title">변경 / 취소 / 환불</span>
+                        <span class="d-block info__title hwt-font-title faq_move">변경 / 취소 / 환불</span>
                     </a>
                 </div>
             </div><!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column">
                 <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
+                    <a href="#faq1" class="d-block">
                         <img src="icon/discount.png" class="header-icon">
                         <span class="d-block info__title hwt-font-title">쿠폰 / 할인</span>
                     </a>
@@ -123,14 +126,21 @@
 ================================= -->
 <section class="faq-area section-bg padding-top-100px padding-bottom-60px">
     <div class="container">
-        <div class="row hwt-row-board">
+        <div class="row hwt-row-faq">
             <div class="col-lg-12">
                 <div class="section-heading text-center">
                     <h2 class="sec__title">자주 묻는 질문</h2>
                 </div><!-- end section-heading -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
-        <div class="row padding-top-60px hwt-row-board">
+
+        <th:block sec:authorize="hasRole('ADMIN')">
+            <div class="btn-box pt-3 faq-list-btn hwt-row-faq">
+                <button type="button" class="theme-btn" onclick="location.href='admin/faq-add'">작성하기</button>
+            </div>
+        </th:block>
+
+        <div class="row padding-top-60px hwt-row-faq">
             <div class="col-lg-6 col-board" id="faq">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">상품 / 서비스</h3>
@@ -139,12 +149,12 @@
                             <th:block th:each="boardDetailDTO : ${list}">
                                 <th:block th:if="${boardDetailDTO.boardCategoryName == '상품/서비스'}">
                                     <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
                                             <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
                                             <i class="la la-angle-down"></i>
                                         </a>
                                         <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26">
+                                            <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
                                         </ul>
@@ -155,7 +165,7 @@
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
-             <div class="col-lg-6 col-board">
+             <div class="col-lg-6 col-board" id="faq2">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">예약 / 결제</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
@@ -163,12 +173,12 @@
                             <th:block th:each="boardDetailDTO : ${list}">
                                 <th:block th:if="${boardDetailDTO.boardCategoryName == '예약/결제'}">
                                     <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
                                             <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
                                             <i class="la la-angle-down"></i>
                                         </a>
                                         <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26">
+                                            <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
                                         </ul>
@@ -179,7 +189,7 @@
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
-            <div class="col-lg-6 col-board">
+            <div class="col-lg-6 col-board" id="faq3">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">변경 / 취소 / 환불</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
@@ -187,12 +197,12 @@
                             <th:block th:each="boardDetailDTO : ${list}">
                                 <th:block th:if="${boardDetailDTO.boardCategoryName == '변경/취소/환불'}">
                                     <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
                                             <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
                                             <i class="la la-angle-down"></i>
                                         </a>
                                         <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26">
+                                            <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
                                         </ul>
@@ -211,12 +221,12 @@
                             <th:block th:each="boardDetailDTO : ${list}">
                                 <th:block th:if="${boardDetailDTO.boardCategoryName == '쿠폰/할인'}">
                                     <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
                                             <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
                                             <i class="la la-angle-down"></i>
                                         </a>
                                         <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26">
+                                            <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
                                         </ul>
@@ -227,7 +237,7 @@
                     </ul>
                 </div><!-- end faq-item -->
             </div><!-- end col-lg-6 -->
-            <div class="col-lg-6 col-board">
+            <div class="col-lg-6 col-board" id="faq1">
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">포인트</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
@@ -235,12 +245,12 @@
                             <th:block th:each="boardDetailDTO : ${list}">
                                 <th:block th:if="${boardDetailDTO.boardCategoryName == '포인트'}">
                                     <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
                                             <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
                                             <i class="la la-angle-down"></i>
                                         </a>
                                         <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26">
+                                            <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
                                         </ul>
@@ -259,12 +269,12 @@
                             <th:block th:each="boardDetailDTO : ${list}">
                                 <th:block th:if="${boardDetailDTO.boardCategoryName == '후기/댓글'}">
                                     <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
                                             <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
                                             <i class="la la-angle-down"></i>
                                         </a>
                                         <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26">
+                                            <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
                                         </ul>
@@ -283,12 +293,12 @@
                             <th:block th:each="boardDetailDTO : ${list}">
                                 <th:block th:if="${boardDetailDTO.boardCategoryName == '회원/개인정보'}">
                                     <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center">
+                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
                                             <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
                                             <i class="la la-angle-down"></i>
                                         </a>
                                         <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26">
+                                            <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
                                         </ul>
@@ -304,7 +314,7 @@
 <!-- ================================
     END FAQ AREA
 ================================= -->
-
+</div>
 <th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
 
 <!-- start back-to-top -->
@@ -312,131 +322,6 @@
     <i class="la la-angle-up" title="Go top"></i>
 </div>
 <!-- end back-to-top -->
-
-<!-- end modal-shared -->
-<div class="modal-popup">
-    <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div>
-                        <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                        <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
-                    </div>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="la la-close"></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="contact-form-action">
-                        <form method="post">
-                            <div class="input-box">
-                                <label class="label-text">닉네임</label>
-                                <div class="form-group">
-                                    <span class="la la-user form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="닉네임">
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">이메일 주소</label>
-                                <div class="form-group">
-                                    <span class="la la-envelope form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="이메일 주소">
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">패스워드</label>
-                                <div class="form-group">
-                                    <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="패스워드">
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">패스워드 확인</label>
-                                <div class="form-group">
-                                    <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" name="text" placeholder="패스워드 재입력">
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="btn-box pt-3 pb-4">
-                                <button type="button" class="theme-btn w-100">회원가입</button>
-                            </div>
-                            <div class="action-box text-center">
-                                <p class="font-size-14">SNS를 통한 회원가입</p>
-                                <ul class="social-profile py-3">
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div><!-- end contact-form-action -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div><!-- end modal-popup -->
-
-    <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
-                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post">
-                                <div class="input-box">
-                                    <label class="label-text">이메일</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="text" name="text" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group mb-2">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="text" name="text" placeholder="패스워드">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <!--                                    <div class="custom-checkbox mb-0">-->
-                                        <!--                                        <input type="checkbox" id="rememberchb">-->
-                                        <!--                                        <label for="rememberchb">Remember me</label>-->
-                                        <!--                                    </div>-->
-                                        <p class="forgot-password">
-                                            <a href="recover">비밀번호를 잊으셨나요?</a>
-                                        </p>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="button" class="theme-btn w-100">로그인</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 로그인</p>
-                                <ul class="social-profile py-3">
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div><!-- end contact-form-action -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div><!-- end modal-popup -->
 
 </th:block>
 

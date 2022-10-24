@@ -1,27 +1,18 @@
 package com.phoenix.howabouttoday.room.service;
 
-import com.phoenix.howabouttoday.room.entity.Room;
-import com.phoenix.howabouttoday.room.repository.RoomRepository;
-import org.springframework.stereotype.Service;
+import com.phoenix.howabouttoday.room.dto.*;
 
 import java.util.List;
 
-@Service
-public class RoomService {
+public interface RoomService {
+    List<RoomListDTO> findAll_Room(Long accomNum); //객실 리스트
 
-    private final RoomRepository roomRepository;
+    List<RoomAmenitiesDTO> findAll_Amenities(Long roomNum); //객실 디테일 - 시설 리스트
 
-    public RoomService(RoomRepository roomRepository) {
-        this.roomRepository = roomRepository;
-    }
+    List<RoomServiceDTO> findAll_Service(Long roomNum); //객실 디테일 - 서비스 리스트
 
-    //객실 리스트 처리
-    public List<Room> roomList() {
+    List<RoomImageDTO> findAll_Image(Long roomNum); //객실 이미지 리스트
 
-        return roomRepository.findAll();
-
-    }
-
-    //객실 상세 페이지 처리
+    RoomDetailDTO findOne_Room(Long roomNum); // 객실 디테일
 
 }

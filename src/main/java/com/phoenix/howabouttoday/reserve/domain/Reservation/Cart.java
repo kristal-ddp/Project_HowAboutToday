@@ -28,37 +28,37 @@ public class Cart extends Reservation {
     //     super(reserveNum, member, accommodation, room, orders, reserveStatus, reserveUseStartDate, reserveUseEndDate, reservePrice, reserveAdultCount, reserveChildCount);
     // }
 
-    public OrdersDetailDTO transDto(){
-
-        Period period = Period.between(this.getReserveUseStartDate(), this.getReserveUseEndDate());
-        String checkIn = this.getRoom().getAccommodation().getCheckIn().toString();
-        String checkOut = this.getRoom().getAccommodation().getCheckOut().toString();
-
-        // 2. DayOfWeek 객체 구하기
-        DayOfWeek startday = this.getReserveUseStartDate().getDayOfWeek();
-        DayOfWeek endday = this.getReserveUseEndDate().getDayOfWeek();
-
-        String startWeek = startday.getDisplayName(TextStyle.NARROW, Locale.KOREAN);  // 토
-        String endWeek = endday.getDisplayName(TextStyle.SHORT, Locale.KOREAN);  // 토
-
-        NumberFormat numberFormat = NumberFormat.getInstance();
-        String price = numberFormat.format(this.getReservePrice());
-
-        return OrdersDetailDTO.builder()
-                .accomType(this.getRoom().getAccommodation().getAccomCategory().getValue())
-                .accomName(this.getRoom().getAccommodation().getAccomName())
-                .accomRegion(this.getRoom().getAccommodation().getRegion().getRegion().getValue())
-                .orderDate(LocalDate.now().toString())
-                .usePeriod(String.valueOf(period.getDays()))
-                .startDate(this.getReserveUseStartDate().toString())
-                .endDate(this.getReserveUseEndDate().toString())
-                .startWeek(startWeek)
-                .endWeek(endWeek)
-                .price(price)
-                .usedStatus(this.getReserveStatus().toString())
-                .roomName(this.getRoom().getRoomName())
-                .checkIn(checkIn)
-                .checkOut(checkOut)
-                .build();
-    }
+//    public OrdersDetailDTO transDto(){
+// this.getReserveUseEndDate());
+////        String checkIn = this.getRoom().getAccommodation().getCheckIn().toString();
+////        String checkOut = this.getRoom().getAccommodation().getCheckOut().toString();
+////
+//        Period period = Period.between(this.getReserveUseStartDate(),
+//        // 2. DayOfWeek 객체 구하기
+//        DayOfWeek startday = this.getReserveUseStartDate().getDayOfWeek();
+//        DayOfWeek endday = this.getReserveUseEndDate().getDayOfWeek();
+//
+//        String startWeek = startday.getDisplayName(TextStyle.NARROW, Locale.KOREAN);  // 토
+//        String endWeek = endday.getDisplayName(TextStyle.SHORT, Locale.KOREAN);  // 토
+//
+//        NumberFormat numberFormat = NumberFormat.getInstance();
+//        String price = numberFormat.format(this.getReservePrice());
+//
+//        return OrdersDetailDTO.builder()
+//                .accomType(this.getRoom().getAccommodation().getAccomCategory().getValue())
+//                .accomName(this.getRoom().getAccommodation().getAccomName())
+//                .accomRegion(this.getRoom().getAccommodation().getRegion().getRegion().getValue())
+//                .orderDate(LocalDate.now().toString())
+//                .usePeriod(String.valueOf(period.getDays()))
+//                .startDate(this.getReserveUseStartDate().toString())
+//                .endDate(this.getReserveUseEndDate().toString())
+//                .startWeek(startWeek)
+//                .endWeek(endWeek)
+//                .price(price)
+//                .usedStatus(this.getReserveStatus().toString())
+//                .roomName(this.getRoom().getRoomName())
+//                .checkIn(checkIn)
+//                .checkOut(checkOut)
+//                .build();
+//    }
 }

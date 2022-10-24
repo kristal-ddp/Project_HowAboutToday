@@ -5,123 +5,136 @@
 
 <th:block layout:fragment="content">
 
-<!-- ================================
-    START DASHBOARD AREA
-================================= -->
-<section class="dashboard-area">
-    <div class="dashboard-content-wrap">
-        <div class="dashboard-bread dashboard--bread">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="breadcrumb-content">
-                            <div class="section-heading">
-                                <h2 class="sec__title font-size-30 text-white" th:text="#{sidebar_myBooking}">My Booking</h2>
-                            </div>
-                        </div><!-- end breadcrumb-content -->
-                    </div><!-- end col-lg-6 -->
-                    <div class="col-lg-6">
-                        <div class="breadcrumb-list text-right">
-                            <ul class="list-items">
-                                <li><a href="/home.html" class="text-white">Home</a></li>
-                                <li>Dashboard</li>
-                                <li>My Booking</li>
-                            </ul>
-                        </div><!-- end breadcrumb-list -->
-                    </div><!-- end col-lg-6 -->
-                </div><!-- end row -->
-            </div>
-        </div><!-- end dashboard-bread -->
+    <!-- ================================
+        START DASHBOARD AREA
+    ================================= -->
+    <section class="dashboard-area">
+        <div class="dashboard-content-wrap">
+            <div class="dashboard-bread dashboard--bread">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="breadcrumb-content">
+                                <div class="section-heading">
+                                    <h2 class="sec__title font-size-30 text-white" th:text="#{sidebar_myBooking}">My Booking</h2>
+                                </div>
+                            </div><!-- end breadcrumb-content -->
+                        </div><!-- end col-lg-6 -->
+                        <!--                        <div class="col-lg-6">-->
+                        <!--                            <div class="breadcrumb-list text-right">-->
+                        <!--                                <ul class="list-items">-->
+                        <!--                                    <li><a href="/home.html" class="text-white">Home</a></li>-->
+                        <!--                                    <li>Dashboard</li>-->
+                        <!--                                    <li>My Booking</li>-->
+                        <!--                                </ul>-->
+                        <!--                            </div>&lt;!&ndash; end breadcrumb-list &ndash;&gt;-->
+                        <!--                        </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+                    </div><!-- end row -->
+                </div>
+            </div><!-- end dashboard-bread -->
 
-        <div class="dashboard-main-content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="form-box">
-                            <div class="form-title-wrap">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h3 class="title" th:text="#{booking_result}">Booking Results</h3>
+            <div class="dashboard-main-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-10 mx-auto">
+                            <div class="form-box">
+                                <div class="form-title-wrap">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <h3 class="title" th:text="#{booking_result}">Booking Results</h3>
+                                        </div>
+                                        <!--                                        <span th:text="#{total_bookings}">Total Bookings <strong class="color-text">(17)</strong></span>-->
                                     </div>
-                                    <span th:text="#{total_bookings}">Total Bookings <strong class="color-text">(17)</strong></span>
                                 </div>
-                            </div>
-                            <div class="form-content">
-                                <div class="table-form table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col" th:text="#{reservation_type}"></th>
-                                            <th scope="col" th:text="#{reservation_name}"></th>
-                                            <th scope="col" th:text="#{reservation_roomName}"></th>
-                                            <th scope="col" th:text="#{reservation_orderDate}"></th>
-                                            <th scope="col" th:text="#{reservation_useDate}"></th>
-                                            <th scope="col" th:text="#{reservation_checkTime}"></th>
-                                            <th scope="col" th:text="#{reservation_usedStatus}"></th>
-                                            <th scope="col" th:text="#{reservation_cancel}"></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="orderDetails : ${orders}">
-                                            <div th:each="orderDetail : ${orderDetails.getOrdersDetailDtoList()}">
-    <!--                                            <th scope="row"><i class="la la-plane mr-1 font-size-18"></i>Flight</th>-->
-                                                <th scope="row"><img src="/icon/icon_hotel.png" width="30px" style="vertical-align:middle;"><span style="margin-top:50px;font-size:18px;" th:text="${orderDetail.getAccomType()}">모텔</span></th>
-                                                <td>
-                                                    <div class="table-content">
-                                                        <h3 class="title" th:text="${orderDetail.getAccomName()}">울산 영남 알프스 인투</h3>
-                                                    </div>
-                                                </td>
-                                                <td th:text="${orderDetail.getAccomRegion()}">울산광역시 </td>
-                                                <td th:text="${orderDetail.getOrderDate()}">2022/09/30</td>
-                                                <td th:text="${orderDetail.getUsePeriod()}">2022/10/15</td>
-                                                <td th:text="${orderDetail.getAccomRegion()}">이용시간</td>
-                                                <td><span class="badge badge-info py-1 px-2" th:text="${orderDetail.usedStatus}">이용 전</span></td>
-                                                <td>
-                                                    <div class="table-content">
-                                                       <button class="theme-btn theme-btn-small" onclick="location.href='/user-dashboard-booking-details'">취소</button>
-                                                    </div>
-                                                </td>
+                                <div class="form-content">
+                                    <div class="table-form table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr class="text-center">
+                                                <th scope="col" th:text="#{reservation_type}"></th>
+                                                <th scope="col" th:text="#{reservation_name}"></th>
+                                                <th scope="col" th:text="#{reservation_roomName}"></th>
+                                                <th scope="col" th:text="#{reservation_orderDate}"></th>
+                                                <th scope="col" th:text="#{reservation_useDate}"></th>
+                                                <th scope="col" th:text="#{reservation_usedStatus}"></th>
+                                                <th scope="col" th:text="| |"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <div th:each="ordersDTO : ${ordersDTOList}">
+                                                <tr class="text-center" th:each="orderDetailDTO : ${ordersDTO.getOrdersDetailDTOList()[0]}">
+                                                    <!--                                            <th scope="row"><i class="la la-plane mr-1 font-size-18"></i>Flight</th>-->
+                                                    <th scope="row"><img th:src="|/icon/icon_${orderDetailDTO.getAccomTypeIcon()}.png|" width="30px" style="vertical-align:middle;"><span style="margin-top:50px;font-size:18px;" th:text="${orderDetailDTO.getAccomType()}">모텔</span></th>
+                                                    <td>
+                                                        <!--                                                        여기는 컨트롤러를 통해서 가는 게 좋을 듯.-->
+                                                        <a th:href="@{/hotel-single(accomNum = ${orderDetailDTO.getRoomNum()})}">
+                                                            <div class="table-content">
+                                                                <h3 class="title" th:text="${orderDetailDTO.getAccomName()}">울산 영남 알프스 인투</h3>
+                                                            </div>
+                                                        </a>
+                                                    </td>
+                                                    <td th:text="${orderDetailDTO.getRoomName()}">울산광역시 </td>
+                                                    <td th:text="${ordersDTO.getOrdersDate()}">2022/09/30</td>
+                                                    <td th:text="|${orderDetailDTO.getStartDate()}(${orderDetailDTO.getStartWeek()}) ~ ${orderDetailDTO.getEndDate()}(${orderDetailDTO.getEndWeek()})|">2022/10/15</td>
+                                                    <td><span class="badge badge-info py-1 px-2" th:text="${orderDetailDTO.getUsedStatus()}">이용 전</span></td>
+                                                    <td>
+                                                        <div class="table-content">
+                                                            <!--                                                            <button th:onclick="|location.href='@{view(uid=${data.uid})}'|">View page</button>-->
+                                                            <button class="theme-btn theme-btn-small" th:onclick="|location.href='@{/bookingDetail/{page}(page=${ordersDTO.getOrdersNum()})}'|" th:text="#{reservation_detail}">상세보기</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             </div>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
-                        </div><!-- end form-box -->
-                    </div><!-- end col-lg-12 -->
-                </div><!-- end row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link page-link-nav" href="#" aria-label="Previous">
-                                        <span aria-hidden="true"><i class="la la-angle-left"></i></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link page-link-nav" href="#">1</a></li>
-                                <li class="page-item active">
-                                    <a class="page-link page-link-nav" href="#">2 <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="page-item"><a class="page-link page-link-nav" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link page-link-nav" href="#" aria-label="Next">
-                                        <span aria-hidden="true"><i class="la la-angle-right"></i></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div><!-- end col-lg-12 -->
-                </div><!-- end row -->
-            </div><!-- end container-fluid -->
-        </div><!-- end dashboard-main-content -->
-    </div><!-- end dashboard-content-wrap -->
-</section><!-- end dashboard-area -->
-<!-- ================================
-    END DASHBOARD AREA
-================================= -->
+                            </div><!-- end form-box -->
+                        </div><!-- end col-lg-12 -->
+                    </div><!-- end row -->
+                    <div class="row">
+                        <div class="col-lg-10 mx-auto">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination" th:with="numPerBlock=5">
+                                    <th:block th:if="${ordersDTOList.getTotalElements() != 0}">
+                                        <!-- 이전페이지 버튼 -->
+                                        <li class="page-item">
+                                            <a class="page-link page-link-nav"  th:with="baseUrl=('/user-dashboard-booking/' + ${(ordersDTOList.getNumber()/numPerBlock == 0) ? 1:((ordersDTOList.getNumber()/numPerBlock - 1)*numPerBlock + numPerBlock)})"
+                                               th:href="@{${baseUrl}}" aria-label="Previous">
+                                                <span aria-hidden="true"><i class="la la-angle-left"></i></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                        <!-- 페이지의 수 -->
+
+
+                                        <div th:each="num : ${#numbers.sequence(ordersDTOList.getNumber()/numPerBlock * numPerBlock ,(ordersDTOList.getNumber()/numPerBlock * numPerBlock + numPerBlock - 1) > ordersDTOList.getTotalPages() ? ordersDTOList.getTotalPages() - 1:(ordersDTOList.getNumber()/numPerBlock * numPerBlock + numPerBlock - 1))}">
+                                            <li class="page-item" th:classappend="${ordersDTOList.getNumber() == num} ? 'active' : ''">
+                                                <a class="page-link page-link-nav" th:href="@{/user-dashboard-booking/{id}(id = ${num + 1})}" th:text="${num + 1}">1</a>
+                                            </li>
+                                        </div >
+
+
+                                        <!-- 다음페이지 버튼 -->
+                                        <li class="page-item">
+                                            <a class="page-link page-link-nav"  th:with="baseUrl=('/user-dashboard-booking/' + ${((ordersDTOList.getNumber()/numPerBlock + 1)*numPerBlock + 1) > ordersDTOList.getTotalPages() ? ordersDTOList.getTotalPages(): ((ordersDTOList.getNumber()/numPerBlock + 1)*numPerBlock + 1)})"
+                                               th:href="@{${baseUrl}}" aria-label="Next">
+                                                <span aria-hidden="true"><i class="la la-angle-right"></i></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                    </th:block>
+                                </ul>
+                            </nav>
+                        </div><!-- end col-lg-12 -->
+                    </div><!-- end row -->
+                </div><!-- end container-fluid -->
+            </div><!-- end dashboard-main-content -->
+        </div><!-- end dashboard-content-wrap -->
+    </section><!-- end dashboard-area -->
+    <!-- ================================
+        END DASHBOARD AREA
+    ================================= -->
 
 
 

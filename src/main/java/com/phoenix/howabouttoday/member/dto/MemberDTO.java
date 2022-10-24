@@ -1,8 +1,10 @@
 package com.phoenix.howabouttoday.member.dto;
 
-import com.phoenix.howabouttoday.member.entity.Code;
+import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
 import lombok.*;
+
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -17,11 +19,13 @@ public class MemberDTO {
 
     private String pwd;
 
+    private LocalDate joinDate;
+
     private String nickname;
 
     private String memberTel;
 
-    private Code memberCode;
+    private Role role;
 
     //DTO -> Entity
     public Member toEntity() {
@@ -29,11 +33,10 @@ public class MemberDTO {
                 .email(email)
                 .pwd(pwd)
                 .nickname(nickname)
+                .joinDate(LocalDate.now())
                 .memberTel(memberTel)
-                .memberCode(memberCode.MEMBER)
+                .role(role.MEMBER)
                 .build();
         return member;
     }
 }
-
-

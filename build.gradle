@@ -33,7 +33,7 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java' //mySQL
 	testImplementation 'org.springframework.boot:spring-boot-starter-test' //SpringBoot Starter Test
 	testImplementation 'org.springframework.security:spring-security-test' //Spring Security Test
-
+	implementation 'org.springframework.boot:spring-boot-starter-validation' // validation
 
 	//오라클로 테스트 하기 위한 dependencies
 	//implementation 'com.oracle.database.jdbc:ojdbc8'

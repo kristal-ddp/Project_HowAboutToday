@@ -11,27 +11,22 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class RoomImage {
-    
-    //import가 import org.springframework.data.annotation.Id; 이거말고
-    //import javax.persistence.*; 이걸로 되어야 기본키 에러가 안남
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Long roomNum;
-
-
-    @NotNull
-    @Column(length = 50)
-    private String roomOriginFileName;
-
-    @NotNull
-    @Column(length = 50)
-    private String roomSaveFileName;
-
+    private Long roomImageNum; //객실 이미지 번호
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="room_roomNum", referencedColumnName = "roomNum")
-    private Room room;
+    @JoinColumn(name="room_roomNum")
+    private Room room; //객실 번호
+
+    @NotNull
+    @Column(length = 50)
+    private String roomOriginFileName; //기존 파일 이름
+
+    @NotNull
+    @Column(length = 50)
+    private String roomSaveFileName; //저장 파일 이름
 
     @Builder
     public RoomImage(String roomOriginFileName,String roomSaveFileName,Room room) {

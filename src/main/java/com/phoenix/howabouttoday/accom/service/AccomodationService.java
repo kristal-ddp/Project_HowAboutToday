@@ -1,5 +1,6 @@
 package com.phoenix.howabouttoday.accom.service;
 
+
 import com.phoenix.howabouttoday.accom.dto.AccommodationDTO;
 import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
@@ -9,6 +10,7 @@ import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
 import lombok.Builder;
 import com.phoenix.howabouttoday.global.AccomCategory;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,8 @@ import java.util.Optional;
 @Slf4j
 public class AccomodationService {
     private final AccommodationRepository accommodationRepository;
-//    private final AccommodationImageRepository accommodationImageRepository;
+
+    private final RegionRepository regionRepository;
     private final AccommodationImageRepository accommodationImageRepository;
 
     /*리스트 목록 조회*/
@@ -33,11 +36,14 @@ public class AccomodationService {
         return accommodationRepository.findAll();
     }
 
-    public List<AccomImage> getAccomImage() {return accommodationImageRepository.findAll(); }
+
     /*public void saveData(){
         accommodationRepository.save(createAccom());
     }
     public Accommodation createAccom() {
+        Optional<Region> byId = regionRepository.findById(1L);//1L은 집에서 임의의 데이터를 입력할때 마다 다르기 때문에 확인 해줘야함.
+        Region region = byId.get();
+        log.info("Region",region.getRegionNum());
 
         Optional<Region> byId = regionRepository.findById(1L);//1L은 집에서 임의의 데이터를 입력할때 마다 다르기 때문에 확인 해줘야함.
         Region region = byId.get();
@@ -63,10 +69,18 @@ public class AccomodationService {
                 .accomSaveFilename("image0.jpg")
                 .accommodation(accommodation)
                 .build();
-
         return accommodation;
-    }*/
+    }
 
+    @Transactional
+    public List<Accommodation> searchResults(String keyword) {
+        List<Accommodation> accommodations = accommodationRepository.findByAccomNameContaining(keyword);
+        List<AccommodationDTO> accomDtoList = new ArrayList<>();
+
+        if (accommodations.isEmpty()) return accommodations;
+
+        return accommodations;
+    }*/
     @Transactional
     public List<Accommodation> searchResults(String keyword) {
         List<Accommodation> accommodations = accommodationRepository.findByAccomNameContaining(keyword);
@@ -97,7 +111,15 @@ public class AccomodationService {
 
     }
 
+    @Transactional
+    public Accommodation findAccom(Long accomNum) {
 
+        Optional<Accommodation> findAccom = accommodationRepository.findById(accomNum);
+        Accommodation accommodation = findAccom.orElseThrow(() ->
+                new IllegalArgumentException("해당 숙소가 존재하지 않습니다"));
+
+        return accommodation;
+    }
 
 }
 

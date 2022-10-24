@@ -10,6 +10,10 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+/*html {
+  scroll-behavior: smooth;
+}*/
+
 
 /* Button */
 .hwt-btn-white-fix {
@@ -50,9 +54,10 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 /* header */
 .hwt-header-right {
     display: flex;
-    padding-top: 22px;
     margin-left: auto;
-    padding-right: 35px;
+    flex: 0 0 30%;
+    max-width: 30%;
+    padding-top: 15px;
 }
 
 .hwt-header-navi {
@@ -76,7 +81,18 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 }
 
 .hwt-menu-content {
-    padding-right: 81px;
+    flex: 0 0 40%;
+    max-width: 40%;
+    text-align: right;
+    padding: 25px 0 0;
+}
+
+.hwt-menu-content ul li a {
+    padding-bottom: 19px;
+}
+
+.hwt-btns {
+    width: 100%;
 }
 
 .hwt-btns a {
@@ -87,8 +103,17 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
     padding-right: 40px!important;
 }
 
-.hwt-adjust {
-    padding-right: 127px;
+.header-right-wrap {
+    display: flex;
+}
+
+.hwt-dropdown {
+    margin: 0 25px 0 22px;
+}
+
+.hwt-logo {
+    flex: 0 0 25%;
+    max-width: 25%;
 }
 
 /* FOOTER */

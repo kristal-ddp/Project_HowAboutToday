@@ -8,7 +8,7 @@ import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.global.AccomCategory;
-import com.phoenix.howabouttoday.room.dto.AvailableDate;
+import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
