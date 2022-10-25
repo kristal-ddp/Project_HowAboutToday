@@ -34,7 +34,7 @@ public class FAQController {
     }
 
     // FAQ 작성 페이지
-    @GetMapping("faq-add")
+    @GetMapping("admin/faq-add")
     public String faqAdd(@ModelAttribute("faqAddDTO") FAQAddDTO faqAddDTO,
                          @LoginUser SessionDTO sessionDTO, Model model){
 
@@ -48,7 +48,7 @@ public class FAQController {
     }
 
     // FAQ 작성
-    @PostMapping("faq-add")
+    @PostMapping("admin/faq-add")
     public String faqAdd(@Valid FAQAddDTO faqAddDTO, BindingResult bindingResult,
                          @LoginUser SessionDTO sessionDTO, Model model){
 

@@ -48,22 +48,22 @@ public class AboutUsController {
     }
 
     // 오늘어때 정보 작성 페이지
-    @GetMapping("aboutUs-add")
-    public String aboutUsAdd(@ModelAttribute("boardAddDTO") BoardAddDTO boardAddDTO,
+    @GetMapping("admin/aboutUs-add")
+    public String aboutUsAdd(@ModelAttribute("boardDTO") BoardDTO boardDTO,
                              @LoginUser SessionDTO sessionDTO, Model model){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        boardAddDTO.setMemberNum(sessionDTO.getMemberNum());
+        boardDTO.setMemberNum(sessionDTO.getMemberNum());
 
         return "board/aboutUs-add";
     }
 
     // 오늘어때 정보 작성
-    @PostMapping("aboutUs-add")
-    public String aboutUsAdd(@Valid BoardAddDTO boardAddDTO, BindingResult bindingResult,
+    @PostMapping("admin/aboutUs-add")
+    public String aboutUsAdd(@Valid BoardDTO boardDTO, BindingResult bindingResult,
                              @LoginUser SessionDTO sessionDTO, Model model){
 
         if(bindingResult.hasErrors()) {
@@ -71,8 +71,57 @@ public class AboutUsController {
             return "board/aboutUs-add";
         }
 
-        boardAddDTO.setBoardCategoryNum(2L);
-        boardService.addBoard(boardAddDTO);
+        boardDTO.setBoardCategoryNum(2L);
+        boardService.addBoard(boardDTO);
+
+        return "redirect:/aboutUs";
+    }
+
+    // 오늘어때 정보 수정 페이지
+    @GetMapping("admin/aboutUs-edit/{boardNum}")
+    public String aboutUsEdit(@PathVariable Long boardNum,
+                             @LoginUser SessionDTO sessionDTO, Model model){
+
+        if(sessionDTO == null) {
+            return "/loginProc";
+        }
+
+        BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);
+        model.addAttribute("boardDetailDTO", boardDetailDTO);
+        model.addAttribute("sessionDTO", sessionDTO);
+
+        return "board/aboutUs-edit";
+    }
+
+    // 오늘어때 정보 수정
+    @PostMapping("admin/aboutUs-edit/{boardNum}")
+    public String aboutUsEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO,
+                             BindingResult bindingResult, @LoginUser SessionDTO sessionDTO, Model model){
+
+        if(bindingResult.hasErrors()) {
+
+            if(sessionDTO == null) {
+                return "/loginProc";
+            }
+
+            BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);
+            model.addAttribute("boardDetailDTO", boardDetailDTO);
+            model.addAttribute("sessionDTO", sessionDTO);
+
+            return "board/notice-edit";
+        }
+
+        boardService.editBoard(boardNum, boardDTO);
+
+        return "redirect:/aboutUs/{boardNum}";
+    }
+
+    // 오늘어때 정보 삭제
+    @GetMapping("admin/aboutUs-delete/{boardNum}")
+    public String aboutUsDelete(@PathVariable Long boardNum) {
+
+        BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);
+        boardService.deleteBoard(boardDetailDTO);
 
         return "redirect:/aboutUs";
     }

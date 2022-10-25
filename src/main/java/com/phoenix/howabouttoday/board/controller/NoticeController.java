@@ -35,7 +35,8 @@ public class NoticeController {
 
     // 공지사항 디테일 페이지
     @GetMapping("notice/{boardNum}")
-    public String noticeDetails(@LoginUser SessionDTO sessionDTO, @PathVariable Long boardNum, Model model){
+    public String noticeDetails(@PathVariable Long boardNum,
+                                @LoginUser SessionDTO sessionDTO, Model model){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -48,31 +49,86 @@ public class NoticeController {
     }
 
     // 공지사항 작성 페이지
-    @GetMapping("notice-add")
-    public String noticeAdd(@ModelAttribute("boardAddDTO") BoardAddDTO boardAddDTO,
+    @GetMapping("admin/notice-add")
+    public String noticeAdd(@ModelAttribute("boardDTO") BoardDTO boardDTO,
                             @LoginUser SessionDTO sessionDTO, Model model){
 
-        if(sessionDTO != null) {
-            model.addAttribute("sessionDTO", sessionDTO);
+        if(sessionDTO == null) {
+            return "/loginProc";
         }
 
-        boardAddDTO.setMemberNum(sessionDTO.getMemberNum());
+        boardDTO.setMemberNum(sessionDTO.getMemberNum());
+        model.addAttribute("sessionDTO", sessionDTO);
 
         return "board/notice-add";
     }
 
     // 공지사항 작성
-    @PostMapping("notice-add")
-    public String noticeAdd(@Valid BoardAddDTO boardAddDTO, BindingResult bindingResult,
+    @PostMapping("admin/notice-add")
+    public String noticeAdd(@Valid BoardDTO boardDTO, BindingResult bindingResult,
                             @LoginUser SessionDTO sessionDTO, Model model){
 
         if(bindingResult.hasErrors()) {
+
+            if(sessionDTO == null) {
+                return "/loginProc";
+            }
+
             model.addAttribute("sessionDTO", sessionDTO);
             return "board/notice-add";
         }
 
-        boardAddDTO.setBoardCategoryNum(1L);
-        boardService.addBoard(boardAddDTO);
+        boardDTO.setBoardCategoryNum(1L);
+        boardService.addBoard(boardDTO);
+
+        return "redirect:/notice";
+    }
+
+    // 공지사항 수정 페이지
+    @GetMapping("admin/notice-edit/{boardNum}")
+    public String noticeEdit(@PathVariable Long boardNum,
+                             @LoginUser SessionDTO sessionDTO, Model model){
+
+        if(sessionDTO == null) {
+            return "/loginProc";
+        }
+
+        BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);
+        model.addAttribute("boardDetailDTO", boardDetailDTO);
+        model.addAttribute("sessionDTO", sessionDTO);
+
+        return "board/notice-edit";
+    }
+
+    // 공지사항 수정
+    @PostMapping("admin/notice-edit/{boardNum}")
+    public String noticeEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO,
+                             BindingResult bindingResult, @LoginUser SessionDTO sessionDTO, Model model){
+
+        if(bindingResult.hasErrors()) {
+
+            if(sessionDTO == null) {
+                return "/loginProc";
+            }
+
+            BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);
+            model.addAttribute("boardDetailDTO", boardDetailDTO);
+            model.addAttribute("sessionDTO", sessionDTO);
+
+            return "board/notice-edit";
+        }
+
+        boardService.editBoard(boardNum, boardDTO);
+
+        return "redirect:/notice/{boardNum}";
+    }
+
+    // 공지사항 삭제
+    @GetMapping("admin/notice-delete/{boardNum}")
+    public String noticeDelete(@PathVariable Long boardNum) {
+
+        BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);
+        boardService.deleteBoard(boardDetailDTO);
 
         return "redirect:/notice";
     }

@@ -31,10 +31,8 @@ public class Orders {
     @JoinColumn(name = "memberNum")
     private Member member;
 
-
     @Column(length = 50)
     private String ordersTel;
-
 
     @Column(length = 50)
     private String ordersName;
@@ -50,12 +48,15 @@ public class Orders {
     @Column(length = 50)
     private String ordersStatus;
 
+    @Column(length = 500)
+    private String merchantId;
+
     @NotNull
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<Reservation> reservation = new ArrayList<>(); //이미지 fk를 위한 매핑
 
     @Builder
-    public Orders(Member member, String ordersTel, String ordersName, LocalDate ordersDate, Integer ordersPrice, String ordersType, String ordersStatus) {
+    public Orders(Member member, String ordersTel, String ordersName, LocalDate ordersDate, Integer ordersPrice, String ordersType, String ordersStatus, String merchantId) {
         this.member = member;
         this.ordersTel = ordersTel;
         this.ordersName = ordersName;
@@ -63,5 +64,6 @@ public class Orders {
         this.ordersPrice = ordersPrice;
         this.ordersType = ordersType;
         this.ordersStatus = ordersStatus;
+        this.merchantId = merchantId;
     }
 }

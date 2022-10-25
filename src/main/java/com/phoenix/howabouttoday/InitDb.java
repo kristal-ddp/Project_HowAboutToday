@@ -29,6 +29,7 @@ import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.*;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -50,8 +51,8 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
-    }
 
+    }
 
     @Component
     @Transactional

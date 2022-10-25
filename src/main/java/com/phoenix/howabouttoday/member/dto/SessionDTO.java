@@ -4,10 +4,12 @@ import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.entity.Role;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
 //세션
+@Setter//테스트 위한 임시 세터
 @Getter
 public class SessionDTO implements Serializable { //세션 저장 클래스
 
@@ -31,6 +33,14 @@ public class SessionDTO implements Serializable { //세션 저장 클래스
         this.nickname = member.getNickname();
         this.memberTel = member.getMemberTel();
         this.role = member.getRole();
+    }
 
+    public SessionDTO(Long memberNum, String email, String pwd, String nickname, String memberTel, Code memberCode) {
+        this.memberNum = memberNum;
+        this.email = email;
+        this.pwd = pwd;
+        this.nickname = nickname;
+        this.memberTel = memberTel;
+        this.memberCode = memberCode;
     }
 }

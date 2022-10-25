@@ -10,6 +10,7 @@ import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
+import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.payment.dto.OrdersDTO;
 import com.phoenix.howabouttoday.payment.service.PaymentHistoryService;
 import lombok.AllArgsConstructor;
@@ -43,6 +44,11 @@ public class PaymentHistoryController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+        else{
+            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Code.MEMBER);
+            model.addAttribute("sessionDTO", sessionDTO);
+        }
+
 
         Integer curPage = page.orElse(1);
 
@@ -74,6 +80,10 @@ public class PaymentHistoryController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+        else{
+            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Code.MEMBER);
+            model.addAttribute("sessionDTO", sessionDTO);
+        }
 
         /**
          * 1. get방식
@@ -89,12 +99,12 @@ public class PaymentHistoryController {
 
         model.addAttribute("customer", customer);
         model.addAttribute("ordersDTO", ordersDTO);
-        return "reserve/payment-received";
+        return "reserve/bookingDetails";
     }
 
     @PostMapping("bookingDetail")
     public String postUserOrderDetail() {
 
-        return "reserve/payment-received";
+        return "reserve/bookingDetails";
     }
 }

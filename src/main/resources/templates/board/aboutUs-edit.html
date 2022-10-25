@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
 
-            <form th:action="@{aboutUs-add}" th:object="${boardDTO}" method="post" class="row board-add-form">
+            <form th:action="@{|/admin/aboutUs-edit/${boardDetailDTO.boardNum}|}" th:object="${boardDetailDTO}" method="post" class="row board-add-form">
 
                 <!-- Add Form -->
                 <div class="col-lg-8 hwt-col-post">

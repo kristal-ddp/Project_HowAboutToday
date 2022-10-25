@@ -47,16 +47,43 @@
                     </div><!-- form-title-wrap -->
                 </div>
 
-                <!-- Board Content -->
                 <div class="form-box">
+
+                    <!-- Board Content -->
                     <div class="form-content contact-form-action hwt-details-content">
                         <p th:text="${boardDetailDTO.boardContent}">게시글 내용</p>
                     </div><!-- end form-content -->
-                    <div class="form-bottom-wrap">
-                        <div class="hwt-details-bottom">
-                            <a href="/notice" class="author__title">목록</a>
-                        </div>
-                    </div><!-- form-bottom-wrap -->
+
+                    <!-- Admin -->
+                    <th:block sec:authorize="hasRole('ADMIN')">
+                        <div class="form-bottom-wrap-admin">
+
+                            <!-- Edit & Delete Button -->
+                            <div class="hwt-details-bottom-left">
+                                <a th:href="@{|/admin/notice-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
+                                <a th:href="@{|/admin/notice-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
+                            </div>
+
+                            <!-- List Button -->
+                            <div class="hwt-details-bottom">
+                                <a href="/notice" class="author__title">목록</a>
+                            </div>
+
+                        </div><!-- form-bottom-wrap -->
+                    </th:block>
+
+                    <!-- Member -->
+                    <th:block sec:authorize="!hasRole('ADMIN')">
+
+                        <!-- List Button -->
+                        <div class="form-bottom-wrap">
+                            <div class="hwt-details-bottom">
+                                <a href="/notice" class="author__title">목록</a>
+                            </div>
+                        </div><!-- form-bottom-wrap -->
+
+                    </th:block>
+
                 </div><!-- end form-box -->
 
             </div><!-- end col-lg-8 -->

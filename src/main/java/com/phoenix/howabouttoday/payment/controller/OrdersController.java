@@ -10,7 +10,9 @@ import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
+import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
+import com.phoenix.howabouttoday.payment.dto.OrdersRequestDTO;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -47,17 +49,17 @@ public class OrdersController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+        else{
+            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Code.MEMBER);
+        }
 
         //1. 시큐리티를 사용해서 principal 객체에서 user정보를 가져와서 memberNum을 알 수 있다.
 
-//        MemberDTO customer = memberService.getCustomer(1L);
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
-//        MemberDTO customer = memberService.getAuthUser(principal.getName());
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
         Integer totalPrice = orderService.getTotalPrice(cartNum);   //얘를 따로 이렇게 하는 게 맞을까??
 
-//        model.addAttribute("totalPrice", totalPrice);
-        model.addAttribute("totalPrice", 50000);
+        model.addAttribute("totalPrice", totalPrice);
 
         model.addAttribute("customer", customer);
         model.addAttribute("infoList", infoList);
@@ -69,12 +71,15 @@ public class OrdersController {
         return "reserve/checkout";
     }
 
-    /* 결제완료화면 테스트 */
-    @GetMapping("/testSuccess")
-    public String getSuccess() {
-        return "/reserve/payment-complete";
+    /* 주문삭제 */
+    /* 주문은 삭제가 아니라 취소로 표시해두고 여러가지 제한을 두는 게 맞을 것 같기도 하다. */
+    @PostMapping("/deleteorders")
+    public String getSuccess(@RequestParam Long ordersNum) {
+        System.out.println(ordersNum + "번 삭제!!!");
+        orderService.cancelOrders(ordersNum);
+        return "redirect:/user-dashboard-booking";
     }
-    
+
     /* 결제 get방식 요청을 post리다이렉트 */
     @GetMapping("/paymentSuccess")
     public String getUserPaymentSuccess() {
@@ -83,16 +88,19 @@ public class OrdersController {
 
     /* 결제 성공 */
     @PostMapping("/paymentSuccess")
-    public String postUserPaymentSuccess(@LoginUser SessionDTO sessionDTO, @RequestParam String name, @RequestParam String tel, @RequestParam String ordersType, @RequestParam List<Long> cartNum, Principal principal) {
-//        MemberDTO customer = memberService.getCustomer(1L);
+    public String postUserPaymentSuccess(@LoginUser SessionDTO sessionDTO, Principal principal, OrdersRequestDTO ordersRequestDTO) {
+
 
         if(sessionDTO != null) {
-            //model.addAttribute("sessionDTO", sessionDTO);
+//            model.addAttribute("sessionDTO", sessionDTO);
         }
-        MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
-//        MemberDTO customer = memberService.getAuthUser(principal.getName());
-        orderService.savePaymentData(customer.getNum(), name, tel, ordersType, cartNum);
+        else{
+            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Code.MEMBER);
+        }
 
+//        model.addAttribute("sessionDTO", sessionDTO);
+        MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
+        orderService.savePaymentData(customer.getNum(), ordersRequestDTO);
         return "redirect:/home";
     }
 }

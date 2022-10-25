@@ -30,8 +30,7 @@ public class CartController {
     private final CartService cartService;
     private final MemberRepository memberRepository;//아직 회원이없어서 테스트용 회원조회에 필요
     @GetMapping
-    public String findAll(@LoginUser SessionDTO user,
-                          Model model){
+    public String findAll(@LoginUser SessionDTO user, Model model){
 
         /** 회원 조회 로직 **/
         Long memberNum = user.getMemberNum();

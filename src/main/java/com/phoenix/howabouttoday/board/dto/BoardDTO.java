@@ -4,14 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 
 @Getter
 @Setter
-public class BoardAddDTO {
+public class BoardDTO {
 
-    // 게시판 작성 페이지 : Notice, About Us
+    // 게시판 작성, 수정 : Notice, About Us
 
     private Long memberNum; // 회원번호
     private Long boardCategoryNum; // 게시글 카테고리 번호

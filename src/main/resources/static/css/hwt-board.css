@@ -109,7 +109,17 @@ n
 }
 
 .form-bottom-wrap {
-    padding: 20px 40px 40px;
+    display: flex;
+    justify-content: right;
+    padding: 50px 40px 30px;
+    border-bottom: 1px solid rgba(128, 137, 150, 0.1);
+    text-align: right;
+}
+
+.form-bottom-wrap-admin {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 40px 30px;
     border-bottom: 1px solid rgba(128, 137, 150, 0.1);
     text-align: right;
 }
@@ -121,4 +131,8 @@ n
 
 .hwt-details-bottom a {
     color: #566578;
+}
+
+.detail-button-left {
+    margin-right: 20px;
 }

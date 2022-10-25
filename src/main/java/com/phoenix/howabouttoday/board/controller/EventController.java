@@ -49,7 +49,7 @@ public class EventController {
     }
 
     // 이벤트 작성 페이지
-    @GetMapping("event-add")
+    @GetMapping("admin/event-add")
     public String eventAdd(@ModelAttribute("eventAddDTO") EventAddDTO eventAddDTO,
                            @LoginUser SessionDTO sessionDTO, Model model){
 
@@ -63,7 +63,7 @@ public class EventController {
     }
 
     // 이벤트 작성
-    @PostMapping("event-add")
+    @PostMapping("admin/event-add")
     public String eventAdd(@Valid EventAddDTO eventAddDTO, BindingResult bindingResult,
                            @LoginUser SessionDTO sessionDTO, Model model,
                            @RequestParam("eventImageList") List<MultipartFile> eventImageList) throws Exception {

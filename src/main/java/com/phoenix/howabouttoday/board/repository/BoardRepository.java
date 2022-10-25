@@ -20,7 +20,4 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     // Board Category로 Board Entity의 모든 것을 찾는다
     List<Board> findAllByBoardCategory(BoardCategory boardCategory);
 
-    // (Notice, About Us) 게시판 디테일
-    Optional<Board> findByBoardNum(Long boardNum);
-
 }

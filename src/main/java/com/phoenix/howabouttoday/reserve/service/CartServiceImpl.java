@@ -5,6 +5,7 @@ import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
@@ -79,6 +80,8 @@ public class CartServiceImpl implements CartService{
         Cart saveCart = cartRepository.save(Cart.builder()
                 .member(member)
                 .room(room)
+                .reserveStatus(ReserveStatus.READY)
+                .reservePrice(50000)
                 .reserveUseStartDate(reserveForm.getReserveUseStartDate())
                 .reserveUseEndDate(reserveForm.getReserveUseEndDate())
                 .reserveAdultCount(reserveForm.getReserveAdultCount())

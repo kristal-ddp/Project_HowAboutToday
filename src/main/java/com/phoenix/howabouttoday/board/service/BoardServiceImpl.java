@@ -26,7 +26,7 @@ public class BoardServiceImpl implements BoardService {
 
     private final MemberRepository memberRepository;
 
-    // 게시판 리스트
+    // 게시판 리스트 (모든 게시글 조회)
     @Override
     public List<BoardListDTO> findAll_Board(String boardCategoryName) {
 
@@ -39,7 +39,7 @@ public class BoardServiceImpl implements BoardService {
         return lists;
     }
 
-    // 게시판 디테일
+    // 게시판 디테일 (게시글 1개 조회)
     @Override
     public BoardDetailDTO findOne_Board(Long boardNum) {
 
@@ -52,13 +52,31 @@ public class BoardServiceImpl implements BoardService {
     // 게시글 작성
     @Override
     @Transactional
-    public void addBoard(BoardAddDTO boardAddDTO) {
+    public void addBoard(BoardDTO boardDTO) {
 
-        Member member = memberRepository.findById(boardAddDTO.getMemberNum()).orElse(null);
-        BoardCategory boardCategory = boardCategoryRepository.findById(boardAddDTO.getBoardCategoryNum()).orElse(null);
+        Member member = memberRepository.findById(boardDTO.getMemberNum()).orElse(null);
+        BoardCategory boardCategory = boardCategoryRepository.findById(boardDTO.getBoardCategoryNum()).orElse(null);
 
-        Board board = new Board(member, boardCategory, boardAddDTO);
+        Board board = new Board(member, boardCategory, boardDTO);
         boardRepository.save(board);
+    }
+
+    // 게시글 수정
+    @Override
+    @Transactional
+    public void editBoard(Long boardNum, BoardDTO boardDTO) {
+
+        Board board = boardRepository.findById(boardNum).orElse(null);
+        board.editBoard(board.getBoardNum(), boardDTO);
+    }
+
+    // 게시글 삭제
+    @Override
+    @Transactional
+    public void deleteBoard(BoardDetailDTO boardDetailDTO) {
+
+        Board board = boardRepository.findById(boardDetailDTO.getBoardNum()).orElse(null);
+        boardRepository.delete(board);
     }
 
 }

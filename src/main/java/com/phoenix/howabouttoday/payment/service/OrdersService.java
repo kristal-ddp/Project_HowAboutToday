@@ -3,6 +3,7 @@ package com.phoenix.howabouttoday.payment.service;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailVO;
+import com.phoenix.howabouttoday.payment.dto.OrdersRequestDTO;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
@@ -40,12 +41,12 @@ public class OrdersService {
     }
 
     /** 결제가 완료되면 해당 결제정보 저장 **/
-    public boolean savePaymentData(Long memberNum, String name, String tel, String ordersType, List<Long> cartNum){
+    public boolean savePaymentData(Long memberNum, OrdersRequestDTO ordersRequestDTO){
         try {
             Member member = memberRepository.findById(memberNum).get();
-            List<Cart> cartList = cartRepository.findAllById(cartNum);
+            List<Cart> cartList = cartRepository.findAllById(ordersRequestDTO.getCartNum());
 
-            Orders order = getOrder(name, tel, ordersType, member, cartList);
+            Orders order = getOrder(ordersRequestDTO, member, cartList);
 
             List<OrdersDetail> lists = cartList // Entity List
                     .stream() // Entity Stream
@@ -55,7 +56,7 @@ public class OrdersService {
             order.getReservation().addAll(lists);
 
             ordersRepository.save(order);
-            cartRepository.deleteAllById(cartNum);
+            cartRepository.deleteAllById(ordersRequestDTO.getCartNum());
         }
         catch (RuntimeException e){
             System.out.println(e.toString());
@@ -66,18 +67,19 @@ public class OrdersService {
 
     /** 결제 저장시 새로운 결제정보를 생성해서 돌려줌. **/
     /** 왠지 이건 orders 클래스 내부에서 해도 될거 같은데... **/
-    private Orders getOrder(String name, String tel, String ordersType, Member member, List<Cart> cartList) {
+    private Orders getOrder(OrdersRequestDTO ordersRequestDTO, Member member, List<Cart> cartList) {
         Orders order = Orders.builder()
                 .member(member)
-                .ordersName(name)
-                .ordersTel(tel)
+                .ordersName(ordersRequestDTO.getName())
+                .ordersTel(ordersRequestDTO.getTel())
                 .ordersDate(LocalDate.now())
                 .ordersPrice(getTotalPrice(cartList
-                .stream()
-                .map(cart -> cart.getReserveNum())
-                .collect(Collectors.toList())))
-                .ordersType(ordersType)
+                    .stream()
+                    .map(cart -> cart.getReserveNum())
+                    .collect(Collectors.toList())))
+                .ordersType(ordersRequestDTO.getOrdersType())
                 .ordersStatus(ReserveStatus.READY.getValue())
+                .merchantId(ordersRequestDTO.getMerchantId())
                 .build();
         return order;
     }
@@ -121,5 +123,10 @@ public class OrdersService {
             od.getRoom().getAvailableDate().add(ad);
         }
         return od;
+    }
+
+
+    public void cancelOrders(Long ordersNum){
+        ordersRepository.deleteById(ordersNum);
     }
 }

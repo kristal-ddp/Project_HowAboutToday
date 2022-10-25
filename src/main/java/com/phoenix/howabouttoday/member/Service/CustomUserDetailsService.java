@@ -24,7 +24,6 @@ public class CustomUserDetailsService implements UserDetailsService  {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Member member = memberRepository.findByEmail(email).orElseThrow(() ->
                 new UsernameNotFoundException("해당 사용자가 존재하지 않습니다. : " + email));
-
         session.setAttribute("member", new SessionDTO(member));
 
         /* 시큐리티 세션에 유저 정보 저장 */
