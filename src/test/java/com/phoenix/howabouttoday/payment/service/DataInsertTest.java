@@ -8,7 +8,7 @@ import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationImageRepository;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.accom.repository.RegionRepository;
-import com.phoenix.howabouttoday.member.entity.Code;
+import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
@@ -80,11 +80,11 @@ public class DataInsertTest {
         List<Member> memberList = new ArrayList<>();
 
 //        # email, join_date, member_code, member_original_file_name, member_save_file_name, member_tel, nickname, pwd, withdrawdate
-        memberList.add(new Member("tellus@yahoo.edu", "Calista Hicks", "1111", "010-1632-1860" , Code.MEMBER, LocalDate.now(), LocalDate.now(), "image0.jpg", "image1.jpg"));
-        memberList.add(new Member("adipiscingligula@hotmail.ca", "Cullen Burgess", "1111", "010-1632-1860" , Code.MEMBER, LocalDate.now(), LocalDate.now(), "image2.jpg", "image3.jpg"));
-        memberList.add(new Member("vulputateem@protonmail.org", "Calista Hicks", "1111", "010-1632-1860" , Code.MEMBER, LocalDate.now(), LocalDate.now(), "image4.jpg", "image5.jpg"));
-        memberList.add(new Member("itamet@icloud.edu", "Clarke Reed", "1111", "010-1632-1860" , Code.MEMBER, LocalDate.now(), LocalDate.now(), "image6.jpg", "image7.jpg"));
-        memberList.add(new Member("tellus@yahoo.edu", "Barrett Bell", "1111", "010-1632-1860" , Code.MEMBER, LocalDate.now(), LocalDate.now(), "image8.jpg", "image9.jpg"));
+        memberList.add(new Member("tellus@yahoo.edu", "Calista Hicks", "1111", "010-1632-1860" , Role.MEMBER, LocalDate.now(), LocalDate.now(), "image0.jpg", "image1.jpg"));
+        memberList.add(new Member("adipiscingligula@hotmail.ca", "Cullen Burgess", "1111", "010-1632-1860" , Role.MEMBER, LocalDate.now(), LocalDate.now(), "image2.jpg", "image3.jpg"));
+        memberList.add(new Member("vulputateem@protonmail.org", "Calista Hicks", "1111", "010-1632-1860" , Role.MEMBER, LocalDate.now(), LocalDate.now(), "image4.jpg", "image5.jpg"));
+        memberList.add(new Member("itamet@icloud.edu", "Clarke Reed", "1111", "010-1632-1860" , Role.MEMBER, LocalDate.now(), LocalDate.now(), "image6.jpg", "image7.jpg"));
+        memberList.add(new Member("tellus@yahoo.edu", "Barrett Bell", "1111", "010-1632-1860" , Role.MEMBER, LocalDate.now(), LocalDate.now(), "image8.jpg", "image9.jpg"));
 
         memberRepository.saveAll(memberList);
 
@@ -229,7 +229,7 @@ public class DataInsertTest {
 
         Supplier<Integer> rn = () -> (int)(Math.floor(Math.random() * REGION_COUNT + 1)); //랜덤한 지역값 가져오기
 
-//        Member member = new Member("tellus@yahoo.edu", "Calista Hicks", "1111", "010-1632-1860" , Code.MEMBER, LocalDate.now(), LocalDate.now(), "image0.jpg", "image1.jpg");
+//        Member member = new Member("tellus@yahoo.edu", "Calista Hicks", "1111", "010-1632-1860" , Role.MEMBER, LocalDate.now(), LocalDate.now(), "image0.jpg", "image1.jpg");
        Optional<Member> optionalMember = memberRepository.findById(1L);
        Member member = null;
        if (!optionalMember.isEmpty()){

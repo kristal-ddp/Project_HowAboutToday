@@ -140,8 +140,8 @@
             </div>
         </th:block>
 
-        <div class="row padding-top-60px hwt-row-faq">
-            <div class="col-lg-6 col-board" id="faq">
+        <div class="row padding-top-60px hwt-row-faq" id="faq">
+            <div class="col-lg-6 col-board" >
                 <div class="faq-item mb-5">
                     <h3 class="title font-weight-bold">상품 / 서비스</h3>
                     <ul class="toggle-menu list-items list-items-flush pt-4">
@@ -157,6 +157,14 @@
                                             <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
+
+                                            <!-- Admin -->
+                                            <th:block sec:authorize="hasRole('ADMIN')">
+                                                <li class="hwt-faq-button">
+                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
+                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
+                                                </li>
+                                            </th:block>
                                         </ul>
                                     </li>
                                 </th:block>
@@ -181,6 +189,14 @@
                                             <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
+
+                                            <!-- Admin -->
+                                            <th:block sec:authorize="hasRole('ADMIN')">
+                                                <li class="hwt-faq-button">
+                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
+                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
+                                                </li>
+                                            </th:block>
                                         </ul>
                                     </li>
                                 </th:block>
@@ -205,6 +221,14 @@
                                             <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
+
+                                            <!-- Admin -->
+                                            <th:block sec:authorize="hasRole('ADMIN')">
+                                                <li class="hwt-faq-button">
+                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
+                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
+                                                </li>
+                                            </th:block>
                                         </ul>
                                     </li>
                                 </th:block>
@@ -229,6 +253,14 @@
                                             <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
+
+                                            <!-- Admin -->
+                                            <th:block sec:authorize="hasRole('ADMIN')">
+                                                <li class="hwt-faq-button">
+                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
+                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
+                                                </li>
+                                            </th:block>
                                         </ul>
                                     </li>
                                 </th:block>
@@ -253,6 +285,14 @@
                                             <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
+
+                                            <!-- Admin -->
+                                            <th:block sec:authorize="hasRole('ADMIN')">
+                                                <li class="hwt-faq-button">
+                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
+                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
+                                                </li>
+                                            </th:block>
                                         </ul>
                                     </li>
                                 </th:block>
@@ -277,6 +317,14 @@
                                             <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
+
+                                            <!-- Admin -->
+                                            <th:block sec:authorize="hasRole('ADMIN')">
+                                                <li class="hwt-faq-button">
+                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
+                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
+                                                </li>
+                                            </th:block>
                                         </ul>
                                     </li>
                                 </th:block>
@@ -301,6 +349,14 @@
                                             <li class="line-height-26 hwt-faq-content">
                                                 <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
                                             </li>
+
+                                            <!-- Admin -->
+                                            <th:block sec:authorize="hasRole('ADMIN')">
+                                                <li class="hwt-faq-button">
+                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
+                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
+                                                </li>
+                                            </th:block>
                                         </ul>
                                     </li>
                                 </th:block>

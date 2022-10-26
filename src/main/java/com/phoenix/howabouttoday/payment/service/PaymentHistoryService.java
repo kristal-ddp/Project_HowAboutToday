@@ -34,6 +34,6 @@ public class PaymentHistoryService {
 
     /** Orders to OrderDTO **/
     public OrdersDTO getOrdersDTO(Long ordersNum){
-        return new OrdersDTO(ordersRepository.findById(ordersNum).get());
+        return new OrdersDTO(ordersRepository.findById(ordersNum).orElseThrow(() -> new IllegalArgumentException("해당 주문 정보가 없습니다.")));
     }
 }

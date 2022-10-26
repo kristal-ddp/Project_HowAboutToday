@@ -35,12 +35,12 @@ public class SessionDTO implements Serializable { //세션 저장 클래스
         this.role = member.getRole();
     }
 
-    public SessionDTO(Long memberNum, String email, String pwd, String nickname, String memberTel, Code memberCode) {
+    public SessionDTO(Long memberNum, String email, String pwd, String nickname, String memberTel, Role role) {
         this.memberNum = memberNum;
         this.email = email;
         this.pwd = pwd;
         this.nickname = nickname;
         this.memberTel = memberTel;
-        this.memberCode = memberCode;
+        this.role = role;
     }
 }

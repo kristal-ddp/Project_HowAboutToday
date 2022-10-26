@@ -86,8 +86,7 @@ public class NoticeController {
 
     // 공지사항 수정 페이지
     @GetMapping("admin/notice-edit/{boardNum}")
-    public String noticeEdit(@PathVariable Long boardNum,
-                             @LoginUser SessionDTO sessionDTO, Model model){
+    public String noticeEdit(@PathVariable Long boardNum, @LoginUser SessionDTO sessionDTO, Model model){
 
         if(sessionDTO == null) {
             return "/loginProc";

@@ -34,6 +34,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test' //SpringBoot Starter Test
 	testImplementation 'org.springframework.security:spring-security-test' //Spring Security Test
 	implementation 'org.springframework.boot:spring-boot-starter-validation' // validation
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'	//서버에서 다른 서버로 api요청을 보내기 위한 의존성
+	testImplementation 'io.projectreactor:reactor-test'	//webflux테스터
+	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
 
 	//오라클로 테스트 하기 위한 dependencies
 	//implementation 'com.oracle.database.jdbc:ojdbc8'

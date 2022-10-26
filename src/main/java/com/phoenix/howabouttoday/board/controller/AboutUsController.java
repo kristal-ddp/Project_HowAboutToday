@@ -79,8 +79,7 @@ public class AboutUsController {
 
     // 오늘어때 정보 수정 페이지
     @GetMapping("admin/aboutUs-edit/{boardNum}")
-    public String aboutUsEdit(@PathVariable Long boardNum,
-                             @LoginUser SessionDTO sessionDTO, Model model){
+    public String aboutUsEdit(@PathVariable Long boardNum, @LoginUser SessionDTO sessionDTO, Model model){
 
         if(sessionDTO == null) {
             return "/loginProc";

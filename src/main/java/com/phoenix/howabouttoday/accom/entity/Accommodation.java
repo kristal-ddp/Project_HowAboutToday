@@ -1,10 +1,12 @@
 package com.phoenix.howabouttoday.accom.entity;
 
 
-import com.phoenix.howabouttoday.global.AccomCategory;
-import com.phoenix.howabouttoday.global.AccomCategoryConverter;
+
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalTime;
@@ -15,6 +17,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+
 public class Accommodation {
 
     @Id
@@ -27,29 +30,29 @@ public class Accommodation {
     @Column(length = 50)
     private String accomTel;//숙소 전화번호
 
-    @Column(length = 50)
-    @Convert(converter = AccomCategoryConverter.class)
-    private AccomCategory accomCategory;//숙소 카테고리 번호
+//    @Column(length = 50)
+//    @Convert(converter = AccomCategoryConverter.class)
+//    private AccomCategory accomCategory;//숙소 카테고리 번호
 
-    //    @OneToMany() 추후에 지역 카테고리 entity 만든 후에 매핑필요
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "accom_category_num")
+    private AccomCategory accomCategory;
 
-    @ManyToOne
+    //  @OneToMany() 추후에 지역 카테고리 entity 만든 후에 매핑필요
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_num")
     private Region region; //숙소 지역 번호
 
     @Column(length = 200)
     private String accomAddress;//숙소 주소
-
     @Column(precision = 1, scale = 2)
     private Double accomRating;//숙소 평점
-
     private Integer totalReviewNum;//숙소의 평점 수
-
     private Integer accomWishlistCount; //즐겨찾기 버튼 갯수
-
     private LocalTime checkIn;
     private LocalTime checkOut;
-
     @Column(precision = 14, scale = 28)
     private Double latitude; //위도
 
@@ -65,9 +68,12 @@ public class Accommodation {
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<AccomImage> accommodationImage = new ArrayList<>();    //이미지 fk를 위한 매핑
 
+
     //양방향 매핑을 위해 추가
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<Room> room = new ArrayList<>();    //이미지 fk를 위한 매핑
+
+
 
     @Builder
     public Accommodation(Long accomNum, String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, LocalTime checkIn, LocalTime checkOut) {

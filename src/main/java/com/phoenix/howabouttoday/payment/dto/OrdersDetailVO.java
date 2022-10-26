@@ -42,7 +42,7 @@ public class OrdersDetailVO {
         String endDay = cart.getReserveUseEndDate().getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
 
         this.cartNum = cart.getReserveNum();
-        this.accomType = cart.getRoom().getAccommodation().getAccomCategory().getValue();
+//        this.accomType = cart.getRoom().getAccommodation().getAccomCategory().getValue();
         this.accomName = cart.getRoom().getAccommodation().getAccomName();
         this.accomRegion = cart.getRoom().getAccommodation().getRegion().getRegion().getValue();
         this.orderDate = LocalDate.now().toString();
@@ -64,7 +64,7 @@ public class OrdersDetailVO {
         String endDay = ordersDetail.getReserveUseEndDate().getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
 
         this.cartNum = ordersDetail.getReserveNum();
-        this.accomType = ordersDetail.getRoom().getAccommodation().getAccomCategory().getValue();
+//        this.accomType = ordersDetail.getRoom().getAccommodation().getAccomCategory().getValue();
         this.accomName = ordersDetail.getRoom().getAccommodation().getAccomName();
         this.accomRegion = ordersDetail.getRoom().getAccommodation().getRegion().getRegion().getValue();
         this.orderDate = LocalDate.now().toString();

@@ -63,7 +63,7 @@ public class OrdersDetailDTO {
         String endDay = reservation.getReserveUseEndDate().getDayOfWeek().getDisplayName(TextStyle.NARROW, Locale.KOREAN);
 
 
-        this.accomType = reservation.getRoom().getAccommodation().getAccomCategory().getValue();
+//        this.accomType = reservation.getRoom().getAccommodation().getAccomCategory().getValue();
         this.accomTypeIcon = reservation.getRoom().getAccommodation().getAccomCategory().toString().toLowerCase();
         this.accomName = reservation.getRoom().getAccommodation().getAccomName();
         this.accomRegion = reservation.getRoom().getAccommodation().getRegion().getRegion().getValue();

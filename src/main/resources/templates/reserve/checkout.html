@@ -32,7 +32,7 @@
     <!-- ================================
         START BOOKING AREA
     ================================= -->
-    <form method="post" onsubmit="return false">
+    <form method="post" onsubmit="return false" th:action="@{/orders/paymentSuccess}" name="myForm">
         <section class="booking-area padding-top-100px padding-bottom-70px">
             <div class="container">
                 <div class="row justify-content-md-center">
@@ -40,10 +40,10 @@
                         <div class="table-form table-responsive mb-3">
                             <table class="table">
                                 <thead class="thead-dark">
-                                    <tr class="bg-dark">
-                                        <th scope="col" class="pl-5" th:text="|숙소|">Product</th>
-                                        <th scope="col" class="text-lg-right pr-5"  th:text="|숙소가격|">Price</th>
-                                    </tr>
+                                <tr class="bg-dark">
+                                    <th scope="col" class="pl-5" th:text="|숙소|">Product</th>
+                                    <th scope="col" class="text-lg-right pr-5"  th:text="|숙소가격|">Price</th>
+                                </tr>
                                 </thead>
                                 <tbody>
 
@@ -79,7 +79,6 @@
                                 </tr>
                                 </tbody>
                             </table>
-
                         </div>
 
 
@@ -200,7 +199,10 @@
                                     </ul>
                                     <input type="hidden" th:name="ordersType" th:value="vbank">
                                     <br><br>
+
+                                    <!--                                    <button type="submit">서밋2</button>-->
                                     <button type="submit" class="theme-btn float-right" onclick="requestPay()" th:text="#{checkout_payment_run}">Confirm Booking</button>
+
                                     <br><br>
                                 </div><!-- end section-tab -->
                             </div><!-- end form-content -->

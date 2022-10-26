@@ -27,7 +27,7 @@ public class FAQServiceImpl implements FAQService {
 
     private final MemberRepository memberRepository;
 
-    // 게시판 리스트
+    // 게시판 리스트 (모든 게시글 조회)
     @Override
     public List<List<BoardDetailDTO>> findAll_FAQ(String boardCategoryName) {
 
@@ -50,16 +50,44 @@ public class FAQServiceImpl implements FAQService {
         return faqList;
     }
 
+    // 게시글 수정 및 삭제 (게시글 1개 조회)
+    @Override
+    public BoardDetailDTO findOne_FAQ(Long boardNum) {
+
+        // Entity → DTO
+        return boardRepository.findById(boardNum) // Entity
+                .map(BoardDetailDTO::new) // DTO
+                .orElse(null); // 에러 시 null 반환
+    }
+
     // 게시글 작성
     @Override
     @Transactional
-    public void addFAQ(FAQAddDTO faqAddDTO) {
+    public void addFAQ(FAQDTO FAQDTO) {
 
-        Member member = memberRepository.findById(faqAddDTO.getMemberNum()).orElse(null);
-        BoardCategory boardCategory = boardCategoryRepository.findById(faqAddDTO.getBoardCategoryNum()).orElse(null);
+        Member member = memberRepository.findById(FAQDTO.getMemberNum()).orElse(null);
+        BoardCategory boardCategory = boardCategoryRepository.findById(FAQDTO.getBoardCategoryNum()).orElse(null);
 
-        Board board = new Board(member, boardCategory, faqAddDTO);
+        Board board = new Board(member, boardCategory, FAQDTO);
         boardRepository.save(board);
 
+    }
+
+    // 게시글 수정
+    @Override
+    @Transactional
+    public void editFAQ(Long boardNum, FAQDTO FAQDTO) {
+
+        Board board = boardRepository.findById(boardNum).orElse(null);
+        board.editFAQ(board.getBoardNum(), FAQDTO);
+    }
+
+    // 게시글 삭제
+    @Override
+    @Transactional
+    public void deleteFAQ(BoardDetailDTO boardDetailDTO) {
+
+        Board board = boardRepository.findById(boardDetailDTO.getBoardNum()).orElse(null);//
+        boardRepository.delete(board);
     }
 }

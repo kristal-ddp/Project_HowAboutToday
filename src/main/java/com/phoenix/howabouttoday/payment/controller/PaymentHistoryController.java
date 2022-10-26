@@ -10,7 +10,7 @@ import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
-import com.phoenix.howabouttoday.member.entity.Code;
+import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.payment.dto.OrdersDTO;
 import com.phoenix.howabouttoday.payment.service.PaymentHistoryService;
 import lombok.AllArgsConstructor;
@@ -35,7 +35,6 @@ public class PaymentHistoryController {
     private final MemberService memberService;
     private final PaymentHistoryService paymentHistoryService;
 
-
     /* 마이페이지-예약탭  */
     @GetMapping(value = {"user-dashboard-booking/{page}", "user-dashboard-booking"})
     public String getUserBooking(@LoginUser SessionDTO sessionDTO,  @PathVariable(required = false, name = "page") Optional<Integer> page, Model model) {
@@ -45,7 +44,7 @@ public class PaymentHistoryController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
         else{
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Code.MEMBER);
+            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
@@ -81,7 +80,7 @@ public class PaymentHistoryController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
         else{
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Code.MEMBER);
+            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
@@ -96,7 +95,6 @@ public class PaymentHistoryController {
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         OrdersDTO ordersDTO = paymentHistoryService.getOrdersDTO(ordersNum);
-
         model.addAttribute("customer", customer);
         model.addAttribute("ordersDTO", ordersDTO);
         return "reserve/bookingDetails";

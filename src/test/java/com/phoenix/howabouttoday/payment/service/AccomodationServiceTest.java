@@ -5,8 +5,8 @@ import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
-import com.phoenix.howabouttoday.member.entity.Code;
 import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
@@ -15,7 +15,7 @@ import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
 import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.repository.RoomRepository;
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -70,7 +70,7 @@ class AccomodationServiceTest {
         list.forEach(member -> System.out.println(member.getEmail()));
 
 
-    Assertions.assertThat(testList.get(0).getClass().getName()).isEqualTo(30);
+    assertThat(testList.get(0).getClass().getName()).isEqualTo(30);
 
     }
 
@@ -83,7 +83,7 @@ class AccomodationServiceTest {
         }
 
         List<Member> testList = memberRepository.findAll();
-        Assertions.assertThat(testList.size()).isEqualTo(MEMBER_COUNT);
+        assertThat(testList.size()).isEqualTo(MEMBER_COUNT);
     }
 
     @Test
@@ -95,7 +95,7 @@ class AccomodationServiceTest {
         }
 
         List<Member> testList = memberRepository.findAll();
-        Assertions.assertThat(testList.size()).isEqualTo(MEMBER_COUNT);
+        assertThat(testList.size()).isEqualTo(MEMBER_COUNT);
     }
 
 
@@ -110,7 +110,7 @@ class AccomodationServiceTest {
         List<Orders> ordersList = ordersRepository.findAll();
 
 
-        Assertions.assertThat(ordersList.size()).isEqualTo(2);
+        assertThat(ordersList.size()).isEqualTo(2);
     }
 
     @Test
@@ -158,9 +158,9 @@ class AccomodationServiceTest {
 
         Accommodation test = accommodationRepository.findByAccomNum(newMember.getAccomNum());
 
-        Assertions.assertThat(test.getAccomName()).isEqualTo(newMember.getAccomName());
-        Assertions.assertThat(test.getAccommodationImage().size()).isEqualTo(2);
-        Assertions.assertThat(test.getAccomCategory()).isEqualTo(newMember.getAccomCategory());
+        assertThat(test.getAccomName()).isEqualTo(newMember.getAccomName());
+        assertThat(test.getAccommodationImage().size()).isEqualTo(2);
+        assertThat(test.getAccomCategory()).isEqualTo(newMember.getAccomCategory());
 
         System.out.println(test.getAccomName());
         System.out.println(test.getAccommodationImage().size());
@@ -180,7 +180,7 @@ class AccomodationServiceTest {
                 .pwd("1111")
                 .nickname("noscarna")
                 .memberTel("01045020614")
-                .memberCode(Code.MEMBER)
+                .role(Role.MEMBER)
                 .joinDate(LocalDate.now())
                 .withdrawdate(LocalDate.now())
                 .memberOriginalFileName("Origin")
@@ -287,7 +287,7 @@ class AccomodationServiceTest {
                 .pwd("1111")
                 .nickname("noscarna")
                 .memberTel("01045020614")
-                .memberCode(Code.MEMBER)
+                .role(Role.MEMBER)
                 .joinDate(LocalDate.now())
                 .withdrawdate(LocalDate.now())
                 .memberOriginalFileName("Origin")
@@ -329,5 +329,58 @@ class AccomodationServiceTest {
                 .reservePrice(room.getPrice())
                 .reserveAdultCount(room.getDefaultGuest())
                 .build();
+    }
+
+    
+    /** uid로 orders정보 읽기 테스트 **/
+    @Test
+    public void imId(){
+
+        /**회원등록**/
+        Member member = memberRepository.save(Member.builder()
+                .email("bbb@naver.com")
+                .pwd("1234")
+                .memberTel("010-1111-2222")
+                .nickname("안수언")
+                .memberOriginalFileName("Originl")
+                .memberSaveFileName("save1")
+                .joinDate(LocalDate.of(2022,9,27))
+                .role(Role.MEMBER)
+                .build());
+
+
+        Orders order1 = Orders.builder()
+                .ordersTel(member.getMemberTel())
+                .ordersName(member.getNickname())
+                .ordersDate(LocalDate.now())
+                .ordersPrice(45555)
+                .ordersType("card")
+                .ordersStatus("결제완료")
+                .merchantId("abc")
+                .member(member)
+                .build();
+
+        /** 예약 등록 **/
+        Orders order2 = Orders.builder()
+                .ordersTel(member.getMemberTel())
+                .ordersName(member.getNickname())
+                .ordersDate(LocalDate.now())
+                .ordersPrice(111111)
+                .ordersType("card")
+                .ordersStatus("결제완료")
+                .member(member)
+                .merchantId("def")
+                .build();
+
+        ordersRepository.save(order1);
+        ordersRepository.save(order2);
+
+        Orders repoOrders1 = ordersRepository.findByMerchantId("abc").orElseThrow(() -> new IllegalArgumentException("결제고유정보가 없습니다."));
+        Orders repoOrders2 = ordersRepository.findByMerchantId("def").orElseThrow(() -> new IllegalArgumentException("결제고유정보가 없습니다."));
+
+
+        assertThat(order1.getMerchantId()).isEqualTo(repoOrders1.getMerchantId());
+        assertThat(order2.getMerchantId()).isEqualTo(repoOrders2.getMerchantId());
+
     }
 }

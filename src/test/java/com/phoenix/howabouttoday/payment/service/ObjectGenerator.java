@@ -5,7 +5,7 @@ import com.phoenix.howabouttoday.accom.entity.AccomImage;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
 import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
-import com.phoenix.howabouttoday.member.entity.Code;
+import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.room.entity.AvailableDate;
@@ -69,7 +69,7 @@ public class ObjectGenerator {
                 .pwd("1111")
                 .nickname(randValue[2])
                 .memberTel(randomTel())
-                .memberCode(Code.MEMBER)
+                .role(Role.MEMBER)
                 .joinDate(LocalDate.now())
                 .withdrawdate(LocalDate.now())
                 .memberOriginalFileName(randValue[3])

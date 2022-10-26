@@ -40,10 +40,10 @@
                                     <li class="hwt-menu-item">
                                         <a href="#">숙소 <i class="la la-angle-down"></i></a>
                                         <ul class="dropdown-menu-item">
-                                            <li><a href="/hotel-list">호텔</a></li>
-                                            <li><a href="/motel-list">모텔</a></li>
-                                            <li><a href="/pension-PoolVilla-list">펜션/풀빌라</a></li>
-                                            <li><a href="/guestHouse-Hanok-list">게하/한옥</a></li>
+                                            <li><a href="/accom/hotel">호텔</a></li>
+                                            <li><a href="/accom/motel">모텔</a></li>
+                                            <li><a href="/accom/penssion">펜션/풀빌라</a></li>
+                                            <li><a href="/accom/guesthouse">게하/한옥</a></li>
                                         </ul>
                                     </li>
                                     <li class="hwt-menu-item">
@@ -80,7 +80,7 @@
                                     <!-- 장바구니 아이콘 -->
                                     <div class="header-icon-wrap">
                                         <a href="/cart">
-                                            <img src="icon/cart.png" class="header-icon">
+                                            <img src="/icon/cart.png" class="header-icon">
                                         </a>
                                     </div>
 
@@ -90,7 +90,7 @@
                                             <a href="#" class="dropdown-toggle" id="userDropdownMenu"
                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <div class="d-flex align-items-center">
-                                                    <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="images/team8.jpg" alt="team-img"></div>
+                                                    <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="/images/team8.jpg" alt="team-img"></div>
                                                     <span class="font-size-14 font-weight-bold" style="color: #000;" th:text="${sessionDTO.nickname}"></span>
                                                 </div>
                                             </a>
@@ -133,11 +133,10 @@
                                         </div><!-- end dropdown-menu -->
                                     </div><!-- end notification-item -->
 
-
-                            <sec:authorize access="isAuthenticated()">
-                                <a th:href="@{/member/logout}" class="theme-btn theme-btn-small hwt-btn-gray"
-                                   sec:authorize="isAuthenticated()" >로그아웃</a>
-                            </sec:authorize>
+                                    <!-- 로그아웃 버튼 -->
+                                    <div class="header-right-action hwt-btns">
+                                        <a href="/member/logout" class="theme-btn theme-btn-small hwt-btn-gray">로그아웃</a>
+                                    </div>
 
                                 </div>
                             </th:block>

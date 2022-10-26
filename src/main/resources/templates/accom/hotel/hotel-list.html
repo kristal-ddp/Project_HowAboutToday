@@ -306,7 +306,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-content text-center">
                         <div class="section-heading">
-                            <h1 style="text-shadow:1px 1px 1px #000;" class="sec__title text-white">Hotel</h1>
+                            <h1 style="text-shadow:1px 1px 1px #000;" class="sec__title text-white" th:text="${viewName}">Hotel</h1>
                         </div>
                     </div><!-- end breadcrumb-content -->
                 </div><!-- end col-lg-6 -->
@@ -328,8 +328,7 @@
                 <div class="filter-wrap margin-bottom-30px">
                     <div class="filter-top d-flex align-items-center justify-content-between pb-4">
                         <div>
-                            <h3 class="title font-size-40">호텔 예약</h3>
-                            <p class="font-size-14"><span class="mr-1 pt-1">안심하고 예약하세요:</span>호텔 예약 수수료 없습니다.</p>
+                            <h3 class="title font-size-40" th:text="|${viewName} 예약|">호텔 예약</h3>
                         </div>
                     </div><!-- end filter-top -->
                     <!--필터 창-->
@@ -376,11 +375,11 @@
                 <div class="sidebar mt-0">
                     <div class="sidebar-widget">
                         <form action="hotel-listSearch" method="get">
-                            <h3 class="title stroke-shape">호텔 검색</h3>
+                            <h3 class="title stroke-shape" th:text="|${viewName} 검색|">호텔 검색</h3>
                             <div class="sidebar-widget-item">
                                 <div class="contact-form-action">
                                     <div class="input-box">
-                                        <label class="label-text">호텔 이름</label>
+                                        <label class="label-text" th:text="|${viewName} 이름|">호텔 이름</label>
                                         <div class="form-group">
                                             <span class="la la-map-marker form-icon"></span>
                                             <input class="form-control" type="text" name="keyword" placeholder="이름을 입력하세요.">
@@ -572,16 +571,14 @@
                     </div><!-- end sidebar-widget -->
                 </div><!-- end sidebar -->
             </div><!-- end col-lg-4 -->
+
             <!-- 리스트 목록 시작 -->
             <div class="col-lg-8">
-                <div class="card-item card-item-list" th:each="accommodation : ${accommodationList}">
-                    <div class="card-img">
+                <div class="card-item card-item-list" th:each="accommodation, i: ${accomPageList}">
+
+                    <div class="card-img" th:id="|anchor${i.count}|">
                         <a class="d-block" th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}">
-
-                            <img th:src="@{${'/data/images/' + accommodation.getAccommodationImage().get(0).getAccomOriginFilename()}}" alt="hotel-img">
-
-
-
+                            <img th:src="|@{/data/images/{accomImage}(accomImage=${accommodation.accommodationImage.accomOriginFilename})}|" alt="hotel-img">
                         </a>
                         <a th:href="|javascript:void(0)|" th:onclick="saveWish([[${accommodation.getAccomNum()}]])">
                         <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">
@@ -602,18 +599,22 @@
                                 <span class="price__from">최소 가격 :</span>
                                 <span class="price__num" th:text="|${accommodation.getLowPrice()}~|"></span>
                             </p>
-                            <a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>
+                            <a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" class="btn-text">방 정보<i class="la la-angle-right"></i></a>
+
                         </div>
                     </div>
                 </div><!-- end card-item -->
             </div><!-- end col-lg-8 -->
                 <!-- 여기서 끝남ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div><!-- end row -->
+
+        <a th:href="|#anchor${size-5}|" id="accomAnchor"></a>
         <div class="row">
             <div class="col-lg-12">
                 <div class="btn-box mt-3 text-center">
+                    <a th:href="|@{/accom/{category_name}/(category_name=${categoryName},size=${accomPageList.size+5})}|">
                     <button type="button" class="theme-btn"><i class="la la-refresh mr-1"></i>Load More</button>
-                    <p class="font-size-13 pt-2">Showing 1 - 6 of 2224 Hotels</p>
+                    </a>
                 </div><!-- end btn-box -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
@@ -906,6 +907,12 @@
 <!--</html>-->
     <script>
 
+        $(document).ready(function (){
+
+           document.getElementById("accomAnchor").click();
+
+        });
+
         function saveWish(accomNum) {
 
             $.ajax({
@@ -926,7 +933,11 @@
             });
         }
 
+
+
     </script>
+
+
 </th:block>
 
 </html>

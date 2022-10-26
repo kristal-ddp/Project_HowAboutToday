@@ -18,6 +18,12 @@
 
 .hwt-faq-content {
     margin-top: 10px;
+    border-bottom: 0!important;
+    padding-bottom: 0!important;
+}
+
+.hwt-faq-button {
+    text-align: right;
 }
 
 .hwt-empty {
@@ -107,4 +113,16 @@
 
 .event-date {
     width: 40%;
+}
+
+// Edit Board
+.event-file {
+    position: unset!important;
+    text-align: left!important;
+}
+
+.event-remove{
+    line-height: 28px;
+    cursor: pointer;
+    pointer-events: auto;
 }

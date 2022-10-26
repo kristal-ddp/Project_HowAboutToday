@@ -13,19 +13,20 @@ import java.util.List;
 
 
 @Getter
-public class OrdersRequestDTO {
+public class OrdersCreateDTO {
 
     private String name;
     private String tel;
     private String ordersType;
+    private String imp_uid;
     private String merchantId;
     private List<Long> cartNum;
 
-
-    public OrdersRequestDTO(String name, String tel, String ordersType, String merchantId, List<Long> cartNum) {
+    public OrdersCreateDTO(String name, String tel, String ordersType, String imp_uid, String merchantId, List<Long> cartNum) {
         this.name = name;
         this.tel = tel;
         this.ordersType = ordersType;
+        this.imp_uid = imp_uid;
         this.merchantId = merchantId;
         this.cartNum = cartNum;
     }

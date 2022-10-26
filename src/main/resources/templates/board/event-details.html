@@ -36,6 +36,7 @@
     <div class="container">
         <div class="row hwt-row-board">
             <div class="col-lg-8 col-board">
+
                 <!-- Board Title -->
                 <div class="form-box">
                     <div class="form-title-wrap hwt-board-title hwt-detail-title">
@@ -47,8 +48,9 @@
                     </div><!-- form-title-wrap -->
                 </div>
 
-                <!-- Board Content -->
                 <div class="form-box">
+
+                    <!-- Board Content -->
                     <div class="form-content contact-form-action hwt-details-content">
                         <th:block th:each="eventImageDTO : ${eventDetailDTO.eventImageList}">
                             <div>
@@ -56,11 +58,36 @@
                             </div>
                         </th:block>
                     </div><!-- end form-content -->
-                    <div class="form-bottom-wrap">
-                        <div class="hwt-details-bottom">
-                            <a href="/event" class="author__title">목록</a>
-                        </div>
-                    </div><!-- form-bottom-wrap -->
+
+                    <!-- Admin -->
+                    <th:block sec:authorize="hasRole('ADMIN')">
+                        <div class="form-bottom-wrap-admin">
+
+                            <!-- Edit & Delete Button -->
+                            <div class="hwt-details-bottom-left">
+                                <a th:href="@{|/admin/event-edit/${eventDetailDTO.eventNum}|}" class="author__title detail-button-left">수정</a>
+                                <a th:href="@{|/admin/event-delete/${eventDetailDTO.eventNum}|}" class="author__title">삭제</a>
+                            </div>
+
+                            <!-- List Button -->
+                            <div class="hwt-details-bottom">
+                                <a href="/event" class="author__title">목록</a>
+                            </div>
+                        </div><!-- form-bottom-wrap -->
+                    </th:block>
+
+                    <!-- Member -->
+                    <th:block sec:authorize="!hasRole('ADMIN')">
+
+                        <!-- List Button -->
+                        <div class="form-bottom-wrap">
+                            <div class="hwt-details-bottom">
+                                <a href="/event" class="author__title">목록</a>
+                            </div>
+                        </div><!-- form-bottom-wrap -->
+
+                    </th:block>
+
                 </div><!-- end form-box -->
             </div><!-- end col-lg-8 -->
         </div><!-- end row -->

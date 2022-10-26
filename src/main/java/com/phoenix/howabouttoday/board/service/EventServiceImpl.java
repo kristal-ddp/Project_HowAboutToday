@@ -3,8 +3,6 @@ package com.phoenix.howabouttoday.board.service;
 import com.phoenix.howabouttoday.board.dto.*;
 import com.phoenix.howabouttoday.board.entity.Event;
 import com.phoenix.howabouttoday.board.entity.EventImage;
-import com.phoenix.howabouttoday.board.repository.BoardCategoryRepository;
-import com.phoenix.howabouttoday.board.repository.BoardRepository;
 import com.phoenix.howabouttoday.board.repository.EventImageRepository;
 import com.phoenix.howabouttoday.board.repository.EventRepository;
 import com.phoenix.howabouttoday.member.entity.Member;
@@ -32,7 +30,7 @@ public class EventServiceImpl implements EventService {
 
     private final MemberRepository memberRepository;
 
-    // 게시판 리스트
+    // 게시판 리스트 (모든 게시글 조회)
     @Override
     public List<EventListDTO> findAll_Event() {
 
@@ -45,7 +43,7 @@ public class EventServiceImpl implements EventService {
         return lists;
     }
 
-    // 게시판 디테일
+    // 게시판 디테일 (게시글 1개 조회)
     @Override
     public EventDetailDTO findOne_Event(Long eventNum) {
 
@@ -58,11 +56,11 @@ public class EventServiceImpl implements EventService {
     // 게시글 작성
     @Override
     @Transactional
-    public void addEvent(EventAddDTO eventAddDTO, List<MultipartFile> eventImageList) throws Exception {
+    public void addEvent(EventDTO eventDTO, List<MultipartFile> eventImageList) throws Exception {
 
-        Member member = memberRepository.findById(eventAddDTO.getMemberNum()).orElse(null);
+        Member member = memberRepository.findById(eventDTO.getMemberNum()).orElse(null);
 
-        Event event = new Event(member, eventAddDTO);
+        Event event = new Event(member, eventDTO);
         Long eventNum = eventRepository.save(event).getEventNum();
 
         List<EventImage> eventImages = addImage(eventNum, eventImageList);
@@ -71,6 +69,30 @@ public class EventServiceImpl implements EventService {
             eventImageRepository.save(eventImage);
         }
 
+    }
+
+    // 게시글 수정
+    @Override
+    @Transactional
+    public void editEvent(Long eventNum, EventDTO eventDTO) throws Exception {
+
+        Event event = eventRepository.findById(eventNum).orElse(null);
+        event.editEvent(event.getEventNum(), eventDTO);
+
+        List<EventImage> eventImages = addImage(eventNum, eventDTO.getEventImageList());
+
+        for(EventImage eventImage : eventImages) {
+            eventImageRepository.save(eventImage);
+        }
+    }
+
+    // 게시글 삭제
+    @Override
+    @Transactional
+    public void deleteEvent(EventDetailDTO eventDetailDTO) {
+
+        Event event = eventRepository.findById(eventDetailDTO.getEventNum()).orElse(null);
+        eventRepository.delete(event);
     }
 
     // 게시글 이미지 설정

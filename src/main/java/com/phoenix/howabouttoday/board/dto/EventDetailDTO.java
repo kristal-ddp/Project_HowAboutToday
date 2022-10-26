@@ -16,6 +16,7 @@ public class EventDetailDTO {
 
     // 게시판 리스트 페이지 : Notice, FAQ, About Us
 
+    private Long memberNum; // 회원번호
     private Long eventNum; // 이벤트 게시글 번호
     private String eventTitle; // 이벤트 게시글 제목
     private LocalDate eventCreate; // 이벤트 게시일
@@ -24,6 +25,7 @@ public class EventDetailDTO {
     private List<EventImageDTO> eventImageList; // 이벤트 이미지
 
     public EventDetailDTO(Event event) {
+        this.memberNum = event.getMember().getMemberNum();
         this.eventNum = event.getEventNum();
         this.eventTitle = event.getEventTitle();
         this.eventCreate = event.getEventCreate();

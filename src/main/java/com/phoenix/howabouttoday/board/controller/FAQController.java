@@ -35,21 +35,21 @@ public class FAQController {
 
     // FAQ 작성 페이지
     @GetMapping("admin/faq-add")
-    public String faqAdd(@ModelAttribute("faqAddDTO") FAQAddDTO faqAddDTO,
+    public String faqAdd(@ModelAttribute("FAQDTO") FAQDTO FAQDTO,
                          @LoginUser SessionDTO sessionDTO, Model model){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        faqAddDTO.setMemberNum(sessionDTO.getMemberNum());
+        FAQDTO.setMemberNum(sessionDTO.getMemberNum());
 
         return "board/faq-add";
     }
 
     // FAQ 작성
     @PostMapping("admin/faq-add")
-    public String faqAdd(@Valid FAQAddDTO faqAddDTO, BindingResult bindingResult,
+    public String faqAdd(@Valid FAQDTO FAQDTO, BindingResult bindingResult,
                          @LoginUser SessionDTO sessionDTO, Model model){
 
         if(bindingResult.hasErrors()) {
@@ -57,7 +57,55 @@ public class FAQController {
             return "board/faq-add";
         }
 
-        faqService.addFAQ(faqAddDTO);
+        faqService.addFAQ(FAQDTO);
+
+        return "redirect:/faq";
+    }
+
+    // FAQ 수정 페이지
+    @GetMapping("admin/faq-edit/{boardNum}")
+    public String faqEdit(@PathVariable Long boardNum, @LoginUser SessionDTO sessionDTO, Model model){
+
+        if(sessionDTO == null) {
+            return "/loginProc";
+        }
+
+        BoardDetailDTO boardDetailDTO = faqService.findOne_FAQ(boardNum);
+        model.addAttribute("boardDetailDTO", boardDetailDTO);
+        model.addAttribute("sessionDTO", sessionDTO);
+
+        return "board/faq-edit";
+    }
+
+    // FAQ 수정
+    @PostMapping("admin/faq-edit/{boardNum}")
+    public String faqEdit(@PathVariable Long boardNum, @Valid FAQDTO FAQDTO,
+                          BindingResult bindingResult, @LoginUser SessionDTO sessionDTO, Model model){
+
+        if(bindingResult.hasErrors()) {
+
+            if(sessionDTO == null) {
+                return "/loginProc";
+            }
+
+            BoardDetailDTO boardDetailDTO = faqService.findOne_FAQ(boardNum);
+            model.addAttribute("boardDetailDTO", boardDetailDTO);
+            model.addAttribute("sessionDTO", sessionDTO);
+
+            return "board/faq-edit";
+        }
+
+        faqService.editFAQ(boardNum, FAQDTO);
+
+        return "redirect:/faq";
+    }
+
+    // FAQ 삭제
+    @GetMapping("admin/faq-delete/{boardNum}")
+    public String faqDelete(@PathVariable Long boardNum) {
+
+        BoardDetailDTO boardDetailDTO = faqService.findOne_FAQ(boardNum);
+        faqService.deleteFAQ(boardDetailDTO);
 
         return "redirect:/faq";
     }

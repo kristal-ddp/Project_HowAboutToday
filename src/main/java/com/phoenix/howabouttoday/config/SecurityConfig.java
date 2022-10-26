@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import lombok.RequiredArgsConstructor;
@@ -48,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
-                .ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/template/**", "/error/**");
+                .ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/template/**", "/error/");
     }
 
 //	@Bean
@@ -65,23 +64,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
+//        http.csrf().disable();
         //인증되지 않은 모든 요청을
         http
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-                .and()
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
 				.antMatchers("/user-dashboard-profile").authenticated()
 				.antMatchers("/user-dashboard-reviews").authenticated()
 				.antMatchers("/user-dashboard-wishlist").authenticated()
-				.antMatchers("/user-dashboard-booking").authenticated()
+				// .antMatchers("/user-dashboard-booking").authenticated()
                 .antMatchers("/user-dashboard-setting").authenticated()
                 .antMatchers("/**" ).permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/home/login")
+                .loginPage("/login")
                 .usernameParameter("email")
                 .passwordParameter("pwd")
                 .loginProcessingUrl("/loginProc")

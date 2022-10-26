@@ -1,0 +1,39 @@
+<!--
+function priceSerach(accomNum) {
+
+$.ajax({
+url: '/rest/accom' + accomNum,
+type:'post',
+contentType: 'application/json; charset=utf-8',
+data: {
+
+}
+success: function(data) {
+let lowprice ="";
+let newlow = `<div class="col-lg-8">"`
+  newlow +=`<div class="card-item card-item-list" th:each="accommodation, i: ${accomPageList}">`
+    newlow +=`<div class="card-img" th:id="|anchor${i.count}|">`
+      newlow +=`<a class="d-block" th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}">`
+        newlow +=`<img th:src="|@{/data/images/{accomImage}(accomImage=${accommodation.accommodationImage.accomOriginFilename})}|" alt="hotel-img"></a>`
+      newlow +=`<a th:href="|javascript:void(0)|" th:onclick="saveWish([[${accommodation.getAccomNum()}]])">`
+        newlow +=`<div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">`
+          newlow +=`<i class="la la-heart-o"></i></div></a>`
+      newlow +=`<div class="card-body"><h3 class="card-title" ><a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" th:text="${accommodation.getAccomName()}"></a></h3>`
+        newlow +=`<p class="card-meta" th:text="${accommodation.getAccomAddress()}"></p>`
+        newlow +=`<div class="card-rating">`
+          newlow +=`<span class="badge text-white" th:text="${accommodation.getAccomRating()}"></span>`
+          newlow +=`<span class="review__text">Average</span>`
+          newlow +=`<span class="rating__text" th:text="|(${accommodation.getTotalReviewNum()})|"></span></div>`
+        newlow +=`<div class="card-price d-flex align-items-center justify-content-between">`
+          newlow +=`<p><span class="price__from">최소 가격 :</span>`
+            newlow +=`<span class="price__num" th:text="|${accommodation.getLowPrice()}~|"></span></p>`
+          newlow +=`<a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" class="btn-text">방 정보<i class="la la-angle-right"></i></a>`
+          newlow +=`</div></div></div></div>`
+  lowprice++;
+
+  }
+  }).
+
+
+  })
+  }-->
