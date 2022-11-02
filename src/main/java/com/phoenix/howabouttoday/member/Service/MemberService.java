@@ -112,8 +112,9 @@ public class MemberService {
         Member member = memberRepository.findById(memberDTO.toEntity().getMemberNum()).orElseThrow(() ->
                 new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
 
+
         String encPassword = encoder.encode(memberDTO.getPwd());
-        member.modify(memberDTO.getNickname(),memberDTO.getMemberTel(), encPassword);
+        member.modify(memberDTO.getMemberTel(), encPassword);
     }
 
 

@@ -120,11 +120,12 @@ public class MemberController {
     @GetMapping("/modify")
     public String modify(@LoginUser SessionDTO sessionDTO, Model model) {
         if (sessionDTO != null) {
-            model.addAttribute("member", sessionDTO.getNickname());
             model.addAttribute("member", sessionDTO.getMemberTel());
+            model.addAttribute("member", sessionDTO.getNickname());
             model.addAttribute("sessionDTO", sessionDTO);
+
         }
-        return "/user-dashboard-settings";
+        return "/member/modify";
     }
 
 
