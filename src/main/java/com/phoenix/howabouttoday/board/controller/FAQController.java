@@ -54,7 +54,7 @@ public class FAQController {
     // FAQ 작성
     @PostMapping("admin/faq-add")
     public String faqAdd(@Valid FAQDTO FAQDTO, BindingResult bindingResult,
-                         @LoginUser SessionDTO sessionDTO, Model model){
+                         @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -84,8 +84,8 @@ public class FAQController {
 
     // FAQ 수정
     @PostMapping("admin/faq-edit/{boardNum}")
-    public String faqEdit(@PathVariable Long boardNum, @Valid FAQDTO FAQDTO,
-                          BindingResult bindingResult, @LoginUser SessionDTO sessionDTO, Model model){
+    public String faqEdit(@PathVariable Long boardNum, @Valid FAQDTO FAQDTO, BindingResult bindingResult,
+                          @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
 

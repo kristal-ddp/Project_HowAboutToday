@@ -21,13 +21,13 @@ public class AccomReviewDTO {
     @NoArgsConstructor
     public static class ResponseDto {
         private Long accomReviewNum;//리뷰 번호
-        private Member accomMember;//작성자
+        private String accomMember;//작성자
         private double accomReviewRating;//리뷰 평점
         private LocalDate accomReviewCreate;//리뷰 작성일
         private String accomReviewContent;//리뷰 내용
 
         public ResponseDto(Review review) {
-            this.accomMember = review.getMember();
+            this.accomMember = review.getMember().getNickname();
             this.accomReviewNum = review.getReviewNum();
             this.accomReviewRating = review.getReviewRating();
             this.accomReviewCreate = review.getReviewCreateDate();

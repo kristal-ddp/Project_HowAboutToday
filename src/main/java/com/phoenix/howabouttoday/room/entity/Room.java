@@ -64,7 +64,6 @@ public class Room {
     public Room(String roomName,int defaultGuest,int maxGuest, Double roomRating,Integer roomReviewNum,Integer price, String roomInfo, Accommodation accommodation, LocalDate stayEndDate, LocalDate stayStartDate) {
         this.roomRating = roomRating;
         this.roomReviewNum = roomReviewNum;
-
         this.roomName = roomName;
         this.defaultGuest = defaultGuest;
         this.maxGuest = maxGuest;
@@ -74,6 +73,17 @@ public class Room {
         this.stayStartDate = stayStartDate;
         this.stayEndDate = stayEndDate;
     }
+
+    private void addReviewCount(){
+        this.roomReviewNum += 1;
+    }
+
+    public void calculateRating(Double inputRating){
+        addReviewCount();
+        this.roomRating = (this.roomRating * (getRoomReviewNum() - 1) + inputRating) / getRoomReviewNum();
+    }
+
+
 }
 
 

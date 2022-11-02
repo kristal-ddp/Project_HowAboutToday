@@ -37,6 +37,10 @@
                 <th:block th:unless="${(#request.getRequestURI).equals('/user-dashboard-wishlist')}"><li></th:block>
                 <a th:href="@{/user-dashboard-wishlist}" ><i class="la la-heart mr-2 text-color-4"></i><span th:text="#{sidebar_wishList}">위시리스트</span></a></li>
 
+                <th:block th:if="${(#request.getRequestURI).equals('/user-dashboard-coupon')}"><li class="page-active"></th:block>
+                <th:block th:unless="${(#request.getRequestURI).equals('/user-dashboard-coupon')}"><li></th:block>
+                <a th:href="@{/user-dashboard-coupon}" ><i class="la la-envelope mr-2"></i><span>쿠폰함</span></a></li>
+
                 <th:block th:if="${(#request.getRequestURI).equals('/user-dashboard-booking')}"><li class="page-active"></th:block>
                 <th:block th:unless="${(#request.getRequestURI).equals('/user-dashboard-booking')}"><li></th:block>
                 <a th:href="@{/user-dashboard-booking}" ><i class="la la-shopping-cart mr-2"></i><span th:text="#{sidebar_myBooking}">예약 내역</span></a></li>

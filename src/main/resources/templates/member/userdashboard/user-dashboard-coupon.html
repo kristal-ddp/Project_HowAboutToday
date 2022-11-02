@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout_user">
+
+<th:block layout:fragment="content">
+
+<!-- ================================
+    START DASHBOARD AREA
+================================= -->
+    <section class="dashboard-area">
+        <div class="dashboard-content-wrap">
+            <div class="dashboard-bread dashboard--bread">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="breadcrumb-content">
+                                <div class="section-heading">
+                                    <h2 class="sec__title font-size-30 text-white">쿠폰함</h2>
+                                </div>
+                            </div><!-- end breadcrumb-content -->
+                        </div><!-- end col-lg-6 -->
+                    </div><!-- end row -->
+                </div>
+            </div><!-- end dashboard-bread -->
+            <div class="dashboard-main-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-box">
+                                <div class="form-content">
+                                    <div class="user-profile-action d-flex align-items-center pb-4">
+                                        <div class="user-pro-img">
+                                            <img src="/images/couponImage.png" alt="">
+                                            <div class="sidebar-menu-wrap">신규 가입 축하 쿠폰</div>
+                                        </div>
+                                    </div>
+                                    <div class="contact-form-action">
+                                            <div class="row">
+                                                <div class="col-lg-6 responsive-column">
+                                                    <div class="input-box">
+                                                        <label class="label-text">최대 할인 금액</label>
+                                                    </div>
+                                                </div><!-- end col-lg-6 -->
+                                                <div class="col-lg-6 responsive-column">
+                                                    <div class="input-box">
+                                                        <label class="label-text">사용 기한</label>
+                                                    </div>
+                                                </div><!-- end col-lg-6 -->
+                                                <div class="col-lg-6 responsive-column">
+                                                    <div class="input-box">
+                                                        <label class="label-text">쿠폰 설명</label>
+                                                    </div>
+                                                </div><!-- end col-lg-6 -->
+                                                <div class="col-lg-6 responsive-column">
+                                                    <div class="input-box">
+                                                        <label class="label-text">최소 결제 금액</label>
+                                                    </div>
+                                                </div><!-- end col-lg-6 -->
+                                            </div><!-- end row -->
+                                    </div>
+                                </div>
+                            </div><!-- end form-box -->
+                        </div><!-- end col-lg-6 -->
+                    </div><!-- end row -->
+                    </form>
+                </div>
+            </div>
+        </div><!-- end form-box -->
+    </div><!-- end dashboard-content-wrap -->
+</section><!-- end dashboard-area -->
+<!-- ================================
+    END DASHBOARD AREA
+================================= -->
+
+</th:block>
+
+</html>

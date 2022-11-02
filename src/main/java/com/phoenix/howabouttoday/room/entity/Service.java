@@ -9,13 +9,16 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Builder
 public class Service {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long serviceNum;//서비스번호
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="room_roomNum")
+    private Room room; //객실 번호
 
     @Enumerated(EnumType.STRING)
     private ServiceNames serviceName;//서비스이름

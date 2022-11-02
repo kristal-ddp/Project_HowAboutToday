@@ -118,8 +118,8 @@ public class NoticeController {
 
     // 공지사항 수정
     @PostMapping("admin/notice-edit/{boardNum}")
-    public String noticeEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO,
-                             BindingResult bindingResult, @LoginUser SessionDTO sessionDTO, Model model){
+    public String noticeEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO, BindingResult bindingResult,
+                             @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
 

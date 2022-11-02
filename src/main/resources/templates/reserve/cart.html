@@ -68,8 +68,12 @@
                                     <div class="table-content product-content d-flex align-items-center">
                                         <div class="cart_info_div">
 
-                                            <input type="checkbox" style="margin-right: 20px" class="cart_checkbox" checked="checked" name="cartNum" th:value="${cart.cartNum}">
-                                            <input type="hidden" class="total_price_input" th:value="${cart.getReservePrice()}">
+                       <input type="checkbox" style="margin-right: 20px" class="cart_checkbox" checked="checked" th:name="cartNum" th:value="${cart.cartNum}">
+                                            <input type="hidden" class="total_reservePrice_input" th:value="${cart.reservePrice}">
+                                            <input type="hidden" class="total_price_input" th:value="${cart.roomPrice}">
+                                            
+                                            <!-- <input type="hidden" class="total_price_input" th:value="${cart.getReservePrice()}"> -->
+                                            
                                             <input type="hidden" class="count_input" value="1">
                                         </div>
 
@@ -101,7 +105,7 @@
                                        </div>
                                     </div>
                                 </th>
-                                <td th:text="|${cart.getReservePrice()}원|">숙소 가격</td> <!-- 숙소 가격 필드 -->
+                                <td th:text="|${cart.roomPrice}원|">숙소 가격</td> <!-- 숙소 가격 필드 -->
                                 <td>
                                     1
                                 </td>
@@ -428,17 +432,16 @@
 
         function setTotalInfo(){
             let totalPrice =0;
-            let totalCount = 0;
-            let cartNum = [];
+            let totalReservePrice = 0;
+
 
             $(".cart_info_div").each(function(index,element){
 
                 if($(element).find(".cart_checkbox").is(":checked")=== true) {
 
-                    totalPrice += parseInt($(element).find(".total_price_input").val());
-                    totalCount += parseInt($(element).find(".count_input").val());
-                    // cartNum.push(parseInt($(element).find(".cartNum_input").val()));
-                    // alert(cartNum);
+                    totalPrice += parseInt($(element).find(".total_reservePrice_input").val());
+
+
                 }
             });
 

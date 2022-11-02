@@ -88,8 +88,8 @@ public class EventController {
     // 이벤트 작성
     @PostMapping("admin/event-add")
     public String eventAdd(@Valid EventDTO eventDTO, BindingResult bindingResult,
-                           @LoginUser SessionDTO sessionDTO, Model model,
-                           @RequestParam("eventImageList") List<MultipartFile> eventImageList) throws Exception {
+                           @RequestParam("eventImageList") List<MultipartFile> eventImageList,
+                           @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO) throws Exception {
 
         if(bindingResult.hasErrors()) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -122,8 +122,8 @@ public class EventController {
 
     // 이벤트 수정
     @PostMapping("admin/event-edit/{eventNum}")
-    public String eventEdit(@PathVariable Long eventNum, @Valid EventDTO eventDTO,
-                            BindingResult bindingResult, @LoginUser SessionDTO sessionDTO, Model model) throws Exception {
+    public String eventEdit(@PathVariable Long eventNum, @Valid EventDTO eventDTO, BindingResult bindingResult,
+                            @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO) throws Exception {
 
         if(bindingResult.hasErrors()) {
 

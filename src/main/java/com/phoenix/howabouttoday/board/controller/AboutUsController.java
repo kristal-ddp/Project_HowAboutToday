@@ -85,7 +85,7 @@ public class AboutUsController {
     // 오늘어때 정보 작성
     @PostMapping("admin/aboutUs-add")
     public String aboutUsAdd(@Valid BoardDTO boardDTO, BindingResult bindingResult,
-                             @LoginUser SessionDTO sessionDTO, Model model){
+                             @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -116,8 +116,8 @@ public class AboutUsController {
 
     // 오늘어때 정보 수정
     @PostMapping("admin/aboutUs-edit/{boardNum}")
-    public String aboutUsEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO,
-                             BindingResult bindingResult, @LoginUser SessionDTO sessionDTO, Model model){
+    public String aboutUsEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO, BindingResult bindingResult,
+                              @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
 

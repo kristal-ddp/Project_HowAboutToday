@@ -32,11 +32,11 @@ public class Region {
 
   @OneToMany(mappedBy = "parentRegion", cascade = CascadeType.ALL)
   private List<Region> childRegions = new ArrayList<>();
-
-  //양방향 매핑을 위해 추가
-  @JsonIgnore
-  @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
-  private List<Accommodation> accommodation = new ArrayList<>();    //이미지 fk를 위한 매핑
+//
+//  //양방향 매핑을 위해 추가
+//  @JsonIgnore
+//  @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
+//  private List<Accommodation> accommodation = new ArrayList<>();    //이미지 fk를 위한 매핑
 
 
 }

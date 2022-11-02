@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/layout">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 
 
     <!-- ================================
-                START HERO-WRAPPER AREA
-            ================================= -->
+        START HERO-WRAPPER AREA
+    ================================= -->
     <section class="hero-wrapper hero-wrapper2">
         <div class="hero-box pb-0 hwt-hero-box">
             <div id="fullscreen-slide-contain">
@@ -28,16 +30,15 @@
                         </div><!-- end hero-content -->
                         <div class="search-fields-container hwt-search-container">
                             <div class="contact-form-action hwt-search">
-                                <form action="#" class="row">
-                                    <div class="col-lg-3 pr-0 hwt-search-element hwt-search-category">
+                                <form id="searchForm" th:object="${searchForm}" class="row">
+                                    <div class="col-lg-3 pr-0 hwt-search-element">
                                         <div class="input-box">
                                             <label class="label-text">카테고리</label>
                                             <div class="select-contain home-select-category">
-                                                <select class="select-contain-select">
-                                                    <option value="1">호텔</option>
-                                                    <option value="2">모텔</option>
-                                                    <option value="3">펜션/풀빌라</option>
-                                                    <option value="4">게하/한옥</option>
+                                                <select class="select-contain-select" id="categoryValue">
+                                                    <th:block  th:each="category : ${accomCategorys}">
+                                                    <option th:value="${category.name}" th:text="${category.viewName}">호텔</option>
+                                                    </th:block>
                                                 </select>
                                             </div><!-- end select-contain -->
                                         </div>
@@ -47,7 +48,7 @@
                                             <label class="label-text">체크인 - 체크아웃</label>
                                             <div class="form-group">
                                                 <span class="la la-calendar form-icon"></span>
-                                                <input class="date-picker-multiple form-control" type="text" name="daterange" readonly>
+                                                <input class="date-picker-multiple form-control" type="text" name="daterange" th:field="*{daterange}" readonly>
                                             </div>
                                         </div>
                                     </div><!-- end col-lg-3 -->
@@ -77,7 +78,7 @@
                                                                 <label>성인</label>
                                                                 <div class="qtyBtn d-flex align-items-center">
                                                                     <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                                    <input type="text" name="adult_number" value="0">
+                                                                    <input type="text" th:field="*{adult_number}">
                                                                     <div class="qtyInc"><i class="la la-plus"></i></div>
                                                                 </div>
                                                             </div>
@@ -87,7 +88,7 @@
                                                                 <label>아동</label>
                                                                 <div class="qtyBtn d-flex align-items-center">
                                                                     <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                                    <input type="text" name="child_number" value="0">
+                                                                    <input type="text" th:field="*{child_number}">
                                                                     <div class="qtyInc"><i class="la la-plus"></i></div>
                                                                 </div>
                                                             </div>
@@ -99,7 +100,7 @@
                                     </div><!-- end col-lg-3 -->
                                 </form>
                                 <div class="btn-box pt-2 hwt-search-btn">
-                                    <a href="room-search-result.html" class="theme-btn hwt-btn-gray">검색</a>
+                                    <a th:href="|javascript:void(0)|" class="theme-btn hwt-btn-gray" th:onclick="searchSubmit()">검색</a>
                                 </div>
                             </div>
                         </div>
@@ -109,14 +110,14 @@
         </div>
     </section><!-- end hero-wrapper -->
     <!-- ================================
-            END HERO-WRAPPER AREA
-        ================================= -->
+        END HERO-WRAPPER AREA
+    ================================= -->
 
     <div class="section-block"></div>
 
     <!-- ================================
-            START INFO AREA
-        ================================= -->
+        START INFO AREA
+    ================================= -->
     <section class="info-area info-bg info-area2 padding-top-40px padding-bottom-60px hwt-info">
         <div class="container">
             <div class="row hwt-row-board">
@@ -195,14 +196,14 @@
         </div><!-- end container -->
     </section><!-- end info-area -->
     <!-- ================================
-            END INFO AREA
-        ================================= -->
+        END INFO AREA
+    ================================= -->
 
     <div class="section-block hwt-section-block"></div>
 
     <!-- ================================
-            START INFO AREA 2
-        ================================= -->
+        START INFO AREA 2
+    ================================= -->
     <section class="info-area info-bg info-area2 padding-top-80px padding-bottom-45px hwt-info2">
         <div class="container">
             <div class="row hwt-row-icon">
@@ -274,14 +275,14 @@
         </div><!-- end container -->
     </section><!-- end info-area -->
     <!-- ================================
-            END INFO AREA
-        ================================= -->
+        END INFO AREA
+    ================================= -->
 
     <div class="section-block"></div>
 
     <!-- ================================
-            START HOTEL AREA 2
-        ================================= -->
+        START HOTEL AREA 2
+    ================================= -->
     <section class="hotel-area section-bg padding-top-100px padding-bottom-100px overflow-hidden">
         <div class="container">
             <div class="row">
@@ -452,12 +453,12 @@
         </div><!-- end container-fluid -->
     </section><!-- end hotel-area -->
     <!-- ================================
-            END HOTEL AREA
-        ================================= -->
+        END HOTEL AREA
+    ================================= -->
 
     <!-- ================================
-            START DESTINATION AREA
-        ================================= -->
+        START DESTINATION AREA
+    ================================= -->
     <section class="destination-area padding-top-130px padding-bottom-80px">
         <div class="container">
             <div class="row align-items-center">
@@ -568,12 +569,12 @@
         </div><!-- end container -->
     </section><!-- end destination-area -->
     <!-- ================================
-            END DESTINATION AREA
-        ================================= -->
+        END DESTINATION AREA
+    ================================= -->
 
     <!-- ================================
-            START DISCOUNT AREA
-        ================================= -->
+        START DISCOUNT AREA
+    ================================= -->
     <section class="discount-area padding-top-120px padding-bottom-120px hwt-banner-wrap">
         <div class="container">
             <div class="row">
@@ -607,8 +608,8 @@
         </div><!-- end container -->
     </section><!-- end discount-area -->
     <!-- ================================
-            END DISCOUNT AREA
-        ================================= -->
+        END DISCOUNT AREA
+    ================================= -->
 
     <div class="section-block"></div>
 
@@ -629,14 +630,14 @@
             <th:block th:replace="fragments/signIn::signIn"></th:block>
 
 
-            <script>
-                $(document).ready(function(){
+    <script>
+        $(document).ready(function(){
 
             let memberCheck = $("#memberCheck").val();
             let loginCheck = $("#loginCheck").val();
 
 
-            if (memberCheck == "true") {
+            if(memberCheck == "true"){
                 $("#memberJoin").click();
             }
 
@@ -647,6 +648,16 @@
 
 
         })
+
+
+        function searchSubmit(){
+            var searchForm = document.getElementById("searchForm")
+            let category_name = $("#categoryValue").val();
+            searchForm.action = '/accom/' + category_name
+            searchForm.submit();
+
+
+        }
     </script>
 </th:block>
 

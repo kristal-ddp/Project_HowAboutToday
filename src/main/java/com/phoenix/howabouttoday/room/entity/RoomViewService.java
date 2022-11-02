@@ -17,7 +17,7 @@ public class RoomViewService {
     private Long roomViewServiceNum;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_num", referencedColumnName = "roomNum")
+    @JoinColumn(name = "room_num")
     private Room room;
 
     @ManyToOne(fetch = FetchType.LAZY)

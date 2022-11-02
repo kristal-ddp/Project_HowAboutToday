@@ -5,8 +5,11 @@ package com.phoenix.howabouttoday.accom.entity;
  */
 
 public enum Facility {
-    OCEANVIEW("오션뷰 있음"),RIVERVIEW("리버뷰 있음"),GOOD("상태 좋음"),THREESTAR("3성 호텔"),FOURSTAR("4성 호텔"),NO_CHARGE("추가요금 없음"),CHARGE("추가요금"),
-    CANCELLATION("취소 불가"),;
+    WIFI("와이파이"),SWIMMING_POOL("수영장"),TELEVISION("삼성 40인치 TV"),COFFEE("커피"),AIR_CONDITIONING("공기청정기"),FITNESS_FACILLITY("피트니스-시설"),
+    FRIDGE("냉장고"),WINE_BAR("와인바"),ENTERTAINMENT("오락시설"),SECUREVAULT("보안 금고"),FREEPARKING("무료 주차"),
+    ELEVATOR_IN_BUILDING("엘리베이터 있음"),HANDICAP_ACCESSIBLE("장애인 이용 가능"),FIRE_PLACE("난방 가능"),PETS_ALLOWED("애완 동물 허용");
+
+
 
     private String krName;
 

@@ -36,6 +36,8 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
     @EntityGraph(attributePaths = {"accomCategory","region","accommodationImage"})
     Slice<Accommodation> findByAccomCategory_Name(String category_name, Pageable pageable);
 
+
+
 }
 
 

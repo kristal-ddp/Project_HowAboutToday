@@ -43,8 +43,7 @@
                         <div class="author-bio">
                                 <h3 class="title hwt-details-bold" th:text="${eventDetailDTO.eventTitle}">게시글 제목</h3>
                         </div>
-                        <div class="hwt-detail-date" th:text="|${#temporals.format(eventDetailDTO.eventStart, 'yyyy-MM-dd')} -
-                            ${#temporals.format(eventDetailDTO.eventEnd, 'yyyy-MM-dd')}|">게시일</div>
+                        <div class="hwt-detail-date" th:text="${eventDetailDTO.date}">게시일</div>
                     </div><!-- form-title-wrap -->
                 </div>
 
