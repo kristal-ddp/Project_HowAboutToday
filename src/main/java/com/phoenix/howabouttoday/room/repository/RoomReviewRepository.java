@@ -26,6 +26,10 @@ public interface RoomReviewRepository extends JpaRepository<Review,Long> {
     Optional<Long> checkReserve(@Param(value = "memberNum") Long memberNum, @Param(value = "roomNum") Long roomNum);
 
     List<Review> findAllByRoom_RoomNum(Long roomNum);
+
+    List<Review> findAllByMember_MemberNum(Long memberId);
+
+
 //
 //    // SQL 객체 파라미터 쿼리
 //    @Query(value = "select snack_id, name, price from snack where snack_id > :#{#paramSnack.id}", nativeQuery = true)

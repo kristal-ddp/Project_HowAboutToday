@@ -6,6 +6,7 @@ import com.phoenix.howabouttoday.payment.dto.RoomReviewCreateRequestDTO;
 import com.phoenix.howabouttoday.payment.dto.RoomReviewCreateResponseDTO;
 import com.phoenix.howabouttoday.payment.enumType.ReviewResponseCode;
 import com.phoenix.howabouttoday.room.dto.*;
+import com.phoenix.howabouttoday.room.entity.Review;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,4 +20,6 @@ public interface ReviewService {
 
     Boolean isPaid(Long memberNum, Long roomNum);
     Boolean withinTwoWeeks(Long memberNum, Long roomNum);
+
+    List<MyReviewDTO> getMemberReivew(Long memberNum);
 }

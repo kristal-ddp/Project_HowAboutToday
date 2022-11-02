@@ -1,6 +1,6 @@
 const ratingStar = document.querySelectorAll("input[name='ratingStar']");
 const reviewWrite = document.querySelector("#reviewWrite");
-let clickRate = 1;
+let clickRate = 5;
 
 ratingStar.forEach((star) => {
     star.addEventListener('click', (event) => {
@@ -23,8 +23,11 @@ ratingStar.forEach((star) => {
 reviewWrite.addEventListener('click', (event) => {
     const roomNum = document.querySelector("#roomNum").value;
     const reviewMemberName = document.querySelector("#reviewMemberName");
+    const ordersDetailNum = document.querySelector("#ordersDetailNum");
+
     const reviewContent = document.querySelectorAll("textarea[name='reviewContent']")[0];
 
+    const odNum = ordersDetailNum.value;
     const name = reviewMemberName.value;
     const content = reviewContent.value;
 
@@ -33,6 +36,7 @@ reviewWrite.addEventListener('click', (event) => {
         return;
     }
     const data = {
+        ordersDetailNum:odNum,
         roomNum : roomNum,
         name: name,
         content: content,
@@ -53,6 +57,7 @@ reviewWrite.addEventListener('click', (event) => {
             console.log(data.code);
             console.log(typeof data.code);
             checkReview(data.code);
+            window.location.href = window.location.href;
         })
         .catch(() => {
             alert("리뷰 저장 실패");

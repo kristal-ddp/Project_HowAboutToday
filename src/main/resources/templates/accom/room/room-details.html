@@ -112,7 +112,7 @@
                                 <div class="review-box">
                                     <div class="single-content-item padding-top-40px">
                                         <h3 class="title font-size-20" th:text="|${roomDetailDTO.roomReviewNum}개의 리뷰|"></h3>
-                                        <div class="comments-list padding-top-50px">
+                                        <div class="comments-list padding-top-7px">
                                             <div class="comment" th:each="reviewList : ${rlist}">
                                                 <div class="comment-body">
                                                     <div class="meta-data">
@@ -136,6 +136,73 @@
                                         </div><!-- end comments-list -->
 
                                         <!-- 후기 작성 -->
+                                        <div th:if="${ordersDetailDTOList.size() != 0}" class="comment-forum padding-top-40px">
+                                            <div class="form-box">
+                                                <div class="form-title-wrap">
+                                                    <h3 class="title">후기 작성</h3>
+                                                </div><!-- form-title-wrap -->
+
+                                                <div class="form-content">
+                                                    <div class="contact-form-action">
+                                                        <select class="select-contain-select w-50">
+                                                            <!--                                                            <option value="0">예약 선택</option>-->
+                                                            <option th:each="ordersDetail  : ${ordersDetailDTOList}" id="ordersDetailNum" th:value="${ordersDetail.getOrdersDetailNum()}"  th:text="|${ordersDetail.getStartDate()} ~ ${ordersDetail.getEndDate()}|">객실 선택</option>
+                                                        </select>
+                                                        <div class="form-content">
+                                                            <div class="rate-option p-2">
+                                                                <div class="row">
+                                                                    <div class="col-lg-4 responsive-column">
+                                                                        <div class="rate-option-item">
+                                                                            <label>평점</label>
+                                                                            <div class="rate-stars-option">
+                                                                                <input type="checkbox" id="lst5" checked="checked" name="ratingStar" value="5">
+                                                                                <label for="lst5"></label>
+                                                                                <input type="checkbox" id="lst4" name="ratingStar" value="4">
+                                                                                <label for="lst4"></label>
+                                                                                <input type="checkbox" id="lst3" name="ratingStar" value="3">
+                                                                                <label for="lst3"></label>
+                                                                                <input type="checkbox" id="lst2" name="ratingStar" value="2">
+                                                                                <label for="lst2"></label>
+                                                                                <input type="checkbox" id="lst1" name="ratingStar" value="1">
+                                                                                <label for="lst1"></label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- col-lg-4 -->
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6 responsive-column">
+                                                                        <div class="input-box">
+                                                                            <label class="label-text">성함</label>
+                                                                            <div class="form-group">
+                                                                                <span class="la la-user form-icon"></span>
+                                                                                <input class="form-control" type="text" name="text" id="reviewMemberName" placeholder="투숙객 성함">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12">
+                                                                        <div class="input-box">
+                                                                            <label class="label-text">내용</label>
+                                                                            <div class="form-group">
+                                                                                <span class="la la-pencil form-icon"></span>
+                                                                                <textarea class="message-control form-control" name="reviewContent" placeholder="후기 내용을 작성해주세요"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12">
+                                                                        <div class="btn-box">
+                                                                            <button type="button" id="reviewWrite" class="theme-btn hwt-btn-gray">작성하기
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- end contact-form-action -->
+                                                </div><!-- end form-content -->
+                                            </div><!-- end form-box -->
+                                        </div><!-- end comment-forum -->
+
+
                                        
                                     </div><!-- end single-content-item -->
                                 </div><!-- end review-box -->
@@ -312,6 +379,18 @@
 
         function roomSubmit(){
             const roomNum = document.querySelector("#roomNum").value;
+
+            let checkDate = $("#checkDate").val();
+
+            let strings = checkDate.split("-");
+            let startDate = strings[0].trim();
+            let endDate = strings[1].trim();
+
+            if(startDate==endDate){
+                alert("체크인/체크아웃 날짜가 같을 수 없습니다.")
+                return;
+            }
+
             fetch("/cartDuplCheck?roomNum=" + roomNum)
                 .then((response)=>response.json())
                 .then((result)=> {

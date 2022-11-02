@@ -6,8 +6,8 @@ import lombok.Getter;
 public class RoomReviewCreateRequestDTO {
 
     private Long roomNum;
-    private Long orderNum;
+    private Long ordersDetailNum;
     private String name;
     private String content;
-    private Integer rating;
+    private Double rating;
 }

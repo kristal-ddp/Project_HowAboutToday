@@ -32,9 +32,8 @@ import java.time.LocalDate;
 @Entity
 public class OrdersDetail extends Reservation {
 
-    private void writeReview(){
+    public void writtenReview(){
         this.isReviewWrited = ReviewStatus.POST_WRITE;
     }
-
 
 }

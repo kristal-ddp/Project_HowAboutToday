@@ -40,6 +40,7 @@ public class Review {
     private LocalDate reviewCreateDate;
     private LocalDate reviewModifyDate;
 
+    @Column(scale = 1)
     private Double reviewRating;
     private String reviewContent;
 

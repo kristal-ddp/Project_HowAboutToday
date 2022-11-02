@@ -249,37 +249,24 @@
 
 
 
+
+
+
+
+    <!-- ================================
+           START FOOTER AREA
+    ================================= -->
+    <!-- ================================
+           START FOOTER AREA
+    ================================= -->
+
     <!-- ================================
         START CTA AREA
     ================================= -->
-    <section class="cta-area cta-bg-2 bg-fixed padding-top-60px padding-bottom-60px breadcrumb-board">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7 hwt-col-left">
-                    <div class="section-heading">
-                        <h2 class="sec__title font-size-30 text-white">Contact Us</h2>
-                        <p class="sec__desc text-white pt-1 hwt-font-content">오늘어때에 대해 궁금한 점이 있으신가요?</p>
-                    </div><!-- end section-heading -->
-                </div><!-- end col-lg-7 -->
-                <div class="col-lg-5 hwt-col-right">
-                    <div class="btn-box btn--box text-right">
-                        <a href="contact" class="theme-btn border-0 hwt-btn-white">고객센터</a>
-                    </div><!-- end btn-box -->
-                </div><!-- end col-lg-5 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end cta-area -->
+    <th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
     <!-- ================================
         END CTA AREA
     ================================= -->
-
-    <!-- ================================
-           START FOOTER AREA
-    ================================= -->
-    <!-- ================================
-           START FOOTER AREA
-    ================================= -->
-
     <!-- start back-to-top -->
     <div id="back-to-top">
         <i class="la la-angle-up" title="Go top"></i>
@@ -361,7 +348,7 @@
                 newlow += `<span class="price__from">최소 가격 :</span>`
                 newlow += `<span class="price__num">${accom[i].lowPrice}원~</span>`
                 newlow += `</p>`
-                newlow += `<a href="/hotel-single?accomNum=${accom[i].accomNum}" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>`
+                newlow += `<a href="javascript:void(0)" onclick="accomSingle(${accom[i].accomNum})" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>`
                 newlow += `</div>`
                 newlow += `</div>`
                 newlow += `</div>`

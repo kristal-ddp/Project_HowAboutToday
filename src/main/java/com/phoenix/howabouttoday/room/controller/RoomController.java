@@ -57,6 +57,7 @@ public class RoomController {
 
         boolean memberCheck = false;
         model.addAttribute("memberCheck",memberCheck);
+
         List<OrdersDetailDTO> ordersDetailDTOList = reviewService.isExistOrderDetail(sessionDTO, roomNum);
         model.addAttribute("ordersDetailDTOList",ordersDetailDTOList);
 

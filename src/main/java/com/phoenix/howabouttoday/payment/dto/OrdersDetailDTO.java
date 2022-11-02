@@ -19,7 +19,7 @@ import java.util.Locale;
 @Getter
 @Builder
 public class OrdersDetailDTO {
-    private Long ordersNum;
+    private Long ordersDetailNum;
     private String accomType;
     private String accomTypeIcon;
     private String accomName;
@@ -38,8 +38,8 @@ public class OrdersDetailDTO {
     private String checkOut;
 
 
-    public OrdersDetailDTO(Long ordersNum, String accomType, String accomTypeFilePath, String accomName, String accomRegion, String orderDate, String usePeriod, String startDate, String endDate, String startWeek, String endWeek, String price, String usedStatus, String roomName, String roomNum, String checkIn, String checkOut) {
-        this.ordersNum = ordersNum;
+    public OrdersDetailDTO(Long ordersDetailNum, String accomType, String accomTypeFilePath, String accomName, String accomRegion, String orderDate, String usePeriod, String startDate, String endDate, String startWeek, String endWeek, String price, String usedStatus, String roomName, String roomNum, String checkIn, String checkOut) {
+        this.ordersDetailNum = ordersDetailNum;
         this.accomType = accomType;
         this.accomTypeIcon = accomTypeFilePath;
         this.accomName = accomName;
@@ -64,7 +64,7 @@ public class OrdersDetailDTO {
         String startDay = reservation.getReserveUseStartDate().getDayOfWeek().getDisplayName(TextStyle.NARROW, Locale.KOREAN);
         String endDay = reservation.getReserveUseEndDate().getDayOfWeek().getDisplayName(TextStyle.NARROW, Locale.KOREAN);
 
-        this.ordersNum = reservation.getReserveNum();
+        this.ordersDetailNum = reservation.getReserveNum();
         this.accomType = reservation.getRoom().getAccommodation().getAccomCategory().getViewName();
         this.accomTypeIcon = reservation.getRoom().getAccommodation().getAccomCategory().getName();
         this.accomName = reservation.getRoom().getAccommodation().getAccomName();

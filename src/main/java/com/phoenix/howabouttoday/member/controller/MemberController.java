@@ -7,6 +7,8 @@ import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.member.validator.CustomValidators;
+import com.phoenix.howabouttoday.room.dto.MyReviewDTO;
+import com.phoenix.howabouttoday.room.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final CustomValidators.EmailValidator EmailValidator;
+    private final ReviewService reviewService;
 
     /* 커스텀 유효성 검증을 위해 추가 */
     @InitBinder
@@ -89,44 +92,10 @@ public class MemberController {
         return "redirect:/home";
     }
 
-
-//    @PostMapping("/member/join")
-//    public String joinProc(@Valid MemberDTO memberDTO, Errors errors, Model model,
-//                           @RequestHeader("referer") String referer) {
-//
-//        if (errors.hasErrors()) {
-//            /* 회원가입 실패시 입력 데이터 값을 유지 */
-//            model.addAttribute("memberDTO", memberDTO);
-//
-//            /* 유효성 통과 못한 필드와 메시지를 핸들링 */
-//            Map<String, String> validatorResult = memberService.validateHandling(errors);
-//            for (String key : validatorResult.keySet()) {
-//                model.addAttribute(key, validatorResult.get(key));
-//            }
-//            String url = referer.substring(21);
-//            /* 회원가입 페이지로 다시 리턴 */
-//            return "redirect:" + url;
-//        }
-//
-//        memberService.join(memberDTO);
-//        String url = referer.substring(21);
-//
-//        return "redirect:" + url;
-//    }
-
-//    @GetMapping("/loginProc")
-//    public String login(@RequestHeader("referer") String referer) {
-//        String url = referer.substring(21);
-//        System.out.println("aaa");
-//        return "/member/member-login";
-
     @GetMapping("/loginProc")
     public String login(@RequestParam(value = "error", required = false)String error,
                         @RequestParam(value = "exception", required = false)String exception,
                         Model model) {
-
-
-
 
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
@@ -191,46 +160,6 @@ public class MemberController {
     }
 
 
-
-//    @RestController
-//    public class UserController {
-//
-//        private final UserRepository userRepository;
-//
-//        public UserController(UserRepository userRepository) {
-//            this.userRepository = userRepository;
-//        }
-//
-//        @GetMapping("/users")
-//        public Page<User> getAllUsers() {
-//            PageRequest pageRequest = PageRequest.of(0, 5);
-//            return userRepository.findAll(pageRequest);
-//        }
-//
-//        @PostConstruct
-//        public void initializing() {
-//            for (int i = 0; i < 100; i++) {
-//                User user = User.builder()
-//                        .username("User " + i)
-//                        .address("Korea")
-//                        .age(i)
-//                        .build();
-//                userRepository.save(user);
-//            }
-//        }
-//    }
-
-//   @GetMapping("user-dashboard-booking")
-//    public String getUserDashboardBooking(Model model) {
-//
-//        addUsers(model);
-//        return "member/userdashboard/user-dashboard-booking";
-//    }
-//    @PostMapping("user-dashboard-booking")
-//    public String postUserDashboardBooking() {
-//        return "member/userdashboard/user-dashboard-booking";
-//    }
-
     @GetMapping("user-dashboard-profile")
     public String getUserDashboardProfile(@LoginUser SessionDTO sessionDTO, Model model) {
 
@@ -245,6 +174,11 @@ public class MemberController {
         return "member/userdashboard/user-dashboard-profile";
     }
 
+
+
+
+
+    //리뷰페이지 가기.
     @GetMapping("user-dashboard-reviews")
     public String getUserDashboardReviews(@LoginUser SessionDTO sessionDTO, Model model) {
 
@@ -252,8 +186,18 @@ public class MemberController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
+        List<MyReviewDTO> memberReivews = reviewService.getMemberReivew(sessionDTO.getMemberNum());
+
+        model.addAttribute("memberReivews", memberReivews);
+
         return "member/userdashboard/user-dashboard-reviews";
     }
+
+
+
+
+
+
     @PostMapping("user-dashboard-reviews")
     public String postUserDashboardReviews() {
         return "member/userdashboard/user-dashboard-reviews";
@@ -265,6 +209,9 @@ public class MemberController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+
+
+
 
         return "member/userdashboard/user-dashboard-settings";
     }

@@ -222,6 +222,8 @@ public class InitDb {
                     .defaultGuest(2)
                     .maxGuest(10)
                     .price(35000)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -231,6 +233,8 @@ public class InitDb {
                     .defaultGuest(2)
                     .maxGuest(10)
                     .price(4000000)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -239,6 +243,8 @@ public class InitDb {
                     .roomName("너울펜션 기가막힌 룸")
                     .defaultGuest(2)
                     .maxGuest(10)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .price(80000)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
@@ -611,6 +617,8 @@ public class InitDb {
                     .defaultGuest(2)
                     .maxGuest(10)
                     .price(70000)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -843,6 +851,8 @@ public class InitDb {
                     .roomName("우리 집 같은 내방룸")
                     .defaultGuest(2)
                     .maxGuest(2)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .stayStartDate(LocalDate.now())
                     .stayEndDate(LocalDate.of(2022,10, 28))
                     .price(43000)
@@ -854,6 +864,8 @@ public class InitDb {
                     .roomName("너네집 차가운 방")
                     .defaultGuest(2)
                     .maxGuest(3)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .stayStartDate(LocalDate.now())
                     .stayEndDate(LocalDate.of(2022,10, 28))
                     .price(65000)
@@ -865,6 +877,8 @@ public class InitDb {
                     .roomName("언제나 눕게 되는 방")
                     .defaultGuest(2)
                     .maxGuest(4)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .stayStartDate(LocalDate.now())
                     .stayEndDate(LocalDate.of(2022,10, 28))
                     .price(34000)
@@ -876,6 +890,8 @@ public class InitDb {
                     .roomName("너와 나의 연결방")
                     .defaultGuest(2)
                     .maxGuest(4)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .stayStartDate(LocalDate.now())
                     .stayEndDate(LocalDate.of(2022,10, 28))
                     .price(82000)

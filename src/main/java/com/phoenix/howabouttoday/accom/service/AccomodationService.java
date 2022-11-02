@@ -44,8 +44,8 @@ public class AccomodationService {
 
         Slice<Accommodation> page =
                 accommodationRepository.
-                       findByAccomCategory_NameAndLowPriceLessThanEqualAndLowPriceGreaterThanEqualAndAccomRatingLessThanEqualAndAccomNameContaining(category_name,
-                        maxPrice, minPrice, pageable,accomRating, keyword);
+                        findByAccomCategory_NameAndLowPriceLessThanEqualAndLowPriceGreaterThanEqualAndAccomRatingLessThanEqualAndAccomNameContaining(category_name,
+                                maxPrice, minPrice, pageable,accomRating, keyword);
 
         Slice<AccomDto.ResponsePageDto> accomPageList = page.map(accom -> new AccomDto.ResponsePageDto(accom));
 
@@ -118,7 +118,7 @@ public class AccomodationService {
 //                .totalreviewNum(accommodation.getTotalReviewNum())
                 .latitude(accommodation.getLatitude())
                 .longitude(accommodation.getLongitude())
-                .lowPrice(accommodation.getLowPrice())
+                .lowPrice(accommodation.getLowPrice().toString())
                 .reserveRange(accommodation.getReserveRange())
                 .build();
 

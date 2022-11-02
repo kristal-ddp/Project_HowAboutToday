@@ -72,6 +72,10 @@ public class ReviewServiceImpl implements ReviewService {
     void reviewSave(SessionDTO sessionDTO, RoomReviewCreateRequestDTO roomReviewCreateRequestDTO){
         Member member = memberRepository.findById(sessionDTO.getMemberNum()).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 멤버가 없습니다.", sessionDTO.getMemberNum())));
         Room room = roomRepository.findById(roomReviewCreateRequestDTO.getRoomNum()).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 객실 정보가 없습니다.", roomReviewCreateRequestDTO.getRoomNum())));
+        room.calculateRating(roomReviewCreateRequestDTO.getRating());
+
+        OrdersDetail ordersDetail = ordersDetailRepository.findById(roomReviewCreateRequestDTO.getOrdersDetailNum()).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 주문정보가 없습니다.", roomReviewCreateRequestDTO.getOrdersDetailNum())));
+        ordersDetail.writtenReview();
 
         Review review = Review.builder()
                 .member(member)
@@ -79,6 +83,8 @@ public class ReviewServiceImpl implements ReviewService {
                 .memberName(roomReviewCreateRequestDTO.getName())
                 .reviewRating(roomReviewCreateRequestDTO.getRating().doubleValue())
                 .reviewContent(roomReviewCreateRequestDTO.getContent())
+                .reviewCreateDate(LocalDate.now())
+                .reviewModifyDate(LocalDate.now())
                 .build();
 
         roomReviewRepository.save(review);
@@ -101,5 +107,15 @@ public class ReviewServiceImpl implements ReviewService {
         Long result = roomReviewRepository.withinTwoWeeks(memberNum, roomNum).orElse(0L);
 
         return result == 0 ? false : true;
+    }
+
+    @Override
+    public List<MyReviewDTO> getMemberReivew(Long memberNum) {
+
+        List<MyReviewDTO> reviewList = roomReviewRepository.findAllByMember_MemberNum(memberNum).stream()
+                .map(MyReviewDTO::new)
+                .collect(Collectors.toList());
+
+        return reviewList;
     }
 }
