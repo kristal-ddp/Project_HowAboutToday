@@ -57,10 +57,3 @@ clean {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
-bootJar{
-	destinationDirectory = file("./out/artifacts/howabouttoday_main_jar")
-	archivesBaseName = 'howabouttoday'
-	archiveFileName = 'howabouttoday.main.jar'
-	archiveVersion = "0.0.1"
-}
