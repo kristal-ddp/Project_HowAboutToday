@@ -69,6 +69,7 @@ public class AccomController {
         SearchForm searchForm = new SearchForm();
         model.addAttribute("searchForm",searchForm);
         model.addAttribute("loginCheck",loginCheck);
+
         return "home";
     }
 
@@ -162,6 +163,36 @@ public class AccomController {
         model.addAttribute("accommodation",accomList);
 
         return "accom/hotel/hotel-single";
+    }
+
+
+    /** 인기여행지 컨트롤러 **/
+    @GetMapping("/accom/ppl/{regionNum}")
+    public String pplTourist(@PathVariable(required = false) Long regionNum,
+                             Model model){
+
+
+
+
+        /** 로그인및 회원가입을 위한 Object 반환하는 로직 **/
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
+
+        /** 지역 반환 **/
+        Region viewName = regionService.findByNum(regionNum);
+        model.addAttribute("viewName",viewName);
+        model.addAttribute("regionNum",regionNum);
+        /** 다른여행지에 보여줄 부모지역 조회 **/
+        List<Region> parents = regionService.findAllParent();
+        model.addAttribute("parents",parents);
+
+        /**화면에 표시할 숙소카테고리 조회 **/
+        List<AccomCategoryDto.ResponseDto> accomCategorys = accomCategoryService.findAccomList();
+        model.addAttribute("accomCategorys",accomCategorys);
+
+        return "/accom/hotel/ppl-tourist";
     }
 
 

@@ -32,8 +32,6 @@ public class AccomRestController {
                                                           @RequestParam(required = false) String regionNo,
                                                           @RequestParam(required = false) String accomRating) {
 
-
-
         /** 검색어가 없을경우 처리 로직 **/
         if(keyword==null || keyword.equals("") ){
             keyword = "";
@@ -68,7 +66,6 @@ public class AccomRestController {
         }
 
         return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice,rating);
-
 
     }
 
@@ -161,5 +158,12 @@ public class AccomRestController {
         return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice,rating);
     }
 
+    /** 인기여행지 컨트롤러 **/
+    @GetMapping("ppl/{regionNum}")
+    public Slice<AccomDto.ResponsePageDto> pplTourist(@PathVariable(required = false) Long regionNum,
+                                                      @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.ASC) Pageable pageable){
 
+
+        return accomodationService.findByRegionNum(regionNum,pageable);
+    }
 }
