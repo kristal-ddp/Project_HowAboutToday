@@ -45,7 +45,7 @@
                         <div class="filter-bar d-flex align-items-center justify-content-between">
                             <div class="filter-bar-filter d-flex flex-wrap align-items-center">
                                 <div class="filter-option">
-                                    <h3 class="title font-size-18">정렬:</h3>
+
                                 </div>
 
                             </div><!-- end filter-bar-filter -->
@@ -63,6 +63,27 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="sidebar mt-0">
+                        <div class="sidebar-widget">
+                            <h3 class="title stroke-shape">지역</h3>
+                            <div class="sidebar-category">
+                                <ul class="nav flex-column">
+
+                                    <th:block th:each="parentRegion : ${parentRegions}">
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                               role="button" aria-expanded="false" th:text="${parentRegion.region.value}">서울</a>
+                                            <ul class="dropdown-menu">
+                                                <th:block th:each="childRegion, i : ${parentRegion.childRegions}">
+                                                    <li><a th:href="|javascript:void(0)|" class="dropdown-item"href="#"
+                                                           th:onclick="searchRegion([[${childRegion.regionNum}]])" th:text="${childRegion.region.value}">관악구</a></li>
+                                                </th:block>
+                                            </ul>
+                                        </li>
+                                    </th:block>
+                                </ul>
+
+                            </div>
+                        </div><!-- end sidebar-widget -->
                         <div class="sidebar-widget">
                                 <h3 class="title stroke-shape" th:text="|${viewName} 검색|">호텔 검색</h3>
                                 <div class="sidebar-widget-item">
@@ -198,28 +219,7 @@
                                 </div>
                             </div>
                         </div><!-- end sidebar-widget -->
-                        <div class="sidebar-widget">
-                            <h3 class="title stroke-shape">지역</h3>
-                            <div class="sidebar-category">
-                                <ul class="nav flex-column">
 
-                                    <th:block th:each="parentRegion : ${parentRegions}">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                           role="button" aria-expanded="false" th:text="${parentRegion.region.value}">서울</a>
-
-                                        <ul class="dropdown-menu">
-                                            <th:block th:each="childRegion, i : ${parentRegion.childRegions}">
-                                                <li><a th:href="|javascript:void(0)|" class="dropdown-item"href="#"
-                                                       th:onclick="searchRegion([[${childRegion.regionNum}]])" th:text="${childRegion.region.value}">관악구</a></li>
-                                            </th:block>
-                                        </ul>
-                                    </li>
-                                    </th:block>
-                                </ul>
-
-                            </div>
-                        </div><!-- end sidebar-widget -->
                     </div><!-- end sidebar -->
                 </div><!-- end col-lg-4 -->
                 <!-- 리스트 목록 시작 -->
@@ -339,8 +339,7 @@
                 newlow += `<h3 class="card-title" ><a href="javascript:void(0)" onclick="accomSingle(${accom[i].accomNum})">${accom[i].accomName}</a></h3>`
                 newlow += `<p class="card-meta">${accom[i].accomAddress}</p>`
                 newlow += `<div class="card-rating">`
-                newlow += `<span class="badge text-white">${accom[i].accomRating}</span>`
-                newlow += `<span class="review__text">평균</span>&nbsp;`
+                newlow += `<span class="badge text-white">${accom[i].accomRating}</span>&nbsp;&nbsp;`
                 newlow += `<span class="rating__text">${accom[i].totalReviewNum}개의&nbsp;리뷰</span>`
                 newlow += `</div>`
                 newlow += `<div class="card-price d-flex align-items-center justify-content-between">`
@@ -515,7 +514,7 @@
                 }
 
             }).fail(function(error){
-                alert(JSON.stringify(error));
+                alert("로그인 후 이용하세요.");
             });
         }
 
