@@ -1,6 +1,7 @@
 package com.phoenix.howabouttoday.board.controller;
 
 import com.phoenix.howabouttoday.board.dto.*;
+import com.phoenix.howabouttoday.board.entity.BoardCategory;
 import com.phoenix.howabouttoday.board.service.FAQService;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
@@ -57,6 +58,11 @@ public class FAQController {
                          @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
+
+            if(sessionDTO == null) {
+                return "/loginProc";
+            }
+
             model.addAttribute("sessionDTO", sessionDTO);
             return "board/faq-add";
         }
@@ -85,7 +91,7 @@ public class FAQController {
     // FAQ 수정
     @PostMapping("admin/faq-edit/{boardNum}")
     public String faqEdit(@PathVariable Long boardNum, @Valid FAQDTO FAQDTO, BindingResult bindingResult,
-                          @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
+                          @LoginUser SessionDTO sessionDTO, Model model){
 
         if(bindingResult.hasErrors()) {
 

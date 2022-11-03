@@ -14,7 +14,7 @@
                     <div class="col-lg-12">
                         <div class="breadcrumb-content text-center">
                             <div class="section-heading">
-                                <h2 class="sec__title text-white">Edit FAQ</h2>
+                                <h2 class="sec__title text-white">EDIT FAQ</h2>
                             </div>
                         </div><!-- end breadcrumb-content -->
                     </div><!-- end col-lg-6 -->
@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
 
-            <form th:action="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" th:object="${boardDetailDTO}" method="post" class="row board-add-form">
+            <form th:action="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" th:object="${boardDetailDTO}" method="post" class="row board-add-form" id="faq-form">
 
                 <!-- Add Form -->
                 <div class="col-lg-8 hwt-col-post">
@@ -100,7 +100,7 @@
                     <div class="submit-box hwt-btn-submit">
                         <div class="btn-box pt-3">
                             <button type="button" class="theme-btn hwt-btn-left board-btn-white" onclick="history.back()">뒤로가기</button>
-                            <button type="submit" class="theme-btn">수정하기</button>
+                            <button type="button" class="theme-btn" id="faq-add">수정하기</button>
                         </div>
                     </div><!-- end submit-box -->
 
@@ -130,6 +130,10 @@
 <!-- 로그인 모달 -->
 <th:block th:replace="fragments/signIn::signIn"></th:block>
 
+</th:block>
+
+<th:block layout:fragment="script">
+    <script src="/js/hwt/board.js"></script>
 </th:block>
 
 </html>

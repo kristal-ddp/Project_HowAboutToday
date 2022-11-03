@@ -24,13 +24,13 @@ public class BoardCategory {
     private String boardCategoryName; // 게시글 카테고리 이름
 
     @Column(nullable = false)
-    private int boardParentNum; // 게시글 카테고리 상위 번호
+    private Long boardParentNum; // 게시글 카테고리 상위 번호
 
     @OneToMany(mappedBy = "boardCategory", cascade = CascadeType.ALL)
     private List<Board> boardList = new ArrayList<>();
 
     @Builder
-    public BoardCategory(String boardCategoryName, int boardParentNum) {
+    public BoardCategory(String boardCategoryName, Long boardParentNum) {
         this.boardCategoryName = boardCategoryName;
         this.boardParentNum = boardParentNum;
     }

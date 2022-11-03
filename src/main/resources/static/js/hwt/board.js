@@ -13,6 +13,20 @@ $(function() {
         $('#' + id  + '-content').css('display', 'block'); // 해당 카테고리 게시글만 보임
     });
 
+    // FAQ 게시글 작성 시, 카테고리 Validation
+    $('#faq-add').click(function(){
+
+        let category = $('#boardCategoryNum').val();
+
+        if(category == null || category == ""){
+            alert("카테고리를 선택하세요.");
+            return false;
+        }else{
+            $('#faq-form').submit();
+        }
+
+    });
+
 
     // (Notice, Event, About Us) 게시판 더보기 버튼 클릭 시
     let page = 0;
