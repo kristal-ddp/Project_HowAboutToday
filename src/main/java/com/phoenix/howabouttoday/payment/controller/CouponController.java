@@ -19,11 +19,13 @@ public class CouponController {
     private final CouponService couponService;
 
     @GetMapping("user-dashboard-coupon")
-    public String getUserDashboardProfile(@LoginUser SessionDTO sessionDTO, Model model, @RequestParam(value="roomNum",required=false) Long memberNum) {
+    public String getUserDashboardProfile(@LoginUser SessionDTO sessionDTO, Model model) {
 
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
+
+        Long memberNum = sessionDTO.getMemberNum();
 
         List<CouponDTO> cList = couponService.findAll_Coupon(memberNum);
         model.addAttribute("clist",cList);
