@@ -44,8 +44,8 @@ public class AccomodationService {
 
         Slice<Accommodation> page =
                 accommodationRepository.
-                        findByAccomCategory_NameAndLowPriceLessThanEqualAndLowPriceGreaterThanEqualAndAccomRatingLessThanEqualAndAccomNameContaining(category_name,
-                                maxPrice, minPrice, pageable,accomRating, keyword);
+                       findByAccomCategory_NameAndLowPriceLessThanEqualAndLowPriceGreaterThanEqualAndAccomRatingLessThanEqualAndAccomNameContaining(category_name,
+                        maxPrice, minPrice, pageable,accomRating, keyword);
 
         Slice<AccomDto.ResponsePageDto> accomPageList = page.map(accom -> new AccomDto.ResponsePageDto(accom));
 
@@ -134,6 +134,16 @@ public class AccomodationService {
         return accommodation;
     }
 
+
+    /** 부모 regionNum에 따른 전체리스트 조회 **/
+    public Slice<AccomDto.ResponsePageDto> findByRegionNum(Long regionNum, Pageable pageable){
+
+        Slice<Accommodation> findAccoms = accommodationRepository.findByRegion_ParentRegion_RegionNum(regionNum, pageable);
+
+        return findAccoms.map(accom -> new AccomDto.ResponsePageDto(accom));
+
+
+    }
 
     /** 스트링타입을 LocalDate타입으로 파싱해주는 메서드 **/
     public LocalDate StringToParseDate(String date){
