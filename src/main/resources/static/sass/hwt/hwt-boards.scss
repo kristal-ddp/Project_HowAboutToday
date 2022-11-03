@@ -20,6 +20,10 @@
     margin-top: 10px;
     border-bottom: 0!important;
     padding-bottom: 0!important;
+    
+    span {
+        white-space: pre-wrap;
+    }
 }
 
 .hwt-faq-button {
@@ -125,4 +129,22 @@
     line-height: 28px;
     cursor: pointer;
     pointer-events: auto;
+}
+
+// FAQ Search
+.board-search-wrap {
+    display: flex;
+}
+
+.board-search {
+    flex: 0 0 85%;
+    max-width: 85%;
+    padding-top: 2rem!important;
+}
+
+.search-reset {
+    flex: 0 0 30%;
+    max-width: 30%;
+    padding-top: 2rem!important;
+    font-size: 14px;
 }

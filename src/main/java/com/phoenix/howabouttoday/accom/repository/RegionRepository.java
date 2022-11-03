@@ -12,4 +12,10 @@ public interface RegionRepository extends JpaRepository<Region, Long> {
     }
 
 
+    /** 지역 부모타입만 조회 **/
+    List<Region> findAllByParentRegionIsNull();
+
+    /** 지역 자식타입만 조회 **/
+    List<Region> findAllByParentRegionIsNotNull();
+
 }

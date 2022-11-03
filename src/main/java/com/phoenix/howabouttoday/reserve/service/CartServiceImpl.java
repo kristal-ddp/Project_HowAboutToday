@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -76,12 +77,18 @@ public class CartServiceImpl implements CartService{
         Room room = roomRepository.findById(roomNum).orElseThrow(() ->
                 new IllegalArgumentException("해당 숙소가 존재하지 않습니다."));
 
+        /** 예약희망날짜가 0일경우 x * 0이 안되게 처리**/
+        int period = Period.between(reserveForm.getReserveUseStartDate(),reserveForm.getReserveUseEndDate()).getDays();
+        if( period == 0){
+            period += 1;
+        }
+
         /* DB에 cart 저장 */
         Cart saveCart = cartRepository.save(Cart.builder()
                 .member(member)
                 .room(room)
                 .reserveStatus(ReserveStatus.READY)
-                .reservePrice(50000)
+                .reservePrice(room.getPrice() * period)
                 .reserveUseStartDate(reserveForm.getReserveUseStartDate())
                 .reserveUseEndDate(reserveForm.getReserveUseEndDate())
                 .reserveAdultCount(reserveForm.getReserveAdultCount())

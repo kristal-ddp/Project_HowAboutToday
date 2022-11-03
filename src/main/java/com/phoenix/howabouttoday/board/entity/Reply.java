@@ -1,6 +1,7 @@
 package com.phoenix.howabouttoday.board.entity;
 
 import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.room.entity.Review;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

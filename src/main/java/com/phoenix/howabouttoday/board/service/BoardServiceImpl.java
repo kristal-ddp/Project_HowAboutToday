@@ -8,6 +8,8 @@ import com.phoenix.howabouttoday.board.repository.BoardRepository;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,13 +30,11 @@ public class BoardServiceImpl implements BoardService {
 
     // 게시판 리스트 (모든 게시글 조회)
     @Override
-    public List<BoardListDTO> findAll_Board(String boardCategoryName) {
+    public Slice<BoardListDTO> findAll_Board(String boardCategoryName, Pageable pageable) {
 
         // Entity → DTO
-        List<BoardListDTO> lists = boardRepository.findAllByCategoryName(boardCategoryName) // Entity List
-                .stream() // Entity Stream
-                .map(BoardListDTO::new) // DTO Stream
-                .collect(Collectors.toList()); // DTO List
+        Slice<BoardListDTO> lists = boardRepository.findAllByCategoryName(boardCategoryName, pageable) // Entity
+                .map(BoardListDTO::new); // DTO
 
         return lists;
     }

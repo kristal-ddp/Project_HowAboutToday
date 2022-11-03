@@ -1,293 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta http-equiv="content-type" content="text/html; charset=utf-8">-->
-<!--    <meta name="author" content="TechyDevs">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-<!--    <title>Trizen - Travel Booking HTML Template</title>-->
-<!--    &lt;!&ndash; Favicon &ndash;&gt;-->
-<!--    <link rel="icon" href="images/favicon.png">-->
-
-<!--    &lt;!&ndash; Google Fonts &ndash;&gt;-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">-->
-
-<!--    &lt;!&ndash; Template CSS Files &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="css/bootstrap-select.min.css">-->
-<!--    <link rel="stylesheet" href="css/line-awesome.css">-->
-<!--    <link rel="stylesheet" href="css/owl.carousel.min.css">-->
-<!--    <link rel="stylesheet" href="css/owl.theme.default.min.css">-->
-<!--    <link rel="stylesheet" href="css/jquery.fancybox.min.css">-->
-<!--    <link rel="stylesheet" href="css/daterangepicker.css">-->
-<!--    <link rel="stylesheet" href="css/animate.min.css">-->
-<!--    <link rel="stylesheet" href="css/animated-headline.css">-->
-<!--    <link rel="stylesheet" href="css/jquery-ui.css">-->
-<!--    <link rel="stylesheet" href="css/flag-icon.min.css">-->
-<!--    <link rel="stylesheet" href="css/style.css">-->
-<!--</head>-->
-<!--<body>-->
-<!--&lt;!&ndash; start cssload-loader &ndash;&gt;-->
-<!--<div class="preloader" id="preloader">-->
-<!--    <div class="loader">-->
-<!--        <svg class="spinner" viewBox="0 0 50 50">-->
-<!--            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>-->
-<!--        </svg>-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; end cssload-loader &ndash;&gt;-->
-
-<!--&lt;!&ndash; ================================-->
-<!--            START HEADER AREA-->
-<!--================================= &ndash;&gt;-->
-<!--<header class="header-area">-->
-<!--    <div class="header-top-bar padding-right-100px padding-left-100px">-->
-<!--        <div class="container-fluid">-->
-<!--            <div class="row align-items-center">-->
-<!--                <div class="col-lg-6">-->
-<!--                    <div class="header-top-content">-->
-<!--                        <div class="header-left">-->
-<!--                            <ul class="list-items">-->
-<!--                                <li><a href="#"><i class="la la-phone mr-1"></i>(123) 123-456</a></li>-->
-<!--                                <li><a href="#"><i class="la la-envelope mr-1"></i>trizen@example.com</a></li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-lg-6">-->
-<!--                    <div class="header-top-content">-->
-<!--                        <div class="header-right d-flex align-items-center justify-content-end">-->
-<!--                            <div class="header-right-action">-->
-<!--                                <div class="select-contain select&#45;&#45;contain w-auto">-->
-<!--                                    <select class="select-contain-select">-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-id mr-1"></span> Bahasa Indonesia'>Bahasa Indonesia</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-de mr-1"></span> Deutsch'>Deutsch</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-us mr-1"></span> English(US)' selected>English US</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-gb-eng mr-1"></span> English(UK)'>English UK</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-ro mr-1"></span> Romanian'>Romanian</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-es mr-1"></span> Español'>Español</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-fr mr-1"></span> Francais'>Francais</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-it mr-1"></span> Italiano'>Italiano</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-pl mr-1"></span> Polski'>Polski</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-pt mr-1"></span> Portuguese'>Portuguese</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-tr mr-1"></span> Turkish'>Turkish</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-ru mr-1"></span> Russian'>Russian</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-jp mr-1"></span> Japanese'>Japanese</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-cn mr-1"></span> Mandarin'>Mandarin</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-tw mr-1"></span> Mandarin Chinese'>Mandarin Chinese</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-kr mr-1"></span> Korean'>Korean</option>-->
-<!--                                        <option data-content='<span class="flag-icon flag-icon-in mr-1"></span> Hindi'>Hindi</option>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="header-right-action">-->
-<!--                                <div class="select-contain select&#45;&#45;contain w-auto">-->
-<!--                                    <select class="select-contain-select">-->
-<!--                                        <option value="1">AED</option>-->
-<!--                                        <option value="2">AUD</option>-->
-<!--                                        <option value="3">BRL</option>-->
-<!--                                        <option value="4">CAD</option>-->
-<!--                                        <option value="5">CHF</option>-->
-<!--                                        <option value="6">CNY</option>-->
-<!--                                        <option value="7">EUR</option>-->
-<!--                                        <option value="8">GBP</option>-->
-<!--                                        <option value="9">HKD</option>-->
-<!--                                        <option value="10">IDR</option>-->
-<!--                                        <option value="11">INR</option>-->
-<!--                                        <option value="12">JPY</option>-->
-<!--                                        <option value="13">KRW</option>-->
-<!--                                        <option value="14">MYR</option>-->
-<!--                                        <option value="15">NZD</option>-->
-<!--                                        <option value="16">PHP</option>-->
-<!--                                        <option value="17">PLN</option>-->
-<!--                                        <option value="18">RUB</option>-->
-<!--                                        <option value="19">SAR</option>-->
-<!--                                        <option value="20">SGD</option>-->
-<!--                                        <option value="21">THB</option>-->
-<!--                                        <option value="22">TRY</option>-->
-<!--                                        <option value="23">TWD</option>-->
-<!--                                        <option value="24" selected>USD</option>-->
-<!--                                        <option value="25">VND</option>-->
-<!--                                        <option value="26">MXN</option>-->
-<!--                                        <option value="27">ARS</option>-->
-<!--                                        <option value="28">INR</option>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="header-right-action">-->
-<!--                                <a href="#" class="theme-btn theme-btn-small theme-btn-transparent mr-1" data-toggle="modal" data-target="#signupPopupForm">Sign Up</a>-->
-<!--                                 <a href="#" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#loginPopupForm">Login</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="header-menu-wrapper padding-right-100px padding-left-100px">-->
-<!--        <div class="container-fluid">-->
-<!--            <div class="row">-->
-<!--                <div class="col-lg-12">-->
-<!--                    <div class="menu-wrapper">-->
-<!--                        <a href="#" class="down-button"><i class="la la-angle-down"></i></a>-->
-<!--                        <div class="logo">-->
-<!--                            <a href="/home"><img src="/images/logo.png" alt="logo"></a>-->
-<!--                            <div class="menu-toggler">-->
-<!--                                <i class="la la-bars"></i>-->
-<!--                                <i class="la la-times"></i>-->
-<!--                            </div>&lt;!&ndash; end menu-toggler &ndash;&gt;-->
-<!--                        </div>&lt;!&ndash; end logo &ndash;&gt;-->
-<!--                        <div class="main-menu-content">-->
-<!--                            <nav>-->
-<!--                                <ul>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">Home <i class="la la-angle-down"></i></a>-->
-<!--                                        <ul class="dropdown-menu-item">-->
-<!--                                            <li><a href="/home">Home - main</a></li>-->
-<!--                                            <li><a href="home.html">Home - Hotel</a></li>-->
-<!--                                            <li><a href="index3.html">Home - Activity</a></li>-->
-<!--                                            <li><a href="index4.html">Home - Car</a></li>-->
-<!--                                            <li><a href="index5.html">Home - Cruise</a></li>-->
-<!--                                            <li><a href="index6.html">Home - Flight</a></li>-->
-<!--                                            <li><a href="index7.html">Home - City Tour <span class="badge bg-2 text-white">New</span></a></li>-->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">Tour <i class="la la-angle-down"></i></a>-->
-<!--                                        <ul class="dropdown-menu-item">-->
-<!--                                            <li><a href="tour-fullwidth.html">Tour Full width</a></li>-->
-<!--                                            <li><a href="tour-grid.html">Tour Grid</a></li>-->
-<!--                                            <li><a href="tour-list.html">Tour List</a></li>-->
-<!--                                            <li><a href="tour-left-sidebar.html">Tour Left Sidebar</a></li>-->
-<!--                                            <li><a href="tour-right-sidebar.html">Tour Right Sidebar</a></li>-->
-<!--                                            <li><a href="tour-details.html">Tour details</a></li>-->
-<!--                                            <li><a href="tour-booking.html">Tour Booking</a></li>-->
-<!--                                            <li><a href="tour-search-result.html">Tour Search Result</a></li>-->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">Cruise <i class="la la-angle-down"></i></a>-->
-<!--                                        <ul class="dropdown-menu-item">-->
-<!--                                            <li><a href="cruises.html">Cruises</a></li>-->
-<!--                                            <li><a href="cruises-list.html">Cruise list</a></li>-->
-<!--                                            <li><a href="cruise-sidebar.html">Cruise Sidebar</a></li>-->
-<!--                                            <li><a href="cruise-details.html">Cruise details</a></li>-->
-<!--                                            <li><a href="cruise-booking.html">Cruise Booking</a></li>-->
-<!--                                            <li><a href="cruise-search-result.html">Cruise Search Result</a></li>-->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">Pages <i class="la la-angle-down"></i></a>-->
-<!--                                        <div class="dropdown-menu-item mega-menu">-->
-<!--                                            <ul class="row no-gutters">-->
-<!--                                                <li class="col-lg-3 mega-menu-item">-->
-<!--                                                    <ul>-->
-<!--                                                        <li><a href="add-hotel.html">add hotel </a></li>-->
-<!--                                                        <li><a href="add-flight.html">add flight </a></li>-->
-<!--                                                        <li><a href="add-tour.html">add tour </a></li>-->
-<!--                                                        <li><a href="add-cruise.html">add cruise </a></li>-->
-<!--                                                        <li><a href="add-car.html">add car</a></li>-->
-<!--                                                        <li><a href="/user-dashboard">User Dashboard</a></li>-->
-<!--                                                        <li><a href="admin-dashboard.html">Admin Dashboard</a></li>-->
-<!--                                                        <li><a href="career.html">career <span class="badge bg-2 text-white">New</span></a></li>-->
-<!--                                                    </ul>-->
-<!--                                                </li>-->
-<!--                                                <li class="col-lg-3 mega-menu-item">-->
-<!--                                                    <ul>-->
-<!--                                                        <li><a href="board-details.html">career details<span class="badge bg-2 text-white">New</span></a></li>-->
-<!--                                                        <li><a href="user-profile.html">User profile</a></li>-->
-<!--                                                        <li><a href="become-local-expert.html">Become Local Expert</a></li>-->
-<!--                                                        <li><a href="contact.html">contact</a></li>-->
-<!--                                                        <li><a href="cart.html">Cart</a></li>-->
-<!--                                                        <li><a href="checkout.html">Checkout</a></li>-->
-<!--                                                        <li><a href="recover.html">recover password</a></li>-->
-<!--                                                        <li><a href="bookingDetails.html">payment received</a></li>-->
-<!--                                                    </ul>-->
-<!--                                                </li>-->
-<!--                                                <li class="col-lg-3 mega-menu-item">-->
-<!--                                                    <ul>-->
-<!--                                                        <li><a href="payment-complete.html">payment complete</a></li>-->
-<!--                                                        <li><a href="destinations.html">Destinations</a></li>-->
-<!--                                                        <li><a href="about.html">about</a></li>-->
-<!--                                                        <li><a href="services.html">Our Services</a></li>-->
-<!--                                                        <li><a href="gallery.html">Gallery</a></li>-->
-<!--                                                        <li><a href="pricing.html">pricing</a></li>-->
-<!--                                                        <li><a href="faq.html">faq</a></li>-->
-<!--                                                    </ul>-->
-<!--                                                </li>-->
-<!--                                                <li class="col-lg-3 mega-menu-item">-->
-<!--                                                    <ul>-->
-<!--                                                        <li><a href="add-new-post.html">add new post</a></li>-->
-<!--                                                        <li><a href="blog-full-width.html">blog full width</a></li>-->
-<!--                                                        <li><a href="blog-grid.html">blog grid</a></li>-->
-<!--                                                        <li><a href="blog-sidebar.html">blog sidebar</a></li>-->
-<!--                                                        <li><a href="blog-single.html">blog details</a></li>-->
-<!--                                                        <li><a href="coming-soon.html">Coming Soon</a></li>-->
-<!--                                                        <li><a href="page-404.html">404 page</a></li>-->
-<!--                                                    </ul>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </div>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">Flight <i class="la la-angle-down"></i></a>-->
-<!--                                        <ul class="dropdown-menu-item">-->
-<!--                                            <li><a href="flight-grid.html">Flight grid</a></li>-->
-<!--                                            <li><a href="flight-list.html">Flight list</a></li>-->
-<!--                                            <li><a href="flight-sidebar.html">Flight sidebar </a></li>-->
-<!--                                            <li><a href="flight-single.html">Flight details</a></li>-->
-<!--                                            <li><a href="flight-booking.html">Flight Booking</a></li>-->
-<!--                                            <li><a href="flight-search-result.html">Flight Search Result</a></li>-->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">Hotel <i class="la la-angle-down"></i></a>-->
-<!--                                        <ul class="dropdown-menu-item">-->
-<!--                                            <li><a href="hotel-grid.html">Hotel grid</a></li>-->
-<!--                                            <li><a href="hotel-list.html">Hotel list</a></li>-->
-<!--                                            <li><a href="hotel-sidebar.html">Hotel sidebar </a></li>-->
-<!--                                            <li><a href="hotel-single.html">Hotel details</a></li>-->
-<!--                                            <li><a href="hotel-booking.html">Hotel Booking</a></li>-->
-<!--                                            <li><a href="hotel-search-result.html">Hotel Search Result</a></li>-->
-<!--                                            <li>-->
-<!--                                                <a href="#">Rooms <i class="la la-plus"></i></a>-->
-<!--                                                <ul class="sub-menu">-->
-<!--                                                    <li><a href="room-list.html">Room List</a></li>-->
-<!--                                                    <li><a href="room-grid.html">Room Grid</a></li>-->
-<!--                                                    <li><a href="room-search-result.html">Search Result</a></li>-->
-<!--                                                    <li><a href="room-search-result-list.html">Search Result list</a></li>-->
-<!--                                                    <li><a href="room-details.html">Room Details</a></li>-->
-<!--                                                </ul>-->
-<!--                                            </li>-->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <a href="#">car <i class="la la-angle-down"></i></a>-->
-<!--                                        <ul class="dropdown-menu-item">-->
-<!--                                            <li><a href="car-grid.html">car grid</a></li>-->
-<!--                                            <li><a href="car-list.html">car list</a></li>-->
-<!--                                            <li><a href="car-sidebar.html">car sidebar </a></li>-->
-<!--                                            <li><a href="car-single.html">car details</a></li>-->
-<!--                                            <li><a href="car-booking.html">Car Booking</a></li>-->
-<!--                                            <li><a href="car-search-result.html">Car Search Result</a></li>-->
-<!--                                        </ul>-->
-<!--                                    </li>-->
-<!--                                </ul>-->
-<!--                            </nav>-->
-<!--                        </div>&lt;!&ndash; end main-menu-content &ndash;&gt;-->
-<!--                        <div class="nav-btn">-->
-<!--                            <a href="become-local-expert.html" class="theme-btn">Become Local Expert</a>-->
-<!--                        </div>&lt;!&ndash; end nav-btn &ndash;&gt;-->
-<!--                    </div>&lt;!&ndash; end menu-wrapper &ndash;&gt;-->
-<!--                </div>&lt;!&ndash; end col-lg-12 &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end row &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end container-fluid &ndash;&gt;-->
-<!--    </div>&lt;!&ndash; end header-menu-wrapper &ndash;&gt;-->
-<!--</header>-->
-<!-- ================================
-         END HEADER AREA
-================================= -->
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -298,7 +8,8 @@
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
-    <section class="breadcrumb-area bread-bg-7">
+
+    <section class="breadcrumb-area bread-bg-7" th:style="|background-image: url(@{data/images/{originFileName}(originFileName=${accom.accomOriginFileName})})|">
         <div class="breadcrumb-wrap">
             <div class="container">
                 <div class="row">
@@ -341,7 +52,7 @@
                             <ul>
                                 <li><a data-scroll="availability" href="#availability" class="scroll-link">객실 선택</a>
                                 </li>
-                                <li><a data-scroll="amenities" href="#amenities" class="scroll-link">시설</a></li>
+                                <li><a data-scroll="amenities" href="#amenities" class="scroll-link">숙소 정보</a></li>
                                 <li><a data-scroll="faq" href="#faq" class="scroll-link">자주 묻는 질문</a></li>
                                 <li><a data-scroll="location-map" href="#location-map" class="scroll-link">위치</a></li>
                                 <li><a data-scroll="reviews" href="#reviews" class="scroll-link">후기</a></li>
@@ -359,91 +70,47 @@
                         <div class="single-content-wrap padding-top-60px">
                             <div class="page-scroll">
                                 <div class="single-content-item pb-4">
-                                    <h3 class="title font-size-26" th:text="${accommodation.accomName}">Hilton Hotel and
-                                        Resorts</h3>
+                                    <h3 class="title font-size-26" th:text="${accom.accomName}" ></h3>
                                     <div class="d-flex align-items-center pt-2">
-                                        <p class="mr-2" th:text="${accommodation.accomAddress}">Boston, MA, USA</p>
+                                        <p class="mr-2" th:text="${accom.accomAddress}"></p>
                                         <p>
                                             <span class="badge badge-warning text-white font-size-16"
-                                                  th:text="${accommodation.accomRating}">4.7</span>
-                                            <span th:text="|(${accommodation.totalReviewNum})|">(4,209 Reviews)</span>
+                                                  th:text="${accom.accomRating}"></span>&nbsp;
+                                            <span th:text="|(${accom.totalReviewNum}개의 리뷰)|"></span>
                                         </p>
                                     </div>
                                 </div><!-- end single-content-item -->
                                 <div class="section-block"></div>
                             </div><!-- end description -->
-                        <div id="availability" class="page-scroll">
-                            <div class="single-content-item padding-top-40px padding-bottom-30px">
-                                <h3 class="title font-size-20">이용가능한 객실</h3>
-                                <div class="cabin-type padding-top-30px">
-                                    <div class="cabin-type-item seat-selection-item d-flex mb-3" th:each="roomList : ${roomlist}">
-                                        <div class="cabin-type-img flex-shrink-0" th:each="imageList : ${ilist}">
-                                            <a th:href="room-details"><img th:src="${imageList.getRoomSaveFileName()}" alt=""></a>
-                                        </div>
-                                        <div class="cabin-type-detail">
-                                            <h3 class="title"><a th:href="room-details" th:text="${roomList.roomName}">Standard Family room</a></h3>
-                                            <div class="row padding-top-20px">
+                            <div id="availability" class="page-scroll">
+                                <div class="single-content-item padding-top-40px padding-bottom-30px">
+                                    <h3 class="title font-size-20">이용가능한 객실</h3>
+                                    <div class="cabin-type padding-top-30px" th:each="room : ${accom.room}">
+                                        <div class="cabin-type-item seat-selection-item d-flex mb-3">
+                                            <div class="cabin-type-img flex-shrink-0" >
+                                                <a th:href="|javascript:void(0)|" th:onclick="roomDetails([[*{room.roomNum}]])"><img th:src="@{/data/images/{roomImage}(roomImage=${room.roomImage})}" src="" alt=""></a>
+                                            </div>
+                                            <div class="cabin-type-detail">
+                                                <h3 class="title"><a th:href="|javascript:void(0)|" th:onclick="roomDetails([[*{room.roomNum}]])" th:text="${room.roomName}">Standard Family room</a></h3>
+                                                <div class="row padding-top-20px">
                                                     <div class="col-lg-6 responsive-column">
                                                         <div class="single-tour-feature d-flex align-items-center mb-3">
                                                             <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
                                                                 <i class="la la-check"></i>
                                                             </div>
                                                             <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">2
+                                                                <h3 class="title font-size-15 font-weight-medium"
+                                                                    th:text="|최대 ${room.maxGuest}인 가능|">2
                                                                     Single beds</h3>
                                                             </div>
                                                         </div>
                                                     </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-check"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">15
-                                                                    m²</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
-                                                    <div class="col-lg-6 responsive-column">
-                                                        <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-check"></i>
-                                                            </div>
-                                                            <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium">Shower
-                                                                    and bathtub</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- end col-lg-6 -->
+
                                                 </div><!-- end row -->
-                                                <div class="room-photos">
-                                                    <a class="btn theme-btn-hover-gray" data-src="/images/img1.jpg"
-                                                       data-fancybox="gallery"
-                                                       data-caption="Showing image - 01"
-                                                       data-speed="700">
-                                                        <i class="la la-photo mr-2"></i>Room Photos
-                                                    </a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="/images/img2.jpg"
-                                                       data-caption="Showing image - 02"
-                                                       data-speed="700"></a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="/images/img3.jpg"
-                                                       data-caption="Showing image - 03"
-                                                       data-speed="700"></a>
-                                                    <a class="d-none"
-                                                       data-fancybox="gallery"
-                                                       data-src="/images/img4.jpg"
-                                                       data-caption="Showing image - 04"
-                                                       data-speed="700"></a>
-                                                </div>
                                             </div>
                                             <div class="cabin-price">
                                                 <p class="text-uppercase font-size-14">1박<strong
-                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block" th:text="${roomList.price}">$121</strong>
+                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block" th:text="|${room.price}원|">$121</strong>
                                                 </p>
                                             </div>
                                         </div>
@@ -452,18 +119,18 @@
                             </div><!-- end single-content-item -->
                             <div class="section-block"></div>
                         </div><!-- end location-map -->
-                        <div id="amenities" class="page-scroll">
+                        <div id="amenities" class="page-scroll" >
                             <div class="single-content-item padding-top-40px padding-bottom-20px">
                                 <h3 class="title font-size-20">편의 시설</h3>
                                 <div class="amenities-feature-item pt-4">
                                     <div class="row">
-                                        <div class="col-lg-4 responsive-column" th:each="facility : ${facilities}">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
+                                        <div class="col-lg-4 responsive-column" >
+                                            <div class="single-tour-feature d-flex align-items-center mb-3" th:each="fac : ${accom.accomViewFacilities}">
                                                 <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-wifi"></i>
+                                                    <i class="fa-duotone fa-tv-retro"></i>
                                                 </div>
                                                 <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium" th:text="${facility.facility.krName}">WI-FI</h3>
+                                                    <h3 class="title font-size-15 font-weight-medium" th:text="${fac.facilities.facility.krName}">WI-FI</h3>
                                                 </div>
                                             </div><!-- end single-tour-feature -->
                                         </div><!-- end col-lg-4 -->
@@ -556,7 +223,12 @@
                                 <div class="single-content-item padding-top-40px padding-bottom-40px">
                                     <h3 class="title font-size-20">위치</h3>
                                     <div class="map-container padding-top-30px">
-                                        <div id="map"></div>
+                                        <div id="map">
+                                            <div class="wrap_button">
+                                                <a href="javascript:;" class="btn_comm btn_linkMap" target="_blank" onclick="moveKakaoMap(this)"><span class="screen_out">크게보기</span></a>
+                                                <a href="javascript:;" class="btn_comm btn_resetMap" onclick="resetKakaoMap()"><span class="screen_out">초기화</span></a>
+                                            </div>
+                                        </div>
                                     </div><!-- end map-container -->
                                 </div><!-- end single-content-item -->
                                 <div class="section-block"></div>
@@ -569,221 +241,164 @@
                             </div><!-- end reviews -->
                             <div class="review-box">
                                 <div class="single-content-item padding-top-40px">
-                                    <h3 class="title font-size-20">3개의 리뷰</h3>
-                                    <div class="comments-list padding-top-50px">
+                                    <h3 class="title font-size-20" th:text="|총 ${accom.getTotalReviewNum()}개의 리뷰|"></h3>
+                                    <div class="comments-list padding-top-7px" th:each=" reviewlists: ${reviewlist}">
                                         <div class="comment">
-                                            <div class="comment-avatar">
-                                                <img class="avatar__img" alt="" src="/images/team8.jpg">
-                                            </div>
+<!--                                            <div class="comment-avatar">-->
+<!--                                                <img class="avatar__img" alt="" src="/images/team8.jpg">-->
+<!--                                            </div>-->
                                             <div class="comment-body">
                                                 <div class="meta-data">
-                                                    <h3 class="comment__author">투숙객 이름</h3>
+                                                    <h3 class="comment__author" th:text="${reviewlists.accomMember}"></h3>
                                                     <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1">
+                                                    <span class="ratings d-flex align-items-center mr-1" th:text="|${reviewlists.accomReviewRating} /|">
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                     </span>
-                                                        <p class="comment__date">2022.10.03</p>
+                                                        <p class="comment__date" th:text="${reviewlists.accomReviewCreate}"></p>
                                                     </div>
                                                 </div>
-                                                <p class="comment-content">
+                                                <p class="comment-content" th:text="${reviewlists.accomReviewContent}">
                                                     후기 내용
                                                 </p>
-                                                <div class="comment-reply d-flex align-items-center justify-content-between">
-                                                    <a class="theme-btn" href="#" data-toggle="modal"
-                                                       data-target="#replayPopupForm">
-                                                        <span class="la la-mail-reply mr-1"></span>답글
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end comments -->
-                                        <div class="comment">
-                                            <div class="comment-avatar">
-                                                <img class="avatar__img" alt="" src="/images/team8.jpg">
-                                            </div>
-                                            <div class="comment-body">
-                                                <div class="meta-data">
-                                                    <h3 class="comment__author">투숙객 이름</h3>
-                                                    <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1">
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                    </span>
-                                                        <p class="comment__date">2022.10.03</p>
-                                                    </div>
-                                                </div>
-                                                <p class="comment-content">
-                                                    후기 내용
-                                                </p>
-                                                <div class="comment-reply d-flex align-items-center justify-content-between">
-                                                    <a class="theme-btn" href="#" data-toggle="modal"
-                                                       data-target="#replayPopupForm">
-                                                        <span class="la la-mail-reply mr-1"></span>답글
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end comments -->
-                                        <div class="comment">
-                                            <div class="comment-avatar">
-                                                <img class="avatar__img" alt="" src="/images/team10.jpg">
-                                            </div>
-                                            <div class="comment-body">
-                                                <div class="meta-data">
-                                                    <h3 class="comment__author">투숙객 이름</h3>
-                                                    <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1">
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                    </span>
-                                                        <p class="comment__date">2022.11.13</p>
-                                                    </div>
-                                                </div>
-                                                <p class="comment-content">
-                                                    후기 내용
-                                                </p>
-                                                <div class="comment-reply d-flex align-items-center justify-content-between">
-                                                    <a class="theme-btn" href="#" data-toggle="modal"
-                                                       data-target="#replayPopupForm">
-                                                        <span class="la la-mail-reply mr-1"></span>답글
-                                                    </a>
-                                                </div>
+<!--                                                <div class="comment-reply d-flex align-items-center justify-content-between">-->
+<!--                                                    <a class="theme-btn" href="#" data-toggle="modal"-->
+<!--                                                       data-target="#replayPopupForm">-->
+<!--                                                        <span class="la la-mail-reply mr-1">답글</span>-->
+<!--                                                    </a>-->
+<!--                                                </div>-->
                                             </div>
                                         </div><!-- end comments -->
                                     </div><!-- end comments-list -->
-
-                                    <!-- 후기 작성 -->
-                                    <div class="comment-forum padding-top-40px">
-                                        <div class="form-box">
-                                            <div class="form-title-wrap">
-                                                <h3 class="title">후기 작성</h3>
-                                            </div><!-- form-title-wrap -->
-                                            <div class="form-content">
-                                                <div class="contact-form-action">
-                                                    <form method="post">
-                                                        <div class="form-content">
-                                                            <div class="rate-option p-2">
-                                                                <div class="row">
-                                                                    <div class="col-lg-4 responsive-column">
-                                                                        <div class="rate-option-item">
-                                                                            <label>평점</label>
-                                                                            <div class="rate-stars-option">
-                                                                                <input type="checkbox" id="lst1" value="1">
-                                                                                <label for="lst1"></label>
-                                                                                <input type="checkbox" id="lst2" value="2">
-                                                                                <label for="lst2"></label>
-                                                                                <input type="checkbox" id="lst3" value="3">
-                                                                                <label for="lst3"></label>
-                                                                                <input type="checkbox" id="lst4" value="4">
-                                                                                <label for="lst4"></label>
-                                                                                <input type="checkbox" id="lst5" value="5">
-                                                                                <label for="lst5"></label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div><!-- col-lg-4 -->
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-lg-6 responsive-column">
-                                                                        <div class="input-box">
-                                                                            <label class="label-text">성함</label>
-                                                                            <div class="form-group">
-                                                                                <span class="la la-user form-icon"></span>
-                                                                                <input class="form-control" type="text"
-                                                                                       name="text" placeholder="투숙객 성함">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-12">
-                                                                        <div class="input-box">
-                                                                            <label class="label-text">내용</label>
-                                                                            <div class="form-group">
-                                                                                <span class="la la-pencil form-icon"></span>
-                                                                                <textarea class="message-control form-control"
-                                                                                          name="message"
-                                                                                          placeholder="후기 내용을 작성해주세요"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-12">
-                                                                        <div class="btn-box">
-                                                                            <button type="button"
-                                                                                    class="theme-btn hwt-btn-gray">작성하기
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                           </div>
-                                                        </div>
-                                                    </form>
-                                                </div><!-- end contact-form-action -->
-                                            </div><!-- end form-content -->
-                                        </div><!-- end form-box -->
-                                    </div><!-- end comment-forum -->
                                 </div><!-- end single-content-item -->
                             </div><!-- end review-box -->
+<!--                                    &lt;!&ndash; 후기 작성 &ndash;&gt;-->
+<!--                                    <div class="comment-forum padding-top-40px">-->
+<!--                                        <div class="form-box">-->
+<!--                                            <div class="form-title-wrap">-->
+<!--                                                <h3 class="title">후기 작성</h3>-->
+<!--                                            </div>&lt;!&ndash; form-title-wrap &ndash;&gt;-->
+<!--                                            <div class="form-content">-->
+<!--                                                <div class="contact-form-action">-->
+<!--                                                    <form method="post">-->
+<!--                                                        <div class="form-content">-->
+<!--                                                            <div class="rate-option p-2">-->
+<!--                                                                <div class="row">-->
+<!--                                                                    <div class="col-lg-4 responsive-column">-->
+<!--                                                                        <div class="rate-option-item">-->
+<!--                                                                            <label>평점</label>-->
+<!--                                                                            <div class="rate-stars-option">-->
+<!--                                                                                <input type="checkbox" id="lst1" value="1">-->
+<!--                                                                                <label for="lst1"></label>-->
+<!--                                                                                <input type="checkbox" id="lst2" value="2">-->
+<!--                                                                                <label for="lst2"></label>-->
+<!--                                                                                <input type="checkbox" id="lst3" value="3">-->
+<!--                                                                                <label for="lst3"></label>-->
+<!--                                                                                <input type="checkbox" id="lst4" value="4">-->
+<!--                                                                                <label for="lst4"></label>-->
+<!--                                                                                <input type="checkbox" id="lst5" value="5">-->
+<!--                                                                                <label for="lst5"></label>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>&lt;!&ndash; col-lg-4 &ndash;&gt;-->
+<!--                                                                </div>-->
+<!--                                                                <div class="row">-->
+<!--                                                                    <div class="col-lg-6 responsive-column">-->
+<!--                                                                        <div class="input-box">-->
+<!--                                                                            <label class="label-text">성함</label>-->
+<!--                                                                            <div class="form-group">-->
+<!--                                                                                <span class="la la-user form-icon"></span>-->
+<!--                                                                                <input class="form-control" type="text"-->
+<!--                                                                                       name="text" placeholder="투숙객 성함">-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="col-lg-12">-->
+<!--                                                                        <div class="input-box">-->
+<!--                                                                            <label class="label-text">내용</label>-->
+<!--                                                                            <div class="form-group">-->
+<!--                                                                                <span class="la la-pencil form-icon"></span>-->
+<!--                                                                                <textarea class="message-control form-control"-->
+<!--                                                                                          name="message"-->
+<!--                                                                                          placeholder="후기 내용을 작성해주세요"></textarea>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="col-lg-12">-->
+<!--                                                                        <div class="btn-box">-->
+<!--                                                                            <button type="button"-->
+<!--                                                                                    class="theme-btn hwt-btn-gray">작성하기-->
+<!--                                                                            </button>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </form>-->
+<!--                                                </div>&lt;!&ndash; end contact-form-action &ndash;&gt;-->
+<!--                                            </div>&lt;!&ndash; end form-content &ndash;&gt;-->
+<!--                                        </div>&lt;!&ndash; end form-box &ndash;&gt;-->
+<!--                                    </div>&lt;!&ndash; end comment-forum &ndash;&gt;-->
+
                         </div><!-- end single-content-wrap -->
                     </div><!-- end col-lg-8 -->
                     <div class="col-lg-4">
                         <div class="sidebar single-content-sidebar mb-0">
-                            <form th:action="@{/singleSearch}" method="get">
-                                <input type="hidden" name="accomNum" th:value="${accommodation.accomNum}">
-                            <div class="sidebar-widget single-content-widget">
-                                <div class="sidebar-widget-item">
-                                    <div class="sidebar-book-title-wrap mb-3">
-                                        <p><span class="text-form"></span><span
-                                                class="text-value hwt-amounts mr-1">Room 검색</span></p>
-                                        <p class="font-size-14 line-height-24">Room 예약 날짜 조회</p>
-                                    </div>
-                                </div><!-- end sidebar-widget-item -->
-                                <div class="sidebar-widget-item">
-                                    <div class="contact-form-action">
-                                        <div class="input-box">
-                                            <label class="label-text">날짜</label>
-                                            <div class="form-group">
-                                                <span class="la la-calendar form-icon"></span>
-                                                <input class="date-picker-multiple form-control" type="text"
-                                                       name="daterange" readonly>
+                            <form th:action="@{/hotel-single}" id="searchForm" method="get" th:object="${searchForm}" >
+                                <input type="hidden" name="accomNum" th:value="${accom.accomNum}" >
+                                <input type="hidden" id="hiddenNum" name="roomNum" value="">
+                                <div class="sidebar-widget single-content-widget">
+                                    <div class="sidebar-widget-item">
+                                        <div class="sidebar-book-title-wrap mb-3">
+                                            <p><span class="text-form"></span><span
+                                                    class="text-value hwt-amounts mr-1">Room 검색</span></p>
+                                            <p class="font-size-14 line-height-24">Room 예약 날짜 조회</p>
+                                        </div>
+                                    </div><!-- end sidebar-widget-item -->
+                                    <div class="sidebar-widget-item">
+                                        <div class="contact-form-action">
+                                            <div class="input-box">
+                                                <label class="label-text">날짜</label>
+                                                <div class="form-group">
+                                                    <span class="la la-calendar form-icon"></span>
+                                                    <input class="date-picker-multiple form-control" type="text"
+                                                           name="daterange" readonly th:field="*{daterange}">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div><!-- end sidebar-widget-item -->
-                                <div class="sidebar-widget-item">
-                                    <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
-                                        <label class="font-size-16">성인</label>
-                                        <div class="qtyBtn d-flex align-items-center">
-                                            <div class="qtyDec"><i class="la la-minus"></i></div>
-                                            <input type="text" name="qtyInput" value="0">
-                                            <div class="qtyInc"><i class="la la-plus"></i></div>
-                                        </div>
-                                    </div><!-- end qty-box -->
-                                    <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
-                                        <label class="font-size-16">어린이</label>
-                                        <div class="qtyBtn d-flex align-items-center">
-                                            <div class="qtyDec"><i class="la la-minus"></i></div>
-                                            <input type="text" name="qtyInput" value="0">
-                                            <div class="qtyInc"><i class="la la-plus"></i></div>
-                                        </div>
-                                    </div><!-- end qty-box -->
-                                </div><!-- end sidebar-widget-item -->
-                                <div class="btn-box pt-2">
-                                    <button
-                                       class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
-                                            class="la la-calendar mr-2"></i>예약 날짜 조회</button>
-                                    <hr/>
+                                    </div><!-- end sidebar-widget-item -->
+                                    <div class="sidebar-widget-item">
+                                        <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
+                                            <label class="font-size-16">성인</label>
+                                            <div class="qtyBtn d-flex align-items-center">
+                                                <div class="qtyDec"><i class="la la-minus"></i></div>
+                                                <input type="text" th:field="*{adult_number}" >
+                                                <div class="qtyInc"><i class="la la-plus"></i></div>
+                                            </div>
+                                        </div><!-- end qty-box -->
+                                        <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
+                                            <label class="font-size-16">어린이</label>
+                                            <div class="qtyBtn d-flex align-items-center">
+                                                <div class="qtyDec"><i class="la la-minus"></i></div>
+                                                <input type="text" th:field="*{child_number}" >
+                                                <div class="qtyInc"><i class="la la-plus"></i></div>
+                                            </div>
+                                        </div><!-- end qty-box -->
+                                    </div><!-- end sidebar-widget-item -->
+                                    <div class="btn-box pt-2">
+                                        <button
+                                                class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
+                                                class="la la-calendar mr-2"></i>예약 날짜 조회</button>
+                                        <hr/>
+                                        <a href="/user-dashboard-wishlist"
 
-                                    <a th:href="@{/user-dashboard-wishlist}"
-                                       class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
-                                            class="la la-heart-o mr-2"></i>찜 추가하기</a>
-                                </div>
-                            </div><!-- end sidebar-widget -->
+                                           class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
+                                                class="la la-heart-o mr-2"></i>찜 추가하기</a>
+                                    </div>
+                                </div><!-- end sidebar-widget -->
                             </form>
                             <div class="sidebar-widget single-content-widget">
                                 <h3 class="title stroke-shape">이 숙소를 추천하는 이유</h3>
@@ -831,23 +446,25 @@
     <!-- ================================
         START CTA AREA
     ================================= -->
-    <section class="cta-area cta-bg-2 bg-fixed padding-top-60px padding-bottom-60px breadcrumb-board">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7 hwt-col-left">
-                    <div class="section-heading">
-                        <h2 class="sec__title font-size-30 text-white">Contact Us</h2>
-                        <p class="sec__desc text-white pt-1 hwt-font-content">오늘어때에 대해 궁금한 점이 있으신가요?</p>
-                    </div><!-- end section-heading -->
-                </div><!-- end col-lg-7 -->
-                <div class="col-lg-5 hwt-col-right">
-                    <div class="btn-box btn--box text-right">
-                        <a href="contact" class="theme-btn border-0 hwt-btn-white">고객센터</a>
-                    </div><!-- end btn-box -->
-                </div><!-- end col-lg-5 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end cta-area -->
+<!--    <section class="cta-area cta-bg-2 bg-fixed padding-top-60px padding-bottom-60px breadcrumb-board">-->
+<!--        <div class="container">-->
+<!--            <div class="row align-items-center">-->
+<!--                <div class="col-lg-7 hwt-col-left">-->
+<!--                    <div class="section-heading">-->
+<!--                        <h2 class="sec__title font-size-30 text-white">Contact Us</h2>-->
+<!--                        <p class="sec__desc text-white pt-1 hwt-font-content">오늘어때에 대해 궁금한 점이 있으신가요?</p>-->
+<!--                    </div>&lt;!&ndash; end section-heading &ndash;&gt;-->
+<!--                </div>&lt;!&ndash; end col-lg-7 &ndash;&gt;-->
+<!--                <div class="col-lg-5 hwt-col-right">-->
+<!--                    <div class="btn-box btn&#45;&#45;box text-right">-->
+<!--                        <a href="contact" class="theme-btn border-0 hwt-btn-white">고객센터</a>-->
+<!--                    </div>&lt;!&ndash; end btn-box &ndash;&gt;-->
+<!--                </div>&lt;!&ndash; end col-lg-5 &ndash;&gt;-->
+<!--            </div>&lt;!&ndash; end row &ndash;&gt;-->
+<!--        </div>&lt;!&ndash; end container &ndash;&gt;-->
+<!--    </section>&lt;!&ndash; end cta-area &ndash;&gt;-->
+
+    <th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
     <!-- ================================
         END CTA AREA
     ================================= -->
@@ -859,129 +476,14 @@
     <!-- end back-to-top -->
 
     <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                            <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/member/join">
-                                <div class="input-box">
-                                    <label class="label-text">닉네임</label>
-                                    <div class="form-group">
-                                        <span class="la la-user form-icon"></span>
-                                        <input class="form-control" type="text" name="nickname" placeholder="닉네임">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">이메일 주소</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" placeholder="패스워드">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <!--                                    <div class="input-box">-->
-                                <!--                                        <label class="label-text">패스워드 확인</label>-->
-                                <!--                                        <div class="form-group">-->
-                                <!--                                            <span class="la la-lock form-icon"></span>-->
-                                <!--                                            <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>&lt;!&ndash; end input-box &ndash;&gt;-->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" class="theme-btn w-100">회원가입</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 회원가입</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
+    <!-- 회원가입 모달 -->
+    <th:block th:replace="fragments/signUp::signUp"></th:block>
+
 
     <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
-                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/loginProc">
-                                <div class="input-box">
-                                    <label class="label-text">이메일</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" id="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group mb-2">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <!--                                    <div class="custom-checkbox mb-0">-->
-                                        <!--                                        <input type="checkbox" id="rememberchb">-->
-                                        <!--                                        <label for="rememberchb">Remember me</label>-->
-                                        <!--                                    </div>-->
-                                        <p class="forgot-password">
-                                            <a href="recover">비밀번호를 잊으셨나요?</a>
-                                        </p>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" id="login" class="theme-btn w-100">로그인</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 로그인</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
+    <!-- 로그인 모달 -->
+    <th:block th:replace="fragments/signIn::signIn"></th:block>
+
 
     <!-- end modal-shared -->
     <div class="modal-popup">
@@ -1074,6 +576,83 @@
     <!--<script src="js/main.js"></script>-->
     <!--</body>-->
     <!--</html>-->
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41285ae46bc998ac5e0756fff1675a3c"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> <!-- Kakao SDK for JavaScript -->
+<script th:inline="javascript">
+
+
+
+    //위치 정보(지도)
+    var staticMapContainer  = document.getElementById('map');
+    staticMapOption = {
+        center: new kakao.maps.LatLng([[${accom.latitude}]], [[${accom.longitude}]]),
+        level: 3
+
+    };
+    //지도 생성
+    var map = new kakao.maps.Map(staticMapContainer, staticMapOption);
+    //마커 생성
+    var mapCenter  = new kakao.maps.LatLng([[${accom.latitude}]], [[${accom.longitude}]]);
+            var marker = new kakao.maps.Marker({
+                position: mapCenter,
+                map: map
+    });
+
+    // 마커 인포윈도우 생성
+    var iwContent = '<div style="border-radius: 20%; width:200px; text-align:center; font-size:15px; font-weight: 500;">[[${accom.accomName}]]</div>' +
+                    '<div style="margin-left:4px; text-align:center; font-size:13px;">[[${accom.accomAddress}]]</div>';
+    var infowindow = new kakao.maps.InfoWindow({
+        content : iwContent
+    });
+
+
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
+        infowindow.open(map, marker);
+    });
+
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+        infowindow.close();
+    });
+
+    /* 맵, 줌 컨트롤 */
+    var mapTypeControl = new kakao.maps.MapTypeControl(); // 맵 컨트롤 생성
+    var zoomControl = new kakao.maps.ZoomControl(); // 줌 컨트롤 생성
+
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT); // 맵 컨트롤 추가
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT); // 줌 컨트롤 추가
+
+    //카카오 맵 이동
+    function moveKakaoMap(self){
+
+    var center = map.getCenter(),
+        lat = center.getLat(),
+        lng = center.getLng();
+
+    self.href = 'https://map.kakao.com/link/map/' + encodeURIComponent('[[${accom.accomName}]]') + ',' + lat + ',' + lng;
+    }
+
+    //초기화
+    function resetKakaoMap(){
+        map.setCenter(mapCenter);
+        map.setLevel(mapOption.level);
+    }
+
+
+    function roomDetails(roomNum){
+        $("#hiddenNum").attr("value",roomNum);
+        var searchForm = document.getElementById("searchForm")
+        searchForm.action = '/room-details'
+
+        searchForm.submit();
+
+    }
+</script>
+<!--    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41285ae46bc998ac5e0756fff1675a3c"></script> &lt;!&ndash; 카카오맵 API &ndash;&gt;-->
+<!--    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> &lt;!&ndash; 카카오맵 라이브러리 &ndash;&gt;-->
+<!--    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> &lt;!&ndash; Kakao SDK for JavaScript &ndash;&gt;-->
+<!--    <script src="/js/hwt/accommodationLocation.js"></script>-->
 
 </th:block>
 

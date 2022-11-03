@@ -2,6 +2,7 @@ package com.phoenix.howabouttoday.member.entity;
 
 import com.phoenix.howabouttoday.board.entity.Board;
 import com.phoenix.howabouttoday.board.entity.Event;
+import com.phoenix.howabouttoday.payment.entity.Coupon;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import lombok.*;
 
@@ -48,8 +49,15 @@ public class Member {
   @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
   private List<Board> boardList = new ArrayList<>();
 
-//  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-//  private List<Event> eventList = new ArrayList<>();
+  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+  private List<Coupon> coupons = new ArrayList<>();
+
+  /* nickname과 password만 수정 가능 */
+  public void modify(String nickname, String pwd, String memberTel) {
+    this.nickname = nickname;
+    this.pwd = pwd;
+    this.memberTel = memberTel;
+  }
 
   @Builder
   public Member(String email, String pwd, String nickname, String memberTel, Role role, LocalDate joinDate, LocalDate withdrawdate, String memberOriginalFileName, String memberSaveFileName) {

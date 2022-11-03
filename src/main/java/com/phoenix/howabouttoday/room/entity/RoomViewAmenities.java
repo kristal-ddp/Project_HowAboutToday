@@ -25,14 +25,12 @@ public class RoomViewAmenities {
     @JoinColumn(name = "amenities_num")
     private Amenities amenities;
 
-    @Column
-    private String amenitiesName;
 
     @Builder
-    public RoomViewAmenities(Room room, Amenities amenities,String amenitiesName) {
+    public RoomViewAmenities(Room room, Amenities amenities) {
         this.amenities = amenities;
         this.room = room;
-        this.amenitiesName = amenitiesName;
+
     }
 
 }

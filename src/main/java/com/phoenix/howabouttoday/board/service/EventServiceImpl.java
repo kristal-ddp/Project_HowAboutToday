@@ -8,6 +8,9 @@ import com.phoenix.howabouttoday.board.repository.EventRepository;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.SliceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,13 +35,12 @@ public class EventServiceImpl implements EventService {
 
     // 게시판 리스트 (모든 게시글 조회)
     @Override
-    public List<EventListDTO> findAll_Event() {
+    public Slice<EventListDTO> findAll_Event(Pageable pageable) {
 
         // Entity → DTO
-        List<EventListDTO> lists = eventRepository.findAll() // Entity List
-                .stream() // Entity Stream
-                .map(EventListDTO::new) // DTO Stream
-                .collect(Collectors.toList()); // DTO List
+        Slice<EventListDTO> lists = eventRepository.findAll(pageable) // Entity
+                .map(EventListDTO::new); // DTO
+//                .map(event -> new EventListDTO(event)); // DTO
 
         return lists;
     }

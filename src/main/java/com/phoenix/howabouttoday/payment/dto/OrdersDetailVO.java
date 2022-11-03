@@ -36,7 +36,6 @@ public class OrdersDetailVO {
     private String checkOut;
 
     public OrdersDetailVO(Cart cart) {
-
         Period period = Period.between(cart.getReserveUseStartDate(), cart.getReserveUseEndDate());
         String startDay = cart.getReserveUseStartDate().getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
         String endDay = cart.getReserveUseEndDate().getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
@@ -46,7 +45,7 @@ public class OrdersDetailVO {
         this.accomName = cart.getRoom().getAccommodation().getAccomName();
         this.accomRegion = cart.getRoom().getAccommodation().getRegion().getRegion().getValue();
         this.orderDate = LocalDate.now().toString();
-        this.usePeriod = String.valueOf(period.getDays());
+        this.usePeriod = String.valueOf(period.getMonths() * 30 + period.getDays());
         this.startDate = cart.getReserveUseStartDate().toString();
         this.endDate = cart.getReserveUseEndDate().toString();
         this.startWeek = startDay;
@@ -68,7 +67,7 @@ public class OrdersDetailVO {
         this.accomName = ordersDetail.getRoom().getAccommodation().getAccomName();
         this.accomRegion = ordersDetail.getRoom().getAccommodation().getRegion().getRegion().getValue();
         this.orderDate = LocalDate.now().toString();
-        this.usePeriod = String.valueOf(period.getDays());
+        this.usePeriod = String.valueOf(period.getMonths() * 30 + period.getDays());
         this.startDate = ordersDetail.getReserveUseStartDate().toString();
         this.endDate = ordersDetail.getReserveUseEndDate().toString();
         this.startWeek = startDay;
@@ -78,4 +77,11 @@ public class OrdersDetailVO {
         this.checkIn = ordersDetail.getRoom().getAccommodation().getCheckIn().toString();
         this.checkOut = ordersDetail.getRoom().getAccommodation().getCheckOut().toString();
     }
+
+
+    //즉시 결제시 사용하는 날짜 * 금액을 반환하는 메서드
+    public Integer totalPrice(){
+        return Integer.parseInt(getPrice());
+    }
+
 }

@@ -1,1024 +1,247 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta http-equiv="content-type" content="text/html; charset=utf-8">-->
-<!--    <meta name="author" content="TechyDevs">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-<!--    <title>Trizen - Travel Booking HTML Template</title>-->
-<!--    &lt;!&ndash; Favicon &ndash;&gt;-->
-<!--    <link rel="icon" href="images/favicon.png">-->
-
-<!--    &lt;!&ndash; Google Fonts &ndash;&gt;-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">-->
-
-<!--    &lt;!&ndash; Template CSS Files &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="css/bootstrap-select.min.css">-->
-<!--    <link rel="stylesheet" href="css/line-awesome.css">-->
-<!--    <link rel="stylesheet" href="css/owl.carousel.min.css">-->
-<!--    <link rel="stylesheet" href="css/owl.theme.default.min.css">-->
-<!--    <link rel="stylesheet" href="css/jquery.fancybox.min.css">-->
-<!--    <link rel="stylesheet" href="css/daterangepicker.css">-->
-<!--    <link rel="stylesheet" href="css/animate.min.css">-->
-<!--    <link rel="stylesheet" href="css/animated-headline.css">-->
-<!--    <link rel="stylesheet" href="css/jquery-ui.css">-->
-<!--    <link rel="stylesheet" href="css/flag-icon.min.css">-->
-<!--    <link rel="stylesheet" href="css/leaflet.css">-->
-<!--    <link rel="stylesheet" href="css/style.css">-->
-<!--</head>-->
-
-<!--<body>-->
-<!--    &lt;!&ndash; start cssload-loader &ndash;&gt;-->
-<!--    <div class="preloader" id="preloader">-->
-<!--        <div class="loader">-->
-<!--            <svg class="spinner" viewBox="0 0 50 50">-->
-<!--                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>-->
-<!--            </svg>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash; end cssload-loader &ndash;&gt;-->
-
-<!--    &lt;!&ndash; ================================-->
-<!--            START HEADER AREA-->
-<!--================================= &ndash;&gt;-->
-<!--    <header class="header-area">-->
-<!--        <div class="header-top-bar padding-right-100px padding-left-100px">-->
-<!--            <div class="container-fluid">-->
-<!--                <div class="row align-items-center">-->
-<!--                    <div class="col-lg-6">-->
-<!--                        <div class="header-top-content">-->
-<!--                            <div class="header-left">-->
-<!--                                <ul class="list-items">-->
-<!--                                    <li><a href="#"><i class="la la-phone mr-1"></i>(123) 123-456</a></li>-->
-<!--                                    <li><a href="#"><i class="la la-envelope mr-1"></i>trizen@example.com</a></li>-->
-<!--                                </ul>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-lg-6">-->
-<!--                        <div class="header-top-content">-->
-<!--                            <div class="header-right d-flex align-items-center justify-content-end">-->
-<!--                                <div class="header-right-action">-->
-<!--                                    <div class="select-contain select&#45;&#45;contain w-auto">-->
-<!--                                        <select class="select-contain-select">-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-id mr-1"></span> Bahasa Indonesia'>-->
-<!--                                                Bahasa Indonesia</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-de mr-1"></span> Deutsch'>-->
-<!--                                                Deutsch</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-us mr-1"></span> English(US)'-->
-<!--                                                selected>English US</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-gb-eng mr-1"></span> English(UK)'>-->
-<!--                                                English UK</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-ro mr-1"></span> Romanian'>-->
-<!--                                                Romanian</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-es mr-1"></span> Español'>-->
-<!--                                                Español</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-fr mr-1"></span> Francais'>-->
-<!--                                                Francais</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-it mr-1"></span> Italiano'>-->
-<!--                                                Italiano</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-pl mr-1"></span> Polski'>-->
-<!--                                                Polski</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-pt mr-1"></span> Portuguese'>-->
-<!--                                                Portuguese</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-tr mr-1"></span> Turkish'>-->
-<!--                                                Turkish</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-ru mr-1"></span> Russian'>-->
-<!--                                                Russian</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-jp mr-1"></span> Japanese'>-->
-<!--                                                Japanese</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-cn mr-1"></span> Mandarin'>-->
-<!--                                                Mandarin</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-tw mr-1"></span> Mandarin Chinese'>-->
-<!--                                                Mandarin Chinese</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-kr mr-1"></span> Korean'>-->
-<!--                                                Korean</option>-->
-<!--                                            <option-->
-<!--                                                data-content='<span class="flag-icon flag-icon-in mr-1"></span> Hindi'>-->
-<!--                                                Hindi</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="header-right-action">-->
-<!--                                    <div class="select-contain select&#45;&#45;contain w-auto">-->
-<!--                                        <select class="select-contain-select">-->
-<!--                                            <option value="1">AED</option>-->
-<!--                                            <option value="2">AUD</option>-->
-<!--                                            <option value="3">BRL</option>-->
-<!--                                            <option value="4">CAD</option>-->
-<!--                                            <option value="5">CHF</option>-->
-<!--                                            <option value="6">CNY</option>-->
-<!--                                            <option value="7">EUR</option>-->
-<!--                                            <option value="8">GBP</option>-->
-<!--                                            <option value="9">HKD</option>-->
-<!--                                            <option value="10">IDR</option>-->
-<!--                                            <option value="11">INR</option>-->
-<!--                                            <option value="12">JPY</option>-->
-<!--                                            <option value="13">KRW</option>-->
-<!--                                            <option value="14">MYR</option>-->
-<!--                                            <option value="15">NZD</option>-->
-<!--                                            <option value="16">PHP</option>-->
-<!--                                            <option value="17">PLN</option>-->
-<!--                                            <option value="18">RUB</option>-->
-<!--                                            <option value="19">SAR</option>-->
-<!--                                            <option value="20">SGD</option>-->
-<!--                                            <option value="21">THB</option>-->
-<!--                                            <option value="22">TRY</option>-->
-<!--                                            <option value="23">TWD</option>-->
-<!--                                            <option value="24" selected>USD</option>-->
-<!--                                            <option value="25">VND</option>-->
-<!--                                            <option value="26">MXN</option>-->
-<!--                                            <option value="27">ARS</option>-->
-<!--                                            <option value="28">INR</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="header-right-action">-->
-<!--                                    <a href="#" class="theme-btn theme-btn-small theme-btn-transparent mr-1"-->
-<!--                                        data-toggle="modal" data-target="#signupPopupForm">Sign Up</a>-->
-<!--                                    <a href="#" class="theme-btn theme-btn-small" data-toggle="modal"-->
-<!--                                        data-target="#loginPopupForm">Login</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="header-menu-wrapper padding-right-100px padding-left-100px">-->
-<!--            <div class="container-fluid">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-lg-12">-->
-<!--                        <div class="menu-wrapper">-->
-<!--                            <a href="#" class="down-button"><i class="la la-angle-down"></i></a>-->
-<!--                            <div class="logo">-->
-<!--                                <a href="/home"><img src="/images/logo.png" alt="logo"></a>-->
-<!--                                <div class="menu-toggler">-->
-<!--                                    <i class="la la-bars"></i>-->
-<!--                                    <i class="la la-times"></i>-->
-<!--                                </div>&lt;!&ndash; end menu-toggler &ndash;&gt;-->
-<!--                            </div>&lt;!&ndash; end logo &ndash;&gt;-->
-<!--                            <div class="main-menu-content">-->
-<!--                                <nav>-->
-<!--                                    <ul>-->
-<!--                                        <li>-->
-<!--                                            <a href="#">Home <i class="la la-angle-down"></i></a>-->
-<!--                                            <ul class="dropdown-menu-item">-->
-<!--                                                <li><a href="/home">Home - main</a></li>-->
-<!--                                                <li><a href="home.html">Home - Hotel</a></li>-->
-<!--                                                <li><a href="index3.html">Home - Activity</a></li>-->
-<!--                                                <li><a href="index4.html">Home - Car</a></li>-->
-<!--                                                <li><a href="index5.html">Home - Cruise</a></li>-->
-<!--                                                <li><a href="index6.html">Home - Flight</a></li>-->
-<!--                                                <li><a href="index7.html">Home - City Tour <span-->
-<!--                                                            class="badge bg-2 text-white">New</span></a></li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="#">Tour <i class="la la-angle-down"></i></a>-->
-<!--                                            <ul class="dropdown-menu-item">-->
-<!--                                                <li><a href="tour-fullwidth.html">Tour Full width</a></li>-->
-<!--                                                <li><a href="tour-grid.html">Tour Grid</a></li>-->
-<!--                                                <li><a href="tour-list.html">Tour List</a></li>-->
-<!--                                                <li><a href="tour-left-sidebar.html">Tour Left Sidebar</a></li>-->
-<!--                                                <li><a href="tour-right-sidebar.html">Tour Right Sidebar</a></li>-->
-<!--                                                <li><a href="tour-details.html">Tour details</a></li>-->
-<!--                                                <li><a href="tour-booking.html">Tour Booking</a></li>-->
-<!--                                                <li><a href="tour-search-result.html">Tour Search Result</a></li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="#">Cruise <i class="la la-angle-down"></i></a>-->
-<!--                                            <ul class="dropdown-menu-item">-->
-<!--                                                <li><a href="cruises.html">Cruises</a></li>-->
-<!--                                                <li><a href="cruises-list.html">Cruise list</a></li>-->
-<!--                                                <li><a href="cruise-sidebar.html">Cruise Sidebar</a></li>-->
-<!--                                                <li><a href="cruise-details.html">Cruise details</a></li>-->
-<!--                                                <li><a href="cruise-booking.html">Cruise Booking</a></li>-->
-<!--                                                <li><a href="cruise-search-result.html">Cruise Search Result</a></li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="#">Pages <i class="la la-angle-down"></i></a>-->
-<!--                                            <div class="dropdown-menu-item mega-menu">-->
-<!--                                                <ul class="row no-gutters">-->
-<!--                                                    <li class="col-lg-3 mega-menu-item">-->
-<!--                                                        <ul>-->
-<!--                                                            <li><a href="add-hotel.html">add hotel </a></li>-->
-<!--                                                            <li><a href="add-flight.html">add flight </a></li>-->
-<!--                                                            <li><a href="add-tour.html">add tour </a></li>-->
-<!--                                                            <li><a href="add-cruise.html">add cruise </a></li>-->
-<!--                                                            <li><a href="add-car.html">add car</a></li>-->
-<!--                                                            <li><a href="/user-dashboard">User Dashboard</a></li>-->
-<!--                                                            <li><a href="admin-dashboard.html">Admin Dashboard</a></li>-->
-<!--                                                            <li><a href="career.html">career <span-->
-<!--                                                                        class="badge bg-2 text-white">New</span></a>-->
-<!--                                                            </li>-->
-<!--                                                        </ul>-->
-<!--                                                    </li>-->
-<!--                                                    <li class="col-lg-3 mega-menu-item">-->
-<!--                                                        <ul>-->
-<!--                                                            <li><a href="board-details.html">career details<span-->
-<!--                                                                        class="badge bg-2 text-white">New</span></a>-->
-<!--                                                            </li>-->
-<!--                                                            <li><a href="user-profile.html">User profile</a></li>-->
-<!--                                                            <li><a href="become-local-expert.html">Become Local-->
-<!--                                                                    Expert</a></li>-->
-<!--                                                            <li><a href="contact.html">contact</a></li>-->
-<!--                                                            <li><a href="cart.html">Cart</a></li>-->
-<!--                                                            <li><a href="checkout.html">Checkout</a></li>-->
-<!--                                                            <li><a href="recover.html">recover password</a></li>-->
-<!--                                                            <li><a href="bookingDetails.html">payment received</a>-->
-<!--                                                            </li>-->
-<!--                                                        </ul>-->
-<!--                                                    </li>-->
-<!--                                                    <li class="col-lg-3 mega-menu-item">-->
-<!--                                                        <ul>-->
-<!--                                                            <li><a href="payment-complete.html">payment complete</a>-->
-<!--                                                            </li>-->
-<!--                                                            <li><a href="destinations.html">Destinations</a></li>-->
-<!--                                                            <li><a href="about.html">about</a></li>-->
-<!--                                                            <li><a href="services.html">Our Services</a></li>-->
-<!--                                                            <li><a href="gallery.html">Gallery</a></li>-->
-<!--                                                            <li><a href="pricing.html">pricing</a></li>-->
-<!--                                                            <li><a href="faq.html">faq</a></li>-->
-<!--                                                        </ul>-->
-<!--                                                    </li>-->
-<!--                                                    <li class="col-lg-3 mega-menu-item">-->
-<!--                                                        <ul>-->
-<!--                                                            <li><a href="add-new-post.html">add new post</a></li>-->
-<!--                                                            <li><a href="blog-full-width.html">blog full width</a></li>-->
-<!--                                                            <li><a href="blog-grid.html">blog grid</a></li>-->
-<!--                                                            <li><a href="blog-sidebar.html">blog sidebar</a></li>-->
-<!--                                                            <li><a href="blog-single.html">blog details</a></li>-->
-<!--                                                            <li><a href="coming-soon.html">Coming Soon</a></li>-->
-<!--                                                            <li><a href="page-404.html">404 page</a></li>-->
-<!--                                                        </ul>-->
-<!--                                                    </li>-->
-<!--                                                </ul>-->
-<!--                                            </div>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="#">Flight <i class="la la-angle-down"></i></a>-->
-<!--                                            <ul class="dropdown-menu-item">-->
-<!--                                                <li><a href="flight-grid.html">Flight grid</a></li>-->
-<!--                                                <li><a href="flight-list.html">Flight list</a></li>-->
-<!--                                                <li><a href="flight-sidebar.html">Flight sidebar </a></li>-->
-<!--                                                <li><a href="flight-single.html">Flight details</a></li>-->
-<!--                                                <li><a href="flight-booking.html">Flight Booking</a></li>-->
-<!--                                                <li><a href="flight-search-result.html">Flight Search Result</a></li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="#">Hotel <i class="la la-angle-down"></i></a>-->
-<!--                                            <ul class="dropdown-menu-item">-->
-<!--                                                <li><a href="hotel-grid.html">Hotel grid</a></li>-->
-<!--                                                <li><a href="hotel-list.html">Hotel list</a></li>-->
-<!--                                                <li><a href="hotel-sidebar.html">Hotel sidebar </a></li>-->
-<!--                                                <li><a href="hotel-single.html">Hotel details</a></li>-->
-<!--                                                <li><a href="hotel-booking.html">Hotel Booking</a></li>-->
-<!--                                                <li><a href="hotel-search-result.html">Hotel Search Result</a></li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="#">Rooms <i class="la la-plus"></i></a>-->
-<!--                                                    <ul class="sub-menu">-->
-<!--                                                        <li><a href="room-list.html">Room List</a></li>-->
-<!--                                                        <li><a href="room-grid.html">Room Grid</a></li>-->
-<!--                                                        <li><a href="room-search-result.html">Search Result</a></li>-->
-<!--                                                        <li><a href="room-search-result-list.html">Search Result-->
-<!--                                                                list</a></li>-->
-<!--                                                        <li><a href="room-details.html">Room Details</a></li>-->
-<!--                                                    </ul>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="#">car <i class="la la-angle-down"></i></a>-->
-<!--                                            <ul class="dropdown-menu-item">-->
-<!--                                                <li><a href="car-grid.html">car grid</a></li>-->
-<!--                                                <li><a href="car-list.html">car list</a></li>-->
-<!--                                                <li><a href="car-sidebar.html">car sidebar </a></li>-->
-<!--                                                <li><a href="car-single.html">car details</a></li>-->
-<!--                                                <li><a href="car-booking.html">Car Booking</a></li>-->
-<!--                                                <li><a href="car-search-result.html">Car Search Result</a></li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                    </ul>-->
-<!--                                </nav>-->
-<!--                            </div>&lt;!&ndash; end main-menu-content &ndash;&gt;-->
-<!--                            <div class="nav-btn">-->
-<!--                                <a href="become-local-expert.html" class="theme-btn">Become Local Expert</a>-->
-<!--                            </div>&lt;!&ndash; end nav-btn &ndash;&gt;-->
-<!--                        </div>&lt;!&ndash; end menu-wrapper &ndash;&gt;-->
-<!--                    </div>&lt;!&ndash; end col-lg-12 &ndash;&gt;-->
-<!--                </div>&lt;!&ndash; end row &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end container-fluid &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end header-menu-wrapper &ndash;&gt;-->
-<!--    </header>-->
-    <!-- ================================
-         END HEADER AREA
-================================= -->
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
-    <!-- ================================
+<!-- ================================
     START BREADCRUMB AREA
 ================================= -->
-    <section class="breadcrumb-area breadcrumb-board">
-        <div class="breadcrumb-wrap">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-12">
-                        <div class="breadcrumb-content text-center">
-                            <div class="section-heading">
-                                <h2 class="sec__title text-white">고객센터</h2>
-                            </div>
-                        </div><!-- end breadcrumb-content -->
-                    </div><!-- end col-lg-6 -->
-                    <div class="col-lg-6">
-                        <div class="breadcrumb-list text-right">
-<!--                            <ul class="list-items">-->
-<!--                                <li><a href="/home">Home</a></li>-->
-<!--                                <li>Pages</li>-->
-<!--                                <li>Contact us</li>-->
-<!--                            </ul>-->
-                        </div><!-- end breadcrumb-list -->
-                    </div><!-- end col-lg-6 -->
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </div><!-- end breadcrumb-wrap -->
-        <div class="bread-svg-box">
-            <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none">
-                <polygon points="100 0 50 10 0 0 0 10 100 10"></polygon>
-            </svg>
-        </div><!-- end bread-svg -->
-    </section><!-- end breadcrumb-area -->
-    <!-- ================================
+<section class="breadcrumb-area breadcrumb-board">
+    <div class="breadcrumb-wrap">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-content text-center">
+                        <div class="section-heading">
+                            <h2 class="sec__title text-white">고객센터</h2>
+                        </div>
+                    </div><!-- end breadcrumb-content -->
+                </div><!-- end col-lg-6 -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end breadcrumb-wrap -->
+    <div class="bread-svg-box">
+        <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none">
+            <polygon points="100 0 50 10 0 0 0 10 100 10"></polygon>
+        </svg>
+    </div><!-- end bread-svg -->
+</section><!-- end breadcrumb-area -->
+<!-- ================================
     END BREADCRUMB AREA
 ================================= -->
 
-    <!-- ================================
+<!-- ================================
     START CONTACT AREA
 ================================= -->
 
-    <section class="faq-area padding-top-100px padding-bottom-70px text-center">
-        <div class="container">
-            <div class="row hwt-row-board">
-                <div class="col-lg-3 responsive-column">
-                    <div class="icon-box faq-icon-box" >
-                        <a href="#" class="d-block">
-                            <img src="/images/bubble-chat.png" style="width: 50%; height:  auto%;"/>
-<!--                            <svg class="info-svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">-->
-<!--                                <g>-->
-<!--                                    <g>-->
-<!--                                        <path d="M256,165.004c-50.176,0-90.996,40.82-90.996,90.996c0,17.666,5.066,34.168,13.813,48.142-->
-<!--                                            c0.266,0.516,0.586,1.011,0.948,1.484c16.256,24.887,44.355,41.37,76.235,41.37c50.176,0,90.996-40.821,90.996-90.996-->
-<!--                                            S306.176,165.004,256,165.004z M190.288,282.841c-3.397-8.286-5.285-17.345-5.285-26.841-->
-<!--                                            c0.001-39.148,31.849-70.996,70.997-70.996c23.955,0,45.16,11.937,58.024,30.163l-54.921,54.921l-20.96-20.959-->
-<!--                                            c-3.906-3.905-10.236-3.904-14.143,0L190.288,282.841z M256,326.996c-22.264,0-42.158-10.31-55.185-26.397l30.257-30.257-->
-<!--                                            l20.96,20.959c3.906,3.905,10.236,3.904,14.143,0l57.312-57.312c2.268,6.934,3.51,14.328,3.51,22.01-->
-<!--                                            C326.996,295.147,295.147,326.996,256,326.996z"></path>-->
-<!--                                    </g>-->
-<!--                                </g>-->
-<!--                                <g>-->
-<!--                                    <g>-->
-<!--                                        <path d="M409.845,249.101c-1.571-48.868-15.246-96.792-39.792-139.167C343.92,64.82,306.201,27.263,260.974,1.325-->
-<!--                                            c-3.08-1.767-6.869-1.767-9.949,0C205.799,27.263,168.08,64.82,141.946,109.933c-24.546,42.375-38.221,90.299-39.792,139.167-->
-<!--                                            C67.098,264.144,44,298.76,44,337.351V408c0,5.523,4.478,10,10,10h146.941c2.155,30.079,15.324,58.889,36.883,80.131-->
-<!--                                            l11.157,10.993c1.946,1.917,4.482,2.876,7.019,2.876s5.072-0.959,7.019-2.876l11.157-10.993-->
-<!--                                            c21.559-21.242,34.728-50.051,36.883-80.13H342v51.612c0,5.523,4.478,10,10,10c5.522,0,10-4.477,10-10V418h96-->
-<!--                                            c5.522,0,10-4.477,10-10v-70.648C468,298.76,444.901,264.144,409.845,249.101z M256,21.597-->
-<!--                                            C287.442,40.516,314.32,65.27,335.574,94H176.426C197.68,65.27,224.558,40.516,256,21.597z M64,398v-60.649-->
-<!--                                            c0-27.495,14.81-52.442,38-65.844V388c0,3.506,0.61,6.87,1.72,10H64z M260.139,483.884L256,487.962l-4.139-4.078-->
-<!--                                            c-17.769-17.507-28.747-41.135-30.858-65.884h69.994C288.885,442.749,277.907,466.377,260.139,483.884z M390,388-->
-<!--                                            c0,5.514-4.486,10-10,10H132c-5.514,0-10-4.486-10-10V258.588c0-36.21,7.152-71.494,20.428-104.088h45.279c5.522,0,10-4.477,10-10-->
-<!--                                            s-4.478-10-10-10h-36.194c3.515-6.992,7.326-13.831,11.417-20.5h186.14C375.355,156.854,390,206.772,390,258.588V388z M448,398-->
-<!--                                            h-39.72c1.11-3.13,1.72-6.494,1.72-10V271.508c23.19,13.401,38,38.348,38,65.844V398z"></path>-->
-<!--                                    </g>-->
-<!--                                </g>-->
-<!--                                <g>-->
-<!--                                    <g>-->
-<!--                                        <path d="M231.069,137.43c-1.859-1.86-4.439-2.93-7.069-2.93s-5.21,1.07-7.07,2.93s-2.93,4.44-2.93,7.07s1.069,5.21,2.93,7.07-->
-<!--                                            c1.861,1.86,4.44,2.93,7.07,2.93s5.21-1.07,7.069-2.93c1.86-1.86,2.931-4.44,2.931-7.07S232.93,139.29,231.069,137.43z"></path>-->
-<!--                                    </g>-->
-<!--                                </g>-->
-<!--                                <g>-->
-<!--                                    <g>-->
-<!--                                        <path d="M160,444.751c-5.522,0-10,4.477-10,10v30.806c0,5.523,4.478,10,10,10c5.522,0,10-4.477,10-10v-30.806-->
-<!--                                            C170,449.228,165.522,444.751,160,444.751z"></path>-->
-<!--                                    </g>-->
-<!--                                </g>-->
-<!--                                <g>-->
-<!--                                    <g>-->
-<!--                                        <path d="M359.069,494.93C357.21,493.07,354.63,492,352,492s-5.21,1.07-7.07,2.93c-1.86,1.86-2.93,4.44-2.93,7.07-->
-<!--                                            s1.069,5.21,2.93,7.07c1.861,1.86,4.44,2.93,7.07,2.93s5.21-1.07,7.069-2.93c1.86-1.86,2.931-4.44,2.931-7.07-->
-<!--                                            S360.93,496.79,359.069,494.93z"></path>-->
-<!--                                    </g>-->
-<!--                                </g>-->
-<!--                            </svg>-->
-                            <span class="d-block info__title hwt-font-title"><br/>채팅하러 가기</span>
-                        </a>
-                    </div>
-                </div><!-- end col-lg-3 -->
-                <div class="col-lg-3 responsive-column">
-                    <div class="icon-box faq-icon-box">
-                        <a href="#" class="d-block">
-                            <img src="/images/location.png" style="width: 50%; height:  auto%"/>
-<!--                            <svg class="info-svg" version="1.1" id="Capa_2" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">-->
-<!--                            <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M161.95,125.6c-1.86-1.86-4.44-2.93-7.07-2.93s-5.21,1.07-7.07,2.93c-1.859,1.86-2.93,4.44-2.93,7.07s1.07,5.21,2.93,7.07-->
-<!--                                        c1.86,1.861,4.44,2.93,7.07,2.93s5.21-1.07,7.07-2.93c1.859-1.86,2.93-4.44,2.93-7.07S163.81,127.46,161.95,125.6z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                                <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M509.075,41.85L496.71,29.471l12.361-12.361c3.905-3.905,3.905-10.237,0-14.143c-3.906-3.905-10.236-3.905-14.143,0-->
-<!--                                        L482.574,15.32L470.391,3.122c-1.875-1.876-4.417-2.932-7.069-2.933L294.068,0.095c-0.01,0-0.019,0-0.028,0-->
-<!--                                        c-13.365,0-25.93,5.204-35.381,14.655l-84.46,84.46c-3.905,3.905-3.905,10.237,0,14.143c3.906,3.905,10.236,3.905,14.143,0-->
-<!--                                        l84.46-84.46c5.674-5.674,13.215-8.797,21.238-8.797c0.006,0,0.012,0,0.017,0l165.111,0.092l9.266,9.276L431.33,66.568-->
-<!--                                        c-15.734-9.424-36.477-7.369-50.021,6.173c-7.737,7.738-11.998,18.025-11.998,28.967s4.261,21.229,11.998,28.967-->
-<!--                                        c7.986,7.986,18.477,11.979,28.968,11.979c10.49,0,20.98-3.993,28.967-11.979c13.522-13.523,15.591-34.225,6.216-49.951-->
-<!--                                        l37.109-37.109l9.43,9.441l-0.092,164.887c-0.005,8.016-3.129,15.553-8.798,21.222L239.086,483.186-->
-<!--                                        c-5.673,5.673-13.216,8.797-21.238,8.797c-8.022,0-15.565-3.124-21.238-8.797L28.798,315.373C23.124,309.7,20,302.157,20,294.135-->
-<!--                                        c0-8.022,3.124-15.565,8.798-21.238l107.794-107.794c3.905-3.905,3.905-10.237,0-14.143c-3.906-3.905-10.236-3.905-14.143,0-->
-<!--                                        L14.655,258.754C5.205,268.204,0,280.77,0,294.135s5.205,25.931,14.655,35.381l167.812,167.813-->
-<!--                                        c9.755,9.754,22.567,14.632,35.381,14.632c12.814,0,25.626-4.878,35.381-14.632l244.022-244.023-->
-<!--                                        c9.443-9.443,14.647-21.999,14.655-35.354L512,48.922C512.002,46.27,510.949,43.726,509.075,41.85z M425.101,116.531-->
-<!--                                        c-3.96,3.96-9.225,6.141-14.824,6.141c-5.601,0-10.865-2.181-14.825-6.141c-8.175-8.174-8.175-21.475,0-29.649-->
-<!--                                        c4.088-4.088,9.455-6.131,14.825-6.131c2.022,0,4.043,0.291,5.997,0.871l-11.542,11.542c-3.905,3.905-3.905,10.237,0,14.143-->
-<!--                                        c1.953,1.953,4.512,2.929,7.071,2.929s5.118-0.976,7.071-2.929l11.51-11.51C432.463,102.916,430.704,110.928,425.101,116.531z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                                <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M427.159,201.363L310.62,84.823c-15.438-15.438-40.559-15.436-55.995,0L70.204,269.245-->
-<!--                                        c-7.479,7.478-11.598,17.421-11.598,27.997s4.118,20.52,11.597,27.998l116.54,116.538c7.479,7.479,17.421,11.598,27.997,11.598-->
-<!--                                        s20.52-4.118,27.997-11.597l184.422-184.422c7.479-7.479,11.597-17.421,11.597-27.997S434.638,208.841,427.159,201.363z-->
-<!--                                         M413.016,243.214L228.595,427.638c-3.7,3.7-8.621,5.738-13.854,5.738c-5.233,0-10.154-2.038-13.854-5.739L84.346,311.098-->
-<!--                                        c-3.701-3.701-5.739-8.621-5.739-13.855c-0.001-5.234,2.038-10.155,5.739-13.855L268.768,98.966c3.82-3.82,8.837-5.73,13.855-5.73-->
-<!--                                        c5.017,0,10.035,1.911,13.854,5.73l116.539,116.539c3.701,3.701,5.739,8.621,5.739,13.855-->
-<!--                                        C418.755,234.593,416.717,239.514,413.016,243.214z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                                <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M326.078,200.082c3.905-3.905,3.905-10.237,0-14.143c-3.906-3.905-10.236-3.905-14.143,0l-5.758,5.758-->
-<!--                                        c-15.375-9.497-35.103-8.222-47.574,4.247c-7.271,7.271-10.991,17.145-10.475,27.802c0.499,10.292,4.931,20.117,12.478,27.664-->
-<!--                                        c0.001,0.001,0.002,0.001,0.002,0.002c8.043,8.047,8.941,20.239,2.001,27.179c-6.943,6.941-19.137,6.042-27.183-2.002-->
-<!--                                        c-8.046-8.047-8.944-20.241-2.003-27.183c3.905-3.905,3.905-10.237,0-14.143c-3.906-3.905-10.236-3.905-14.143,0-->
-<!--                                        c-12.47,12.47-13.744,32.198-4.247,47.574l-6.832,6.831c-3.905,3.905-3.905,10.237,0,14.143c1.958,1.955,4.517,2.931,7.076,2.931-->
-<!--                                        c2.56,0,5.118-0.977,7.071-2.929l6.836-6.836c6.718,4.149,14.264,6.251,21.676,6.251c9.549-0.001,18.872-3.474,25.893-10.494-->
-<!--                                        c14.736-14.737,13.84-39.612-1.995-55.457c-0.003-0.003-0.005-0.006-0.008-0.009c-4.026-4.026-6.386-9.171-6.644-14.49-->
-<!--                                        c-0.239-4.952,1.408-9.459,4.641-12.691c6.94-6.941,19.132-6.043,27.179,2c0.001,0.001,0.001,0.002,0.002,0.003-->
-<!--                                        c0.001,0.001,0.002,0.001,0.002,0.001c8.044,8.047,8.941,20.239,2,27.18c-3.905,3.905-3.905,10.237,0,14.143-->
-<!--                                        c1.953,1.953,4.512,2.929,7.071,2.929s5.118-0.976,7.071-2.929c12.47-12.471,13.745-32.199,4.248-47.574L326.078,200.082z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                                <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M224.867,365.867l-51.361-51.362c-3.905-3.902-10.235-3.904-14.143,0c-3.905,3.905-3.905,10.237,0,14.143l51.362,51.362-->
-<!--                                        c1.953,1.952,4.512,2.929,7.071,2.929s5.118-0.977,7.071-2.929C228.772,376.105,228.772,369.773,224.867,365.867z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                                <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M146.109,287.11c-1.859-1.859-4.43-2.93-7.069-2.93c-2.63,0-5.2,1.07-7.07,2.93c-1.86,1.86-2.93,4.44-2.93,7.08-->
-<!--                                        c0,2.63,1.069,5.21,2.93,7.07c1.86,1.86,4.44,2.93,7.07,2.93c2.64,0,5.21-1.07,7.069-2.93c1.87-1.87,2.94-4.44,2.94-7.07-->
-<!--                                        C149.049,291.55,147.979,288.98,146.109,287.11z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                        </svg>-->
-                            <span class="d-block info__title hwt-font-title">서울특별시 강남구<br/>
-                                테헤란로 124 4층</span>
-                        </a>
-                    </div>
-                </div><!-- end col-lg-3 -->
-                <div class="col-lg-3 responsive-column">
-                    <div class="icon-box faq-icon-box">
-                        <a href="#" class="d-block">
-                            <img src="/images/phone-call.png" style="width: 50%; height:  auto%"/>
+<section class="faq-area padding-top-100px padding-bottom-70px text-center">
+    <div class="container">
+        <div class="row hwt-row-board">
+            <div class="col-lg-3 responsive-column">
+                <div class="icon-box faq-icon-box" >
+<!--                        <a href="http://pf.kakao.com/_NBxmxjxj" class="d-block">-->
+                    <a href='javascript:kakaoChatStart();' class="d-block">
+                        <img src="/images/bubble-chat.png" style="width: 50%; height:  auto%;"/>
+                        <span class="d-block info__title hwt-font-title"><br/>채팅 상담</span>
+                    </a>
+                </div>
+            </div><!-- end col-lg-3 -->
+<!--                <div class="col-lg-3 responsive-column">-->
+<!--                    <div class="icon-box faq-icon-box">-->
+<!--                        <a href="#" class="d-block">-->
+<!--                            <img src="/images/location.png" style="width: 50%; height:  auto%"/>-->
+<!--                            <span class="d-block info__title hwt-font-title">서울특별시 강남구<br/>테헤란로 124</span>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
+            <div class="col-lg-3 responsive-column">
+                <div class="icon-box faq-icon-box">
+                    <a href="#" class="d-block">
+                        <img src="/images/phone-call.png" style="width: 50%; height:  auto%"/>
+                        <span class="d-block info__title hwt-font-title">1588-1420</span>
+                    </a>
+                </div>
+            </div><!-- end col-lg-3 -->
+            <div class="col-lg-3 responsive-column">
+                <div class="icon-box faq-icon-box">
+                    <a href="#" class="d-block">
+                        <img src="/images/email.png" style="width: 50%; height: auto%;"/>
+                        <span class="d-block info__title hwt-font-title">how-about-today@hwt.com</span>
+                    </a>
+                </div>
+            </div><!-- end col-lg-3 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
 
-<!--                            <svg class="info-svg" version="1.1" id="Capa_3" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">-->
-<!--                            <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M444.033,406.871c-1.859-1.86-4.439-2.929-7.068-2.929c-2.629,0-5.209,1.069-7.068,2.929-->
-<!--                                        c-1.859,1.859-2.929,4.439-2.929,7.068s1.07,5.209,2.929,7.067c1.859,1.859,4.439,2.93,7.068,2.93c2.629,0,5.209-1.07,7.068-2.93-->
-<!--                                        c1.87-1.859,2.929-4.438,2.929-7.067S445.903,408.73,444.033,406.871z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                                <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M193.511,435.933c-20.947,0-37.99,17.042-37.99,37.99c0,20.947,17.042,37.99,37.99,37.99-->
-<!--                                        c20.947,0,37.99-17.042,37.99-37.99C231.501,452.975,214.458,435.933,193.511,435.933z M193.511,491.918-->
-<!--                                        c-9.922,0-17.995-8.073-17.995-17.995s8.073-17.995,17.995-17.995c9.922,0,17.995,8.073,17.995,17.995-->
-<!--                                        S203.433,491.918,193.511,491.918z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                                <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M376.883,435.933c-20.947,0-37.99,17.042-37.99,37.99c0,20.947,17.042,37.99,37.99,37.99-->
-<!--                                        c20.947,0,37.99-17.042,37.99-37.99C414.873,452.975,397.831,435.933,376.883,435.933z M376.883,491.918-->
-<!--                                        c-9.922,0-17.995-8.073-17.995-17.995s8.073-17.995,17.995-17.995c9.922,0,17.995,8.073,17.995,17.995-->
-<!--                                        S386.807,491.918,376.883,491.918z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                                <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M467.423,264.491c-5.418-1.045-10.664,2.503-11.708,7.926l-14.53,75.431c-0.905,4.697-5.034,8.106-9.817,8.106H142.872-->
-<!--                                        l-39.154-170.287h102.806c5.522,0,9.997-4.476,9.997-9.997c0-5.521-4.476-9.997-9.997-9.997H99.12l-10.663-46.376-->
-<!--                                        c-3.149-13.702-15.169-23.272-29.229-23.272H9.997C4.476,96.024,0,100.5,0,106.022c0,5.522,4.476,9.997,9.997,9.997h49.232-->
-<!--                                        c4.687,0,8.693,3.189,9.743,7.757l67.232,292.403c1.044,4.54,5.085,7.757,9.743,7.757h254.998c5.522,0,9.997-4.477,9.997-9.997-->
-<!--                                        c0-5.521-4.476-9.997-9.997-9.997H153.906l-6.436-27.992h283.898c14.35,0,26.737-10.227,29.45-24.318l14.53-75.431-->
-<!--                                        C476.393,270.777,472.845,265.536,467.423,264.491z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                                <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M508.134,135.11c6.35-10.318,4.757-23.464-3.875-31.965l-9.984-9.835c-1.223-1.205-1.854-2.877-1.733-4.59l1-14.048-->
-<!--                                        c0.865-12.142-6.67-23.075-18.325-26.588l-13.221-3.986c-1.654-0.499-2.996-1.694-3.684-3.278l-5.534-12.767-->
-<!--                                        c-4.796-11.064-16.866-17.407-28.698-15.087l-13.415,2.633c-1.706,0.333-3.456-0.1-4.807-1.191l-10.679-8.622-->
-<!--                                        c-9.409-7.596-23.069-7.598-32.479,0l-10.679,8.622c-1.352,1.091-3.102,1.526-4.808,1.19l-13.416-2.633-->
-<!--                                        c-11.833-2.323-23.902,4.022-28.697,15.084l-5.536,12.77c-0.687,1.585-2.029,2.779-3.683,3.278l-13.219,3.985-->
-<!--                                        c-11.654,3.514-19.189,14.447-18.324,26.588l1,14.049c0.122,1.712-0.51,3.384-1.732,4.589l-9.984,9.835-->
-<!--                                        c-8.632,8.502-10.225,21.647-3.875,31.965l7.382,11.997c0.898,1.46,1.112,3.232,0.588,4.864l-4.32,13.433-->
-<!--                                        c-3.715,11.553,0.979,23.949,11.413,30.143l11.967,7.105c1.48,0.878,2.494,2.355,2.783,4.052l2.354,13.814-->
-<!--                                        c2.052,12.039,12.005,20.869,24.201,21.475l13.704,0.681c1.731,0.086,3.325,0.927,4.373,2.305l8.357,10.996-->
-<!--                                        c4.995,6.57,12.76,10.179,20.67,10.179c3.673,0,7.378-0.778,10.85-2.399l12.39-5.785c1.575-0.736,3.381-0.736,4.957,0-->
-<!--                                        l12.388,5.785c10.952,5.113,24.208,1.841,31.521-7.783l8.353-10.992c1.049-1.38,2.643-2.22,4.374-2.306l13.707-0.682-->
-<!--                                        c12.197-0.606,22.149-9.436,24.201-21.475l2.354-13.814c0.289-1.697,1.304-3.173,2.783-4.052l11.967-7.104-->
-<!--                                        c10.434-6.194,15.128-18.59,11.414-30.143l-4.32-13.433c-0.525-1.632-0.311-3.404,0.587-4.863L508.134,135.11z M491.105,124.631-->
-<!--                                        l-7.383,11.998c-3.962,6.44-4.908,14.263-2.593,21.461l4.32,13.433c0.842,2.618-0.222,5.427-2.585,6.83l-11.966,7.104-->
-<!--                                        c-6.532,3.878-11.01,10.396-12.288,17.885l-2.354,13.813c-0.465,2.727-2.719,4.728-5.484,4.866l-13.708,0.682-->
-<!--                                        c-7.638,0.38-14.672,4.089-19.3,10.178l-8.353,10.992c-1.658,2.179-4.661,2.921-7.143,1.763l-12.388-5.785-->
-<!--                                        c-6.952-3.247-14.927-3.246-21.878,0l-12.389,5.785c-2.481,1.16-5.485,0.417-7.142-1.763l-8.357-10.996-->
-<!--                                        c-4.627-6.087-11.661-9.796-19.299-10.176l-13.704-0.681c-2.763-0.137-5.019-2.138-5.484-4.866l-2.354-13.814-->
-<!--                                        c-1.277-7.488-5.755-14.007-12.287-17.884l-11.967-7.104c-2.364-1.404-3.427-4.212-2.585-6.83l4.32-13.433-->
-<!--                                        c2.314-7.199,1.37-15.021-2.593-21.462l-7.383-11.998c-1.439-2.337-1.078-5.316,0.878-7.242l9.985-9.836-->
-<!--                                        c5.396-5.316,8.182-12.698,7.644-20.253l-1-14.049c-0.196-2.75,1.512-5.228,4.151-6.024l13.219-3.985-->
-<!--                                        c7.298-2.2,13.223-7.474,16.256-14.467l5.536-12.77c0.937-2.159,3.096-3.526,5.392-3.526c0.369,0,0.74,0.036,1.111,0.108-->
-<!--                                        l13.415,2.632c7.521,1.479,15.254-0.438,21.218-5.253l10.679-8.622c2.133-1.722,5.228-1.721,7.359,0l10.679,8.622-->
-<!--                                        c5.963,4.814,13.694,6.728,21.218,5.254l13.414-2.632c2.683-0.53,5.416,0.912,6.501,3.418l5.534,12.767-->
-<!--                                        c3.032,6.996,8.958,12.27,16.258,14.47l13.221,3.986c2.64,0.796,4.348,3.273,4.152,6.024l-1,14.048-->
-<!--                                        c-0.538,7.555,2.248,14.937,7.644,20.254l9.984,9.835C492.182,119.314,492.543,122.292,491.105,124.631z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                                <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M402.067,87.828c-4.809-2.715-10.906-1.018-13.62,3.791l-46.365,82.13c-2.714,4.809-1.018,10.906,3.791,13.62-->
-<!--                                        c1.554,0.877,3.24,1.294,4.906,1.294c3.489,0,6.877-1.83,8.715-5.085l46.365-82.13C408.572,96.639,406.874,90.542,402.067,87.828z-->
-<!--                                        "></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                                <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M409.072,140.346c-14.337,0-26.001,11.664-26.001,26.001s11.664,26.001,26.001,26.001-->
-<!--                                        c14.337,0,26.001-11.664,26.001-26.001S423.408,140.346,409.072,140.346z M409.072,172.354c-3.312,0-6.006-2.694-6.006-6.006-->
-<!--                                        c0-3.312,2.694-6.006,6.006-6.006c3.312,0,6.006,2.694,6.006,6.006C415.078,169.66,412.384,172.354,409.072,172.354z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                                <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M348.811,73.885c-14.337,0-26.001,11.664-26.001,26.001c0,14.337,11.664,26.001,26.001,26.001-->
-<!--                                        s26.001-11.664,26.001-26.001C374.812,85.549,363.148,73.885,348.811,73.885z M348.81,105.893c-3.312,0-6.006-2.694-6.006-6.006-->
-<!--                                        c0-3.312,2.694-6.006,6.006-6.006c3.312,0,6.006,2.694,6.006,6.006C354.816,103.198,352.122,105.893,348.81,105.893z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                        </svg>-->
-                            <span class="d-block info__title hwt-font-title"><br/>+02-1111-2222</span>
-                        </a>
-                    </div>
-                </div><!-- end col-lg-3 -->
-                <div class="col-lg-3 responsive-column">
-                    <div class="icon-box faq-icon-box">
-                        <a href="#" class="d-block">
-                            <img src="/images/email.png" style="width: 50%; height: auto%;"/>
-<!--                            <svg class="info-svg" version="1.1" id="Capa_4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 412.72 412.72" style="enable-background:new 0 0 412.72 412.72;" xml:space="preserve">-->
-<!--                            <g>-->
-<!--                                <g>-->
-<!--                                    <path d="M404.72,82.944c-0.027,0-0.054,0-0.08,0h0h-27.12v-9.28c0.146-3.673-2.23-6.974-5.76-8-->
-<!--                                        c-18.828-4.934-38.216-7.408-57.68-7.36c-32,0-75.6,7.2-107.84,40c-32-33.12-75.92-40-107.84-40-->
-<!--                                        c-19.464-0.048-38.852,2.426-57.68,7.36c-3.53,1.026-5.906,4.327-5.76,8v9.2H8c-4.418,0-8,3.582-8,8v255.52c0,4.418,3.582,8,8,8-->
-<!--                                        c1.374-0.004,2.724-0.362,3.92-1.04c0.8-0.4,80.8-44.16,192.48-16h1.2h0.72c0.638,0.077,1.282,0.077,1.92,0-->
-<!--                                        c112-28.4,192,15.28,192.48,16c2.475,1.429,5.525,1.429,8,0c2.46-1.42,3.983-4.039,4-6.88V90.944-->
-<!--                                        C412.72,86.526,409.139,82.944,404.72,82.944z M16,333.664V98.944h19.12v200.64c-0.05,4.418,3.491,8.04,7.909,8.09-->
-<!--                                        c0.432,0.005,0.864-0.025,1.291-0.09c16.55-2.527,33.259-3.864,50-4c23.19-0.402,46.283,3.086,68.32,10.32-->
-<!--                                        C112.875,307.886,62.397,314.688,16,333.664z M94.32,287.664c-14.551,0.033-29.085,0.968-43.52,2.8V79.984-->
-<!--                                        c15.576-3.47,31.482-5.241,47.44-5.28c29.92,0,71.2,6.88,99.84,39.2l0.24,199.28C181.68,302.304,149.2,287.664,94.32,287.664z-->
-<!--                                         M214.32,113.904c28.64-32,69.92-39.2,99.84-39.2c15.957,0.047,31.863,1.817,47.44,5.28v210.48-->
-<!--                                        c-14.354-1.849-28.808-2.811-43.28-2.88c-54.56,0-87.12,14.64-104,25.52V113.904z M396.64,333.664-->
-<!--                                        c-46.496-19.028-97.09-25.831-146.96-19.76c22.141-7.26,45.344-10.749,68.64-10.32c16.846,0.094,33.663,1.404,50.32,3.92-->
-<!--                                        c4.368,0.663,8.447-2.341,9.11-6.709c0.065-0.427,0.095-0.859,0.09-1.291V98.944h19.12L396.64,333.664z"></path>-->
-<!--                                </g>-->
-<!--                            </g>-->
-<!--                          </svg>-->
-                            <span class="d-block info__title hwt-font-title">how-about-today@hwt.com</span>
-                        </a>
-                    </div>
-                </div><!-- end col-lg-3 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section>
+<!--<section class="contact-area section&#45;&#45;padding">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-lg-8">-->
+<!--                <div class="form-box">-->
+<!--                    <div class="form-title-wrap">-->
+<!--                        <h3 class="title">고객의 소리</h3>-->
+<!--                        <p class="font-size-15">불편 사항 또는 개선 사항에 대하여 편하게 말씀해주세요.</p>-->
+<!--                    </div>&lt;!&ndash; form-title-wrap &ndash;&gt;-->
+<!--                    <div class="form-content ">-->
+<!--                        <div class="contact-form-action">-->
+<!--                            <form th:action="@{send-email}" method="post" class="row messenger-box-form">-->
 
-<!--    <section class="contact-area section&#45;&#45;padding">-->
-<!--        <div class="container">-->
-<!--            <div class="row">-->
-<!--                <div class="col-lg-8">-->
-<!--                    <div class="form-box">-->
-<!--                        <div class="form-title-wrap">-->
-<!--                            <h3 class="title">We'd love to hear from you</h3>-->
-<!--                            <p class="font-size-15">Send us a message and we'll respond as soon as possible</p>-->
-<!--                        </div>&lt;!&ndash; form-title-wrap &ndash;&gt;-->
-<!--                        <div class="form-content ">-->
-<!--                            <div class="contact-form-action">-->
-<!--                                <form class="row messenger-box-form" method="post" action="mailer.php">-->
-<!--                                    <div class="alert alert-success messenger-box-contact__msg col-lg-12"-->
-<!--                                        style="display: none" role="alert">-->
-<!--                                        Thank You! Your message has been sent.-->
+<!--                                <div class="alert alert-success messenger-box-contact__msg col-lg-12" style="display: none" role="alert">-->
+<!--                                    성공적으로 메일이 전송되었습니다. 소중한 의견 감사합니다.-->
+<!--                                </div>-->
+
+<!--                                <div class="col-lg-6 responsive-column">-->
+<!--                                    <div class="input-box messenger-box-input-wrap">-->
+<!--&lt;!&ndash;                                            <label class="label-text" for="name">Name</label>&ndash;&gt;-->
+<!--                                        <div class="form-group">-->
+<!--                                            <span class="la la-user form-icon"></span>-->
+<!--                                            <th:block th:if="${sessionDTO == null}">-->
+<!--                                                <input class="form-control" type="text" th:name="nickname" placeholder="이름을 입력하세요." required>-->
+<!--                                            </th:block>-->
+<!--                                            <th:block th:unless="${sessionDTO == null}">-->
+<!--                                                <input class="form-control" type="text" th:name="nickname" th:value="${sessionDTO.nickname}" required>-->
+<!--                                            </th:block>-->
+<!--                                        </div>-->
 <!--                                    </div>-->
-<!--                                    <div class="col-lg-6 responsive-column">-->
-<!--                                        <div class="input-box messenger-box-input-wrap">-->
-<!--                                            <label class="label-text" for="name">Your Name</label>-->
-<!--                                            <div class="form-group">-->
-<!--                                                <span class="la la-user form-icon"></span>-->
-<!--                                                <input class="form-control" type="text" id="name" name="name"-->
-<!--                                                    placeholder="Your name" required>-->
-<!--                                            </div>-->
+<!--                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+
+<!--                                <div class="col-lg-6 responsive-column">-->
+<!--                                    <div class="input-box messenger-box-input-wrap">-->
+<!--&lt;!&ndash;                                            <label class="label-text" for="email">Email</label>&ndash;&gt;-->
+<!--                                        <div class="form-group">-->
+<!--                                            <span class="la la-envelope-o form-icon"></span>-->
+<!--                                            <th:block th:if="${sessionDTO == null}">-->
+<!--                                                <input class="form-control" type="text" th:name="email" placeholder="이메일을 입력하세요.">-->
+<!--                                            </th:block>-->
+<!--                                            <th:block th:unless="${sessionDTO == null}">-->
+<!--                                                <input class="form-control" type="text" th:name="email" th:value="${sessionDTO.email}">-->
+<!--                                            </th:block>-->
 <!--                                        </div>-->
-<!--                                    </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
-<!--                                    <div class="col-lg-6 responsive-column">-->
-<!--                                        <div class="input-box messenger-box-input-wrap">-->
-<!--                                            <label class="label-text" for="email">Your Email</label>-->
-<!--                                            <div class="form-group">-->
-<!--                                                <span class="la la-envelope-o form-icon"></span>-->
-<!--                                                <input class="form-control" type="email" name="email" id="email"-->
-<!--                                                    placeholder="Email address" required>-->
-<!--                                            </div>-->
+<!--                                    </div>-->
+<!--                                </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
+
+<!--                                <div class="col-lg-12">-->
+<!--                                    <div class="input-box messenger-box-input-wrap">-->
+<!--                                        <label class="label-text" for="content">Message</label>-->
+<!--                                        <div class="form-group">-->
+<!--                                            <span class="la la-pencil form-icon"></span>-->
+<!--                                            <textarea class="message-control form-control" name="content" id="content" placeholder="내용을 입력하세요."></textarea>-->
 <!--                                        </div>-->
-<!--                                    </div>&lt;!&ndash; end col-lg-6 &ndash;&gt;-->
-<!--                                    <div class="col-lg-12">-->
-<!--                                        <div class="input-box messenger-box-input-wrap">-->
-<!--                                            <label class="label-text" for="message">Message</label>-->
-<!--                                            <div class="form-group">-->
-<!--                                                <span class="la la-pencil form-icon"></span>-->
-<!--                                                <textarea class="message-control form-control" name="message"-->
-<!--                                                    id="message" placeholder="Write message" required></textarea>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>&lt;!&ndash; end col-lg-12 &ndash;&gt;-->
-<!--                                    <div class="col-lg-12">-->
-<!--                                        <div class="btn-box messenger-box-input-wrap">-->
-<!--                                            <button name="submit" type="submit" class="theme-btn send-message-btn"-->
-<!--                                                id="send-message-btn">Send Message</button>-->
-<!--                                        </div>-->
-<!--                                    </div>&lt;!&ndash; end col-lg-12 &ndash;&gt;-->
-<!--                                </form>-->
-<!--                            </div>&lt;!&ndash; end contact-form-action &ndash;&gt;-->
-<!--                        </div>&lt;!&ndash; end form-content &ndash;&gt;-->
-<!--                    </div>&lt;!&ndash; end form-box &ndash;&gt;-->
-<!--                </div>&lt;!&ndash; end col-lg-8 &ndash;&gt;-->
-<!--                <div class="col-lg-4">-->
-<!--                    <div class="form-box">-->
-<!--                        <div class="form-title-wrap">-->
-<!--                            <h3 class="title">고객센터 정보</h3>-->
-<!--                        </div>&lt;!&ndash; form-title-wrap &ndash;&gt;-->
-<!--                        <div class="form-content">-->
-<!--                            <div class="address-book">-->
-<!--                                <ul class="list-items contact-address">-->
-<!--                                    <li>-->
-<!--                                        <i class="la la-map-marker icon-element"></i>-->
-<!--                                        <h5 class="title font-size-16 pb-1">주소</h5>-->
-<!--                                        <p class="map__desc">-->
-<!--                                            서울특별시 강남구 테헤란로 124 4층-->
-<!--                                        </p>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <i class="la la-phone icon-element"></i>-->
-<!--                                        <h5 class="title font-size-16 pb-1">전화번호</h5>-->
+<!--                                    </div>-->
+<!--                                </div>&lt;!&ndash; end col-lg-12 &ndash;&gt;-->
+
+<!--                                <div class="col-lg-12">-->
+<!--                                    <div class="btn-box messenger-box-input-wrap">-->
+<!--                                        <button type="submit" class="theme-btn send-message-btn" id="send-email">메일 보내기</button>-->
+<!--                                    </div>-->
+<!--                                </div>&lt;!&ndash; end col-lg-12 &ndash;&gt;-->
+
+<!--                            </form>-->
+<!--                        </div>&lt;!&ndash; end contact-form-action &ndash;&gt;-->
+<!--                    </div>&lt;!&ndash; end form-content &ndash;&gt;-->
+<!--                </div>&lt;!&ndash; end form-box &ndash;&gt;-->
+<!--            </div>&lt;!&ndash; end col-lg-8 &ndash;&gt;-->
+<!--            <div class="col-lg-4">-->
+<!--                <div class="form-box">-->
+<!--                    <div class="form-title-wrap">-->
+<!--                        <h3 class="title">고객센터 정보</h3>-->
+<!--                    </div>&lt;!&ndash; form-title-wrap &ndash;&gt;-->
+<!--                    <div class="form-content">-->
+<!--                        <div class="address-book">-->
+<!--                            <ul class="list-items contact-address">-->
+<!--                                <li>-->
+<!--                                    <i class="la la-map-marker icon-element"></i>-->
+<!--                                    <h5 class="title font-size-16 pb-1">주소</h5>-->
+<!--                                    <p class="map__desc">-->
+<!--                                        서울특별시 강남구 테헤란로 124 4층-->
+<!--                                    </p>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <i class="la la-phone icon-element"></i>-->
+<!--                                    <h5 class="title font-size-16 pb-1">전화번호</h5>-->
 <!--&lt;!&ndash;                                        <p class="map__desc">Telephone: 2800 256 508</p>&ndash;&gt;-->
-<!--                                        <p class="map__desc">전화번호: 02-123-4567</p>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        <i class="la la-envelope-o icon-element"></i>-->
-<!--                                        <h5 class="title font-size-16 pb-1">이메일 주소</h5>-->
-<!--                                        <p class="map__desc">itwill@naver.com</p>-->
+<!--                                    <p class="map__desc">전화번호: 02-123-4567</p>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <i class="la la-envelope-o icon-element"></i>-->
+<!--                                    <h5 class="title font-size-16 pb-1">이메일 주소</h5>-->
+<!--                                    <p class="map__desc">itwill@naver.com</p>-->
 <!--&lt;!&ndash;                                        <p class="map__desc">inquiry@trizen.com</p>&ndash;&gt;-->
-<!--                                    </li>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                                <ul class="social-profile text-center">-->
+<!--                                    <li><a href="#"><i class="lab la-facebook-f"></i></a></li>-->
+<!--                                    <li><a href="#"><i class="lab la-twitter"></i></a></li>-->
+<!--                                    <li><a href="#"><i class="lab la-instagram"></i></a></li>-->
+<!--                                    <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>-->
+<!--                                    <li><a href="#"><i class="lab la-youtube"></i></a></li>-->
 <!--                                </ul>-->
-<!--&lt;!&ndash;                                <ul class="social-profile text-center">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <li><a href="#"><i class="lab la-facebook-f"></i></a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <li><a href="#"><i class="lab la-twitter"></i></a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <li><a href="#"><i class="lab la-instagram"></i></a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <li><a href="#"><i class="lab la-youtube"></i></a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;                                </ul>&ndash;&gt;-->
-<!--                            </div>-->
-<!--                        </div>&lt;!&ndash; end form-content &ndash;&gt;-->
-<!--                    </div>&lt;!&ndash; end form-box &ndash;&gt;-->
-<!--                </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end row &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end container &ndash;&gt;-->
-<!--    </section>&lt;!&ndash; end contact-area &ndash;&gt;-->
-    <!-- ================================
+<!--                        </div>-->
+<!--                    </div>&lt;!&ndash; end form-content &ndash;&gt;-->
+<!--                </div>&lt;!&ndash; end form-box &ndash;&gt;-->
+<!--            </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
+<!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
+<!--    </div>&lt;!&ndash; end container &ndash;&gt;-->
+<!--</section>&lt;!&ndash; end contact-area &ndash;&gt;-->
+<!-- ================================
     END CONTACT AREA
 ================================= -->
 
-    <!-- ================================
+<!-- ================================
     START MAP AREA
 ================================= -->
-    <section class="map-area padding-bottom-100px">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="map-container">
-                        <div id="map"></div>
-                    </div><!-- end map-container -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end map-area -->
-    <!-- ================================
+<section class="map-area padding-bottom-100px">
+    <div class="container">
+        <div class="row contact-map-wrap">
+            <div class="col-lg-12">
+                <div class="hwt-address-top">
+                    <span class="d-block info__title">오늘어때 위치</span>
+                </div>
+                <div class="map-container">
+                    <div id="map">
+                        <div class="wrap_button">
+                            <a href="javascript:;" class="btn_comm btn_linkMap" target="_blank" onclick="moveKakaoMap(this)"><span class="screen_out">크게보기</span></a>
+                            <a href="javascript:;" class="btn_comm btn_resetMap" onclick="resetKakaoMap()"><span class="screen_out">초기화</span></a>
+                        </div>
+                    </div>
+                </div><!-- end map-container -->
+
+                <div class="hwt-address-bottom">
+                    <img src="/images/location.png"/>
+                    <span class="d-block info__title">서울 강남구 테헤란로 124</span>
+                </div>
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end map-area -->
+<!-- ================================
     END MAP AREA
 ================================= -->
 
-    <!-- ================================
-       START FOOTER AREA
-================================= -->
-<!--    <section class="footer-area section-bg padding-top-100px padding-bottom-30px">-->
-<!--        <div class="container">-->
-<!--            <div class="row">-->
-<!--                <div class="col-lg-3 responsive-column">-->
-<!--                    <div class="footer-item">-->
-<!--                        <div class="footer-logo padding-bottom-30px">-->
-<!--                            <a href="/home" class="foot__logo"><img src="/images/logo.png" alt="logo"></a>-->
-<!--                        </div>&lt;!&ndash; end logo &ndash;&gt;-->
-<!--                        <p class="footer__desc">Morbi convallis bibendum urna ut viverra. Maecenas consequat</p>-->
-<!--                        <ul class="list-items pt-3">-->
-<!--                            <li>3015 Grand Ave, Coconut Grove,<br> Cerrick Way, FL 12345</li>-->
-<!--                            <li>+123-456-789</li>-->
-<!--                            <li><a href="#">trizen@yourwebsite.com</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-<!--                </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-<!--                <div class="col-lg-3 responsive-column">-->
-<!--                    <div class="footer-item">-->
-<!--                        <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Company</h4>-->
-<!--                        <ul class="list-items list&#45;&#45;items">-->
-<!--                            <li><a href="about.html">About us</a></li>-->
-<!--                            <li><a href="services.html">Services</a></li>-->
-<!--                            <li><a href="#">Jobs</a></li>-->
-<!--                            <li><a href="blog-grid.html">News</a></li>-->
-<!--                            <li><a href="contact.html">Support</a></li>-->
-<!--                            <li><a href="#">Advertising</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-<!--                </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-<!--                <div class="col-lg-3 responsive-column">-->
-<!--                    <div class="footer-item">-->
-<!--                        <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Other Services</h4>-->
-<!--                        <ul class="list-items list&#45;&#45;items">-->
-<!--                            <li><a href="#">Investor Relations</a></li>-->
-<!--                            <li><a href="#">Trizen.com Rewards</a></li>-->
-<!--                            <li><a href="#">Partners</a></li>-->
-<!--                            <li><a href="#">List My Hotel</a></li>-->
-<!--                            <li><a href="#">All Hotels</a></li>-->
-<!--                            <li><a href="#">TV Ads</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-<!--                </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-<!--                <div class="col-lg-3 responsive-column">-->
-<!--                    <div class="footer-item">-->
-<!--                        <h4 class="title curve-shape pb-3 margin-bottom-20px" data-text="curvs">Other Links</h4>-->
-<!--                        <ul class="list-items list&#45;&#45;items">-->
-<!--                            <li><a href="#">USA Vacation Packages</a></li>-->
-<!--                            <li><a href="#">USA Flights</a></li>-->
-<!--                            <li><a href="#">USA Hotels</a></li>-->
-<!--                            <li><a href="#">USA Car Hire</a></li>-->
-<!--                            <li><a href="#">Create an Account</a></li>-->
-<!--                            <li><a href="#">Trizen Reviews</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>&lt;!&ndash; end footer-item &ndash;&gt;-->
-<!--                </div>&lt;!&ndash; end col-lg-3 &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end row &ndash;&gt;-->
-<!--            <div class="row align-items-center">-->
-<!--                <div class="col-lg-8">-->
-<!--                    <div class="term-box footer-item">-->
-<!--                        <ul class="list-items list&#45;&#45;items d-flex align-items-center">-->
-<!--                            <li><a href="#">Terms & Conditions</a></li>-->
-<!--                            <li><a href="#">Privacy Policy</a></li>-->
-<!--                            <li><a href="#">Help Center</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>&lt;!&ndash; end col-lg-8 &ndash;&gt;-->
-<!--                <div class="col-lg-4">-->
-<!--                    <div class="footer-social-box text-right">-->
-<!--                        <ul class="social-profile">-->
-<!--                            <li><a href="#"><i class="lab la-facebook-f"></i></a></li>-->
-<!--                            <li><a href="#"><i class="lab la-twitter"></i></a></li>-->
-<!--                            <li><a href="#"><i class="lab la-instagram"></i></a></li>-->
-<!--                            <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>&lt;!&ndash; end col-lg-4 &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end row &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end container &ndash;&gt;-->
-<!--        <div class="section-block mt-4"></div>-->
-<!--        <div class="container">-->
-<!--            <div class="row align-items-center">-->
-<!--                <div class="col-lg-7">-->
-<!--                    <div class="copy-right padding-top-30px">-->
-<!--                        <p class="copy__desc">-->
-<!--                            &copy; Copyright Trizen 2020. Made with-->
-<!--                            <span class="la la-heart"></span> by <a-->
-<!--                                href="https://themeforest.net/user/techydevs/portfolio">TechyDevs</a>-->
-<!--                        </p>-->
-<!--                    </div>&lt;!&ndash; end copy-right &ndash;&gt;-->
-<!--                </div>&lt;!&ndash; end col-lg-7 &ndash;&gt;-->
-<!--                <div class="col-lg-5">-->
-<!--                    <div class="copy-right-content d-flex align-items-center justify-content-end padding-top-30px">-->
-<!--                        <h3 class="title font-size-15 pr-2">We Accept</h3>-->
-<!--                        <img src="/images/payment-img.png" alt="">-->
-<!--                    </div>&lt;!&ndash; end copy-right-content &ndash;&gt;-->
-<!--                </div>&lt;!&ndash; end col-lg-5 &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end row &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end container &ndash;&gt;-->
-<!--    </section>&lt;!&ndash; end footer-area &ndash;&gt;-->
-    <!-- ================================
-       START FOOTER AREA
-================================= -->
+<!-- start back-to-top -->
+<div id="back-to-top">
+    <i class="la la-angle-up" title="Go top"></i>
+</div>
+<!-- end back-to-top -->
 
-    <!-- start back-to-top -->
-    <div id="back-to-top">
-        <i class="la la-angle-up" title="Go top"></i>
-    </div>
-    <!-- end back-to-top -->
+<!-- end modal-shared -->
+<!-- 회원가입 모달 -->
+<th:block th:replace="fragments/signUp::signUp"></th:block>
 
-    <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                            <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/member/join">
-                                <div class="input-box">
-                                    <label class="label-text">닉네임</label>
-                                    <div class="form-group">
-                                        <span class="la la-user form-icon"></span>
-                                        <input class="form-control" type="text" name="nickname" placeholder="닉네임">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">이메일 주소</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" placeholder="패스워드">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <!--                                    <div class="input-box">-->
-                                <!--                                        <label class="label-text">패스워드 확인</label>-->
-                                <!--                                        <div class="form-group">-->
-                                <!--                                            <span class="la la-lock form-icon"></span>-->
-                                <!--                                            <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>&lt;!&ndash; end input-box &ndash;&gt;-->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" class="theme-btn w-100">회원가입</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 회원가입</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
 
-    <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
-                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/loginProc">
-                                <div class="input-box">
-                                    <label class="label-text">이메일</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" id="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group mb-2">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <!--                                    <div class="custom-checkbox mb-0">-->
-                                        <!--                                        <input type="checkbox" id="rememberchb">-->
-                                        <!--                                        <label for="rememberchb">Remember me</label>-->
-                                        <!--                                    </div>-->
-                                        <p class="forgot-password">
-                                            <a href="recover">비밀번호를 잊으셨나요?</a>
-                                        </p>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" id="login" class="theme-btn w-100">로그인</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 로그인</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
+<!-- end modal-shared -->
+<!-- 로그인 모달 -->
+<th:block th:replace="fragments/signIn::signIn"></th:block>
 
-    <!-- Template JS Files -->
-<!--    <script src="js/jquery-3.4.1.min.js"></script>-->
-<!--    <script src="js/jquery-ui.js"></script>-->
-<!--    <script src="js/popper.min.js"></script>-->
-<!--    <script src="js/bootstrap.min.js"></script>-->
-<!--    <script src="js/bootstrap-select.min.js"></script>-->
-<!--    <script src="js/moment.min.js"></script>-->
-<!--    <script src="js/daterangepicker.js"></script>-->
-<!--    <script src="js/owl.carousel.min.js"></script>-->
-<!--    <script src="js/jquery.fancybox.min.js"></script>-->
-<!--    <script src="js/jquery.countTo.min.js"></script>-->
-<!--    <script src="js/animated-headline.js"></script>-->
-<!--    <script src="js/jquery.ripples-min.js"></script>-->
-<!--    <script src="js/leaflet.js"></script>-->
-<!--    <script src="js/map.js"></script>-->
-<!--    <script src="js/ajax-form.js"></script>-->
-<!--    <script src="js/main.js"></script>-->
-<!--</body>-->
+</th:block>
 
-<!--</html>-->
-
+<th:block layout:fragment="script">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41285ae46bc998ac5e0756fff1675a3c"></script> <!-- 카카오맵 API -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> <!-- 카카오맵 라이브러리 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script> <!-- Kakao SDK for JavaScript -->
+<script src="/js/hwt/contact.js"></script>
 </th:block>
 
 </html>

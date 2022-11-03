@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.security.Principal;
 import java.util.Optional;
 
+import static com.phoenix.howabouttoday.payment.MemberDTOCHECK.doCheck;
+
 @AllArgsConstructor
 @Controller
 @Slf4j
@@ -35,7 +38,7 @@ public class PaymentHistoryController {
     private final MemberService memberService;
     private final PaymentHistoryService paymentHistoryService;
 
-    /* 마이페이지-예약탭  */
+    /* 마이페이지-결제내역  */
     @GetMapping(value = {"user-dashboard-booking/{page}", "user-dashboard-booking"})
     public String getUserBooking(@LoginUser SessionDTO sessionDTO,  @PathVariable(required = false, name = "page") Optional<Integer> page, Model model) {
 //
@@ -43,23 +46,16 @@ public class PaymentHistoryController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        else{
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
+//        else{
+//            sessionDTO = new SessionDTO(1l, "a@com", "123", "토에이", "010-9876-5432", Role.MEMBER);
+//            model.addAttribute("sessionDTO", sessionDTO);
+//        }
 
+        doCheck(model);
 
         Integer curPage = page.orElse(1);
-
-        //1. 시큐리티를 사용해서 principal 객체에서 user정보를 가져와서 memberNum을 알 수 있다.
-
-//        MemberDTO customer = memberService.getCustomer(2L); //여긴 페이징 처리 테스트 하느라 고정해둠
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
-//        MemberDTO customer = memberService.getAuthUser(principal.getName());s
-
-        Page<OrdersDTO> ordersDTOList = paymentHistoryService.pagingAllByMember(PageRequest.of(curPage - 1, 5, Sort.Direction.DESC, "ordersDate"), customer.getNum());
-
-//        Page<OrdersDTO> ordersDTOList = orderService.pagingAll(PageRequest.of(curPage - 1, 5, Sort.Direction.DESC, "ordersDate"));
+        Page<OrdersDTO> ordersDTOList = paymentHistoryService.pagingAllByMember(PageRequest.of(curPage - 1, 5, Sort.by("ordersNum").ascending()), customer.getNum());
 
         model.addAttribute("customer", customer);
         model.addAttribute("ordersDTOList", ordersDTOList);
@@ -79,10 +75,10 @@ public class PaymentHistoryController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-        else{
-            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
+//        else{
+//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
+//            model.addAttribute("sessionDTO", sessionDTO);
+//        }
 
         /**
          * 1. get방식
@@ -90,6 +86,8 @@ public class PaymentHistoryController {
          * 3. 오더번호
          * 4.
          */
+
+        doCheck(model);
 
         Long ordersNum = page;
 

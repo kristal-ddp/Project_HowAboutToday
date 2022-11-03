@@ -4,16 +4,20 @@ package com.phoenix.howabouttoday;
 import com.phoenix.howabouttoday.accom.entity.*;
 import com.phoenix.howabouttoday.accom.repository.*;
 import com.phoenix.howabouttoday.board.entity.Reply;
-import com.phoenix.howabouttoday.board.entity.Review;
-import com.phoenix.howabouttoday.board.entity.ReviewImage;
+import com.phoenix.howabouttoday.payment.entity.Coupon;
+import com.phoenix.howabouttoday.payment.entity.CouponRules;
+import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
+import com.phoenix.howabouttoday.payment.enumType.DiscountType;
+import com.phoenix.howabouttoday.payment.enumType.ReviewStatus;
+import com.phoenix.howabouttoday.payment.repository.CouponRepository;
+import com.phoenix.howabouttoday.payment.repository.CouponRulesRepository;
+import com.phoenix.howabouttoday.room.entity.Review;
 import com.phoenix.howabouttoday.board.repository.*;
-
+import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.global.RegionType;
 import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
-
-import com.phoenix.howabouttoday.member.wishlist.domain.WishList;
 import com.phoenix.howabouttoday.member.wishlist.domain.WishlistRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
@@ -29,7 +33,6 @@ import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.*;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -51,7 +54,6 @@ public class InitDb {
     public void init(){
         initService.dbInit1();
         initService.dbInit2();
-
     }
 
     @Component
@@ -74,7 +76,6 @@ public class InitDb {
         private final RoomImageRepository roomImageRepository;
         private final RoomRepository roomRepository;
         private final ReviewRepository reviewRepository;
-        private final ReviewImageRepository reviewImageRepository;
         private final ReplyRepository replyRepository;
         private final AmenitiesRepository amenitiesRepository;
         private final ServiceRepository serviceRepository;
@@ -83,6 +84,9 @@ public class InitDb {
 //        private final OrdersDetailRepository ordersDetailRepository;
         private final AccommodationImageRepository accommodationImageRepository;
         private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
+        private final CouponRepository couponRepository;
+        private final CouponRulesRepository couponRulesRepository;
+        private final AccomViewFaciltiesRepository accomViewFaciltiesRepository;
 
         private final AccomCategoryRepository accomCategoryRepository;
         public void dbInit1() {
@@ -100,10 +104,65 @@ public class InitDb {
                     .build());
 
 
+            /** 쿠폰 생성 **/
+            CouponRules couponRules1 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("가입축하 쿠폰")
+                    .period(60)
+                    .discountType(DiscountType.FLAT)
+                    .discountValue(10000)
+                    .discountMinPrice(75000)
+                    .discountMaxPrice(10000)
+                    .couponContent("가입축하 쿠폰입니다.")
+                    .build());
+
+            CouponRules couponRules2 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("겨울여행 쿠폰")
+                    .period(30)
+                    .discountType(DiscountType.FIXED)
+                    .discountValue(10)
+                    .discountMinPrice(75100)
+                    .discountMaxPrice(100000)
+                    .couponContent("안전한 겨울여행을 위한 쿠폰입니다.")
+                    .build());
+
+            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
+
+            Coupon coupon1 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules1)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .startDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
+                    .build());
+
+            Coupon coupon2 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules2)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .startDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
+                    .build());
+
+            member.getCoupons().add(coupon1);
+            member.getCoupons().add(coupon2);
+
+
             /**지역 등록 **/
+
+            Region save = regionRepository.save(Region.builder()
+                    .region(RegionType.BUSAN)
+                    .build());
+
             Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.SEOUL)
-                    .regionParentNum(RegionType.SEOUL)
+                    .region(RegionType.SAHA)
+                    .parentRegion(save)
+
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.DONGNAE)
+                    .parentRegion(save)
+
                     .build());
 
             /** 카테고리 등록 **/
@@ -122,7 +181,6 @@ public class InitDb {
                     .accomTel("050350577805")
                     .accomCategory(hotel)
                     .region(region)
-                    .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                     .accomRating(4.4)
                     .accomWishlistCount(110)
                     .totalReviewNum(1103)
@@ -134,12 +192,20 @@ public class InitDb {
                     .reserveRange(60)
                     .build());
 
+
+
             /** 숙소시설 등록 **/
-            facilitiesRepository.save(Facilities.builder()
-                    .facility(Facility.TV)
+            Facilities saveFac = facilitiesRepository.save(Facilities.builder()
+                    .facility(Facility.TELEVISION)
                     .faciltiesOriginalFileName("image5.jpg")
                     .faciltiesSaveFilename("image7.jpg")
                     .build());
+
+            accomViewFaciltiesRepository.save(AccomViewFacilities.builder()
+                    .accommodation(accommodation)
+                    .facilities(saveFac)
+                    .build());
+
 
             /** 숙소이미지 등록 **/
             accommodationImageRepository.save( AccomImage.builder()
@@ -155,7 +221,9 @@ public class InitDb {
                     .roomName("너울펜션 스위트룸")
                     .defaultGuest(2)
                     .maxGuest(10)
-                    .price(50)
+                    .price(35000)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -164,7 +232,9 @@ public class InitDb {
                     .roomName("너울펜션 디럭스룸")
                     .defaultGuest(2)
                     .maxGuest(10)
-                    .price(70)
+                    .price(4000000)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -173,6 +243,8 @@ public class InitDb {
                     .roomName("너울펜션 기가막힌 룸")
                     .defaultGuest(2)
                     .maxGuest(10)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .price(80000)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
@@ -200,16 +272,16 @@ public class InitDb {
 
             /** 객실 오락시설 등록 **/
             Amenities amenities = amenitiesRepository.save(Amenities.builder()
-                    .amenitiesName("흡연장")
+                    .amenitiesName(AmenitiesNames.FREE_WI_FI)
                     .build());
 
             Amenities amenities1 = amenitiesRepository.save(Amenities.builder()
-                    .amenitiesName("풋살장")
+                    .amenitiesName(AmenitiesNames.BATHTUB)
                     .build());
 
             /** 객실 서비스 등록 **/
             serviceRepository.save(Service.builder()
-                    .serviceName("피트니스")
+                    .serviceName(ServiceNames.MASSAGE)
                     .build());
 
             /** 객실과 오락시설 등록 **/
@@ -254,11 +326,12 @@ public class InitDb {
             Orders order = Orders.builder()
                     .ordersTel(member.getMemberTel())
                     .ordersName(member.getNickname())
-                    .ordersDate(LocalDate.now())
+                    .ordersDate(LocalDateTime.now())
                     .ordersPrice(room.getPrice())
                     .ordersType("card")
-                    .ordersStatus("결제완료")
+                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .impUid("abc")
+                    .discountValue(0)
                     .member(member)
                     .build();
 
@@ -273,6 +346,7 @@ public class InitDb {
                     .reservePrice(cart.getReservePrice())
                     .reserveAdultCount(cart.getReserveAdultCount())
                     .reserveChildCount(cart.getReserveChildCount())
+                    .isReviewWrited(ReviewStatus.PRE_WRITE)
                     .build();
 
             order.getReservation().add(ordersDetail);
@@ -290,19 +364,16 @@ public class InitDb {
             /** 댓글 등록 **/
             Review review = reviewRepository.save(Review.builder()
                     .member(member)
-                    .reviewCreatedDate(LocalDateTime.now())
-                    .reviewModifyDate(LocalDateTime.now())
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
                     .reviewRating(3.72)
+                    .room(room)
                     .reviewContent("안녕")
+                    .memberName("이동우")
                     .build());
 
+            room.getReviews().add(review);
 
-            /** 댓글 이미지 등록 **/
-            reviewImageRepository.save(ReviewImage.builder()
-                    .review(review)
-                    .reviewOriginalFileName("Original")
-                    .reviewSaveFileName("Svae")
-                    .build());
 
             /** 리플 **/
             replyRepository.save(Reply.builder()
@@ -334,10 +405,70 @@ public class InitDb {
                     .role(Role.MEMBER)
                     .build());
 
+            CouponRules couponRules3 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("가입축하 쿠폰2")
+                    .period(60)
+                    .discountType(DiscountType.FLAT)
+                    .discountValue(15000)
+                    .discountMinPrice(60000)
+                    .discountMaxPrice(15000)
+                    .couponContent("가입축하를 위한 쿠폰 2번째 입니다.")
+                    .build());
+
+            CouponRules couponRules4 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("건강한 여행 쿠폰")
+                    .period(15)
+                    .discountType(DiscountType.FIXED)
+                    .discountValue(20)
+                    .discountMinPrice(100000)
+                    .discountMaxPrice(20000)
+                    .couponContent("건강을 위한 여행 시 사용 가능한 쿠폰입니다.")
+                    .build());
+
+            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
+
+            Coupon coupon3 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules3)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .startDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules3.getPeriod()))
+                    .build());
+
+            Coupon coupon4 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules4)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .startDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules4.getPeriod()))
+                    .build());
+
+            member.getCoupons().add(coupon3);
+            member.getCoupons().add(coupon4);
+
+
             /**지역 등록 **/
+            Region save = regionRepository.save(Region.builder()
+                    .region(RegionType.SEOUL)
+                    .build());
+
             Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.BUSAN)
-                    .regionParentNum(RegionType.BUSAN)
+                    .region(RegionType.GWANAK)
+                    .parentRegion(save)
+                    .build());
+            regionRepository.save(Region.builder()
+                    .region(RegionType.JONGRO)
+                    .parentRegion(save)
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.SEODEAMOON)
+                    .parentRegion(save)
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.SEOCHO)
+                    .parentRegion(save)
                     .build());
 
             AccomCategory motel = accomCategoryRepository.save(AccomCategory.builder()
@@ -345,8 +476,8 @@ public class InitDb {
                     .viewName("모텔")
                     .build());
 
-            AccomCategory penssion = accomCategoryRepository.save(AccomCategory.builder()
-                    .name("penssion")
+            AccomCategory pension = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("pension")
                     .viewName("펜션/풀빌라")
                     .build());
 
@@ -360,9 +491,9 @@ public class InitDb {
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("서울 아폴로 게스트하우스")
                     .accomTel("050350521568")
-                    .accomCategory(penssion)
+                    .accomCategory(pension)
                     .region(region)
-                    .accomAddress("서울특별시 영등포구 영등포로19길 7-1")
+//                    .accomAddress("서울특별시 영등포구 영등포로19길 7-1")
                     .accomRating(5.0)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
@@ -379,7 +510,7 @@ public class InitDb {
                     .accomTel("050350521568")
                     .accomCategory(guestHouse)
                     .region(region)
-                    .accomAddress("대구광역시 동구 파계로138길 36")
+//                    .accomAddress("대구광역시 동구 파계로138길 36")
                     .accomRating(4.2)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
@@ -392,9 +523,9 @@ public class InitDb {
             Accommodation accommodation3 = accommodationRepository.save(Accommodation.builder()
                     .accomName("인천(석남동) 뱅크")
                     .accomTel("050350521568")
-                    .accomCategory(penssion)
+                    .accomCategory(pension)
                     .region(region)
-                    .accomAddress("인천광역시 서구 염곡로 250")
+//                    .accomAddress("인천광역시 서구 염곡로 250")
                     .accomRating(3.6)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
@@ -409,7 +540,7 @@ public class InitDb {
                     .accomTel("050350521568")
 //                    .accomCategory(AccomCategory.GUESTHOUSE)
                     .region(region)
-                    .accomAddress("제주특별자치도 제주시 용남1길 47")
+//                    .accomAddress("제주특별자치도 제주시 용남1길 47")
                     .accomRating(2.1)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
@@ -424,7 +555,7 @@ public class InitDb {
                     .accomTel("050350521568")
 //                    .accomCategory(AccomCategory.GUESTHOUSE)
                     .region(region)
-                    .accomAddress("경상북도 포항시 북구 청하면 해안로1918번길34-1")
+//                    .accomAddress("경상북도 포항시 북구 청하면 해안로1918번길34-1")
                     .accomRating(1.2)
                     .accomWishlistCount(12)
                     .totalReviewNum(127)
@@ -437,11 +568,13 @@ public class InitDb {
                     .build());
 
             /** 숙소시설 등록 **/
-            facilitiesRepository.save(Facilities.builder()
-                    .facility(Facility.TWOBED)
+            Facilities saveFac = facilitiesRepository.save(Facilities.builder()
+                    .facility(Facility.PETS_ALLOWED)
                     .faciltiesOriginalFileName("image3.jpg")
                     .faciltiesSaveFilename("image3.jpg")
                     .build());
+
+
 
             /** 숙소이미지 등록 **/
             accommodationImageRepository.save( AccomImage.builder()
@@ -449,6 +582,8 @@ public class InitDb {
                     .accomSaveFilename("image1.jpg")
                     .accommodation(accommodation)
                     .build());
+
+
 
             accommodationImageRepository.save( AccomImage.builder()
                     .accomOriginFilename("image5.jpg")
@@ -482,6 +617,8 @@ public class InitDb {
                     .defaultGuest(2)
                     .maxGuest(10)
                     .price(70000)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -494,12 +631,12 @@ public class InitDb {
 
             /** 객실 오락시설 등록 **/
             Amenities amenities = amenitiesRepository.save(Amenities.builder()
-                    .amenitiesName("족구장")
+                    .amenitiesName(AmenitiesNames.HAIR_DRYER)
                     .build());
 
             /** 객실 서비스 등록 **/
             serviceRepository.save(Service.builder()
-                    .serviceName("수영장")
+                    .serviceName(ServiceNames.LAUNDRY)
                     .build());
 
 
@@ -511,31 +648,31 @@ public class InitDb {
 
             for (int i=0; i < 100; i++) {
 
-
-
                 Accommodation build = Accommodation.builder()
                         .accomName("보령(대천) 너울펜션" + i)
                         .accomTel("050350577805")
                         .accomCategory(motel)
                         .region(region)
-                        .accomAddress("충청남도 보령시 해수욕장13길 10-20" + i)
-                        .accomRating(4.4)
+                        .accomAddress1(save.getRegion().getValue())
+                        .accomAddress2(region.getRegion().getValue())
+                        .accomRating(3.1)
                         .accomWishlistCount(110)
                         .totalReviewNum(1103)
                         .latitude(36.3196)
                         .longitude(126.5092)
-                        .lowPrice(i+(500))
+                        .lowPrice((i*10000)+50000 + i)
                         .reserveRange(60)
                         .checkIn(LocalTime.of(15, 0))
                         .checkOut(LocalTime.of(11, 0))
                         .build();
 
-                Accommodation save = accommodationRepository.save(build);
+
+                Accommodation save1 = accommodationRepository.save(build);
 
                 AccomImage image = accommodationImageRepository.save(AccomImage.builder()
                         .accomOriginFilename("image" + i + ".jpg")
                         .accomSaveFilename("image4.jpg")
-                        .accommodation(save)
+                        .accommodation(save1)
                         .build());
 
 
@@ -564,11 +701,12 @@ public class InitDb {
             Orders order = Orders.builder()
                     .ordersTel(member.getMemberTel())
                     .ordersName(member.getNickname())
-                    .ordersDate(LocalDate.now())
+                    .ordersDate(LocalDateTime.now())
                     .ordersPrice(room.getPrice())
                     .ordersType("card")
-                    .ordersStatus("결제완료")
+                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
                     .member(member)
+                    .discountValue(0)
                     .impUid("def")
                     .build();
 
@@ -600,19 +738,18 @@ public class InitDb {
             /** 댓글 등록 **/
             Review review = reviewRepository.save(Review.builder()
                     .member(member)
-                    .reviewCreatedDate(LocalDateTime.now())
-                    .reviewModifyDate(LocalDateTime.now())
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
                     .reviewRating(2.73)
+                    .memberName("안수언")
                     .reviewContent("너무별로에요")
+                    .room(room)
                     .build());
 
+            room.getReviews().add(review);
 
-            /** 댓글 이미지 등록 **/
-            reviewImageRepository.save(ReviewImage.builder()
-                    .review(review)
-                    .reviewOriginalFileName("Original1")
-                    .reviewSaveFileName("Svae1")
-                    .build());
+
+
 
             /** 리플 **/
             replyRepository.save(Reply.builder()
@@ -659,20 +796,39 @@ public class InitDb {
 
 
             /**지역 등록 **/
-            Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.JEJU)
-                    .regionParentNum(RegionType.JEJU)
+            Region save = regionRepository.save(Region.builder()
+                    .region(RegionType.SEOUL)
                     .build());
 
+            Region region = regionRepository.save(Region.builder()
+                    .region(RegionType.GWANAK)
+                    .parentRegion(save)
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.SEODEAMOON)
+                    .parentRegion(save)
+                    .build());
+
+            AccomCategory guesthouse = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("guesthouse")
+                    .viewName("게스트하우스")
+                    .build());
+
+            AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("hotel")
+                    .viewName("호텔")
+                    .build());
 
 
             /**숙소 등록**/
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("제주도 라르고 게스트하우스")
                     .accomTel("01045020614")
+                    .accomCategory(guesthouse)
                     .region(region)
-                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
 
+//                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
                     .accomRating(3.9)
                     .accomWishlistCount(100)
                     .totalReviewNum(238)
@@ -695,6 +851,8 @@ public class InitDb {
                     .roomName("우리 집 같은 내방룸")
                     .defaultGuest(2)
                     .maxGuest(2)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .stayStartDate(LocalDate.now())
                     .stayEndDate(LocalDate.of(2022,10, 28))
                     .price(43000)
@@ -706,6 +864,8 @@ public class InitDb {
                     .roomName("너네집 차가운 방")
                     .defaultGuest(2)
                     .maxGuest(3)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .stayStartDate(LocalDate.now())
                     .stayEndDate(LocalDate.of(2022,10, 28))
                     .price(65000)
@@ -717,6 +877,8 @@ public class InitDb {
                     .roomName("언제나 눕게 되는 방")
                     .defaultGuest(2)
                     .maxGuest(4)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .stayStartDate(LocalDate.now())
                     .stayEndDate(LocalDate.of(2022,10, 28))
                     .price(34000)
@@ -728,6 +890,8 @@ public class InitDb {
                     .roomName("너와 나의 연결방")
                     .defaultGuest(2)
                     .maxGuest(4)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .stayStartDate(LocalDate.now())
                     .stayEndDate(LocalDate.of(2022,10, 28))
                     .price(82000)
@@ -779,10 +943,11 @@ public class InitDb {
             return Orders.builder()
                     .ordersTel(member.getMemberTel())
                     .ordersName(member.getNickname())
-                    .ordersDate(LocalDate.now().plusDays(day))
+                    .ordersDate(LocalDateTime.now().plusDays(day))
                     .ordersPrice(35000)
                     .ordersType("card")
-                    .ordersStatus("결제완료")
+                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
+                    .discountValue(0)
                     .member(member)
                     .build();
         }
@@ -805,16 +970,9 @@ public class InitDb {
             return od;
         }
 
-
-
         public void 객실예약정보_입력(Long memberId) {
 
-            Optional<Orders> optionOrders = ordersRepository.findById(memberId);
-
-            if (optionOrders.isEmpty()) {
-                new NullPointerException("주문이 없습니다.");
-            }
-            Orders orders = optionOrders.get();
+            Orders orders = ordersRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 주문이 존재하지 않습니다.", memberId)));
 
             for (Reservation reservation : orders.getReservation()) {
                 LocalDate ldStart = reservation.getReserveUseStartDate();

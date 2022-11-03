@@ -29,7 +29,7 @@ public class FAQServiceImpl implements FAQService {
 
     // 게시판 리스트 (모든 게시글 조회)
     @Override
-    public List<List<BoardDetailDTO>> findAll_FAQ(String boardCategoryName) {
+    public List<List<BoardDetailDTO>> findAll_FAQ(String boardCategoryName, String keyword) {
 
         List<BoardCategory> categoryList = boardCategoryRepository.findAllByCategoryName(boardCategoryName); // FAQ 관련 Category List
         List<List<BoardDetailDTO>> faqList = new ArrayList<>(); // Board Detail List
@@ -39,7 +39,7 @@ public class FAQServiceImpl implements FAQService {
 
             // Board Detail 1개 
             // Entity → DTO
-            List<BoardDetailDTO> lists = boardRepository.findAllByBoardCategory(boardCategory) // Entity List
+            List<BoardDetailDTO> lists = boardRepository.findAllByBoardCategory(boardCategory.getBoardCategoryNum(), keyword) // Entity List
                     .stream() // Entity Stream
                     .map(BoardDetailDTO::new) // DTO Stream
                     .collect(Collectors.toList()); // DTO List

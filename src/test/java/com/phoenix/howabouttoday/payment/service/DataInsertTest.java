@@ -16,7 +16,6 @@ import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
 import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
-import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
@@ -33,6 +32,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -192,10 +192,10 @@ public class DataInsertTest {
         Orders order = Orders.builder()
                 .ordersTel("01045020614")
                 .ordersName("김영운")
-                .ordersDate(LocalDate.now())
+                .ordersDate(LocalDateTime.now())
                 .ordersPrice(totalPrice)
                 .ordersType("card")
-                .ordersStatus("결제완료")
+//                .ordersStatus("결제완료")
                 .member(member)
                 .build();
 
@@ -265,7 +265,7 @@ public class DataInsertTest {
         for (int i = 0; i < REGION_COUNT + 1; i++) {
             region.add(Region.builder()
                     .region(RegionType.values()[i])
-                    .regionParentNum(RegionType.EMPTY)
+//                    .regionParentNum(RegionType.EMPTY)
                     .build());
         }
 
@@ -282,9 +282,9 @@ public class DataInsertTest {
         Accommodation accom = Accommodation.builder()
                 .accomName(randValue[0] + "보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategory(AccomCategory.PENSION)
+//                .accomCategory(AccomCategory.PENSION)
                 .region(region)
-                .accomAddress("충청남도 보령시 해수욕장13길 10-20")
+//                .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
                 .totalReviewNum(1103)
@@ -294,7 +294,6 @@ public class DataInsertTest {
                 .reserveRange(59)
                 .build();
 
-        region.getAccommodation().add(accom);
 
         Room[] rooms = new Room[4];
 

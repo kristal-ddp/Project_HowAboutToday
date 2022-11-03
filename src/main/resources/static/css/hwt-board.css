@@ -99,6 +99,10 @@ n
     padding: 40px 40px 0;
 }
 
+.hwt-details-content p {
+    white-space: pre-wrap;
+}
+
 .hwt-details-content p img {
     width: 100%;
 }

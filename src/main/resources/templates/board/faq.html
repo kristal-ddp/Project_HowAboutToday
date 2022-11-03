@@ -1,384 +1,225 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/layout">
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="layout/layout">
 
 
 
 <th:block layout:fragment="content">
 <div>
 <!-- ================================
-    START BREADCRUMB AREA
+	START BREADCRUMB AREA
 ================================= -->
 <section class="breadcrumb-area breadcrumb-board">
-    <div class="breadcrumb-wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-content text-center">
-                        <div class="section-heading">
-                            <h2 class="sec__title text-white">FAQ</h2>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6 mx-auto">
-                                <div class="contact-form-action pt-4">
-                                    <form action="#">
-                                        <div class="form-group mb-0">
-                                            <input class="form-control pl-3" type="text" name="text" placeholder="원하는 검색어를 입력하세요.">
-                                            <button class="search-btn" type="submit"><i class="la la-search"></i></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- end breadcrumb-content -->
-                </div><!-- end col-lg-12 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end breadcrumb-wrap -->
-    <div class="bread-svg-box">
-        <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
-    </div><!-- end bread-svg -->
+	<div class="breadcrumb-wrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb-content text-center">
+						<div class="section-heading">
+							<h2 class="sec__title text-white">FAQ</h2>
+						</div>
+						<div class="row">
+							<div class="col-lg-6 mx-auto board-search-wrap">
+								<div class="contact-form-action board-search">
+									<form action="">
+										<div class="form-group mb-0">
+											<th:block th:if="${keyword.equals('')}">
+												<input class="form-control pl-3" type="text" name="keyword" placeholder="원하는 검색어를 입력하세요.">
+											</th:block>
+											<th:block th:unless="${keyword.equals('')}">
+												<input class="form-control pl-3" type="text" name="keyword" th:value="${keyword}">
+											</th:block>
+											<button class="search-btn" type="submit"><i class="la la-search"></i></button>
+										</div>
+									</form>
+								</div>
+
+								<div class="col-lg-5 search-reset">
+									<div class="btn-box btn--box text-right">
+											<a href="/faq" class="theme-btn hwt-btn-white">검색 초기화</a>
+									</div><!-- end btn-box -->
+								</div>
+
+							</div>
+						</div>
+					</div><!-- end breadcrumb-content -->
+				</div><!-- end col-lg-12 -->
+			</div><!-- end row -->
+		</div><!-- end container -->
+	</div><!-- end breadcrumb-wrap -->
+	<div class="bread-svg-box">
+		<svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
+	</div><!-- end bread-svg -->
 </section><!-- end breadcrumb-area -->
 <!-- ================================
-    END BREADCRUMB AREA
+	END BREADCRUMB AREA
 ================================= -->
 
 <!-- ================================
-    START FAQ AREA
+	START FAQ AREA
 ================================= -->
 <section class="faq-area padding-top-100px padding-bottom-70px text-center">
-    <div class="container">
-        <div class="row hwt-row-faq">
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
-                        <img src="icon/categories.png" class="header-icon">
-                        <span class="d-block info__title hwt-font-title">전체</span>
-                    </a>
-                </div>
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#faq" class="d-block">
-                        <img src="icon/sale.png" class="header-icon">
-                        <span class="d-block info__title hwt-font-title faq_move">상품 / 서비스</span>
-                    </a>
-                </div>
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#faq2" class="d-block">
-                        <img src="icon/pay.png" class="header-icon">
-                        <span class="d-block info__title hwt-font-title faq_move">예약 / 결제</span>
-                    </a>
-                </div>
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#faq3" class="d-block">
-                        <img src="icon/book.png" class="header-icon">
-                        <span class="d-block info__title hwt-font-title faq_move">변경 / 취소 / 환불</span>
-                    </a>
-                </div>
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#faq1" class="d-block">
-                        <img src="icon/discount.png" class="header-icon">
-                        <span class="d-block info__title hwt-font-title">쿠폰 / 할인</span>
-                    </a>
-                </div>
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
-                        <img src="icon/star.png" class="header-icon">
-                        <span class="d-block info__title hwt-font-title">포인트</span>
-                    </a>
-                </div>
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
-                        <img src="icon/write.png" class="header-icon">
-                        <span class="d-block info__title hwt-font-title">후기 / 댓글</span>
-                    </a>
-                </div>
-            </div><!-- end col-lg-3 -->
-            <div class="col-lg-3 responsive-column">
-                <div class="icon-box faq-icon-box hwt-icon-box">
-                    <a href="#" class="d-block">
-                        <img src="icon/love.png" class="header-icon">
-                        <span class="d-block info__title hwt-font-title">회원 / 개인정보</span>
-                    </a>
-                </div>
-            </div><!-- end col-lg-3 -->
-        </div><!-- end row -->
-    </div><!-- end container -->
+	<div class="container">
+		<div class="row hwt-row-faq">
+			<div class="col-lg-3 responsive-column">
+				<div class="icon-box faq-icon-box hwt-icon-box">
+					<a href="#" class="d-block" id="faqAll">
+						<img src="icon/categories.png" class="header-icon">
+						<span class="d-block info__title hwt-font-title">전체</span>
+					</a>
+				</div>
+			</div><!-- end col-lg-3 -->
+			<div class="col-lg-3 responsive-column">
+				<div class="icon-box faq-icon-box hwt-icon-box">
+					<a href="#" class="d-block faq" id="faq1">
+						<img src="icon/sale.png" class="header-icon">
+						<span class="d-block info__title hwt-font-title faq_move">상품 / 서비스</span>
+					</a>
+				</div>
+			</div><!-- end col-lg-3 -->
+			<div class="col-lg-3 responsive-column">
+				<div class="icon-box faq-icon-box hwt-icon-box">
+					<a href="#" class="d-block faq" id="faq2">
+						<img src="icon/pay.png" class="header-icon">
+						<span class="d-block info__title hwt-font-title faq_move">예약 / 결제</span>
+					</a>
+				</div>
+			</div><!-- end col-lg-3 -->
+			<div class="col-lg-3 responsive-column">
+				<div class="icon-box faq-icon-box hwt-icon-box">
+					<a href="#" class="d-block faq" id="faq3">
+						<img src="icon/book.png" class="header-icon">
+						<span class="d-block info__title hwt-font-title faq_move">변경 / 취소 / 환불</span>
+					</a>
+				</div>
+			</div><!-- end col-lg-3 -->
+			<div class="col-lg-3 responsive-column">
+				<div class="icon-box faq-icon-box hwt-icon-box">
+					<a href="#" class="d-block faq" id="faq4">
+						<img src="icon/discount.png" class="header-icon">
+						<span class="d-block info__title hwt-font-title">쿠폰 / 할인</span>
+					</a>
+				</div>
+			</div><!-- end col-lg-3 -->
+			<div class="col-lg-3 responsive-column">
+				<div class="icon-box faq-icon-box hwt-icon-box">
+					<a href="#" class="d-block faq" id="faq5">
+						<img src="icon/star.png" class="header-icon">
+						<span class="d-block info__title hwt-font-title">포인트</span>
+					</a>
+				</div>
+			</div><!-- end col-lg-3 -->
+			<div class="col-lg-3 responsive-column">
+				<div class="icon-box faq-icon-box hwt-icon-box">
+					<a href="#" class="d-block faq" id="faq6">
+						<img src="icon/write.png" class="header-icon">
+						<span class="d-block info__title hwt-font-title">후기 / 댓글</span>
+					</a>
+				</div>
+			</div><!-- end col-lg-3 -->
+			<div class="col-lg-3 responsive-column">
+				<div class="icon-box faq-icon-box hwt-icon-box">
+					<a href="#" class="d-block faq" id="faq7">
+						<img src="icon/love.png" class="header-icon">
+						<span class="d-block info__title hwt-font-title">회원 / 개인정보</span>
+					</a>
+				</div>
+			</div><!-- end col-lg-3 -->
+		</div><!-- end row -->
+	</div><!-- end container -->
 </section>
 <!-- ================================
-    END FAQ AREA
+	END FAQ AREA
 ================================= -->
 
 <!-- ================================
-    START FAQ AREA
+	START FAQ AREA
 ================================= -->
 <section class="faq-area section-bg padding-top-100px padding-bottom-60px">
-    <div class="container">
-        <div class="row hwt-row-faq">
-            <div class="col-lg-12">
-                <div class="section-heading text-center">
-                    <h2 class="sec__title">자주 묻는 질문</h2>
-                </div><!-- end section-heading -->
-            </div><!-- end col-lg-12 -->
-        </div><!-- end row -->
 
-        <th:block sec:authorize="hasRole('ADMIN')">
-            <div class="btn-box pt-3 faq-list-btn hwt-row-faq">
-                <button type="button" class="theme-btn" onclick="location.href='admin/faq-add'">작성하기</button>
-            </div>
-        </th:block>
+	<div class="container">
 
-        <div class="row padding-top-60px hwt-row-faq" id="faq">
-            <div class="col-lg-6 col-board" >
-                <div class="faq-item mb-5">
-                    <h3 class="title font-weight-bold">상품 / 서비스</h3>
-                    <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <th:block th:each="list : ${lists}">
-                            <th:block th:each="boardDetailDTO : ${list}">
-                                <th:block th:if="${boardDetailDTO.boardCategoryName == '상품/서비스'}">
-                                    <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
-                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
-                                            <i class="la la-angle-down"></i>
-                                        </a>
-                                        <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26 hwt-faq-content">
-                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
-                                            </li>
+		<div class="row hwt-row-faq">
+			<div class="col-lg-12">
+				<div class="section-heading text-center">
+					<h2 class="sec__title">자주 묻는 질문</h2>
+				</div><!-- end section-heading -->
+			</div><!-- end col-lg-12 -->
+		</div><!-- end row -->
 
-                                            <!-- Admin -->
-                                            <th:block sec:authorize="hasRole('ADMIN')">
-                                                <li class="hwt-faq-button">
-                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
-                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
-                                                </li>
-                                            </th:block>
-                                        </ul>
-                                    </li>
-                                </th:block>
-                            </th:block>
-                        </th:block>
-                    </ul>
-                </div><!-- end faq-item -->
-            </div><!-- end col-lg-6 -->
-             <div class="col-lg-6 col-board" id="faq2">
-                <div class="faq-item mb-5">
-                    <h3 class="title font-weight-bold">예약 / 결제</h3>
-                    <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <th:block th:each="list : ${lists}">
-                            <th:block th:each="boardDetailDTO : ${list}">
-                                <th:block th:if="${boardDetailDTO.boardCategoryName == '예약/결제'}">
-                                    <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
-                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
-                                            <i class="la la-angle-down"></i>
-                                        </a>
-                                        <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26 hwt-faq-content">
-                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
-                                            </li>
+		<th:block sec:authorize="hasRole('ADMIN')">
+			<div class="btn-box pt-3 faq-list-btn hwt-row-faq">
+				<button type="button" class="theme-btn" onclick="location.href='admin/faq-add'">작성하기</button>
+			</div>
+		</th:block>
 
-                                            <!-- Admin -->
-                                            <th:block sec:authorize="hasRole('ADMIN')">
-                                                <li class="hwt-faq-button">
-                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
-                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
-                                                </li>
-                                            </th:block>
-                                        </ul>
-                                    </li>
-                                </th:block>
-                            </th:block>
-                        </th:block>
-                    </ul>
-                </div><!-- end faq-item -->
-            </div><!-- end col-lg-6 -->
-            <div class="col-lg-6 col-board" id="faq3">
-                <div class="faq-item mb-5">
-                    <h3 class="title font-weight-bold">변경 / 취소 / 환불</h3>
-                    <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <th:block th:each="list : ${lists}">
-                            <th:block th:each="boardDetailDTO : ${list}">
-                                <th:block th:if="${boardDetailDTO.boardCategoryName == '변경/취소/환불'}">
-                                    <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
-                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
-                                            <i class="la la-angle-down"></i>
-                                        </a>
-                                        <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26 hwt-faq-content">
-                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
-                                            </li>
+		<div class="row padding-top-60px hwt-row-faq">
 
-                                            <!-- Admin -->
-                                            <th:block sec:authorize="hasRole('ADMIN')">
-                                                <li class="hwt-faq-button">
-                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
-                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
-                                                </li>
-                                            </th:block>
-                                        </ul>
-                                    </li>
-                                </th:block>
-                            </th:block>
-                        </th:block>
-                    </ul>
-                </div><!-- end faq-item -->
-            </div><!-- end col-lg-6 -->
-             <div class="col-lg-6 col-board">
-                <div class="faq-item mb-5">
-                    <h3 class="title font-weight-bold">쿠폰 / 할인</h3>
-                    <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <th:block th:each="list : ${lists}">
-                            <th:block th:each="boardDetailDTO : ${list}">
-                                <th:block th:if="${boardDetailDTO.boardCategoryName == '쿠폰/할인'}">
-                                    <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
-                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
-                                            <i class="la la-angle-down"></i>
-                                        </a>
-                                        <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26 hwt-faq-content">
-                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
-                                            </li>
+			<th:block th:each="list, i : ${lists}">
+				<th:block th:if="${#lists.size(list) != 0}">
 
-                                            <!-- Admin -->
-                                            <th:block sec:authorize="hasRole('ADMIN')">
-                                                <li class="hwt-faq-button">
-                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
-                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
-                                                </li>
-                                            </th:block>
-                                        </ul>
-                                    </li>
-                                </th:block>
-                            </th:block>
-                        </th:block>
-                    </ul>
-                </div><!-- end faq-item -->
-            </div><!-- end col-lg-6 -->
-            <div class="col-lg-6 col-board" id="faq1">
-                <div class="faq-item mb-5">
-                    <h3 class="title font-weight-bold">포인트</h3>
-                    <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <th:block th:each="list : ${lists}">
-                            <th:block th:each="boardDetailDTO : ${list}">
-                                <th:block th:if="${boardDetailDTO.boardCategoryName == '포인트'}">
-                                    <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
-                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
-                                            <i class="la la-angle-down"></i>
-                                        </a>
-                                        <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26 hwt-faq-content">
-                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
-                                            </li>
+					<div class="col-lg-6 col-board" th:id="|faq${i.count}-content|">
+						<div class="faq-item mb-5">
+							<h3 class="title font-weight-bold" th:text="${list.get(0).boardCategoryName}">상품 / 서비스</h3>
+							<ul class="toggle-menu list-items list-items-flush pt-4">
+								<th:block th:each="boardDetailDTO : ${list}">
+									<li>
+										<a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
+											<th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
+											<i class="la la-angle-down"></i>
+										</a>
 
-                                            <!-- Admin -->
-                                            <th:block sec:authorize="hasRole('ADMIN')">
-                                                <li class="hwt-faq-button">
-                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
-                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
-                                                </li>
-                                            </th:block>
-                                        </ul>
-                                    </li>
-                                </th:block>
-                            </th:block>
-                        </th:block>
-                    </ul>
-                </div><!-- end faq-item -->
-            </div><!-- end col-lg-6 -->
-             <div class="col-lg-6 col-board">
-                <div class="faq-item mb-5">
-                    <h3 class="title font-weight-bold">후기 / 댓글</h3>
-                    <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <th:block th:each="list : ${lists}">
-                            <th:block th:each="boardDetailDTO : ${list}">
-                                <th:block th:if="${boardDetailDTO.boardCategoryName == '후기/댓글'}">
-                                    <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
-                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
-                                            <i class="la la-angle-down"></i>
-                                        </a>
-                                        <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26 hwt-faq-content">
-                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
-                                            </li>
+										<ul class="toggle-drop-menu pt-2">
+											<li class="line-height-26 hwt-faq-content">
+												<span th:block th:text="${boardDetailDTO.boardContent}"></span>
+											</li>
 
-                                            <!-- Admin -->
-                                            <th:block sec:authorize="hasRole('ADMIN')">
-                                                <li class="hwt-faq-button">
-                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
-                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
-                                                </li>
-                                            </th:block>
-                                        </ul>
-                                    </li>
-                                </th:block>
-                            </th:block>
-                        </th:block>
-                    </ul>
-                </div><!-- end faq-item -->
-            </div><!-- end col-lg-6 -->
-            <div class="col-lg-6 col-board">
-                <div class="faq-item mb-5">
-                    <h3 class="title font-weight-bold">회원 / 개인정보</h3>
-                    <ul class="toggle-menu list-items list-items-flush pt-4">
-                        <th:block th:each="list : ${lists}">
-                            <th:block th:each="boardDetailDTO : ${list}">
-                                <th:block th:if="${boardDetailDTO.boardCategoryName == '회원/개인정보'}">
-                                    <li>
-                                        <a href="#" class="toggle-menu-icon d-flex justify-content-between align-items-center hwt-faq-title">
-                                            <th:block th:text="${boardDetailDTO.boardTitle}"></th:block>
-                                            <i class="la la-angle-down"></i>
-                                        </a>
-                                        <ul class="toggle-drop-menu pt-2">
-                                            <li class="line-height-26 hwt-faq-content">
-                                                <th:block th:text="${boardDetailDTO.boardContent}"></th:block>
-                                            </li>
+											<!-- Admin -->
+											<th:block sec:authorize="hasRole('ADMIN')">
+												<li class="hwt-faq-button">
+													<a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
+													<a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
+												</li>
+											</th:block>
+										</ul>
+									</li>
+								</th:block>
+							</ul>
+						</div><!-- end faq-item -->
+					</div><!-- end col-lg-6 -->
 
-                                            <!-- Admin -->
-                                            <th:block sec:authorize="hasRole('ADMIN')">
-                                                <li class="hwt-faq-button">
-                                                    <a th:href="@{|/admin/faq-edit/${boardDetailDTO.boardNum}|}" class="author__title detail-button-left">수정</a>
-                                                    <a th:href="@{|/admin/faq-delete/${boardDetailDTO.boardNum}|}" class="author__title">삭제</a>
-                                                </li>
-                                            </th:block>
-                                        </ul>
-                                    </li>
-                                </th:block>
-                            </th:block>
-                        </th:block>
-                    </ul>
-                </div><!-- end faq-item -->
-        </div><!-- end row -->
-    </div><!-- end container -->
+				</th:block>
+			</th:block>
+
+		</div>
+	</div><!-- end container -->
 </section><!-- end faq-area -->
 <!-- ================================
-    END FAQ AREA
+	END FAQ AREA
 ================================= -->
 </div>
 <th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
 
 <!-- start back-to-top -->
 <div id="back-to-top">
-    <i class="la la-angle-up" title="Go top"></i>
+	<i class="la la-angle-up" title="Go top"></i>
 </div>
 <!-- end back-to-top -->
 
+<!-- end modal-shared -->
+<!-- 회원가입 모달 -->
+<th:block th:replace="fragments/signUp::signUp"></th:block>
+
+
+<!-- end modal-shared -->
+<!-- 로그인 모달 -->
+<th:block th:replace="fragments/signIn::signIn"></th:block>
+
+</th:block>
+
+<th:block layout:fragment="script">
+	<script src="/js/hwt/board.js"></script>
 </th:block>
 
 </html>

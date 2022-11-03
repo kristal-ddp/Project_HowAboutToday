@@ -54,7 +54,7 @@ public class WishListDto {
             this.accomNum = wishList.getAccommodation().getAccomNum();
 //            this.accomImageFileName = wishList.getAccommodation().getAccommodationImage().get(0).getAccomOriginFilename();
             this.accomName = wishList.getAccommodation().getAccomName();
-            this.accomAdress = wishList.getAccommodation().getAccomAddress();
+//            this.accomAdress = wishList.getAccommodation().getAccomAddress();
             this.accomRating = wishList.getAccommodation().getAccomRating();
             this.reviewCount = wishList.getAccommodation().getTotalReviewNum();
             this.accomPrice = wishList.getAccommodation().getLowPrice();

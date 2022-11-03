@@ -3,8 +3,14 @@ package com.phoenix.howabouttoday.board.controller;
 import com.phoenix.howabouttoday.board.dto.*;
 import com.phoenix.howabouttoday.board.service.BoardService;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
+import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,21 +27,36 @@ public class AboutUsController {
 
     // 오늘어때 정보 리스트 페이지
     @GetMapping("aboutUs")
-    public String aboutUsList(@LoginUser SessionDTO sessionDTO, Model model){
+    public String aboutUsList(@LoginUser SessionDTO sessionDTO, Model model,
+                              @PageableDefault Pageable pageable, MemberDTO memberDTO){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        List<BoardListDTO> boardList = boardService.findAll_Board("오늘어때 정보"); // boardCategoryName = "오늘어때 정보"인 데이터들을 DTO에 저장
+        pageable = PageRequest.of(0, 3, Sort.Direction.DESC, "board_num");
+        Slice<BoardListDTO> boardList = boardService.findAll_Board("오늘어때 정보", pageable); // boardCategoryName = "오늘어때 정보"인 데이터들을 DTO에 저장
+
         model.addAttribute("lists", boardList);
 
         return "board/aboutUs";
     }
 
+    // 오늘어때 정보 리스트 더보기
+    @ResponseBody
+    @GetMapping("aboutUs-more")
+    public Slice<BoardListDTO> aboutUsList(@PageableDefault Pageable pageable){
+
+        pageable = PageRequest.of(pageable.getPageNumber(), 3, Sort.Direction.DESC, "board_num");
+        Slice<BoardListDTO> boardList = boardService.findAll_Board("오늘어때 정보", pageable);
+
+        return boardList;
+    }
+
     // 오늘어때 정보 디테일 페이지
     @GetMapping("aboutUs/{boardNum}")
-    public String aboutUsDetails(@LoginUser SessionDTO sessionDTO, @PathVariable Long boardNum, Model model){
+    public String aboutUsDetails(@LoginUser SessionDTO sessionDTO, Model model,
+                                 @PathVariable Long boardNum, MemberDTO memberDTO){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -50,7 +71,7 @@ public class AboutUsController {
     // 오늘어때 정보 작성 페이지
     @GetMapping("admin/aboutUs-add")
     public String aboutUsAdd(@ModelAttribute("boardDTO") BoardDTO boardDTO,
-                             @LoginUser SessionDTO sessionDTO, Model model){
+                             @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -64,7 +85,7 @@ public class AboutUsController {
     // 오늘어때 정보 작성
     @PostMapping("admin/aboutUs-add")
     public String aboutUsAdd(@Valid BoardDTO boardDTO, BindingResult bindingResult,
-                             @LoginUser SessionDTO sessionDTO, Model model){
+                             @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -79,7 +100,8 @@ public class AboutUsController {
 
     // 오늘어때 정보 수정 페이지
     @GetMapping("admin/aboutUs-edit/{boardNum}")
-    public String aboutUsEdit(@PathVariable Long boardNum, @LoginUser SessionDTO sessionDTO, Model model){
+    public String aboutUsEdit(@PathVariable Long boardNum, Model model,
+                              @LoginUser SessionDTO sessionDTO, MemberDTO memberDTO){
 
         if(sessionDTO == null) {
             return "/loginProc";
@@ -94,8 +116,8 @@ public class AboutUsController {
 
     // 오늘어때 정보 수정
     @PostMapping("admin/aboutUs-edit/{boardNum}")
-    public String aboutUsEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO,
-                             BindingResult bindingResult, @LoginUser SessionDTO sessionDTO, Model model){
+    public String aboutUsEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO, BindingResult bindingResult,
+                              @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
 

@@ -198,10 +198,10 @@
                                             <div class="row">
                                                 <div class="col-lg-6 responsive-column">
                                                     <div class="input-box">
-                                                        <label class="label-text">닉네임</label>
+                                                        <label class="label-text">이름</label>
                                                         <div class="form-group">
                                                             <span class="la la-user form-icon"></span>
-                                                            <input class="form-control" type="text" value="이동우짱">
+                                                            <input class="form-control" type="text" th:value="${sessionDTO.nickname}">
                                                         </div>
                                                     </div>
                                                 </div><!-- end col-lg-6 -->
@@ -210,7 +210,7 @@
                                                         <label class="label-text">이메일 주소</label>
                                                         <div class="form-group">
                                                             <span class="la la-envelope form-icon"></span>
-                                                            <input class="form-control" type="text" value="dongwoo@gamil.com">
+                                                            <input class="form-control" type="text" th:value="${sessionDTO.email}">
                                                         </div>
                                                     </div>
                                                 </div><!-- end col-lg-6 -->
@@ -219,7 +219,7 @@
                                                         <label class="label-text">전화번호</label>
                                                         <div class="form-group">
                                                             <span class="la la-phone form-icon"></span>
-                                                            <input class="form-control" type="text" value="010-1234-5678">
+                                                            <input class="form-control" type="text" th:value="${sessionDTO.memberTel}">
                                                         </div>
                                                     </div>
                                                 </div><!-- end col-lg-6 -->

@@ -17,21 +17,18 @@ public class RoomViewService {
     private Long roomViewServiceNum;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_num", referencedColumnName = "roomNum")
+    @JoinColumn(name = "room_num")
     private Room room;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "service_num")
     private Service service;
 
-    @Column
-    private String serviceName;
-
     @Builder
-    public RoomViewService(Room room, Service service, String serviceName) {
+    public RoomViewService(Room room, Service service) {
         this.service = service;
         this.room = room;
-        this.serviceName = serviceName;
+
     }
 
 }

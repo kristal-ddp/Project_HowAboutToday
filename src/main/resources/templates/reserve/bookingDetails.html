@@ -3,12 +3,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout/layout">
 
+
 <th:block layout:fragment="content">
-
-
     <!-- ================================
     START BREADCRUMB AREA
 ================================= -->
+    <!--        <meta name="_csrf_header" th:content="${_csrf.headerName}">-->
+    <!--        <meta name="_csrf" th:content="${_csrf.token}">-->
     <section class="breadcrumb-area breadcrumb-board">
         <div class="breadcrumb-wrap">
             <div class="container">
@@ -81,7 +82,9 @@
                             <tr th:each="order : ${ordersDTO.getOrdersDetailDTOList()}">
                                 <th scope="row">
                                     <div class="table-content product-content d-flex align-items-center">
-
+                                        <div class="cabin-type-img flex-shrink-0"> <!-- 숙소 이미지 -->
+                                            <a th:href="@{/hotel-single(accomNum = ${order.getRoomNum()})}"><img src="/images/room1.jpg" alt=""></a>
+                                        </div>
                                         <div class="product-content">
                                             <u>
                                                 <a th:href="@{/hotel-single(accomNum = ${order.getRoomNum()})}">
@@ -104,7 +107,7 @@
                                         </div>
                                     </div>
                                 </th>
-                                <td class="text-lg-right pr-5" th:text="#{checkout_monetary_unit(${order.getPrice()})}">숙소 가격</td> <!-- 숙소 가격 필드 -->
+                                <td class="text-lg-right pr-5" th:text="#{checkout_monetary_unit(${#numbers.formatInteger(order.getPrice(), 0, 'COMMA')})}">숙소 가격</td> <!-- 숙소 가격 필드 -->
                             </tr>
                             </tbody>
                         </table>
@@ -136,7 +139,8 @@
                             </th>
                             <td>
                                 <div class="table-content px-2">
-                                    <h3 class="title color-text text-lg-right">-20,000원</h3>
+                                    <!--                                    여기 콤마하고 원 문자열 처리만 하면 됨 + 각 숙소도 콤마처리-->
+                                    <h3 class="title color-text text-lg-right" th:text="|${ordersDTO.getDiscountValue() == 0 ? '':'-'}${#numbers.formatInteger(ordersDTO.getDiscountValue(), 0, 'COMMA')}원|">-20,000원</h3>
                                 </div>
                             </td>
                         </tr>
@@ -148,7 +152,7 @@
                             </th>
                             <td class="bg-light bg-opacity-25">
                                 <div class="table-content px-2">
-                                    <h3 class="title text-color-10 text-lg-right" th:text="#{checkout_monetary_unit(${#numbers.formatInteger(ordersDTO.getOrdersPrice(), 0, 'COMMA')})}">$240</h3>
+                                    <h3 class="title text-color-10 text-lg-right" th:text="#{checkout_monetary_unit(${#numbers.formatInteger(ordersDTO.getActualPayment(), 0, 'COMMA')})}">$240</h3>
                                     <input type="hidden" id="totalPrice" th:value="${ordersDTO.getOrdersPrice()}" >
                                 </div>
                             </td>
@@ -160,20 +164,19 @@
                         <div class="section-block mt-3"></div>
                         <div class="btn-box text-center pt-4">
                             <a href="/user-dashboard-booking" class="theme-btn" th:text="#{payment_details_book_complete}">Book Complete</a>
-                            <a th:style="${'cursor:pointer;'}" th:onclick="|javascript:cancelConfirm()|" class="theme-btn border-0 text-white bg-7" th:text="#{payment_details_book_cancel}">Cancel your booking</a>
+                            <a th:if="${!ordersDTO.isCanceled()}" th:style="${'cursor:pointer;'}" th:onclick="|javascript:cancelConfirm()|" class="theme-btn border-0 text-white bg-7" th:text="#{payment_details_book_cancel}">Cancel your booking</a>
                             <input type="hidden" id="merchantId" th:value="${ordersDTO.getOrdersMerchantId()}" >
                         </div>
                     </div>
-
                 </div><!-- end payment-card -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
         </div><!-- end container -->
-        <button style="align-items: center" onclick="cancelPay()">환불하기</button>
     </section>
     <!-- ================================
         END PAYMENT AREA
     ================================= -->
+
 
     <!-- start back-to-top -->
     <div id="back-to-top">
@@ -182,8 +185,7 @@
     <!-- end back-to-top -->
 
 </th:block>
-
-
+<!--로딩바-->
 
 
 </html>

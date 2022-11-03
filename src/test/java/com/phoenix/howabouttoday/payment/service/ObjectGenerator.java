@@ -7,7 +7,6 @@ import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.accom.repository.AccommodationRepository;
 import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.global.AccomCategory;
 import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.payment.entity.Orders;
@@ -17,6 +16,7 @@ import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.entity.RoomImage;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,9 +85,9 @@ public class ObjectGenerator {
         Accommodation room = Accommodation.builder()
                 .accomName("보령(대천) 너울펜션")
                 .accomTel("050350577805")
-                .accomCategory(AccomCategory.PENSION)
+//                .accomCategory(AccomCategory.PENSION)
                 .region(getRandomRegion())
-                .accomAddress("충청남도 보령시 해수욕장13길 10-20")
+//                .accomAddress("충청남도 보령시 해수욕장13길 10-20")
                 .accomRating(4.4)
                 .accomWishlistCount(110)
                 .totalReviewNum(1103)
@@ -123,7 +123,7 @@ public class ObjectGenerator {
 
         Region region = Region.builder()
                 .region(RegionType.values()[number])
-                .regionParentNum(RegionType.EMPTY)
+//                .regionParentNum(RegionType.EMPTY)
                 .build();
 
         return region;
@@ -174,10 +174,10 @@ public class ObjectGenerator {
         Orders newOrder = Orders.builder()
                 .ordersTel("01045020614")
                 .ordersName("김영운")
-                .ordersDate(LocalDate.now())
+                .ordersDate(LocalDateTime.now())
                 .ordersPrice(45000+90000)
                 .ordersType("카드")
-                .ordersStatus("이용 전")
+//                .ordersStatus("결제완료")
                 .build();
 
         return newOrder;

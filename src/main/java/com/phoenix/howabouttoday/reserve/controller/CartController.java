@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.phoenix.howabouttoday.payment.MemberDTOCHECK.doCheck;
+
 @Controller
 @RequiredArgsConstructor
 @Slf4j
@@ -30,11 +32,12 @@ public class CartController {
     private final CartService cartService;
     private final MemberRepository memberRepository;//아직 회원이없어서 테스트용 회원조회에 필요
     @GetMapping
-    public String findAll(@LoginUser SessionDTO user, Model model){
+    public String findAll(@LoginUser SessionDTO user,
+                          Model model){
 
         /** 회원 조회 로직 **/
-//        Long memberNum = user.getMemberNum();
-        Long memberNum = 1l;
+        Long memberNum = user.getMemberNum();
+//        Long memberNum = 1l;
 
 
         /* 장바구니 존재 여부 확인 */
@@ -60,6 +63,8 @@ public class CartController {
             model.addAttribute("totalPrice",totalPrice);
 
         }
+
+        doCheck(model);
 
         /* 장바구니 존재 여부 반환 */
         model.addAttribute("checkCart",checkCart);

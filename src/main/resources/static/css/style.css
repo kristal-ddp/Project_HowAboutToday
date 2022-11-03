@@ -2188,9 +2188,9 @@ body {
   opacity: 0;
   visibility: hidden; }
   #back-to-top:hover {
-    background-color: #2273e5;
+    background-color: #566578;
     color: #fff;
-    border-color: #2273e5; }
+    border-color: #566578; }
   #back-to-top.active {
     right: 30px;
     opacity: 1;
@@ -7960,9 +7960,10 @@ body {
 
 /*=============== comments ===============*/
 .comment {
-  border-bottom: 1px solid rgba(128, 137, 150, 0.1);
-  margin-bottom: 40px;
-  padding-bottom: 40px;
+  margin: 4px;
+  padding: 20px;
+  background-color: rgba(128, 137, 150, 0.1);
+  border-radius: 20px;
   display: -webkit-flex;
   display: -ms-flex;
   display: flex;
@@ -8295,7 +8296,7 @@ body {
     -o-transition: all 0.3s;
     transition: all 0.3s; }
     .faq-icon-box a:hover {
-      border-color: #287dfa; }
+      border-color: #566578; }
 
 /*===== dashboard-icon-box ========*/
 .dashboard-icon-box {

@@ -22,8 +22,8 @@ const requestPay = () => {
         buyer_postcode: buyer_postcode,
     }, function (rsp) { // callback
         if (rsp.success) {
+            alert("결제 성공")
             successRequest(rsp.imp_uid, rsp.merchant_uid);
-
         } else {
             alert("실패!!!!!!!!!!!!!!!!!!!")
         }
@@ -55,18 +55,21 @@ const successRequest = (imp_uid, merchant_uid) => {
 
 const cancelConfirm = () => {
     confirm("정말 취소하시겠습니까") && runCancel();
+
 }
 
 const runCancel = () => {
+    LoadingWithMask();
     const merchantId = document.querySelector("#merchantId").value;
     const totalPrice = document.querySelector("#totalPrice").value;
     // const imp_uid = document.querySelector("#imp_uid").value;
 
-    alert(merchantId);
-    /** 위 데이터 3개는 ordersNum으로 서버에서 데이터베이스에서 읽는 방식이 더 올바른 방식일듯 **/
+    // alert(merchantId);
+    /** csrf가 활성화 되어 있으면 넣어줘야하는 코드 **/
+    /** 이 코드와 더불어 header부분에도 넣어줘야한다. **/
 
-    const header = $("meta[name='_csrf_header']").attr('content');
-    const token = $("meta[name='_csrf']").attr('content');
+    // const header = $("meta[name='_csrf_header']").attr('content');
+    // const token = $("meta[name='_csrf']").attr('content');
 
     $.ajax({
         type: "POST",
@@ -76,20 +79,21 @@ const runCancel = () => {
         data: JSON.stringify({
             merchant_uid: merchantId,
             cancel_request_amount: totalPrice,
-            reason: "테스트 결제 환불",
+            reason: "단순 변심",
         }),
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader(header, token);
-        },
+        // beforeSend: function (xhr) {
+        //     xhr.setRequestHeader(header, token);
+        // },
     }).done((response) => {
-        alert(response.merchant_uid);
-        alert("성공")
+        alert("예약을 취소했습니다.")
+        closeLoadingWithMask();
+        window.location.href = '/user-dashboard-booking';
     }).fail(function (error) {
         alert("실패")
+        closeLoadingWithMask();
         alert(JSON.stringify(error));
     });
 }
-
 
 function cancelPay() {
 

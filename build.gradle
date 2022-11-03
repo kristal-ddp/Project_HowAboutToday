@@ -27,6 +27,7 @@ dependencies {
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect' //Thymeleaf Layout
 	implementation 'org.springframework.boot:spring-boot-starter-web' //Web
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.7' //p6spy 쿼리파라미터 보여주는 라이브러리
+	implementation 'org.springframework.boot:spring-boot-starter-validation'//유효성 검사에 사용
 	compileOnly 'org.projectlombok:lombok' //Lombok
 	annotationProcessor 'org.projectlombok:lombok' //Lombok
 	developmentOnly 'org.springframework.boot:spring-boot-devtools' //Devtools
@@ -37,11 +38,20 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'	//서버에서 다른 서버로 api요청을 보내기 위한 의존성
 	testImplementation 'io.projectreactor:reactor-test'	//webflux테스터
 	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	implementation 'com.querydsl:querydsl-jpa' // QueryDSL
+	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa" // QueryDSL
+	annotationProcessor "jakarta.persistence:jakarta.persistence-api" // QueryDSL
+	annotationProcessor "jakarta.annotation:jakarta.annotation-api" // QueryDSL
+	implementation 'org.springframework.boot:spring-boot-starter-mail' // mail
+	implementation 'org.apache.commons:commons-email:1.5' // commons-email
 
+//	오라클로 테스트 하기 위한 dependencies
+//	implementation 'com.oracle.database.jdbc:ojdbc8'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+}
 
-	//오라클로 테스트 하기 위한 dependencies
-	//implementation 'com.oracle.database.jdbc:ojdbc8'
-	//implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+clean {
+	delete file('src/main/generated')
 }
 
 tasks.named('test') {

@@ -4,6 +4,8 @@ import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
+import com.phoenix.howabouttoday.reserve.domain.CartRepository;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.service.CartService;
 import com.phoenix.howabouttoday.reserve.service.ReserveForm;
 import groovy.util.logging.Slf4j;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,14 +26,17 @@ public class CartRestController {
 
     private final CartService cartService;
     private final MemberRepository memberRepository;//아직 회원이없어서 테스트용 회원조회에 필요
+    private final CartRepository cartRepository;
     /** 장바구니 저장 **/
-    @PostMapping
+    @PostMapping("/{roomNum}")
     public boolean save(@LoginUser SessionDTO user,
-                        @RequestBody CartForm cartForm
+                        @RequestBody CartForm cartForm,
+                        @PathVariable Long roomNum
                         ){
 
         /** 회원 조회 로직 **/
         Long memberNum = user.getMemberNum();
+
 
         /** 멀티데이트를 스플릿해서 reserveForm에 넘겨주기위한 준비작업 **/
         String[] splitDate = cartForm.getCheckDate().split("-");
@@ -47,17 +53,16 @@ public class CartRestController {
                 .build();
 
 
-        if(cartService.checkCart(memberNum,1L)){
+        if(cartService.checkCart(memberNum,roomNum)){
             /*cart가 존재한다면 */
             return true;
         }else{
             /* cart가 존재하지 않는다면 장바구니에 저장*/
-            cartService.save(memberNum,1L,reserveForm); //임시 룸넘버를 보냈음 테스트하기위함
+            cartService.save(memberNum,roomNum,reserveForm); //임시 룸넘버를 보냈음 테스트하기위함
             return false;
         }
 
     }
-
 
     /** 장바구니 페이지에서 특정 객실 삭제 **/
     @DeleteMapping("/{cartNum}")

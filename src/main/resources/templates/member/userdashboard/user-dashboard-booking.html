@@ -76,7 +76,14 @@
                                                     <td th:text="${orderDetailDTO.getRoomName()}">울산광역시 </td>
                                                     <td th:text="${ordersDTO.getOrdersDate()}">2022/09/30</td>
                                                     <td th:text="|${orderDetailDTO.getStartDate()}(${orderDetailDTO.getStartWeek()}) ~ ${orderDetailDTO.getEndDate()}(${orderDetailDTO.getEndWeek()})|">2022/10/15</td>
-                                                    <td><span class="badge badge-info py-1 px-2" th:text="${orderDetailDTO.getUsedStatus()}">이용 전</span></td>
+                                                    <td>
+                                                        <span th:class="'badge py-1 px-2 ' + ${ordersDTO.getOrdersStatus() == '결제완료' ? 'badge-info' : ((ordersDTO.getOrdersStatus() == '이용완료') ? 'badge-secondary' : 'badge-danger')}" th:text="${ordersDTO.getOrdersStatus()}">이용 전</span>
+<!--                                                        <span class="badge badge-info py-1 px-2" th:text="${ordersDTO.getOrdersStatus()}">이용 전</span>-->
+
+<!--                                                        <span th:class="'base '+${condition ? 'condition-true' : 'condition-false'}">-->
+<!--                                                           The base CSS class still has to be appended with String concatenation. We can do a little bit better.-->
+<!--                                                        </span>-->
+                                                    </td>
                                                     <td>
                                                         <div class="table-content">
                                                             <!--                                                            <button th:onclick="|location.href='@{view(uid=${data.uid})}'|">View page</button>-->

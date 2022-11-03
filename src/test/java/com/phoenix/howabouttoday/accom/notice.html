@@ -1,39 +1,49 @@
-<!--
-function priceSerach(accomNum) {
+                    newlow +=`<div class="col-lg-8">`;
+                    newlow +=`<div class="card-item card-item-list">`;
+                    newlow +=`<a class="d-block" th:href="@{/hotel-single(accomnum=${accommodation.accomnum()})}">`;
+                    newlow +=`<img th:src="|@{/data/images/{accomImage}(accomImage=${accommodation.accommodationImage.accomOriginFilename})}|" alt="hotel-img"></a>`;
+                    newlow +=`<a th:href="|javascript:void(0)|" th:onclick="saveWish([[${accom[i].accomnum()}]])">`;
+                    newlow +=`<div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">`;
+                    newlow +=`<i class="la la-heart-o"></i></div></a>`;
+                    newlow +=`<div class="card-body"><h3 class="card-title"><a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}">accom[i].accomName</a></h3>`;
+                    newlow +=`<p class="card-meta">${accom[i].accomAddress}</p>`;
+                    newlow +=`<div class="card-rating">`;
+                    newlow +=`<span class="badge text-white">${accom[i].accomRating}</span>`;
+                    newlow +=`<span class="review__text">Average</span>`;
+                    newlow +=`<span class="rating__text">${accom[i].totalReviewNum}</span></div>`;
+                    newlow +=`<div class="card-price d-flex align-items-center justify-content-between">`;
+                    newlow +=`<p><span class="price__from">최소 가격 :</span>`;
+                    newlow +=`<span class="price__num">${accom[i].lowPrice}</span></p>`;
+                    newlow +=`<a th:href="@{/hotel-single(accomNum=${accommodation.AccomNum()})}" class="btn-text">방 정보<i class="la la-angle-right"></i></a></div>`;
+                    newlow +=`</div></div></div>`;
 
-$.ajax({
-url: '/rest/accom' + accomNum,
-type:'post',
-contentType: 'application/json; charset=utf-8',
-data: {
-
-}
-success: function(data) {
-let lowprice ="";
-let newlow = `<div class="col-lg-8">"`
-  newlow +=`<div class="card-item card-item-list" th:each="accommodation, i: ${accomPageList}">`
-    newlow +=`<div class="card-img" th:id="|anchor${i.count}|">`
-      newlow +=`<a class="d-block" th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}">`
-        newlow +=`<img th:src="|@{/data/images/{accomImage}(accomImage=${accommodation.accommodationImage.accomOriginFilename})}|" alt="hotel-img"></a>`
-      newlow +=`<a th:href="|javascript:void(0)|" th:onclick="saveWish([[${accommodation.getAccomNum()}]])">`
-        newlow +=`<div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">`
-          newlow +=`<i class="la la-heart-o"></i></div></a>`
-      newlow +=`<div class="card-body"><h3 class="card-title" ><a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" th:text="${accommodation.getAccomName()}"></a></h3>`
-        newlow +=`<p class="card-meta" th:text="${accommodation.getAccomAddress()}"></p>`
-        newlow +=`<div class="card-rating">`
-          newlow +=`<span class="badge text-white" th:text="${accommodation.getAccomRating()}"></span>`
-          newlow +=`<span class="review__text">Average</span>`
-          newlow +=`<span class="rating__text" th:text="|(${accommodation.getTotalReviewNum()})|"></span></div>`
-        newlow +=`<div class="card-price d-flex align-items-center justify-content-between">`
-          newlow +=`<p><span class="price__from">최소 가격 :</span>`
-            newlow +=`<span class="price__num" th:text="|${accommodation.getLowPrice()}~|"></span></p>`
-          newlow +=`<a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" class="btn-text">방 정보<i class="la la-angle-right"></i></a>`
-          newlow +=`</div></div></div></div>`
-  lowprice++;
-
-  }
-  }).
-
-
-  })
-  }-->
+                    <div class="col-lg-8" id="ht">
+                        <div class="card-item card-item-list" th:each="accommodation, i: ${accomPageList}">
+                            <div class="card-img" th:id="|anchor${i.count}|">
+                                <a class="d-block" th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}">
+                                    <img th:src="|@{/data/images/{accomImage}(accomImage=${accommodation.accommodationImage.accomOriginFilename})}|" alt="hotel-img">
+                                </a>
+                                <a th:href="|javascript:void(0)|" th:onclick="saveWish([[${accommodation.getAccomNum()}]])">
+                                    <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">
+                                        <i class="la la-heart-o"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title" ><a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" th:text="${accommodation.getAccomName()}"></a></h3>
+                                <p class="card-meta" th:text="${accommodation.getAccomAddress()}"></p>
+                                <div class="card-rating">
+                                    <span class="badge text-white" th:text="${accommodation.getAccomRating()}"></span>
+                                    <span class="review__text">Average</span>
+                                    <span class="rating__text" th:text="|(${accommodation.getTotalReviewNum()})|"></span>
+                                </div>
+                                <div class="card-price d-flex align-items-center justify-content-between">
+                                    <p>
+                                        <span class="price__from">최소 가격 :</span>
+                                        <span class="price__num" th:text="|${accommodation.getLowPrice()}~|"></span>
+                                    </p>
+                                    <a th:href="@{/hotel-single(accomNum=${accommodation.getAccomNum()})}" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div><!-- end card-item -->
+                    </div><!-- end col-lg-8 -->

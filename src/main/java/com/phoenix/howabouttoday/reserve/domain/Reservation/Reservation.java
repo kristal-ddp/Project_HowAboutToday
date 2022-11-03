@@ -2,8 +2,11 @@ package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.global.OrdersStatusConverter;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.entity.Orders;
+import com.phoenix.howabouttoday.payment.enumType.ReviewStatus;
+import com.phoenix.howabouttoday.payment.enumType.ReviewStatusConverter;
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -54,7 +57,6 @@ public abstract class Reservation {
     @JoinColumn(name = "room_num")
     private Room room;
 
-    @Setter
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "ordersNum", referencedColumnName = "ordersNum")
     protected Orders orders;
@@ -68,4 +70,9 @@ public abstract class Reservation {
     private Integer reservePrice;
     private Integer reserveAdultCount;
     private Integer reserveChildCount;
+
+    @Column
+    @Convert(converter = ReviewStatusConverter.class)
+    protected ReviewStatus isReviewWrited;
+
 }

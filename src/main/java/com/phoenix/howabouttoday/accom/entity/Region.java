@@ -14,6 +14,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@Builder
+@AllArgsConstructor
 public class Region {
 
   @Id
@@ -24,17 +26,17 @@ public class Region {
   @Convert(converter = RegionTypeConverter.class)
   private RegionType region;
 
-  private RegionType regionParentNum;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "region_parent_num",referencedColumnName = "regionNum")
+  private Region parentRegion;
+
+  @OneToMany(mappedBy = "parentRegion", cascade = CascadeType.ALL)
+  private List<Region> childRegions = new ArrayList<>();
+//
+//  //양방향 매핑을 위해 추가
+//  @JsonIgnore
+//  @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
+//  private List<Accommodation> accommodation = new ArrayList<>();    //이미지 fk를 위한 매핑
 
 
-  //양방향 매핑을 위해 추가
-  @JsonIgnore
-  @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
-  private List<Accommodation> accommodation = new ArrayList<>();    //이미지 fk를 위한 매핑
-
-  @Builder
-  public Region(RegionType region, RegionType regionParentNum){
-    this.region = region;
-    this.regionParentNum = regionParentNum;
-  }
 }

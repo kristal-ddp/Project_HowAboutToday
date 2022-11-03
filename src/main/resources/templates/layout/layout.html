@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>How About Today</title>
-    <meta name="_csrf_header" th:content="${_csrf.headerName}">
-    <meta name="_csrf" th:content="${_csrf.token}">
+<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}">-->
+<!--    <meta name="_csrf" th:content="${_csrf.token}">-->
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.png">
 
@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="/css/hwt-boards.css">
     <link rel="stylesheet" href="/css/hwt-home.css">
     <link rel="stylesheet" href="/css/list-color.css">
+    <link rel="stylesheet" href="/css/custom/style.css">
+    <link rel="stylesheet" href="/css/hwt/contact.css">
 
 </head>
 <body>
@@ -47,6 +49,7 @@
 
 <!-- footer -->
 <th:block th:replace="fragments/footer::footer"></th:block>
+
 
 
 <!-- JS Files -->
@@ -72,18 +75,24 @@
 <script src="/js/navbar-sticky.js"></script>
 <script src="/js/total-price.js"></script>
 <script src="/js/leaflet.js"></script>
-<script src="/js/map.js"></script>
+<!--<script src="/js/contact.js"></script>-->
 <script src="/js/chart.js"></script>
 <script src="/js/chart.extension.js"></script>
 <script src="/js/bar-chart.js"></script>
 <script src="/js/jquery.filer.min.js"></script>
 <script src="/js/main.js"></script>
-<script src="/js/custom/iamport.js"></script>
-<script src="/js/custom/validate.js"></script>
+<script src="/js/custom/Payment_IamportAPI.js"></script>
+<script src="/js/custom/AutoJoinAndLogin.js"></script>
+<script src="/js/custom/Loading.js"></script>
+<script src="/js/custom/CouponModal.js"></script>
+<script src="/js/custom/RoomReview.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYzby4yYDVaXPmtu4jZAGR258K6IYwjIY&libraries"></script>
-<script src="js/map-add.js"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYzby4yYDVaXPmtu4jZAGR258K6IYwjIY&libraries"></script>-->
+<!--<script src="js/map-add.js"></script>-->
 <script src="js/ckeditor.js"></script>
+
+<th:block layout:fragment="script"></th:block>
+
 <!--<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>-->
 
 <script>

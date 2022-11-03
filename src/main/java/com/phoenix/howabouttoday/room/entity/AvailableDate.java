@@ -1,12 +1,9 @@
 package com.phoenix.howabouttoday.room.entity;
 
-import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Getter
@@ -16,10 +13,10 @@ public class AvailableDate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long availableDataId;
+    private Long availableDateId;
 
     @Column
-    private LocalDate date;
+    private LocalDate oneDay;
 
 //    // 양방향
 //    @OneToMany(mappedBy = "availableDate", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -31,7 +28,7 @@ public class AvailableDate {
 
     @Builder
     public AvailableDate(LocalDate date,Room room){
-        this.date=date;
+        this.oneDay =date;
         this.room=room;
     }
 }

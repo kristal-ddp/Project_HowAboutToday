@@ -1,6 +1,7 @@
 package com.phoenix.howabouttoday.member.wishlist.domain;
 
 
+
 import com.phoenix.howabouttoday.member.entity.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,5 +20,7 @@ public interface WishlistRepository extends JpaRepository<WishList,Long>{
 
     /** memberNum으로 찜리스트를 정렬해서 페이징해오기 -페이징 된 리스트 반환 - */
     Page<WishList> findAllByMemberMemberNum(Long memberNum,Pageable pageable);
+
+
 
 }

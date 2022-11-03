@@ -2,6 +2,8 @@ package com.phoenix.howabouttoday.board.service;
 
 import com.phoenix.howabouttoday.board.dto.*;
 import com.phoenix.howabouttoday.board.entity.EventImage;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -10,7 +12,7 @@ public interface EventService {
 
     // Board : Event
 
-    List<EventListDTO> findAll_Event(); // 게시판 리스트 (모든 게시글 조회)
+    Slice<EventListDTO> findAll_Event(Pageable pageable); // 게시판 리스트 (모든 게시글 조회)
     EventDetailDTO findOne_Event(Long eventNum); // 게시판 디테일 (게시글 1개 조회)
     
     void addEvent(EventDTO eventDTO, List<MultipartFile> eventImageList) throws Exception; // 게시글 작성

@@ -2,11 +2,8 @@ package com.phoenix.howabouttoday.accom.entity;
 
 
 
-
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.*;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalTime;
@@ -17,7 +14,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-
 public class Accommodation {
 
     @Id
@@ -38,21 +34,31 @@ public class Accommodation {
     @JoinColumn(name = "accom_category_num")
     private AccomCategory accomCategory;
 
-    //  @OneToMany() 추후에 지역 카테고리 entity 만든 후에 매핑필요
-
+    //    @OneToMany() 추후에 지역 카테고리 entity 만든 후에 매핑필요
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_num")
     private Region region; //숙소 지역 번호
 
     @Column(length = 200)
-    private String accomAddress;//숙소 주소
+    private String accomAddress1;// 예: 서울시
+
+    @Column(length = 200)
+    private String accomAddress2; // 예: 관악구
+
+    @Column(length = 200)
+    private String accomAddress3; // 예: 나머지 도로명주소
+
     @Column(precision = 1, scale = 2)
     private Double accomRating;//숙소 평점
-    private Integer totalReviewNum;//숙소의 평점 수
+
+    private Integer totalReviewNum;//숙소의 리뷰 갯수
+
     private Integer accomWishlistCount; //즐겨찾기 버튼 갯수
+
     private LocalTime checkIn;
     private LocalTime checkOut;
+
     @Column(precision = 14, scale = 28)
     private Double latitude; //위도
 
@@ -68,21 +74,24 @@ public class Accommodation {
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<AccomImage> accommodationImage = new ArrayList<>();    //이미지 fk를 위한 매핑
 
-
     //양방향 매핑을 위해 추가
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<Room> room = new ArrayList<>();    //이미지 fk를 위한 매핑
 
-
+    //숙소의 시설
+    @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
+    private List<AccomViewFacilities> accomViewFacilities = new ArrayList<>();
 
     @Builder
-    public Accommodation(Long accomNum, String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, LocalTime checkIn, LocalTime checkOut) {
+    public Accommodation(Long accomNum, String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress1,String accomAddress2,String accomAddress3, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, LocalTime checkIn, LocalTime checkOut) {
         this.accomNum = accomNum;
         this.accomName = accomName;
         this.accomTel = accomTel;
         this.accomCategory = accomCategory;
         this.region = region;
-        this.accomAddress = accomAddress;
+        this.accomAddress1 = accomAddress1;
+        this.accomAddress2 = accomAddress2;
+        this.accomAddress3 = accomAddress3;
         this.accomRating = accomRating;
         this.accomWishlistCount = accomWishlistCount;
         this.totalReviewNum = totalReviewNum;

@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.SliceImpl;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,7 @@ public class WishListController {
 
         /** 회원 조회 로직 **/
         Long memberNum = user.getMemberNum();
+
 
         /* 내가 찜한 목록이 존재하는지 확인 */
         boolean checkWish = wishListService.checkHaveWish(memberNum);

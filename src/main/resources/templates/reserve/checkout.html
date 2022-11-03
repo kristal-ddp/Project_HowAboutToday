@@ -3,7 +3,34 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout/layout">
 
+
+
+
 <th:block layout:fragment="content">
+
+    <div class="modal fade" id="exampleModalCenteredScrollable" tabindex="-1" aria-labelledby="exampleModalCenteredScrollableTitle" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenteredScrollableTitle">쿠폰 할인</h5>
+                    <button type="button" name="couponApply" value="0" class="btn btn-secondary float-right">적용 취소</button>
+                </div>
+                <div th:each="coupon : ${couponList}" class="modal-body">
+                    <div th:if="${!coupon.isDone()}"  class="card w-100" style="border: 1px solid black;">
+                        <h5 class="card-title" th:text="${coupon.getCouponName()}">쿠폰명</h5>
+                        <p class="border border-dark text-center" style="width: 150px; position: absolute; right: 0;" th:text="|${#numbers.formatInteger(coupon.getDiscountValue(), 0, 'COMMA')}${coupon.isFixed() ? '%' : '원'}|">30000원
+                            <p th:if="${coupon.isFixed()}" class="card-subtitle mb-2 text-muted text-lg-center" style="width: 150px; position: absolute; top: 25%; right: 0; font-size: 12px;" th:text="|최대 ${#numbers.formatInteger(coupon.getDiscountMaxPrice(), 0, 'COMMA')}원 할인|">30000원</p>
+                        </p>
+                        <p class="card-text" th:text="|${coupon.getStartDate()} ~ ${coupon.getEndDate()}|">2022/10/10 ~ 2022/11/31</p>
+<!--                        <p class="card-text" th:text="${coupon.getperiod}">31일 5시간 1분 남음</p> 여긴 고민해보자. 남은 날짜를 표시할지 말지-->
+                        <p class="card-text" th:text="|${#numbers.formatInteger(coupon.getDiscountMinPrice(), 0, 'COMMA')}원 이상 구매 시|">100,000원 이상 구매 시</p>
+                        <button type="button" name="couponApply" class="btn btn-primary float-right" th:value="${coupon.getCouponNum()}" >적용</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
@@ -50,9 +77,9 @@
                                 <tr th:each="info : ${infoList}">
                                     <th scope="row">
                                         <div class="table-content product-content d-flex align-items-center">
-                                            <!--                                    <a href="room-details.html" class="d-block" th:href="@{/room-details}">-->
-                                            <!--                                        <img src="/images/room1.jpg" alt="" class="flex-shrink-0">-->
-                                            <!--                                    </a>-->
+                                            <div class="cabin-type-img flex-shrink-0"> <!-- 숙소 이미지 -->
+                                                <a href="@{/room-details}"><img src="/images/room1.jpg" alt=""></a>
+                                            </div>
                                             <div class="product-content">
                                                 <a href="room-details.html" class="title px-2" th:href="@{/room-details}"
                                                    th:text="${info.getAccomName()}">
@@ -140,11 +167,31 @@
                                     </div>
                                 </th>
                                 <td>
-                                    <div class="table-content px-2">
-                                        <h3 class="title color-text text-lg-right">-20,000원</h3>
+                                    <div class="form-select form-select-lg mb-3 float-right">
+                                        <button id="couponSelect" class="btn btn-outline-dark float-right" >쿠폰 사용</button>
+                                        <br>
+                                        <hr/>
+                                        <p class="title text-color-1 float-right" id="discountPrice" th:text="|쿠폰 할인: 0원|">Order Total</p>
+                                        <input type="hidden" id="discountValue" th:name="discountValue" th:value="0">
+                                        <input type="hidden" id="useCouponNum" th:name="useCouponNum" th:value="0">
                                     </div>
                                 </td>
                             </tr>
+<!--                            포인트 적용 ui 부분-->
+<!--                            <tr>-->
+<!--                                <th scope="row">-->
+<!--                                    <div class="table-content pl-4" th:text="|포인트 사용|">Subtotal</p>-->
+<!--                                    </div>-->
+<!--                                </th>-->
+<!--                                <td>-->
+<!--                                    <div class="form-select form-select-lg mb-3 float-right">-->
+<!--                                        <input type="text" name="" id="" placeholder="포인트를 입력해주세요.">-->
+<!--                                        <input type="button" value="적용">-->
+<!--                                        <hr/>-->
+<!--                                        <p class="title text-color-1 float-right" th:text="|사용가능: ${#numbers.formatInteger(10000, 0, 'COMMA')}|">Order Total</p>-->
+<!--                                    </div>-->
+<!--                                </td>-->
+<!--                            </tr>-->
                             <tr>
                                 <th scope="row" class="bg-light bg-opacity-25">
                                     <div class="table-content pl-4">
@@ -153,7 +200,7 @@
                                 </th>
                                 <td class="bg-light bg-opacity-25">
                                     <div class="table-content px-2">
-                                        <h3 class="title text-color-10 text-lg-right" th:text="#{checkout_monetary_unit(${totalPrice})}">$240</h3>
+                                        <h3 class="title text-color-10 text-lg-right" id="totalPrice" th:value="${totalPrice}" th:text="#{checkout_monetary_unit(${totalPrice})}">$240</h3>
                                     </div>
                                 </td>
                             </tr>
@@ -189,13 +236,6 @@
                                                 <span class="d-block pt-2">핸드폰 결제</span>
                                             </a>
                                         </li>
-                                        <!--                                    <li class="nav-item col-lg-3 row-cols-1">-->
-                                        <!--                                        <a class="nav-link" id="asf-tab" name="payment" data-toggle="tab" href="#kakaopay" role="tab" data-value="kakaopay" aria-controls="kakaopay" aria-selected="true">-->
-                                        <!--                                            <i class="la la-check icon-element"></i>-->
-                                        <!--                                            <img src="/images/kakaopay.png" alt="">-->
-                                        <!--                                            <span class="d-block pt-2">카카오페이</span>-->
-                                        <!--                                        </a>-->
-                                        <!--                                    </li>-->
                                     </ul>
                                     <input type="hidden" th:name="ordersType" th:value="vbank">
                                     <br><br>
@@ -217,134 +257,21 @@
         END BOOKING AREA
     ================================= -->
 
+    <!-- end modal-shared -->
+    <!-- 회원가입 모달 -->
+    <th:block th:replace="fragments/signUp::signUp"></th:block>
+
+
+    <!-- end modal-shared -->
+    <!-- 로그인 모달 -->
+    <th:block th:replace="fragments/signIn::signIn"></th:block>
+
     <!-- start back-to-top -->
     <div id="back-to-top">
         <i class="la la-angle-up" title="Go top"></i>
     </div>
     <!-- end back-to-top -->
 
-    <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                            <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/member/join">
-                                <div class="input-box">
-                                    <label class="label-text">닉네임</label>
-                                    <div class="form-group">
-                                        <span class="la la-user form-icon"></span>
-                                        <input class="form-control" type="text" name="nickname" placeholder="닉네임">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">이메일 주소</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" placeholder="패스워드">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <!--                                    <div class="input-box">-->
-                                <!--                                        <label class="label-text">패스워드 확인</label>-->
-                                <!--                                        <div class="form-group">-->
-                                <!--                                            <span class="la la-lock form-icon"></span>-->
-                                <!--                                            <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>&lt;!&ndash; end input-box &ndash;&gt;-->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" class="theme-btn w-100">회원가입</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 회원가입</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
-
-    <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
-                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <div class="input-box">
-                                <label class="label-text">이메일</label>
-                                <div class="form-group">
-                                    <span class="la la-envelope form-icon"></span>
-                                    <input class="form-control" type="text"  placeholder="이메일 주소">
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box">
-                                <label class="label-text">패스워드</label>
-                                <div class="form-group mb-2">
-                                    <span class="la la-lock form-icon"></span>
-                                    <input class="form-control" type="text" placeholder="패스워드">
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <!--                                    <div class="custom-checkbox mb-0">-->
-                                    <!--                                        <input type="checkbox" id="rememberchb">-->
-                                    <!--                                        <label for="rememberchb">Remember me</label>-->
-                                    <!--                                    </div>-->
-                                    <p class="forgot-password">
-                                        <a href="recover">비밀번호를 잊으셨나요?</a>
-                                    </p>
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="btn-box pt-3 pb-4">
-                                <button type="button" class="theme-btn w-100">로그인</button>
-                            </div>
-                            <div class="action-box text-center">
-                                <p class="font-size-14">SNS를 통한 로그인</p>
-                                <ul class="social-profile py-3">
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                    <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                    <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                    <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
 
     <script th:inline="javascript">
 
@@ -360,7 +287,8 @@
         // const buyer_name = [[${customer.getNickname()}]];
         // const buyer_tel = [[${customer.getMemberTel()}]];
         const merchant_uid = [[${customer.getNum()}]] + new Date().getTime().toString();
-        const amount = Number([[${totalPrice}]]);
+        let amount = Number([[${totalPrice}]]);
+        const originPrice= Number([[${totalPrice}]]);
         const buyer_email = [[${customer.getEmail()}]];
 
 
@@ -369,8 +297,5 @@
 
     </script>
 
-
-
 </th:block>
-
 </html>

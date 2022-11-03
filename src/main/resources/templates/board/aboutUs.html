@@ -45,7 +45,9 @@ START CARD AREA
 
             <!-- 게시글 존재하지 않을 경우 -->
             <th:block th:if="${lists.isEmpty()}">
-                게시글이 존재하지 않습니다.
+                <div class="hwt-empty">
+                    <p>게시글이 존재하지 않습니다.</p>
+                </div>
             </th:block>
 
             <!-- 게시글 존재할 경우 -->
@@ -72,6 +74,17 @@ START CARD AREA
                     </div><!-- end card-item -->
                 </div><!-- end col-lg-4 -->
             </th:block>
+
+            <th:block th:unless="${lists.isEmpty()}">
+                <div class="row hwt-btn-more" id="loadMore">
+                    <div class="col-lg-12">
+                        <div class="btn-box mt-3 text-center">
+                            <button type="button" class="theme-btn hwt-btn-gray">더보기</button>
+                        </div><!-- end btn-box -->
+                    </div><!-- end col-lg-12 -->
+                </div><!-- end row -->
+            </th:block>
+
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end card-area -->
@@ -361,9 +374,11 @@ START CARD AREA
                     <div class="card-body">
                         <h3 class="card-title">수정</h3>
                         <p class="card-text font-size-15 pt-2">
-                            레이아웃 [Header, Footer] / 메인 페이지<br>
+                            레이아웃 (Header, Footer)<br>
+                            메인 페이지<br>
                             공지사항 / 이벤트<br>
-                            FAQ / 오늘어때 정보<br>
+                            FAQ / 고객센터<br>
+                            오늘어때 정보
                         </p>
                     </div>
                 </div><!-- end card-item -->
@@ -376,9 +391,10 @@ START CARD AREA
                     <div class="card-body">
                         <h3 class="card-title">영운</h3>
                         <p class="card-text font-size-15 pt-2">
+                            쿠폰 / 포인트<br>
                             예약 및 결제<br>
-                            예약내역<br>
-                            예약취소
+                            예약 내역<br>
+                            예약 취소
                         </p>
                     </div>
                 </div><!-- end card-item -->
@@ -391,9 +407,10 @@ START CARD AREA
                     <div class="card-body">
                         <h3 class="card-title">동우</h3>
                         <p class="card-text font-size-15 pt-2">
+                            날짜 및 인원수 선택<br>
+                            지역 리스트 / 숙소 리스트<br>
                             위시리스트<br>
-                            장바구니<br>
-                            쿠폰 / 포인트
+                            장바구니
                         </p>
                     </div>
                 </div><!-- end card-item -->
@@ -406,9 +423,9 @@ START CARD AREA
                     <div class="card-body">
                         <h3 class="card-title">영진</h3>
                         <p class="card-text font-size-15 pt-2">
-                            로그인 / 회원가입<br>
-                            회원정보 수정 및 탈퇴<br>
-                            고객센터 / 리뷰 [my 리뷰, 숙소 리뷰]
+                            로그인 / 로그아웃<br>
+                            회원가입<br>
+                            회원정보 수정 및 탈퇴
                         </p>
                     </div>
                 </div><!-- end card-item -->
@@ -421,9 +438,8 @@ START CARD AREA
                     <div class="card-body">
                         <h3 class="card-title">수언</h3>
                         <p class="card-text font-size-15 pt-2">
-                            날짜 및 인원수 선택<br>
-                            지역 리스트<br>
-                            숙소 리스트
+                            리뷰 (my 리뷰 / 숙소 리뷰)<br>
+                            숙소 리스트 프론트 담당
                         </p>
                     </div>
                 </div><!-- end card-item -->
@@ -457,6 +473,19 @@ START CARD AREA
 </div>
 <!-- end back-to-top -->
 
+<!-- end modal-shared -->
+<!-- 회원가입 모달 -->
+<th:block th:replace="fragments/signUp::signUp"></th:block>
+
+
+<!-- end modal-shared -->
+<!-- 로그인 모달 -->
+<th:block th:replace="fragments/signIn::signIn"></th:block>
+
+</th:block>
+
+<th:block layout:fragment="script">
+    <script src="/js/hwt/board.js"></script>
 </th:block>
 
 </html>

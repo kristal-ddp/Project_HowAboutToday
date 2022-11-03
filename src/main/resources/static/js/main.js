@@ -502,17 +502,18 @@ Author Email:   contact@tecydevs.com
         if ($(rangeSliderTwo).length) {
             $(rangeSliderTwo).slider({
                 range: true,
-                min: 0,
-                max: 1000,
-                values: [ 40, 800 ],
+                min: 1,
+                max: 50,
+                values: [ 1, 50 ],
                 slide: function( event, ui ) {
-                    $(rangeSliderAmountTwo).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                    $(rangeSliderAmountTwo).val( ui.values[ 0 ] + "만원" + " - " + ui.values[ 1 ] + "만원" );
                 }
             });
         }
 
-        $(rangeSliderAmountTwo).val( "$" + $(rangeSliderTwo).slider( "values", 0 ) +
-            " - $" + $(rangeSliderTwo).slider( "values", 1 ) );
+        $(rangeSliderAmountTwo).val( $(rangeSliderTwo).slider( "values", 0 ) + "만원" +
+            " - " + $(rangeSliderTwo).slider( "values", 1 ) + "만원" );
+
 
         /*==== Date picker multiple =====*/
         if ($(datePickerMultiple).length) {

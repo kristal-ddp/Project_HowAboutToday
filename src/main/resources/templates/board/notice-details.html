@@ -51,7 +51,7 @@
 
                     <!-- Board Content -->
                     <div class="form-content contact-form-action hwt-details-content">
-                        <p th:text="${boardDetailDTO.boardContent}">게시글 내용</p>
+                        <p class="board-content" th:text="${boardDetailDTO.boardContent}">게시글 내용</p>
                     </div><!-- end form-content -->
 
                     <!-- Admin -->
@@ -99,6 +99,15 @@
     <i class="la la-angle-up" title="Go top"></i>
 </div>
 <!-- end back-to-top -->
+
+<!-- end modal-shared -->
+<!-- 회원가입 모달 -->
+<th:block th:replace="fragments/signUp::signUp"></th:block>
+
+
+<!-- end modal-shared -->
+<!-- 로그인 모달 -->
+<th:block th:replace="fragments/signIn::signIn"></th:block>
 
 </th:block>
 

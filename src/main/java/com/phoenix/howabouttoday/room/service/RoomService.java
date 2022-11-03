@@ -15,4 +15,5 @@ public interface RoomService {
 
     RoomDetailDTO findOne_Room(Long roomNum); // 객실 디테일
 
+    List<RoomReviewDTO> findAll_Review(Long roomNum); // 객실 리뷰
 }

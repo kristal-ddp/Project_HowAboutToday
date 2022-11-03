@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +28,8 @@ public class PaymentHistoryService {
                 .stream()
                 .map(OrdersDTO::new)
                 .collect(Collectors.toList());
+
+        Collections.sort(ordersList, Collections.reverseOrder());
 
         final int start = (int)pageable.getOffset();
         final int end = Math.min((start + pageable.getPageSize()), ordersList.size());
