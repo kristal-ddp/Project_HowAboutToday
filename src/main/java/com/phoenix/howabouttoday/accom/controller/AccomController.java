@@ -63,9 +63,7 @@ public class AccomController {
         model.addAttribute("memberDTO",memberDTO);
 
         boolean memberCheck = false;
-        boolean loginCheck = false;
         model.addAttribute("memberCheck",memberCheck);
-
         SearchForm searchForm = new SearchForm();
         model.addAttribute("searchForm",searchForm);
         model.addAttribute("loginCheck",loginCheck);
@@ -99,7 +97,7 @@ public class AccomController {
         model.addAttribute("memberDTO",memberDTO);
         boolean memberCheck = false;
         model.addAttribute("memberCheck",memberCheck);
-//        model.addAttribute("categoryList",categoryList);
+
         model.addAttribute("viewName",viewName);
         model.addAttribute("categoryName",category_name);
         model.addAttribute("sessionDTO", sessionDTO);
@@ -143,6 +141,7 @@ public class AccomController {
         }
         model.addAttribute("reviewlist",reviewlist);//리뷰 리스트 출력
         return "accom/hotel/hotel-single";
+
     }
     @PostMapping("hotel-single")
     public String postHotelSingle(){return "accom/hotel/hotel-single";}

@@ -68,7 +68,7 @@ public class Board {
     }
 
     // FAQ 게시글 수정
-    public void editFAQ(Long boardNum, FAQDTO FAQDTO) {
+    public void editFAQ(Long boardNum, BoardCategory boardCategory, FAQDTO FAQDTO) {
         this.boardNum = boardNum;
         this.boardCategory = boardCategory;
         this.boardTitle = FAQDTO.getBoardTitle();
