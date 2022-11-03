@@ -1,13 +1,16 @@
 package com.phoenix.howabouttoday.global;
 
-
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+@RequiredArgsConstructor
 @Component
 @Slf4j
 public class AutoCompleteScheduler {
+
+    private final AutoCompleteSchedulerService autoCompleteSchedulerService;
 
     /*
         cron
@@ -17,8 +20,16 @@ public class AutoCompleteScheduler {
         출처: https://data-make.tistory.com/699 [Data Makes Our Future:티스토리]
     */
 
-    @Scheduled(cron = "0 0 0 * * ?", zone = "Asia/Seoul") //매일 자정에 실행 초 분 시 일 달 기준 (ex) 0 0 0 10 1 1월 10일 자정에 실행
+    @Scheduled(cron = "0 0 * * * ?", zone = "Asia/Seoul") //매일 자정에 실행 초 분 시 일 달 기준 (ex) 0 0 0 10 1 1월 10일 자정에 실행
     public void scheduleTaskUsingCronExpression() {
+
+        autoCompleteSchedulerService.updateOrdersDetailToInUse();
+        autoCompleteSchedulerService.updateOrdersDetailToComplete();
+
+        autoCompleteSchedulerService.updateOrdersToInUse();
+        autoCompleteSchedulerService.updateOrdersToDone();
+
+
         long now = System.currentTimeMillis() / 1000;
         log.info("예약 상태 업데이트 - {}", now);
     }
