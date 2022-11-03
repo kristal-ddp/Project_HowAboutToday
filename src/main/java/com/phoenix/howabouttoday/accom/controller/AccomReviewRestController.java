@@ -24,8 +24,6 @@ public class AccomReviewRestController {
     public Slice<AccomReviewDTO.ResponseDto> accomReviews(@PathVariable(required = false) Long accomNum,
                                                           @PageableDefault(page = 0, size = 3, sort = "reviewNum", direction = Sort.Direction.DESC) Pageable pageable) {
 
-
-
         return accomReviewService.getAccomReviewList(pageable, accomNum);
     }
 }
