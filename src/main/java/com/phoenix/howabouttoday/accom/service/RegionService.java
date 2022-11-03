@@ -12,4 +12,7 @@ public interface RegionService {
 
     /** 자식 지역 조회 **/
     List<Region> findAllChild();
+
+    /** regionNum에 해당하는 region 조회 **/
+    Region findByNum(Long regionNum);
 }
