@@ -97,7 +97,7 @@ public class InitDb {
                     .pwd("123")
                     .memberTel("010-1234-5678")
                     .nickname("이동우")
-                    .memberOriginalFileName("Originl")
+                    .memberOriginalFileName("image0.jpg")
                     .memberSaveFileName("save")
                     .joinDate(LocalDate.of(2022,10,27))
                     .role(Role.MEMBER)
@@ -372,6 +372,36 @@ public class InitDb {
                     .memberName("이동우")
                     .build());
 
+            Review review2 = reviewRepository.save(Review.builder()
+                    .member(member)
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
+                    .reviewRating(5.0)
+                    .room(room)
+                    .reviewContent("5점")
+                    .memberName("간")
+                    .build());
+
+            Review review3 = reviewRepository.save(Review.builder()
+                    .member(member)
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
+                    .reviewRating(4.6)
+                    .room(room)
+                    .reviewContent("4점")
+                    .memberName("난")
+                    .build());
+
+            Review review4 = reviewRepository.save(Review.builder()
+                    .member(member)
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
+                    .reviewRating(1.8)
+                    .room(room)
+                    .reviewContent("3점")
+                    .memberName("닫")
+                    .build());
+
             room.getReviews().add(review);
 
 
@@ -399,7 +429,7 @@ public class InitDb {
                     .pwd("1234")
                     .memberTel("010-1111-2222")
                     .nickname("안수언")
-                    .memberOriginalFileName("Originl")
+                    .memberOriginalFileName("image150.jpg")
                     .memberSaveFileName("save1")
                     .joinDate(LocalDate.of(2022,9,27))
                     .role(Role.MEMBER)
@@ -740,8 +770,38 @@ public class InitDb {
                     .member(member)
                     .reviewCreateDate(LocalDate.now())
                     .reviewModifyDate(LocalDate.now())
-                    .reviewRating(2.73)
+                    .reviewRating(2.6)
                     .memberName("안수언")
+                    .reviewContent("너무별로에요")
+                    .room(room)
+                    .build());
+
+            Review review1 = reviewRepository.save(Review.builder()
+                    .member(member)
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
+                    .reviewRating(3.4)
+                    .memberName("가")
+                    .reviewContent("너무별로에요")
+                    .room(room)
+                    .build());
+
+            Review review2 = reviewRepository.save(Review.builder()
+                    .member(member)
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
+                    .reviewRating(4.7)
+                    .memberName("가나다라마바사")
+                    .reviewContent("너무별로에요")
+                    .room(room)
+                    .build());
+
+            Review review3 = reviewRepository.save(Review.builder()
+                    .member(member)
+                    .reviewCreateDate(LocalDate.now())
+                    .reviewModifyDate(LocalDate.now())
+                    .reviewRating(5.0)
+                    .memberName("ABCDEFGH")
                     .reviewContent("너무별로에요")
                     .room(room)
                     .build());

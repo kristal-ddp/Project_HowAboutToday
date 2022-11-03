@@ -84,8 +84,6 @@ public class AccomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-
-
         /** 화면에 표시할 한글카테고리 이름 조회**/
         String viewName = accomCategoryService.getAccomViewName(category_name);
 
@@ -113,9 +111,10 @@ public class AccomController {
 
     //숙소 상세
     @GetMapping("hotel-single")
-    public String getHotelSingle(@LoginUser SessionDTO sessionDTO, Model model,
+    public String getHotelSingle(@LoginUser SessionDTO sessionDTO,
                                  @RequestParam Long accomNum,
-                                 SearchForm searchForm){
+                                 SearchForm searchForm,
+                                 Model model){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -136,33 +135,36 @@ public class AccomController {
         /** searchForm 반환 **/
         model.addAttribute("searchForm",searchForm);
 
+        //아마 필요 없는 부분이 될듯??
         List<AccomReviewDTO.ResponseDto> reviewlist = accomReviewService.findAllByAccom(accomNum);
         for (AccomReviewDTO.ResponseDto responseDto : reviewlist) {
             System.out.println("responseDto.getAccomReviewRating() = " + responseDto.getAccomReviewRating());
+            System.out.println("회원 이미지파일이름! = " + responseDto.getMemberFileName());
         }
         model.addAttribute("reviewlist",reviewlist);//리뷰 리스트 출력
+
+
         return "accom/hotel/hotel-single";
     }
     @PostMapping("hotel-single")
     public String postHotelSingle(){return "accom/hotel/hotel-single";}
 
-    @GetMapping("singleSearch")
-    public String getHotelSingleSearch(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum) {
-
-        if(sessionDTO != null) {
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
-
-
-        System.out.println("accomNum!!!!!!!!!!!!! = " + accomNum);
-        Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보
-        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
-
-        model.addAttribute("roomlist",roomList); //객실 리스트
-        model.addAttribute("accommodation",accomList);
-
-        return "accom/hotel/hotel-single";
-    }
+//    @GetMapping("singleSearch")
+//    public String getHotelSingleSearch(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum) {
+//
+//        if(sessionDTO != null) {
+//            model.addAttribute("sessionDTO", sessionDTO);
+//        }
+//
+//        System.out.println("accomNum!!!!!!!!!!!!! = " + accomNum);
+//        Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보
+//        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
+//
+//        model.addAttribute("roomlist",roomList); //객실 리스트
+//        model.addAttribute("accommodation",accomList);
+//
+//        return "accom/hotel/hotel-single";
+//    }
 
 
 
