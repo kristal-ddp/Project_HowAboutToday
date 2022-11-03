@@ -26,6 +26,7 @@ public class WishListRestController {
                         @PathVariable Long accomNum){
 
         /** 세션회원 조회로직 **/
+
         Long memberNum = user.getMemberNum();
 
 
