@@ -70,14 +70,13 @@
                         <div class="single-content-wrap padding-top-60px">
                             <div class="page-scroll">
                                 <div class="single-content-item pb-4">
-                                    <h3 class="title font-size-26" th:text="${accom.accomName}" >Hilton Hotel and
-                                        Resorts</h3>
+                                    <h3 class="title font-size-26" th:text="${accom.accomName}" ></h3>
                                     <div class="d-flex align-items-center pt-2">
-                                        <p class="mr-2" th:text="${accom.accomAddress}">Boston, MA, USA</p>
+                                        <p class="mr-2" th:text="${accom.accomAddress}"></p>
                                         <p>
                                             <span class="badge badge-warning text-white font-size-16"
-                                                  th:text="${accom.accomRating}">4.7</span>&nbsp;
-                                            <span th:text="|(${accom.totalReviewNum}개의 리뷰)|">(4,209 Reviews)</span>
+                                                  th:text="${accom.accomRating}"></span>&nbsp;
+                                            <span th:text="|(${accom.totalReviewNum}개의 리뷰)|"></span>
                                         </p>
                                     </div>
                                 </div><!-- end single-content-item -->
@@ -224,7 +223,12 @@
                                 <div class="single-content-item padding-top-40px padding-bottom-40px">
                                     <h3 class="title font-size-20">위치</h3>
                                     <div class="map-container padding-top-30px">
-                                        <div id="map"></div>
+                                        <div id="map">
+                                            <div class="wrap_button">
+                                                <a href="javascript:;" class="btn_comm btn_linkMap" target="_blank" onclick="moveKakaoMap(this)"><span class="screen_out">크게보기</span></a>
+                                                <a href="javascript:;" class="btn_comm btn_resetMap" onclick="resetKakaoMap()"><span class="screen_out">초기화</span></a>
+                                            </div>
+                                        </div>
                                     </div><!-- end map-container -->
                                 </div><!-- end single-content-item -->
                                 <div class="section-block"></div>
@@ -240,12 +244,12 @@
                                     <h3 class="title font-size-20" th:text="|총 ${accom.getTotalReviewNum()}개의 리뷰|"></h3>
                                     <div class="comments-list padding-top-7px" th:each=" reviewlists: ${reviewlist}">
                                         <div class="comment">
-                                            <div class="comment-avatar">
-                                                <img class="avatar__img" alt="" src="/images/team8.jpg">
-                                            </div>
+<!--                                            <div class="comment-avatar">-->
+<!--                                                <img class="avatar__img" alt="" src="/images/team8.jpg">-->
+<!--                                            </div>-->
                                             <div class="comment-body">
                                                 <div class="meta-data">
-                                                    <h3 class="comment__author" th:text="${reviewlists.accomMember}">멤버 이름</h3>
+                                                    <h3 class="comment__author" th:text="${reviewlists.accomMember}"></h3>
                                                     <div class="meta-data-inner d-flex">
                                                     <span class="ratings d-flex align-items-center mr-1" th:text="|${reviewlists.accomReviewRating} /|">
                                                         <i class="la la-star"></i>
@@ -254,7 +258,7 @@
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                     </span>
-                                                        <p class="comment__date" th:text="${reviewlists.accomReviewCreate}">2022.10.03</p>
+                                                        <p class="comment__date" th:text="${reviewlists.accomReviewCreate}"></p>
                                                     </div>
                                                 </div>
                                                 <p class="comment-content" th:text="${reviewlists.accomReviewContent}">
@@ -442,23 +446,25 @@
     <!-- ================================
         START CTA AREA
     ================================= -->
-    <section class="cta-area cta-bg-2 bg-fixed padding-top-60px padding-bottom-60px breadcrumb-board">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7 hwt-col-left">
-                    <div class="section-heading">
-                        <h2 class="sec__title font-size-30 text-white">Contact Us</h2>
-                        <p class="sec__desc text-white pt-1 hwt-font-content">오늘어때에 대해 궁금한 점이 있으신가요?</p>
-                    </div><!-- end section-heading -->
-                </div><!-- end col-lg-7 -->
-                <div class="col-lg-5 hwt-col-right">
-                    <div class="btn-box btn--box text-right">
-                        <a href="contact" class="theme-btn border-0 hwt-btn-white">고객센터</a>
-                    </div><!-- end btn-box -->
-                </div><!-- end col-lg-5 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end cta-area -->
+<!--    <section class="cta-area cta-bg-2 bg-fixed padding-top-60px padding-bottom-60px breadcrumb-board">-->
+<!--        <div class="container">-->
+<!--            <div class="row align-items-center">-->
+<!--                <div class="col-lg-7 hwt-col-left">-->
+<!--                    <div class="section-heading">-->
+<!--                        <h2 class="sec__title font-size-30 text-white">Contact Us</h2>-->
+<!--                        <p class="sec__desc text-white pt-1 hwt-font-content">오늘어때에 대해 궁금한 점이 있으신가요?</p>-->
+<!--                    </div>&lt;!&ndash; end section-heading &ndash;&gt;-->
+<!--                </div>&lt;!&ndash; end col-lg-7 &ndash;&gt;-->
+<!--                <div class="col-lg-5 hwt-col-right">-->
+<!--                    <div class="btn-box btn&#45;&#45;box text-right">-->
+<!--                        <a href="contact" class="theme-btn border-0 hwt-btn-white">고객센터</a>-->
+<!--                    </div>&lt;!&ndash; end btn-box &ndash;&gt;-->
+<!--                </div>&lt;!&ndash; end col-lg-5 &ndash;&gt;-->
+<!--            </div>&lt;!&ndash; end row &ndash;&gt;-->
+<!--        </div>&lt;!&ndash; end container &ndash;&gt;-->
+<!--    </section>&lt;!&ndash; end cta-area &ndash;&gt;-->
+
+    <th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
     <!-- ================================
         END CTA AREA
     ================================= -->
@@ -570,7 +576,70 @@
     <!--<script src="js/main.js"></script>-->
     <!--</body>-->
     <!--</html>-->
-<script>
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41285ae46bc998ac5e0756fff1675a3c"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> <!-- Kakao SDK for JavaScript -->
+<script th:inline="javascript">
+
+
+
+    //위치 정보(지도)
+    var staticMapContainer  = document.getElementById('map');
+    staticMapOption = {
+        center: new kakao.maps.LatLng([[${accom.latitude}]], [[${accom.longitude}]]),
+        level: 3
+
+    };
+    //지도 생성
+    var map = new kakao.maps.Map(staticMapContainer, staticMapOption);
+    //마커 생성
+    var mapCenter  = new kakao.maps.LatLng([[${accom.latitude}]], [[${accom.longitude}]]);
+            var marker = new kakao.maps.Marker({
+                position: mapCenter,
+                map: map
+    });
+
+    // 마커 인포윈도우 생성
+    var iwContent = '<div style="border-radius: 20%; width:200px; text-align:center; font-size:15px; font-weight: 500;">[[${accom.accomName}]]</div>' +
+                    '<div style="margin-left:4px; text-align:center; font-size:13px;">[[${accom.accomAddress}]]</div>';
+    var infowindow = new kakao.maps.InfoWindow({
+        content : iwContent
+    });
+
+
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
+        infowindow.open(map, marker);
+    });
+
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+        infowindow.close();
+    });
+
+    /* 맵, 줌 컨트롤 */
+    var mapTypeControl = new kakao.maps.MapTypeControl(); // 맵 컨트롤 생성
+    var zoomControl = new kakao.maps.ZoomControl(); // 줌 컨트롤 생성
+
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT); // 맵 컨트롤 추가
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT); // 줌 컨트롤 추가
+
+    //카카오 맵 이동
+    function moveKakaoMap(self){
+
+    var center = map.getCenter(),
+        lat = center.getLat(),
+        lng = center.getLng();
+
+    self.href = 'https://map.kakao.com/link/map/' + encodeURIComponent('[[${accom.accomName}]]') + ',' + lat + ',' + lng;
+    }
+
+    //초기화
+    function resetKakaoMap(){
+        map.setCenter(mapCenter);
+        map.setLevel(mapOption.level);
+    }
+
+
     function roomDetails(roomNum){
         $("#hiddenNum").attr("value",roomNum);
         var searchForm = document.getElementById("searchForm")
@@ -578,9 +647,12 @@
 
         searchForm.submit();
 
-
     }
 </script>
+<!--    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41285ae46bc998ac5e0756fff1675a3c"></script> &lt;!&ndash; 카카오맵 API &ndash;&gt;-->
+<!--    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> &lt;!&ndash; 카카오맵 라이브러리 &ndash;&gt;-->
+<!--    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> &lt;!&ndash; Kakao SDK for JavaScript &ndash;&gt;-->
+<!--    <script src="/js/hwt/accommodationLocation.js"></script>-->
 
 </th:block>
 

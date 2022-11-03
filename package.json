@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "sass": "^1.55.0"
+  },
+  "dependencies": {
+    "sweetalert2": "^11.6.5"
   }
 }
