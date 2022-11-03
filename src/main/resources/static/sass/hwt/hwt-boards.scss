@@ -119,6 +119,23 @@
     width: 40%;
 }
 
+.swal2-title {
+    font-size: 14pt!important;
+}
+
+.swal2-show {
+    width: 350px!important;
+}
+
+.swal2-confirm {
+	background-color: #566578!important;
+    font-size: 11pt!important;
+}
+
+.swal2-warning {
+    margin: 0.1em auto 1.875em!important;
+}
+
 // Edit Board
 .event-file {
     position: unset!important;

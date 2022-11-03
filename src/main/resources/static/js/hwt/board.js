@@ -19,7 +19,10 @@ $(function() {
         let category = $('#boardCategoryNum').val();
 
         if(category == null || category == ""){
-            alert("카테고리를 선택하세요.");
+            Swal.fire({
+                icon: 'error',
+                title: '카테고리를 선택하세요.',
+            });
             return false;
         }else{
             $('#faq-form').submit();
@@ -66,7 +69,10 @@ $(function() {
             $('#loadMore').before(listLow); // #loadMore의 바깥쪽의 바로 위에 출력
 
             if(result.content.length < 1){
-                alert("게시글이 더 이상 존재하지 않습니다.");
+                Swal.fire({
+                    icon: 'info',
+                    title: '게시글이 더 이상 존재하지 않습니다.',
+                });
                 $('#loadMore').css('display', 'none');
             }
         });
