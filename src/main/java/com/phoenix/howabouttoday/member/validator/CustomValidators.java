@@ -15,18 +15,6 @@ import org.springframework.validation.Errors;
 @Component
 public class CustomValidators {
 
-    @RequiredArgsConstructor
-    @Component
-    public static class NicknameValidator extends AbstractValidator<MemberDTO> {
-        private final MemberRepository memberRepository;
-
-        @Override
-        protected void doValidate(MemberDTO memberDTO, Errors errors) {
-            if (memberRepository.existsByNickname(memberDTO.toEntity().getNickname())) {
-                errors.rejectValue("nickname", "닉네임 중복 오류", "이미 사용중인 닉네임 입니다.");
-            }
-        }
-    }
 
     @RequiredArgsConstructor
     @Component

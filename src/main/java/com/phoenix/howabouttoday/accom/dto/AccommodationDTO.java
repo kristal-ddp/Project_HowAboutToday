@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class AccommodationDTO {
     private LocalTime checkOut;
     private Double latitude; //위도
     private Double longitude; //경도
-    private Integer lowPrice; //숙소의 객실 최저가
+    private String lowPrice; //숙소의 객실 최저가
     private Integer reserveRange;//예약 가능일 범위(ex. 60 → 오늘부터 +60일까지 예약 가능)
     private String accomOriginFileName;//숙소 이미지 대표이미지 이름
     private List<AccomImage> accommodationImage;
@@ -59,7 +60,7 @@ public class AccommodationDTO {
         this.checkOut = accom.getCheckOut();
         this.latitude = accom.getLatitude();
         this.longitude = accom.getLongitude();
-        this.lowPrice = accom.getLowPrice();
+        this.lowPrice = DecimalFormat.getInstance().format(accom.getLowPrice());
         this.reserveRange = accom.getReserveRange();
         this.accomOriginFileName = accom.getAccommodationImage().get(0).getAccomOriginFilename();
         this.accommodationImage = accom.getAccommodationImage();

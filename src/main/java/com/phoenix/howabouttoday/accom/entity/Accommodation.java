@@ -36,8 +36,6 @@ public class Accommodation {
 
     //    @OneToMany() 추후에 지역 카테고리 entity 만든 후에 매핑필요
 
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_num")
     private Region region; //숙소 지역 번호
@@ -50,7 +48,6 @@ public class Accommodation {
 
     @Column(length = 200)
     private String accomAddress3; // 예: 나머지 도로명주소
-
 
     @Column(precision = 1, scale = 2)
     private Double accomRating;//숙소 평점

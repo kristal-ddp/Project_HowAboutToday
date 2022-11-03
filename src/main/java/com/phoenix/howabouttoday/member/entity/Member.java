@@ -59,7 +59,6 @@ public class Member {
     this.memberTel = memberTel;
   }
 
-
   @Builder
   public Member(String email, String pwd, String nickname, String memberTel, Role role, LocalDate joinDate, LocalDate withdrawdate, String memberOriginalFileName, String memberSaveFileName) {
     this.email = email;

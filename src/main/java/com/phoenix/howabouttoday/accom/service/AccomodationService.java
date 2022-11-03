@@ -44,8 +44,8 @@ public class AccomodationService {
 
         Slice<Accommodation> page =
                 accommodationRepository.
-                       findByAccomCategory_NameAndLowPriceLessThanEqualAndLowPriceGreaterThanEqualAndAccomRatingLessThanEqualAndAccomNameContaining(category_name,
-                        maxPrice, minPrice, pageable,accomRating, keyword);
+                        findByAccomCategory_NameAndLowPriceLessThanEqualAndLowPriceGreaterThanEqualAndAccomRatingLessThanEqualAndAccomNameContaining(category_name,
+                                maxPrice, minPrice, pageable,accomRating, keyword);
 
         Slice<AccomDto.ResponsePageDto> accomPageList = page.map(accom -> new AccomDto.ResponsePageDto(accom));
 
@@ -66,7 +66,7 @@ public class AccomodationService {
     }
 
     /** accomNum에 해당하는 숙소 조회 **/
-    public AccommodationDTO findByAccomNum(Long accomNum, SearchForm searchForm ){
+    public AccommodationDTO findByAccomNum(Long accomNum, SearchForm searchForm){
 
         Accommodation findAccom = accommodationRepository.findById(accomNum).orElseThrow(() ->
                 new IllegalArgumentException("해당 숙소는 현재 존재하지 않습니다"));
@@ -118,7 +118,7 @@ public class AccomodationService {
 //                .totalreviewNum(accommodation.getTotalReviewNum())
                 .latitude(accommodation.getLatitude())
                 .longitude(accommodation.getLongitude())
-                .lowPrice(accommodation.getLowPrice())
+                .lowPrice(accommodation.getLowPrice().toString())
                 .reserveRange(accommodation.getReserveRange())
                 .build();
 

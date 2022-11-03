@@ -2,9 +2,11 @@ package com.phoenix.howabouttoday.room.controller;
 
 import com.phoenix.howabouttoday.accom.dto.SearchForm;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
+import com.phoenix.howabouttoday.payment.dto.OrdersDetailDTO;
 import com.phoenix.howabouttoday.room.dto.*;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
+import com.phoenix.howabouttoday.room.service.ReviewService;
 import com.phoenix.howabouttoday.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,7 @@ import java.util.List;
 public class RoomController {
 
     private final RoomService roomService;
+    private final ReviewService reviewService;
 
     @GetMapping("room-details")
     public String getRoomDetails(@LoginUser SessionDTO sessionDTO, Model model, @RequestParam(value="roomNum",required=false) Long roomNum,
@@ -55,8 +58,10 @@ public class RoomController {
         boolean memberCheck = false;
         model.addAttribute("memberCheck",memberCheck);
 
-        return "accom/room/room-details";
+        List<OrdersDetailDTO> ordersDetailDTOList = reviewService.isExistOrderDetail(sessionDTO, roomNum);
+        model.addAttribute("ordersDetailDTOList",ordersDetailDTOList);
 
+        return "accom/room/room-details";
     }
     @PostMapping("room-details")
     public String postRoomDetails(){

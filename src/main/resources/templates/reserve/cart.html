@@ -68,9 +68,12 @@
                                     <div class="table-content product-content d-flex align-items-center">
                                         <div class="cart_info_div">
 
-                                            <input type="checkbox" style="margin-right: 20px" class="cart_checkbox" checked="checked" name="cartNum" th:value="${cart.cartNum}">
+                       <input type="checkbox" style="margin-right: 20px" class="cart_checkbox" checked="checked" th:name="cartNum" th:value="${cart.cartNum}">
                                             <input type="hidden" class="total_reservePrice_input" th:value="${cart.reservePrice}">
                                             <input type="hidden" class="total_price_input" th:value="${cart.roomPrice}">
+                                            
+                                            <!-- <input type="hidden" class="total_price_input" th:value="${cart.getReservePrice()}"> -->
+                                            
                                             <input type="hidden" class="count_input" value="1">
                                         </div>
 

@@ -14,6 +14,8 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
     List<Orders> findAllByMember_MemberNum(Long memberId);
 
+//    List<Orders> findAllByMember_MemberNum(Long memberId);
+
     Optional<Orders> findByMerchantId(String merchantId);
 
     @Override

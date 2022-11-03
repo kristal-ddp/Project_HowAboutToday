@@ -1,5 +1,6 @@
 <th:block th:fragment="signIn">
 <div class="modal-popup">
+    <input type="hidden" id="loginCheck" th:value="${loginCheck}">
     <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -41,9 +42,12 @@
                                 </div>
                             </div><!-- end input-box -->
 
-                            <th:if test="${not empty error}">
-                                <p id="valid" class="alert alert-danger" th:value="${exception}"></p>
-                            </th:if>
+
+
+                            <span th:if="${error}">
+                                <p id="valid" th:text="${exception}" style="color: red; font-size:13px"></p>
+                            </span>
+
 
                             <div class="btn-box pt-3 pb-4">
                                 <button type="submit" id="login" class="theme-btn w-100">로그인</button>

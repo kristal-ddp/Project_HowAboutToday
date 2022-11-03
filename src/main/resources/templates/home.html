@@ -163,7 +163,7 @@
                 <div class="col-lg-3 responsive-column hwt-col-icon">
                     <div class="icon-box icon-layout-2 d-flex hwt-icon-layout">
                         <div class="hwt-iconbox-pointer">
-                            <a href="/accom/penssion">
+                            <a href="/accom/pension">
                                 <div class="info-icon flex-shrink-0 bg-rgb-3 text-color-4 hwt-info-icon">
                                     <!--                        <i class="las la-map-marked-alt"></i>-->
                                     <img src="icon/poolvilla.png" class="hwt-icon-element">
@@ -634,10 +634,18 @@
         $(document).ready(function(){
 
             let memberCheck = $("#memberCheck").val();
+            let loginCheck = $("#loginCheck").val();
+
 
             if(memberCheck == "true"){
                 $("#memberJoin").click();
             }
+
+            if(loginCheck == "true"){
+                $("#loginBtn").click();
+            }
+
+
 
         })
 

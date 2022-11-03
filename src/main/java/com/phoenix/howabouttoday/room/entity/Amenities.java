@@ -23,8 +23,7 @@ public class Amenities {
     private AmenitiesNames amenitiesName;//시설이름
 
     @Builder
-    public Amenities(Room room, Long amenitiesNum, AmenitiesNames amenitiesName) {
-        this.room = room;
+    public Amenities(Long amenitiesNum, AmenitiesNames amenitiesName) {
         this.amenitiesNum = amenitiesNum;
         this.amenitiesName = amenitiesName;
     }

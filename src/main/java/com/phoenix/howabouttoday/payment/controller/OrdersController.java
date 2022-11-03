@@ -21,13 +21,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.List;
 
-@RequestMapping("/orders")
+import static com.phoenix.howabouttoday.payment.MemberDTOCHECK.doCheck;
+
 @RequiredArgsConstructor
 @Controller
+@RequestMapping("/orders")
 public class OrdersController {
 
     private final OrdersService orderService;
@@ -45,13 +46,15 @@ public class OrdersController {
 //            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
 //        }
 
+        doCheck(model);
+
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getDirectData(customer, ordersDirectDTO);
 
         return "redirect:/orders/payment?cartNum=" + infoList.get(0).getCartNum();
     }
 
-    /* 카드 -> 결제페이지 */
+    /* 카트 -> 결제페이지 */
     @GetMapping("/payment")
     public String paymentView(@LoginUser SessionDTO sessionDTO, Principal principal, Model model, @RequestParam List<Long> cartNum) {
 
@@ -61,6 +64,8 @@ public class OrdersController {
 //        else {
 //            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
 //        }
+
+        doCheck(model);
 
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
@@ -114,6 +119,8 @@ public class OrdersController {
 //        else {
 //            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
 //        }
+
+        doCheck(model);
 
 //        model.addAttribute("sessionDTO", sessionDTO);
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());

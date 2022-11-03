@@ -8,6 +8,7 @@ import com.phoenix.howabouttoday.payment.entity.Coupon;
 import com.phoenix.howabouttoday.payment.entity.CouponRules;
 import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
 import com.phoenix.howabouttoday.payment.enumType.DiscountType;
+import com.phoenix.howabouttoday.payment.enumType.ReviewStatus;
 import com.phoenix.howabouttoday.payment.repository.CouponRepository;
 import com.phoenix.howabouttoday.payment.repository.CouponRulesRepository;
 import com.phoenix.howabouttoday.room.entity.Review;
@@ -221,6 +222,8 @@ public class InitDb {
                     .defaultGuest(2)
                     .maxGuest(10)
                     .price(35000)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -230,6 +233,8 @@ public class InitDb {
                     .defaultGuest(2)
                     .maxGuest(10)
                     .price(4000000)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -238,6 +243,8 @@ public class InitDb {
                     .roomName("너울펜션 기가막힌 룸")
                     .defaultGuest(2)
                     .maxGuest(10)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .price(80000)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
@@ -339,6 +346,7 @@ public class InitDb {
                     .reservePrice(cart.getReservePrice())
                     .reserveAdultCount(cart.getReserveAdultCount())
                     .reserveChildCount(cart.getReserveChildCount())
+                    .isReviewWrited(ReviewStatus.PRE_WRITE)
                     .build();
 
             order.getReservation().add(ordersDetail);
@@ -361,6 +369,7 @@ public class InitDb {
                     .reviewRating(3.72)
                     .room(room)
                     .reviewContent("안녕")
+                    .memberName("이동우")
                     .build());
 
             room.getReviews().add(review);
@@ -467,7 +476,7 @@ public class InitDb {
                     .viewName("모텔")
                     .build());
 
-            AccomCategory penssion = accomCategoryRepository.save(AccomCategory.builder()
+            AccomCategory pension = accomCategoryRepository.save(AccomCategory.builder()
                     .name("pension")
                     .viewName("펜션/풀빌라")
                     .build());
@@ -482,7 +491,7 @@ public class InitDb {
             Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
                     .accomName("서울 아폴로 게스트하우스")
                     .accomTel("050350521568")
-                    .accomCategory(penssion)
+                    .accomCategory(pension)
                     .region(region)
 //                    .accomAddress("서울특별시 영등포구 영등포로19길 7-1")
                     .accomRating(5.0)
@@ -514,7 +523,7 @@ public class InitDb {
             Accommodation accommodation3 = accommodationRepository.save(Accommodation.builder()
                     .accomName("인천(석남동) 뱅크")
                     .accomTel("050350521568")
-                    .accomCategory(penssion)
+                    .accomCategory(pension)
                     .region(region)
 //                    .accomAddress("인천광역시 서구 염곡로 250")
                     .accomRating(3.6)
@@ -608,6 +617,8 @@ public class InitDb {
                     .defaultGuest(2)
                     .maxGuest(10)
                     .price(70000)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .roomInfo("임시 객실정보 입니다")
                     .build());
 
@@ -730,6 +741,7 @@ public class InitDb {
                     .reviewCreateDate(LocalDate.now())
                     .reviewModifyDate(LocalDate.now())
                     .reviewRating(2.73)
+                    .memberName("안수언")
                     .reviewContent("너무별로에요")
                     .room(room)
                     .build());
@@ -839,6 +851,8 @@ public class InitDb {
                     .roomName("우리 집 같은 내방룸")
                     .defaultGuest(2)
                     .maxGuest(2)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .stayStartDate(LocalDate.now())
                     .stayEndDate(LocalDate.of(2022,10, 28))
                     .price(43000)
@@ -850,6 +864,8 @@ public class InitDb {
                     .roomName("너네집 차가운 방")
                     .defaultGuest(2)
                     .maxGuest(3)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .stayStartDate(LocalDate.now())
                     .stayEndDate(LocalDate.of(2022,10, 28))
                     .price(65000)
@@ -861,6 +877,8 @@ public class InitDb {
                     .roomName("언제나 눕게 되는 방")
                     .defaultGuest(2)
                     .maxGuest(4)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .stayStartDate(LocalDate.now())
                     .stayEndDate(LocalDate.of(2022,10, 28))
                     .price(34000)
@@ -872,6 +890,8 @@ public class InitDb {
                     .roomName("너와 나의 연결방")
                     .defaultGuest(2)
                     .maxGuest(4)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
                     .stayStartDate(LocalDate.now())
                     .stayEndDate(LocalDate.of(2022,10, 28))
                     .price(82000)
@@ -949,8 +969,6 @@ public class InitDb {
             orders.getReservation().add(od);
             return od;
         }
-
-
 
         public void 객실예약정보_입력(Long memberId) {
 

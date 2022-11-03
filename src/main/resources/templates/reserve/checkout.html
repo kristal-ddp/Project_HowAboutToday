@@ -77,6 +77,9 @@
                                 <tr th:each="info : ${infoList}">
                                     <th scope="row">
                                         <div class="table-content product-content d-flex align-items-center">
+                                            <div class="cabin-type-img flex-shrink-0"> <!-- 숙소 이미지 -->
+                                                <a href="@{/room-details}"><img src="/images/room1.jpg" alt=""></a>
+                                            </div>
                                             <div class="product-content">
                                                 <a href="room-details.html" class="title px-2" th:href="@{/room-details}"
                                                    th:text="${info.getAccomName()}">

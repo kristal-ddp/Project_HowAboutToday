@@ -9,5 +9,4 @@ public class SearchForm {
     private int adult_number = 2;
     private int child_number = 0;
 
-
 }

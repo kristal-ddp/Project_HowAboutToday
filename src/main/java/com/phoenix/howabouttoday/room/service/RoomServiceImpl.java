@@ -43,7 +43,6 @@ public class RoomServiceImpl implements RoomService {
     //서비스 리스트
     @Override
     public List<RoomServiceDTO> findAll_Service(Long roomNum) {
-
         List<RoomServiceDTO> slist = roomViewServiceRepository.findAllByRoom_RoomNum(roomNum)
                 .stream()
                 .map(RoomServiceDTO::new)
