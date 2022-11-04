@@ -87,6 +87,17 @@
 
                     </th:block>
 
+                    <!-- Comment가 존재할 경우 -->
+                    <th:block th:if="${!comments.isEmpty()}">
+                        <th:block th:each="commentListDTO : ${eventDetailDTO.commentList}">
+                            <div class="form-bottom-wrap">
+                                <div th:text="${commentListDTO.nickname}"></div>
+                                <div th:text="${commentListDTO.commentContent}"></div>
+                                <div th:text="${commentListDTO.commentCreate}"></div>
+                            </div>
+                        </th:block>
+                    </th:block>
+
                 </div><!-- end form-box -->
             </div><!-- end col-lg-8 -->
         </div><!-- end row -->

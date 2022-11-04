@@ -29,7 +29,7 @@ public class EventController {
     private final EventImageService eventImageService;
 
     // 이벤트 리스트 페이지
-    @GetMapping("event")
+    @GetMapping("/event")
     public String eventList(@LoginUser SessionDTO sessionDTO, Model model,
                             Long eventNum, @PageableDefault Pageable pageable, MemberDTO memberDTO){
 
@@ -47,7 +47,7 @@ public class EventController {
 
     // 이벤트 리스트 더보기
     @ResponseBody
-    @GetMapping("event-more")
+    @GetMapping("/event-more")
     public Slice<EventListDTO> eventList(@PageableDefault Pageable pageable){
 
         pageable = PageRequest.of(pageable.getPageNumber(), 5, Sort.Direction.DESC, "eventNum");
@@ -57,37 +57,43 @@ public class EventController {
     }
 
     // 이벤트 디테일 페이지
-    @GetMapping("event/{eventNum}")
+    @GetMapping("/event/{eventNum}")
     public String eventDetails(@PathVariable Long eventNum, Model model,
                                @LoginUser SessionDTO sessionDTO, MemberDTO memberDTO){
+
+        EventDetailDTO eventDetailDTO = eventService.findOne_Event(eventNum);
+        List<CommentListDTO> comments = eventDetailDTO.getCommentList();
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        EventDetailDTO eventDetailDTO = eventService.findOne_Event(eventNum);
+        if(comments != null && !comments.isEmpty()) {
+            model.addAttribute("comments", comments);
+        }
+
         model.addAttribute("eventDetailDTO", eventDetailDTO);
 
         return "board/event-details";
     }
 
     // 이벤트 작성 페이지
-    @GetMapping("admin/event-add")
-    public String eventAdd(@ModelAttribute("eventDTO") EventDTO eventDTO,
+    @GetMapping("/admin/event-add")
+    public String eventAdd(@ModelAttribute("eventFormDTO") EventFormDTO eventFormDTO,
                            @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        eventDTO.setMemberNum(sessionDTO.getMemberNum());
+        eventFormDTO.setMemberNum(sessionDTO.getMemberNum());
 
         return "board/event-add";
     }
 
     // 이벤트 작성
-    @PostMapping("admin/event-add")
-    public String eventAdd(@Valid EventDTO eventDTO, BindingResult bindingResult,
+    @PostMapping("/admin/event-add")
+    public String eventAdd(@Valid EventFormDTO eventFormDTO, BindingResult bindingResult,
                            @RequestParam("eventImageList") List<MultipartFile> eventImageList,
                            @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO) throws Exception {
 
@@ -96,13 +102,13 @@ public class EventController {
             return "board/event-add";
         }
 
-        eventService.addEvent(eventDTO, eventImageList);
+        eventService.addEvent(eventFormDTO, eventImageList);
 
         return "redirect:/event";
     }
 
     // 이벤트 수정 페이지
-    @GetMapping("admin/event-edit/{eventNum}")
+    @GetMapping("/admin/event-edit/{eventNum}")
     public String eventEdit(@PathVariable Long eventNum, Model model,
                             @LoginUser SessionDTO sessionDTO, MemberDTO memberDTO){
 
@@ -121,8 +127,8 @@ public class EventController {
     }
 
     // 이벤트 수정
-    @PostMapping("admin/event-edit/{eventNum}")
-    public String eventEdit(@PathVariable Long eventNum, @Valid EventDTO eventDTO, BindingResult bindingResult,
+    @PostMapping("/admin/event-edit/{eventNum}")
+    public String eventEdit(@PathVariable Long eventNum, @Valid EventFormDTO eventFormDTO, BindingResult bindingResult,
                             @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO) throws Exception {
 
         if(bindingResult.hasErrors()) {
@@ -141,13 +147,13 @@ public class EventController {
             return "board/event-edit";
         }
 
-        eventService.editEvent(eventNum, eventDTO);
+        eventService.editEvent(eventNum, eventFormDTO);
 
         return "redirect:/event/{eventNum}";
     }
 
     // 이벤트 이미지 개별 삭제
-    @GetMapping("admin/event-edit/{eventNum}/{eventImageNum}")
+    @GetMapping("/admin/event-edit/{eventNum}/{eventImageNum}")
     public String eventImageDelete(@PathVariable("eventImageNum") Long eventImageNum, Long eventNum) {
 
         eventImageService.deleteImage(eventImageNum);
@@ -155,7 +161,7 @@ public class EventController {
     }
 
     // 이벤트 삭제
-    @GetMapping("admin/event-delete/{eventNum}")
+    @GetMapping("/admin/event-delete/{eventNum}")
     public String eventDelete(@PathVariable Long eventNum) {
 
         EventDetailDTO eventDetailDTO = eventService.findOne_Event(eventNum);

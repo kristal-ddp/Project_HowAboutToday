@@ -7,9 +7,9 @@ import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
-public class FAQDTO {
+public class BoardFormDTO {
 
-    // 게시판 작성, 수정 : FAQ
+    // 게시판 작성, 수정 : Notice, About Us
 
     private Long memberNum; // 회원번호
     private Long boardCategoryNum; // 게시글 카테고리 번호
