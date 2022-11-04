@@ -41,15 +41,15 @@
                 <div class="form-box">
                     <div class="form-title-wrap hwt-board-title hwt-detail-title">
                         <div class="author-bio">
-                                <h3 class="title hwt-details-bold" th:text="${eventDetailDTO.eventTitle}">게시글 제목</h3>
+                            <h3 class="title hwt-details-bold" th:text="${eventDetailDTO.eventTitle}">게시글 제목</h3>
                         </div>
                         <div class="hwt-detail-date" th:text="${eventDetailDTO.date}">게시일</div>
                     </div><!-- form-title-wrap -->
                 </div>
 
+                <!-- Board Content -->
                 <div class="form-box">
 
-                    <!-- Board Content -->
                     <div class="form-content contact-form-action hwt-details-content">
                         <th:block th:each="eventImageDTO : ${eventDetailDTO.eventImageList}">
                             <div>
@@ -58,7 +58,7 @@
                         </th:block>
                     </div><!-- end form-content -->
 
-                    <!-- Admin -->
+                    <!-- Admin인 경우 -->
                     <th:block sec:authorize="hasRole('ADMIN')">
                         <div class="form-bottom-wrap-admin">
 
@@ -75,7 +75,7 @@
                         </div><!-- form-bottom-wrap -->
                     </th:block>
 
-                    <!-- Member -->
+                    <!-- Member인 경우 -->
                     <th:block sec:authorize="!hasRole('ADMIN')">
 
                         <!-- List Button -->
@@ -87,18 +87,70 @@
 
                     </th:block>
 
-                    <!-- Comment가 존재할 경우 -->
-                    <th:block th:if="${!comments.isEmpty()}">
-                        <th:block th:each="commentListDTO : ${eventDetailDTO.commentList}">
-                            <div class="form-bottom-wrap">
-                                <div th:text="${commentListDTO.nickname}"></div>
-                                <div th:text="${commentListDTO.commentContent}"></div>
-                                <div th:text="${commentListDTO.commentCreate}"></div>
-                            </div>
-                        </th:block>
-                    </th:block>
-
                 </div><!-- end form-box -->
+
+
+                <!-- Comment가 존재할 경우 -->
+                <th:block th:if="${!comments.isEmpty()}">
+                    <div class="form-box">
+                        <div class="form-title-wrap hwt-board-title hwt-detail-title">
+                            <div class="comment-size">
+                                <h3 class="hwt-details-bold" th:text="|댓글 ${comments.size}|">댓글 개수</h3>
+                            </div>
+
+                            <!-- Comment List -->
+                            <th:block th:each="commentListDTO : ${eventDetailDTO.commentList}">
+                                <div class="form-title-wrap hwt-board-title btn-comments-wrap">
+
+                                    <div class="hwt-details-bottom-left btn-comments">
+                                        <a th:href="@{|/admin/event-edit/${eventDetailDTO.eventNum}|}" class="author__title detail-button-left">수정</a>
+                                        <a th:href="@{|/admin/event-delete/${eventDetailDTO.eventNum}|}" class="author__title">삭제</a>
+                                    </div>
+
+                                    <div class="comment-nickname" th:text="${commentListDTO.nickname}">닉네임</div>
+                                    <div class="comment-content" th:text="${commentListDTO.commentContent}">댓글 내용</div>
+                                    <div class="comment-create" th:text="${#temporals.format(commentListDTO.commentCreate, 'yyyy.MM.dd. hh:mm')}">댓글 작성일</div>
+                                </div><!-- form-title-wrap -->
+                            </th:block>
+
+                        </div>
+                    </div>
+                </th:block>
+
+                <!-- Comment Form -->
+                <th:block sec:authorize="isAuthenticated()">
+                    <div class="comment-forum">
+                        <div class="form-box">
+                            <div class="form-content">
+                                <div class="contact-form-action">
+
+                                    <!-- Comment Content -->
+                                    <form th:action="@{|/event/${eventDetailDTO.eventNum}/comments|}" method="post">
+                                        <input type="hidden" th:id="eventNum" th:value="eventDetailDTO.eventNum">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="input-box comment-input-box">
+                                                    <label class="label-text" th:text="${sessionDTO.nickname}">닉네임</label>
+                                                    <div class="btn-box btn-comment-box">
+                                                        <button type="button" class="btn-comment" id="btn-comment-add">등록</button>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <span class="la la-pencil form-icon"></span>
+                                                        <textarea class="message-control form-control form-comments" th:value="commentContent" placeholder="댓글을 작성하세요."></textarea>
+                                                        <!--                                                            <div class="hwt-details-bottom">-->
+                                                        <!--                                                                <a href="#" class="author__title" id="btn-comment-add">등록</a>-->
+                                                        <!--                                                            </div>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!-- end contact-form-action -->
+                            </div><!-- end form-content -->
+                        </div><!-- end form-box -->
+                    </div><!-- end comment-forum -->
+                </th:block>
+
             </div><!-- end col-lg-8 -->
         </div><!-- end row -->
     </div><!-- end container -->
@@ -122,6 +174,10 @@
 <!-- 로그인 모달 -->
 <th:block th:replace="fragments/signIn::signIn"></th:block>
 
+</th:block>
+
+<th:block layout:fragment="script">
+    <script src="/js/hwt/event.js"></script>
 </th:block>
 
 </html>
