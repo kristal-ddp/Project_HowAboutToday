@@ -2,7 +2,6 @@ package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.global.OrdersStatusConverter;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.enumType.ReviewStatus;
@@ -62,7 +61,7 @@ public abstract class Reservation {
     protected Orders orders;
 
     @Enumerated(EnumType.STRING)
-    private ReserveStatus reserveStatus;
+    protected ReserveStatus reserveStatus;
 
     private LocalDate reserveUseStartDate;
     private LocalDate reserveUseEndDate;
@@ -74,5 +73,12 @@ public abstract class Reservation {
     @Column
     @Convert(converter = ReviewStatusConverter.class)
     protected ReviewStatus isReviewWrited;
+
+
+    public void writingComplete(){}
+    public void changeToCancel() {}
+    public void changeToInUse() {}
+    public void changeToComplete() {}
+
 
 }

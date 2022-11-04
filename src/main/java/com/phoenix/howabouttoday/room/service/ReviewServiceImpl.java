@@ -6,17 +6,14 @@ import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailDTO;
 import com.phoenix.howabouttoday.payment.dto.RoomReviewCreateRequestDTO;
 import com.phoenix.howabouttoday.payment.dto.RoomReviewCreateResponseDTO;
-import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.enumType.ReviewResponseCode;
 import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
-import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.room.dto.*;
 import com.phoenix.howabouttoday.room.entity.Review;
 import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -75,7 +72,7 @@ public class ReviewServiceImpl implements ReviewService {
         room.calculateRating(roomReviewCreateRequestDTO.getRating());
 
         OrdersDetail ordersDetail = ordersDetailRepository.findById(roomReviewCreateRequestDTO.getOrdersDetailNum()).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 주문정보가 없습니다.", roomReviewCreateRequestDTO.getOrdersDetailNum())));
-        ordersDetail.writtenReview();
+        ordersDetail.writingComplete();
 
         Review review = Review.builder()
                 .member(member)

@@ -87,11 +87,9 @@ public class OrdersController {
 
     /* 주문삭제 */
     /* 주문은 삭제가 아니라 취소로 표시해두고 여러가지 제한을 두는 게 맞을 것 같기도 하다. */
-    @PostMapping("/deleteorders")
+    @PostMapping("/cancelorders")
     @ResponseBody
     public OrdersDeleteDTO getDelete(@LoginUser SessionDTO sessionDTO, @RequestBody OrdersDeleteDTO data) {
-
-        System.out.println("잘 들어오니?");
 
         Long cancelOrdersNum = orderService.cancelOrders(data);
         orderService.changeStatusOrders(cancelOrdersNum);

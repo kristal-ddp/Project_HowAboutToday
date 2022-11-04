@@ -18,7 +18,6 @@ import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
-import com.phoenix.howabouttoday.reserve.service.ReserveForm;
 import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.repository.RoomRepository;
@@ -40,7 +39,6 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -152,6 +150,13 @@ public class OrdersService {
     /** 결제 저장시 새로운 결제정보를 생성해서 돌려줌. **/
     /** 왠지 이건 orders 클래스 내부에서 해도 될거 같은데... **/
     private Orders getOrder(OrdersCreateDTO ordersCreateDTO, Member member, List<Cart> cartList) {
+        Boolean isToday = false;
+        for (Cart cart :cartList) {
+            if(cart.getReserveUseStartDate().isEqual(LocalDate.now())){
+                isToday = true;
+            }
+        }
+
         Orders order = Orders.builder()
                 .member(member)
                 .ordersName(ordersCreateDTO.getName())
@@ -162,7 +167,7 @@ public class OrdersService {
                         .map(Cart::getReserveNum)
                         .collect(Collectors.toList())))
                 .ordersType(ordersCreateDTO.getOrdersType())
-                .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
+                .ordersStatus(isToday ? OrdersStatus.IN_USE : OrdersStatus.PAYMENT_COMPLETE)
                 .merchantId(ordersCreateDTO.getMerchantId())
                 .impUid(ordersCreateDTO.getImp_uid())
                 .couponNum(ordersCreateDTO.getUseCouponNum())
@@ -195,7 +200,7 @@ public class OrdersService {
                 .member(order.getMember())
                 .room(cart.getRoom())
                 .orders(order)
-                .reserveStatus(ReserveStatus.READY)
+                .reserveStatus(cart.getReserveUseStartDate().isEqual(LocalDate.now()) ? ReserveStatus.IN_USE : ReserveStatus.READY)
                 .reserveUseStartDate(cart.getReserveUseStartDate())
                 .reserveUseEndDate(cart.getReserveUseEndDate())
                 .reservePrice(cart.getReservePrice())
@@ -203,6 +208,7 @@ public class OrdersService {
                 .reserveChildCount(cart.getReserveChildCount())
                 .isReviewWrited(ReviewStatus.PRE_WRITE)
                 .build();
+
 
         for (int i = 0; i < period.getMonths() * 30 + period.getDays(); i++) {
             AvailableDate ad = AvailableDate.builder()
@@ -223,9 +229,9 @@ public class OrdersService {
                         LocalDate startDate = orderDetail.getReserveUseStartDate();
                         LocalDate endDate = orderDetail.getReserveUseEndDate().minusDays(1);
                         availableDateRepository.deleteAllByRoom_RoomNumAndOneDayBetween(orderDetail.getRoom().getRoomNum(), startDate, endDate);
-                        System.out.println("췍");
+                        orderDetail.changeToCancel();
                     });
-            orders.changeToReadyState();
+            orders.changeStatusToCancel();
         }
     }
     public Long cancelOrders(OrdersDeleteDTO ordersDeleteDTO){
