@@ -79,7 +79,9 @@ public class FAQServiceImpl implements FAQService {
     public void editFAQ(Long boardNum, FAQDTO FAQDTO) {
 
         Board board = boardRepository.findById(boardNum).orElse(null);
-        board.editFAQ(board.getBoardNum(), FAQDTO);
+        BoardCategory boardCategory = boardCategoryRepository.findById(FAQDTO.getBoardCategoryNum()).orElse(null);
+
+        board.editFAQ(board.getBoardNum(), boardCategory, FAQDTO);
     }
 
     // 게시글 삭제

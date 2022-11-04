@@ -64,8 +64,9 @@
                                     <a class="author__title" th:text="${dto.eventTitle}">게시글 제목</a>
                                 </div>
                                 <div class="hwt-board-date">
-                                    <a class="author__title" th:text="|${#temporals.format(dto.eventStart, 'yyyy-MM-dd')} -
-                                        ${#temporals.format(dto.eventEnd, 'yyyy-MM-dd')}|">기간</a>
+<!--                                    <a class="author__title" th:text="|${#temporals.format(dto.eventStart, 'yyyy-MM-dd')} - -->
+<!--                                        ${#temporals.format(dto.eventEnd, 'yyyy-MM-dd')}|">기간</a>-->
+                                    <a class="author__title" th:text="${dto.date}">기간</a>
                                 </div>
                             </div>
                             <div class="post-share">
@@ -107,6 +108,15 @@
     <i class="la la-angle-up" title="Go top"></i>
 </div>
 <!-- end back-to-top -->
+
+<!-- end modal-shared -->
+<!-- 회원가입 모달 -->
+<th:block th:replace="fragments/signUp::signUp"></th:block>
+
+
+<!-- end modal-shared -->
+<!-- 로그인 모달 -->
+<th:block th:replace="fragments/signIn::signIn"></th:block>
 
 </th:block>
 

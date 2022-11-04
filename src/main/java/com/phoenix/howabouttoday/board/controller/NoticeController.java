@@ -3,6 +3,7 @@ package com.phoenix.howabouttoday.board.controller;
 import com.phoenix.howabouttoday.board.dto.*;
 import com.phoenix.howabouttoday.board.service.BoardService;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
+import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
@@ -22,7 +23,8 @@ public class NoticeController {
 
     // 공지사항 리스트 페이지
     @GetMapping("notice")
-    public String noticeList(@LoginUser SessionDTO sessionDTO, Model model, @PageableDefault Pageable pageable){
+    public String noticeList(@LoginUser SessionDTO sessionDTO, Model model,
+                             @PageableDefault Pageable pageable, MemberDTO memberDTO){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -49,8 +51,8 @@ public class NoticeController {
 
     // 공지사항 디테일 페이지
     @GetMapping("notice/{boardNum}")
-    public String noticeDetails(@PathVariable Long boardNum,
-                                @LoginUser SessionDTO sessionDTO, Model model){
+    public String noticeDetails(@PathVariable Long boardNum, Model model,
+                                @LoginUser SessionDTO sessionDTO, MemberDTO memberDTO){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -65,7 +67,7 @@ public class NoticeController {
     // 공지사항 작성 페이지
     @GetMapping("admin/notice-add")
     public String noticeAdd(@ModelAttribute("boardDTO") BoardDTO boardDTO,
-                            @LoginUser SessionDTO sessionDTO, Model model){
+                            @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(sessionDTO == null) {
             return "/loginProc";
@@ -80,7 +82,7 @@ public class NoticeController {
     // 공지사항 작성
     @PostMapping("admin/notice-add")
     public String noticeAdd(@Valid BoardDTO boardDTO, BindingResult bindingResult,
-                            @LoginUser SessionDTO sessionDTO, Model model){
+                            @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
 
@@ -100,7 +102,8 @@ public class NoticeController {
 
     // 공지사항 수정 페이지
     @GetMapping("admin/notice-edit/{boardNum}")
-    public String noticeEdit(@PathVariable Long boardNum, @LoginUser SessionDTO sessionDTO, Model model){
+    public String noticeEdit(@PathVariable Long boardNum, Model model,
+                             @LoginUser SessionDTO sessionDTO, MemberDTO memberDTO){
 
         if(sessionDTO == null) {
             return "/loginProc";
@@ -115,8 +118,8 @@ public class NoticeController {
 
     // 공지사항 수정
     @PostMapping("admin/notice-edit/{boardNum}")
-    public String noticeEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO,
-                             BindingResult bindingResult, @LoginUser SessionDTO sessionDTO, Model model){
+    public String noticeEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO, BindingResult bindingResult,
+                             @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
 

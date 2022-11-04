@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout/layout">
+
 <th:block layout:fragment="content">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 
@@ -43,7 +44,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <form>
+                        <!--                    <form action="/orders/payment" method="get" id="roomForm">-->
                             <div class="single-content-wrap padding-top-60px">
                                 <div id="description" class="page-scroll">
                                     <div class="single-content-item pb-4">
@@ -111,7 +112,7 @@
                                 <div class="review-box">
                                     <div class="single-content-item padding-top-40px">
                                         <h3 class="title font-size-20" th:text="|${roomDetailDTO.roomReviewNum}개의 리뷰|"></h3>
-                                        <div class="comments-list padding-top-50px">
+                                        <div class="comments-list padding-top-7px">
                                             <div class="comment" th:each="reviewList : ${rlist}">
                                                 <div class="comment-body">
                                                     <div class="meta-data">
@@ -135,30 +136,35 @@
                                         </div><!-- end comments-list -->
 
                                         <!-- 후기 작성 -->
-                                        <div class="comment-forum padding-top-40px">
+                                        <div th:if="${ordersDetailDTOList.size() != 0}" class="comment-forum padding-top-40px">
                                             <div class="form-box">
                                                 <div class="form-title-wrap">
                                                     <h3 class="title">후기 작성</h3>
                                                 </div><!-- form-title-wrap -->
+
                                                 <div class="form-content">
                                                     <div class="contact-form-action">
-                                                        <form method="post">
+                                                        <select class="select-contain-select w-50">
+                                                            <!--                                                            <option value="0">예약 선택</option>-->
+                                                            <option th:each="ordersDetail  : ${ordersDetailDTOList}" id="ordersDetailNum" th:value="${ordersDetail.getOrdersDetailNum()}"  th:text="|${ordersDetail.getStartDate()} ~ ${ordersDetail.getEndDate()}|">객실 선택</option>
+                                                        </select>
+                                                        <div class="form-content">
                                                             <div class="rate-option p-2">
                                                                 <div class="row">
                                                                     <div class="col-lg-4 responsive-column">
                                                                         <div class="rate-option-item">
                                                                             <label>평점</label>
                                                                             <div class="rate-stars-option">
-                                                                                <input type="checkbox" id="lst1" value="1">
-                                                                                <label for="lst1"></label>
-                                                                                <input type="checkbox" id="lst2" value="2">
-                                                                                <label for="lst2"></label>
-                                                                                <input type="checkbox" id="lst3" value="3">
-                                                                                <label for="lst3"></label>
-                                                                                <input type="checkbox" id="lst4" value="4">
-                                                                                <label for="lst4"></label>
-                                                                                <input type="checkbox" id="lst5" value="5">
+                                                                                <input type="checkbox" id="lst5" checked="checked" name="ratingStar" value="5">
                                                                                 <label for="lst5"></label>
+                                                                                <input type="checkbox" id="lst4" name="ratingStar" value="4">
+                                                                                <label for="lst4"></label>
+                                                                                <input type="checkbox" id="lst3" name="ratingStar" value="3">
+                                                                                <label for="lst3"></label>
+                                                                                <input type="checkbox" id="lst2" name="ratingStar" value="2">
+                                                                                <label for="lst2"></label>
+                                                                                <input type="checkbox" id="lst1" name="ratingStar" value="1">
+                                                                                <label for="lst1"></label>
                                                                             </div>
                                                                         </div>
                                                                     </div><!-- col-lg-4 -->
@@ -169,8 +175,7 @@
                                                                             <label class="label-text">성함</label>
                                                                             <div class="form-group">
                                                                                 <span class="la la-user form-icon"></span>
-                                                                                <input class="form-control" type="text"
-                                                                                       name="text" placeholder="투숙객 성함">
+                                                                                <input class="form-control" type="text" name="text" id="reviewMemberName" placeholder="투숙객 성함">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -179,35 +184,35 @@
                                                                             <label class="label-text">내용</label>
                                                                             <div class="form-group">
                                                                                 <span class="la la-pencil form-icon"></span>
-                                                                                <textarea class="message-control form-control"
-                                                                                          name="message"
-                                                                                          placeholder="후기 내용을 작성해주세요"></textarea>
+                                                                                <textarea class="message-control form-control" name="reviewContent" placeholder="후기 내용을 작성해주세요"></textarea>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-12">
                                                                         <div class="btn-box">
-                                                                            <button type="button"
-                                                                                    class="theme-btn hwt-btn-gray">작성하기
+                                                                            <button type="button" id="reviewWrite" class="theme-btn hwt-btn-gray">작성하기
                                                                             </button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </form>
+                                                        </div>
                                                     </div><!-- end contact-form-action -->
                                                 </div><!-- end form-content -->
                                             </div><!-- end form-box -->
                                         </div><!-- end comment-forum -->
+
+
+                                       
                                     </div><!-- end single-content-item -->
                                 </div><!-- end review-box -->
                             </div><!-- end single-content-wrap -->
-                        </form>
                     </div><!-- end col-lg-8 -->
 
                     <!-- 오른쪽 네비바 -->
                     <div class="col-lg-4">
-                        <form th:action="@{/orders/directPayment}" method="get" th:name="roomForm">
+
+                        <form th:action="@{/orders/directPayment}" method="get" th:name="roomForm" id="roomForm" th:object="${searchForm}">
                             <div class="sidebar single-content-sidebar mb-0">
                                 <div class="sidebar-widget single-content-widget">
                                     <h3 class="title stroke-shape">숙박 예약</h3>
@@ -218,7 +223,7 @@
                                                     <label class="label-text">Check in - Check out</label>
                                                     <div class="form-group">
                                                         <span class="la la-calendar form-icon"></span>
-                                                        <input class="date-picker-multiple form-control" type="text" name="daterange" id="checkDate" readonly>
+                                                        <input class="date-picker-multiple form-control" type="text" name="daterange" id="checkDate" th:field="*{daterange}" readonly>
                                                         <input type="hidden" id="roomNum" th:name="roomNum" th:value="${roomDetailDTO.roomNum}" />
                                                     </div>
                                                 </div>
@@ -230,7 +235,7 @@
                                             <label class="font-size-16">성인 </label>
                                             <div class="qtyBtn d-flex align-items-center">
                                                 <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                <input id="adult_qty" type="text" th:name="adult_qty" th:value="2">
+                                                <input id="adult_qty" type="text" th:field="*{adult_number}" >
                                                 <div class="qtyInc"><i class="la la-plus"></i></div>
                                             </div>
                                         </div><!-- end qty-box -->
@@ -238,7 +243,7 @@
                                             <label class="font-size-16">아동 </label>
                                             <div class="qtyBtn d-flex align-items-center">
                                                 <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                <input type="text" id="child_qty"  class="reserve-qty" th:name="child_qty" th:value="0">
+                                                <input type="text" id="child_qty"  class="reserve-qty" th:field="*{child_number}">
                                                 <div class="qtyInc"><i class="la la-plus"></i></div>
                                             </div>
                                         </div><!-- end qty-box -->
@@ -310,129 +315,14 @@
     <!-- end back-to-top -->
 
     <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                            <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/member/join">
-                                <div class="input-box">
-                                    <label class="label-text">닉네임</label>
-                                    <div class="form-group">
-                                        <span class="la la-user form-icon"></span>
-                                        <input class="form-control" type="text" name="nickname" placeholder="닉네임">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">이메일 주소</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" placeholder="패스워드">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <!--                                    <div class="input-box">-->
-                                <!--                                        <label class="label-text">패스워드 확인</label>-->
-                                <!--                                        <div class="form-group">-->
-                                <!--                                            <span class="la la-lock form-icon"></span>-->
-                                <!--                                            <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>&lt;!&ndash; end input-box &ndash;&gt;-->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" class="theme-btn w-100">회원가입</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 회원가입</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
+    <!-- 회원가입 모달 -->
+    <th:block th:replace="fragments/signUp::signUp"></th:block>
+
 
     <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
-                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/loginProc">
-                                <div class="input-box">
-                                    <label class="label-text">이메일</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" id="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group mb-2">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <!--                                    <div class="custom-checkbox mb-0">-->
-                                        <!--                                        <input type="checkbox" id="rememberchb">-->
-                                        <!--                                        <label for="rememberchb">Remember me</label>-->
-                                        <!--                                    </div>-->
-                                        <p class="forgot-password">
-                                            <a href="recover">비밀번호를 잊으셨나요?</a>
-                                        </p>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" id="login" class="theme-btn w-100">로그인</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 로그인</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
+    <!-- 로그인 모달 -->
+    <th:block th:replace="fragments/signIn::signIn"></th:block>
+
 
     <!-- end modal-shared -->
     <div class="modal-popup">
@@ -478,56 +368,29 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="copy-to-clipboard-wrap">
-                            <div class="copy-to-clipboard">
-                                <div class="contact-form-action d-flex align-items-center">
-                                    <span class="text-success-message">Copied!</span>
-                                    <input type="text" class="form-control copy-input" value="https://www.tripstar.com/share/101WxMB0oac1hVQQ==/">
-                                    <div class="btn-box">
-                                        <button class="theme-btn theme-btn-light copy-text">Copy</button>
-                                    </div>
-                                </div>
-                            </div><!-- end copy-to-clipboard -->
-                            <ul class="social-profile text-center">
-                                <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="lab la-twitter"></i></a></li>
-                                <li><a href="#"><i class="lab la-instagram"></i></a></li>
-                                <li><a href="#"><i class="lab la-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
+                        <div class="copy-to-clipboard-wrap">156</div>
                     </div>
                 </div>
             </div>
         </div>
     </div><!-- end modal-popup -->
-
-
-    <!-- Template JS Files -->
-    <!--<script src="js/jquery-3.4.1.min.js"></script>-->
-    <!--<script src="js/jquery-ui.js"></script>-->
-    <!--<script src="js/popper.min.js"></script>-->
-    <!--<script src="js/bootstrap.min.js"></script>-->
-    <!--<script src="js/bootstrap-select.min.js"></script>-->
-    <!--<script src="js/moment.min.js"></script>-->
-    <!--<script src="js/daterangepicker.js"></script>-->
-    <!--<script src="js/owl.carousel.min.js"></script>-->
-    <!--<script src="js/jquery.fancybox.min.js"></script>-->
-    <!--<script src="js/jquery.countTo.min.js"></script>-->
-    <!--<script src="js/animated-headline.js"></script>-->
-    <!--<script src="js/jquery.ripples-min.js"></script>-->
-    <!--<script src="js/quantity-input.js"></script>-->
-    <!--<script src="js/navbar-sticky.js"></script>-->
-    <!--<script src="js/total-price.js"></script>-->
-    <!--<script src="js/leaflet.js"></script>-->
-    <!--<script src="js/map.js"></script>-->
-    <!--<script src="js/main.js"></script>-->
-    <!--</body>-->
-    <!--</html>-->
+    
     <script>
 
         function roomSubmit(){
             const roomNum = document.querySelector("#roomNum").value;
-            alert(roomNum)
+
+            let checkDate = $("#checkDate").val();
+
+            let strings = checkDate.split("-");
+            let startDate = strings[0].trim();
+            let endDate = strings[1].trim();
+
+            if(startDate==endDate){
+                alert("체크인/체크아웃 날짜가 같을 수 없습니다.")
+                return;
+            }
+
             fetch("/cartDuplCheck?roomNum=" + roomNum)
                 .then((response)=>response.json())
                 .then((result)=> {
@@ -544,16 +407,27 @@
         }
 
         $("#cart-button").click(function(){
+            let roomNum = $("#roomNum").val();
+            let checkDate = $("#checkDate").val();
+            let adultQty = $("#adult_qty").val();
+            let childQty = $("#child_qty").val();
 
-            const checkDate = $("#checkDate").val();
-            const adultQty = $("#adult_qty").val();
-            const childQty = $("#child_qty").val();
-            const roomNum = $("#roomNum").val();
-            console.log(checkDate)
-            console.log(adultQty)
-            console.log(childQty)
+            //== 인원수를 전부다 0명으로 체크했을때 검사 ==//
+            if((adultQty+childQty) == 0){
+                alert("인원수는 0명 이하일 수 없습니다.");
+                return;
+            }
 
-            const cartForm = JSON.stringify({
+
+            let strings = checkDate.split("-");
+            let startDate = strings[0].trim();
+            let endDate = strings[1].trim();
+
+            if(startDate==endDate){
+                alert("체크인/체크아웃 날짜가 같을 수 없습니다.")
+                return;
+            }
+            cartForm = JSON.stringify({
                 // check_in: check_in,
                 // check_out: check_out,
                 checkDate : checkDate,
@@ -562,7 +436,6 @@
             });
             // let form = $("#reserve-form").serialize();
 
-
             $.ajax({
                 type: 'post',
                 url: '/rest/cart/' + roomNum,
@@ -570,6 +443,7 @@
                 contentType: 'application/json; charset=utf-8',
                 dataType:"text",
             }).done(function(result){
+
                 if(result == "true"){
                     alert("장바구니에 존재하는 객실입니다.");
                 } else{
@@ -577,8 +451,7 @@
                     window.location.href = '/cart/';
                 }
             }).fail(function (error){
-                alert("요청 실패")
-                console.log(JSON.stringify(error));
+                alert(JSON.stringify(error));
             });
         });
 

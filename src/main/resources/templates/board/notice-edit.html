@@ -13,13 +13,13 @@
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                         <div class="breadcrumb-content text-center">
-                            <div class="section-heading">
-                                <h2 class="sec__title text-white">EDIT NOTICE</h2>
-                            </div>
-                        </div><!-- end breadcrumb-content -->
-                    </div><!-- end col-lg-6 -->
-                </div><!-- end row -->
-            </div><!-- end container -->
+            <div class="section-heading">
+                <h2 class="sec__title text-white">EDIT NOTICE</h2>
+            </div>
+        </div><!-- end breadcrumb-content -->
+        </div><!-- end col-lg-6 -->
+        </div><!-- end row -->
+        </div><!-- end container -->
         </div><!-- end breadcrumb-wrap -->
         <div class="bread-svg-box">
             <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
@@ -102,6 +102,15 @@
     <i class="la la-angle-up" title="Go top"></i>
 </div>
 <!-- end back-to-top -->
+
+<!-- end modal-shared -->
+<!-- 회원가입 모달 -->
+<th:block th:replace="fragments/signUp::signUp"></th:block>
+
+
+<!-- end modal-shared -->
+<!-- 로그인 모달 -->
+<th:block th:replace="fragments/signIn::signIn"></th:block>
 
 </th:block>
 

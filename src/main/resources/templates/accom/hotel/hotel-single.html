@@ -8,7 +8,8 @@
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
-    <section class="breadcrumb-area bread-bg-7">
+
+    <section class="breadcrumb-area bread-bg-7" th:style="|background-image: url(@{data/images/{originFileName}(originFileName=${accom.accomOriginFileName})})|">
         <div class="breadcrumb-wrap">
             <div class="container">
                 <div class="row">
@@ -51,7 +52,7 @@
                             <ul>
                                 <li><a data-scroll="availability" href="#availability" class="scroll-link">객실 선택</a>
                                 </li>
-                                <li><a data-scroll="amenities" href="#amenities" class="scroll-link">시설</a></li>
+                                <li><a data-scroll="amenities" href="#amenities" class="scroll-link">숙소 정보</a></li>
                                 <li><a data-scroll="faq" href="#faq" class="scroll-link">자주 묻는 질문</a></li>
                                 <li><a data-scroll="location-map" href="#location-map" class="scroll-link">위치</a></li>
                                 <li><a data-scroll="reviews" href="#reviews" class="scroll-link">후기</a></li>
@@ -69,14 +70,13 @@
                         <div class="single-content-wrap padding-top-60px">
                             <div class="page-scroll">
                                 <div class="single-content-item pb-4">
-                                    <h3 class="title font-size-26" th:text="${accommodation.accomName}">Hilton Hotel and
-                                        Resorts</h3>
+                                    <h3 class="title font-size-26" th:text="${accom.accomName}" ></h3>
                                     <div class="d-flex align-items-center pt-2">
-                                        <p class="mr-2" th:text="${accommodation.accomAddress1}">Boston, MA, USA</p>
+                                        <p class="mr-2" th:text="${accom.accomAddress}"></p>
                                         <p>
                                             <span class="badge badge-warning text-white font-size-16"
-                                                  th:text="${accommodation.accomRating}">4.7</span>
-                                            <span th:text="|(${accommodation.totalReviewNum})|">(4,209 Reviews)</span>
+                                                  th:text="${accom.accomRating}"></span>&nbsp;
+                                            <span th:text="|(${accom.totalReviewNum}개의 리뷰)|"></span>
                                         </p>
                                     </div>
                                 </div><!-- end single-content-item -->
@@ -85,14 +85,13 @@
                             <div id="availability" class="page-scroll">
                                 <div class="single-content-item padding-top-40px padding-bottom-30px">
                                     <h3 class="title font-size-20">이용가능한 객실</h3>
-                                    <br/>
-                                    <div class="cabin-type padding-top-30px">
-                                        <div class="cabin-type-item seat-selection-item d-flex mb-3" th:each="roomList : ${roomlist}">
-                                            <div class="cabin-type-img flex-shrink-0" th:each="imageList : ${ilist}">
-                                                <a th:href="room-details"><img th:src="|/data/images/${imageList.roomSaveFileName}|" alt=""></a>
+                                    <div class="cabin-type padding-top-30px" th:each="room : ${accom.room}">
+                                        <div class="cabin-type-item seat-selection-item d-flex mb-3">
+                                            <div class="cabin-type-img flex-shrink-0" >
+                                                <a th:href="|javascript:void(0)|" th:onclick="roomDetails([[*{room.roomNum}]])"><img th:src="@{/data/images/{roomImage}(roomImage=${room.roomImage})}" src="" alt=""></a>
                                             </div>
                                             <div class="cabin-type-detail">
-                                                <h3 class="title"><a th:href="@{/room-details(roomNum=${roomList.roomNum})}" th:text="|${roomList.roomName}|">Standard Family room</a></h3>
+                                                <h3 class="title"><a th:href="|javascript:void(0)|" th:onclick="roomDetails([[*{room.roomNum}]])" th:text="${room.roomName}">Standard Family room</a></h3>
                                                 <div class="row padding-top-20px">
                                                     <div class="col-lg-6 responsive-column">
                                                         <div class="single-tour-feature d-flex align-items-center mb-3">
@@ -100,16 +99,18 @@
                                                                 <i class="la la-check"></i>
                                                             </div>
                                                             <div class="single-feature-titles">
-                                                                <h3 class="title font-size-15 font-weight-medium" th:text="| 최대 ${roomList.maxGuest}인 이용 가능|">2
+                                                                <h3 class="title font-size-15 font-weight-medium"
+                                                                    th:text="|최대 ${room.maxGuest}인 가능|">2
                                                                     Single beds</h3>
                                                             </div>
                                                         </div>
                                                     </div><!-- end col-lg-6 -->
+
                                                 </div><!-- end row -->
                                             </div>
                                             <div class="cabin-price">
                                                 <p class="text-uppercase font-size-14">1박<strong
-                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block" th:text="${roomList.price}">$121</strong>
+                                                        class="mt-n1 text-black font-size-18 font-weight-black d-block" th:text="|${room.price}원|">$121</strong>
                                                 </p>
                                             </div>
                                         </div>
@@ -118,18 +119,18 @@
                             </div><!-- end single-content-item -->
                             <div class="section-block"></div>
                         </div><!-- end location-map -->
-                        <div id="amenities" class="page-scroll">
+                        <div id="amenities" class="page-scroll" >
                             <div class="single-content-item padding-top-40px padding-bottom-20px">
                                 <h3 class="title font-size-20">편의 시설</h3>
                                 <div class="amenities-feature-item pt-4">
                                     <div class="row">
-                                        <div class="col-lg-4 responsive-column" th:each="facility : ${facilities}">
-                                            <div class="single-tour-feature d-flex align-items-center mb-3">
+                                        <div class="col-lg-4 responsive-column" >
+                                            <div class="single-tour-feature d-flex align-items-center mb-3" th:each="fac : ${accom.accomViewFacilities}">
                                                 <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="la la-wifi"></i>
+                                                    <i class="fa-duotone fa-tv-retro"></i>
                                                 </div>
                                                 <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium" th:text="${facility.facility.krName}">WI-FI</h3>
+                                                    <h3 class="title font-size-15 font-weight-medium" th:text="${fac.facilities.facility.krName}">WI-FI</h3>
                                                 </div>
                                             </div><!-- end single-tour-feature -->
                                         </div><!-- end col-lg-4 -->
@@ -189,6 +190,8 @@
                                                     <div class="card-body d-flex">
                                                         <p>파손이 발생하면 현장에서 호스트와 함께 확인하시고 사진을 반드시 찍어주세요.
 
+
+
                                                             호스트가 수리 견적을 전달해 드리면 배상 절차를 진행하여 주시기 바랍니다.</p>
                                                     </div>
                                                 </div>
@@ -220,7 +223,12 @@
                                 <div class="single-content-item padding-top-40px padding-bottom-40px">
                                     <h3 class="title font-size-20">위치</h3>
                                     <div class="map-container padding-top-30px">
-                                        <div id="map"></div>
+                                        <div id="map">
+                                            <div class="wrap_button">
+                                                <a href="javascript:;" class="btn_comm btn_linkMap" target="_blank" onclick="moveKakaoMap(this)"><span class="screen_out">크게보기</span></a>
+                                                <a href="javascript:;" class="btn_comm btn_resetMap" onclick="resetKakaoMap()"><span class="screen_out">초기화</span></a>
+                                            </div>
+                                        </div>
                                     </div><!-- end map-container -->
                                 </div><!-- end single-content-item -->
                                 <div class="section-block"></div>
@@ -231,17 +239,17 @@
                                     <h2 class="title font-size-20">후기</h2>
                                 </div><!-- end single-content-item -->
                             </div><!-- end reviews -->
-                            <div class="review-box" th:each=" reviewlists: ${reviewlist}">
+                            <div class="review-box">
                                 <div class="single-content-item padding-top-40px">
-                                    <h3 class="title font-size-20"></h3>
-                                    <div class="comments-list padding-top-50px" >
+                                    <h3 class="title font-size-20" th:text="|총 ${accom.getTotalReviewNum()}개의 리뷰|"></h3>
+                                    <div class="comments-list padding-top-7px" th:each=" reviewlists: ${reviewlist}">
                                         <div class="comment">
-                                            <div class="comment-avatar">
-                                                <img class="avatar__img" alt="" src="/images/team8.jpg">
-                                            </div>
+<!--                                            <div class="comment-avatar">-->
+<!--                                                <img class="avatar__img" alt="" src="/images/team8.jpg">-->
+<!--                                            </div>-->
                                             <div class="comment-body">
                                                 <div class="meta-data">
-                                                    <h3 class="comment__author" th:text="${reviewlists.accomMember}">멤버 이름</h3>
+                                                    <h3 class="comment__author" th:text="${reviewlists.accomMember}"></h3>
                                                     <div class="meta-data-inner d-flex">
                                                     <span class="ratings d-flex align-items-center mr-1" th:text="|${reviewlists.accomReviewRating} /|">
                                                         <i class="la la-star"></i>
@@ -250,18 +258,18 @@
                                                         <i class="la la-star"></i>
                                                         <i class="la la-star"></i>
                                                     </span>
-                                                        <p class="comment__date" th:text="${reviewlists.accomReviewCreate}">2022.10.03</p>
+                                                        <p class="comment__date" th:text="${reviewlists.accomReviewCreate}"></p>
                                                     </div>
                                                 </div>
                                                 <p class="comment-content" th:text="${reviewlists.accomReviewContent}">
                                                     후기 내용
                                                 </p>
-                                                <div class="comment-reply d-flex align-items-center justify-content-between">
-                                                    <a class="theme-btn" href="#" data-toggle="modal"
-                                                       data-target="#replayPopupForm">
-                                                        <span class="la la-mail-reply mr-1">답글</span>
-                                                    </a>
-                                                </div>
+<!--                                                <div class="comment-reply d-flex align-items-center justify-content-between">-->
+<!--                                                    <a class="theme-btn" href="#" data-toggle="modal"-->
+<!--                                                       data-target="#replayPopupForm">-->
+<!--                                                        <span class="la la-mail-reply mr-1">답글</span>-->
+<!--                                                    </a>-->
+<!--                                                </div>-->
                                             </div>
                                         </div><!-- end comments -->
                                     </div><!-- end comments-list -->
@@ -339,8 +347,9 @@
                     </div><!-- end col-lg-8 -->
                     <div class="col-lg-4">
                         <div class="sidebar single-content-sidebar mb-0">
-                            <form th:action="@{/singleSearch}" method="get">
-                                <input type="hidden" name="accomNum" th:value="${accommodation.accomNum}">
+                            <form th:action="@{/hotel-single}" id="searchForm" method="get" th:object="${searchForm}" >
+                                <input type="hidden" name="accomNum" th:value="${accom.accomNum}" >
+                                <input type="hidden" id="hiddenNum" name="roomNum" value="">
                                 <div class="sidebar-widget single-content-widget">
                                     <div class="sidebar-widget-item">
                                         <div class="sidebar-book-title-wrap mb-3">
@@ -356,7 +365,7 @@
                                                 <div class="form-group">
                                                     <span class="la la-calendar form-icon"></span>
                                                     <input class="date-picker-multiple form-control" type="text"
-                                                           name="daterange" readonly>
+                                                           name="daterange" readonly th:field="*{daterange}">
                                                 </div>
                                             </div>
                                         </div>
@@ -366,7 +375,7 @@
                                             <label class="font-size-16">성인</label>
                                             <div class="qtyBtn d-flex align-items-center">
                                                 <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                <input type="text" name="qtyInput" value="0">
+                                                <input type="text" th:field="*{adult_number}" >
                                                 <div class="qtyInc"><i class="la la-plus"></i></div>
                                             </div>
                                         </div><!-- end qty-box -->
@@ -374,7 +383,7 @@
                                             <label class="font-size-16">어린이</label>
                                             <div class="qtyBtn d-flex align-items-center">
                                                 <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                <input type="text" name="qtyInput" value="0">
+                                                <input type="text" th:field="*{child_number}" >
                                                 <div class="qtyInc"><i class="la la-plus"></i></div>
                                             </div>
                                         </div><!-- end qty-box -->
@@ -437,23 +446,25 @@
     <!-- ================================
         START CTA AREA
     ================================= -->
-    <section class="cta-area cta-bg-2 bg-fixed padding-top-60px padding-bottom-60px breadcrumb-board">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7 hwt-col-left">
-                    <div class="section-heading">
-                        <h2 class="sec__title font-size-30 text-white">Contact Us</h2>
-                        <p class="sec__desc text-white pt-1 hwt-font-content">오늘어때에 대해 궁금한 점이 있으신가요?</p>
-                    </div><!-- end section-heading -->
-                </div><!-- end col-lg-7 -->
-                <div class="col-lg-5 hwt-col-right">
-                    <div class="btn-box btn--box text-right">
-                        <a href="contact" class="theme-btn border-0 hwt-btn-white">고객센터</a>
-                    </div><!-- end btn-box -->
-                </div><!-- end col-lg-5 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </section><!-- end cta-area -->
+<!--    <section class="cta-area cta-bg-2 bg-fixed padding-top-60px padding-bottom-60px breadcrumb-board">-->
+<!--        <div class="container">-->
+<!--            <div class="row align-items-center">-->
+<!--                <div class="col-lg-7 hwt-col-left">-->
+<!--                    <div class="section-heading">-->
+<!--                        <h2 class="sec__title font-size-30 text-white">Contact Us</h2>-->
+<!--                        <p class="sec__desc text-white pt-1 hwt-font-content">오늘어때에 대해 궁금한 점이 있으신가요?</p>-->
+<!--                    </div>&lt;!&ndash; end section-heading &ndash;&gt;-->
+<!--                </div>&lt;!&ndash; end col-lg-7 &ndash;&gt;-->
+<!--                <div class="col-lg-5 hwt-col-right">-->
+<!--                    <div class="btn-box btn&#45;&#45;box text-right">-->
+<!--                        <a href="contact" class="theme-btn border-0 hwt-btn-white">고객센터</a>-->
+<!--                    </div>&lt;!&ndash; end btn-box &ndash;&gt;-->
+<!--                </div>&lt;!&ndash; end col-lg-5 &ndash;&gt;-->
+<!--            </div>&lt;!&ndash; end row &ndash;&gt;-->
+<!--        </div>&lt;!&ndash; end container &ndash;&gt;-->
+<!--    </section>&lt;!&ndash; end cta-area &ndash;&gt;-->
+
+    <th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
     <!-- ================================
         END CTA AREA
     ================================= -->
@@ -465,129 +476,14 @@
     <!-- end back-to-top -->
 
     <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                            <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/member/join">
-                                <div class="input-box">
-                                    <label class="label-text">닉네임</label>
-                                    <div class="form-group">
-                                        <span class="la la-user form-icon"></span>
-                                        <input class="form-control" type="text" name="nickname" placeholder="닉네임">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">이메일 주소</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" placeholder="패스워드">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <!--                                    <div class="input-box">-->
-                                <!--                                        <label class="label-text">패스워드 확인</label>-->
-                                <!--                                        <div class="form-group">-->
-                                <!--                                            <span class="la la-lock form-icon"></span>-->
-                                <!--                                            <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>&lt;!&ndash; end input-box &ndash;&gt;-->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" class="theme-btn w-100">회원가입</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 회원가입</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
+    <!-- 회원가입 모달 -->
+    <th:block th:replace="fragments/signUp::signUp"></th:block>
+
 
     <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
-                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/loginProc">
-                                <div class="input-box">
-                                    <label class="label-text">이메일</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" id="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group mb-2">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <!--                                    <div class="custom-checkbox mb-0">-->
-                                        <!--                                        <input type="checkbox" id="rememberchb">-->
-                                        <!--                                        <label for="rememberchb">Remember me</label>-->
-                                        <!--                                    </div>-->
-                                        <p class="forgot-password">
-                                            <a href="recover">비밀번호를 잊으셨나요?</a>
-                                        </p>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" id="login" class="theme-btn w-100">로그인</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 로그인</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
+    <!-- 로그인 모달 -->
+    <th:block th:replace="fragments/signIn::signIn"></th:block>
+
 
     <!-- end modal-shared -->
     <div class="modal-popup">
@@ -680,6 +576,83 @@
     <!--<script src="js/main.js"></script>-->
     <!--</body>-->
     <!--</html>-->
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41285ae46bc998ac5e0756fff1675a3c"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> <!-- Kakao SDK for JavaScript -->
+<script th:inline="javascript">
+
+
+
+    //위치 정보(지도)
+    var staticMapContainer  = document.getElementById('map');
+    staticMapOption = {
+        center: new kakao.maps.LatLng([[${accom.latitude}]], [[${accom.longitude}]]),
+        level: 3
+
+    };
+    //지도 생성
+    var map = new kakao.maps.Map(staticMapContainer, staticMapOption);
+    //마커 생성
+    var mapCenter  = new kakao.maps.LatLng([[${accom.latitude}]], [[${accom.longitude}]]);
+            var marker = new kakao.maps.Marker({
+                position: mapCenter,
+                map: map
+    });
+
+    // 마커 인포윈도우 생성
+    var iwContent = '<div style="border-radius: 20%; width:200px; text-align:center; font-size:15px; font-weight: 500;">[[${accom.accomName}]]</div>' +
+                    '<div style="margin-left:4px; text-align:center; font-size:13px;">[[${accom.accomAddress}]]</div>';
+    var infowindow = new kakao.maps.InfoWindow({
+        content : iwContent
+    });
+
+
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
+        infowindow.open(map, marker);
+    });
+
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+        infowindow.close();
+    });
+
+    /* 맵, 줌 컨트롤 */
+    var mapTypeControl = new kakao.maps.MapTypeControl(); // 맵 컨트롤 생성
+    var zoomControl = new kakao.maps.ZoomControl(); // 줌 컨트롤 생성
+
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT); // 맵 컨트롤 추가
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT); // 줌 컨트롤 추가
+
+    //카카오 맵 이동
+    function moveKakaoMap(self){
+
+    var center = map.getCenter(),
+        lat = center.getLat(),
+        lng = center.getLng();
+
+    self.href = 'https://map.kakao.com/link/map/' + encodeURIComponent('[[${accom.accomName}]]') + ',' + lat + ',' + lng;
+    }
+
+    //초기화
+    function resetKakaoMap(){
+        map.setCenter(mapCenter);
+        map.setLevel(mapOption.level);
+    }
+
+
+    function roomDetails(roomNum){
+        $("#hiddenNum").attr("value",roomNum);
+        var searchForm = document.getElementById("searchForm")
+        searchForm.action = '/room-details'
+
+        searchForm.submit();
+
+    }
+</script>
+<!--    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41285ae46bc998ac5e0756fff1675a3c"></script> &lt;!&ndash; 카카오맵 API &ndash;&gt;-->
+<!--    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> &lt;!&ndash; 카카오맵 라이브러리 &ndash;&gt;-->
+<!--    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> &lt;!&ndash; Kakao SDK for JavaScript &ndash;&gt;-->
+<!--    <script src="/js/hwt/accommodationLocation.js"></script>-->
 
 </th:block>
 

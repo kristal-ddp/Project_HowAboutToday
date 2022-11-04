@@ -26,7 +26,7 @@ public abstract class AbstractValidator<T> implements Validator {
         }
     }
     /* 유효성 검증 로직 */
-    protected abstract void doValidate(final T memberDRO, final Errors errors);
+    protected abstract void doValidate(final T memberDTO, final Errors errors);
 
 
 }

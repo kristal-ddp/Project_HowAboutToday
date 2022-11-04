@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.phoenix.howabouttoday.payment.MemberDTOCHECK.doCheck;
+
 @Controller
 @RequiredArgsConstructor
 @Slf4j
@@ -61,6 +63,8 @@ public class CartController {
             model.addAttribute("totalPrice",totalPrice);
 
         }
+
+        doCheck(model);
 
         /* 장바구니 존재 여부 반환 */
         model.addAttribute("checkCart",checkCart);

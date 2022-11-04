@@ -294,7 +294,6 @@ public class DataInsertTest {
                 .reserveRange(59)
                 .build();
 
-        region.getAccommodation().add(accom);
 
         Room[] rooms = new Room[4];
 

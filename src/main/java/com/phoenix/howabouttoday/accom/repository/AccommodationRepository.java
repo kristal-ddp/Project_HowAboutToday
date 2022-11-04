@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +36,13 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
 
     @EntityGraph(attributePaths = {"accomCategory","region","accommodationImage"})
     Slice<Accommodation> findByAccomCategory_Name(String category_name, Pageable pageable);
+
+
+    /** regionNum에 따른 리스트반환 **/
+    @EntityGraph(attributePaths = {"accomCategory","region","accommodationImage"})
+    Slice<Accommodation>
+    findByRegion_ParentRegion_RegionNum(Long regionNum,Pageable pageable);
+
 
 }
 

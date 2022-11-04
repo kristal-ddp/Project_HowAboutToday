@@ -20,6 +20,11 @@
 .hwt-search-element {
   flex: 0 0 37%;
   max-width: 37%;
+  padding-right: 20px!important;
+}
+
+.hwt-search-category {
+  padding-left: 70px;  
 }
 
 .hwt-search-element2 {
@@ -30,6 +35,19 @@
 .hwt-search-btn {
   padding-left: 64px;
   padding-top: 37px!important;
+}
+
+.home-select-category {
+  width: 90%;
+}
+
+.dropdown-item {
+  font-size: 14px!important;
+}
+
+.qty-box label {
+  font-size: 14px!important;
+  margin-right: 9px;
 }
 
 // Infomation Icons

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,9 +31,10 @@ public class RoomDetailDTO {
 
     private LocalDate stayEndDate; // 객실 이용 종료일
 
-    private Integer price; // 객실 가격
+    private String price; // 객실 가격
 
     private List<RoomImageDTO> roomImageList; //객실 이미지
+    private String roomImage; // 객실 대표이미지
 
 
 
@@ -49,5 +51,7 @@ public class RoomDetailDTO {
                 .stream()
                 .map(RoomImageDTO::new)
                 .collect(Collectors.toList());
+        this.roomImage = room.getRoomImageList().get(0).getRoomOriginFileName();
+        this.price = DecimalFormat.getInstance().format(room.getPrice());
     }
 }
