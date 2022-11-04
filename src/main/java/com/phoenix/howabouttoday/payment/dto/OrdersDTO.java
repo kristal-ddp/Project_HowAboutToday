@@ -3,16 +3,10 @@
 
 package com.phoenix.howabouttoday.payment.dto;
 import com.phoenix.howabouttoday.global.OrdersStatus;
-import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import lombok.Getter;
-import lombok.Setter;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.TextStyle;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Getter
@@ -58,7 +52,7 @@ public class OrdersDTO implements Comparable<OrdersDTO> {
         return 0;
     }
 
-    public Boolean isCanceled(){
-        return getOrdersStatus() == OrdersStatus.PAYMENT_CANCEL.getValue();
+    public Boolean isPaymentComplete(){
+        return getOrdersStatus() == OrdersStatus.PAYMENT_COMPLETE.getValue();
     }
 }
