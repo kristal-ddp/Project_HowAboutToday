@@ -112,24 +112,6 @@
                                     </div>
                                     </form>
                                 </div><!-- end sidebar-widget-item -->
-                                <!--                            <div class="sidebar-widget-item">-->
-                                <!--                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">-->
-                                <!--                                    <label class="font-size-16">성인</label>-->
-                                <!--                                    <div class="qtyBtn d-flex align-items-center">-->
-                                <!--                                        <div class="qtyDec"><i class="la la-minus"></i></div>-->
-                                <!--                                        <input type="text" name="adult" value="0">-->
-                                <!--                                        <div class="qtyInc"><i class="la la-plus"></i></div>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>&lt;!&ndash; end qty-box &ndash;&gt;-->
-                                <!--                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">-->
-                                <!--                                    <label class="font-size-16">아동</label>-->
-                                <!--                                    <div class="qtyBtn d-flex align-items-center">-->
-                                <!--                                        <div class="qtyDec"><i class="la la-minus"></i></div>-->
-                                <!--                                        <input type="text" name="child" value="0">-->
-                                <!--                                        <div class="qtyInc"><i class="la la-plus"></i></div>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>&lt;!&ndash; end qty-box &ndash;&gt;-->
-                                <!--                            </div>&lt;!&ndash; end sidebar-widget-item &ndash;&gt;-->
                                 <div class="btn-box pt-2">
                                     <button class="theme-btn hwt-btn-gray" id="keyword_Btn">검 색</button>
                                 </div>
@@ -236,9 +218,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="btn-box mt-3 text-center">
-
-                            <button type="button" class="theme-btn" id="loadMore"><i class="la la-refresh mr-1"></i>Load More</button>
-
+                        <button type="button" class="theme-btn" id="loadMore"><i class="la la-refresh mr-1"></i>Load More</button>
                     </div><!-- end btn-box -->
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->
@@ -522,8 +502,8 @@
         }
 
 
-        //페이지가 로드될때 리스트 가져오는 함수
-      const load = function () {
+       //페이지가 로드될때 리스트 가져오는 함수
+       const load = function () {
 
 
           let category_name = $("#cateName").val();

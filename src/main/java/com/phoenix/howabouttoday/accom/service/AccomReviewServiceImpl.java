@@ -12,6 +12,8 @@ import com.phoenix.howabouttoday.room.entity.Room;
 //import com.phoenix.howabouttoday.room.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,5 +34,16 @@ public class AccomReviewServiceImpl implements AccomReviewService{
 
         return review.stream().map(AccomReviewDTO.ResponseDto::new).collect(Collectors.toList());
 
+    }
+
+    /** 호텔 상세페이지 통합 리뷰 전체조회 **/
+    public Slice<AccomReviewDTO.ResponseDto> getAccomReviewList(Pageable pageable, Long accomNum) {
+
+        Slice<Review> page =
+                accomReviewRepository.findAllByRoom_Accommodation_AccomNum(pageable, accomNum);
+
+        Slice<AccomReviewDTO.ResponseDto> accomReviewList = page.map(review -> new AccomReviewDTO.ResponseDto(review));
+
+        return accomReviewList;
     }
 }
