@@ -58,8 +58,8 @@ public class EventController {
 
     // 이벤트 디테일 페이지
     @GetMapping("/event/{eventNum}")
-    public String eventDetails(@PathVariable Long eventNum, Model model,
-                               @LoginUser SessionDTO sessionDTO, MemberDTO memberDTO){
+    public String eventDetails(@PathVariable Long eventNum, Model model, MemberDTO memberDTO,
+                               @LoginUser SessionDTO sessionDTO, CommentFormDTO commentFormDTO){
 
         EventDetailDTO eventDetailDTO = eventService.findOne_Event(eventNum);
         List<CommentListDTO> comments = eventDetailDTO.getCommentList();
@@ -68,10 +68,7 @@ public class EventController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        if(comments != null && !comments.isEmpty()) {
-            model.addAttribute("comments", comments);
-        }
-
+        model.addAttribute("comments", comments);
         model.addAttribute("eventDetailDTO", eventDetailDTO);
 
         return "board/event-details";

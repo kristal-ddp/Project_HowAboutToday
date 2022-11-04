@@ -44,9 +44,9 @@ public class Event {
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<EventImage> eventImageList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     @OrderBy("comment_num asc")
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
 
     // Event 게시글 작성
     public Event(Member member, EventFormDTO eventFormDTO) {
