@@ -375,6 +375,9 @@
                 for (i = 0; i < review.length; i++) {
                     let star = "";
                     newReview +=                `<div class="comment">`
+                    newReview +=                `<div class="comment-avatar">`
+                    newReview +=                    `<img class="avatar__img" alt="" src="/data/images/${review[i].reviewFileName}">`
+                    newReview +=                `</div>`
                     newReview +=                    `<div class="comment-body">`
                     newReview +=                        `<div class="meta-data">`
                     newReview +=                            `<h3 class="comment__author">${review[i].nickname}</h3>`
@@ -435,6 +438,7 @@
                   contentType: 'application/json; charset=utf-8',
               }).done(function (result) {
 
+                    console.log(result);
                   listLow = review(result);
                   listData = result;
 

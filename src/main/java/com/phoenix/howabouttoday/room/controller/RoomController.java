@@ -43,7 +43,7 @@ public class RoomController {
         model.addAttribute("slist",sList); //객실 서비스 리스트
 
         RoomDetailDTO roomDetailDTO = roomService.findOne_Room(roomNum);
-        
+
         model.addAttribute("roomNum",roomNum);//객실 리뷰 리스트
         model.addAttribute("roomDetailDTO",roomDetailDTO); //객실 디테일
 

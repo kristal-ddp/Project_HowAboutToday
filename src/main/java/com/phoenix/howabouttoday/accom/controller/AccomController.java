@@ -145,30 +145,10 @@ public class AccomController {
     @PostMapping("hotel-single")
     public String postHotelSingle(){return "accom/hotel/hotel-single";}
 
-//    @GetMapping("singleSearch")
-//    public String getHotelSingleSearch(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum) {
-//
-//        if(sessionDTO != null) {
-//            model.addAttribute("sessionDTO", sessionDTO);
-//        }
-//
-//        System.out.println("accomNum!!!!!!!!!!!!! = " + accomNum);
-//        Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보
-//        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
-//
-//        model.addAttribute("roomlist",roomList); //객실 리스트
-//        model.addAttribute("accommodation",accomList);
-//
-//        return "accom/hotel/hotel-single";
-//    }
-
-
     /** 인기여행지 컨트롤러 **/
     @GetMapping("/accom/ppl/{regionNum}")
     public String pplTourist(@PathVariable(required = false) Long regionNum,
                              Model model){
-
-
 
 
         /** 로그인및 회원가입을 위한 Object 반환하는 로직 **/
