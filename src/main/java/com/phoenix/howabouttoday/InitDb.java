@@ -1,9 +1,11 @@
+//
 //package com.phoenix.howabouttoday;
 //
 //
 //import com.phoenix.howabouttoday.accom.entity.*;
 //import com.phoenix.howabouttoday.accom.repository.*;
 //import com.phoenix.howabouttoday.board.entity.Reply;
+//import com.phoenix.howabouttoday.member.wishlist.domain.WishList;
 //import com.phoenix.howabouttoday.payment.entity.Coupon;
 //import com.phoenix.howabouttoday.payment.entity.CouponRules;
 //import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
@@ -97,7 +99,7 @@
 //                    .pwd("123")
 //                    .memberTel("010-1234-5678")
 //                    .nickname("이동우")
-//                    .memberOriginalFileName("Originl")
+//                    .memberOriginalFileName("image0.jpg")
 //                    .memberSaveFileName("save")
 //                    .joinDate(LocalDate.of(2022,10,27))
 //                    .role(Role.MEMBER)
@@ -296,10 +298,9 @@
 //                    .build());
 //
 //            /**위시리스트 등록**/
-////            wishlistRepository.save(WishList.builder()
-////                    .member(member)
-////                    .accommodation(accommodation)
-////                    .build());
+//            //wishlistRepository.save(WishList.builder())
+//
+//
 //
 //            /** 장바구니 등록 **/
 //            Cart cart = cartRepository.save(Cart.builder()
@@ -366,10 +367,40 @@
 //                    .member(member)
 //                    .reviewCreateDate(LocalDate.now())
 //                    .reviewModifyDate(LocalDate.now())
-//                    .reviewRating(3.72)
+//                    .reviewRating(3.0)
 //                    .room(room)
-//                    .reviewContent("안녕")
+//                    .reviewContent("3점")
 //                    .memberName("이동우")
+//                    .build());
+//
+//            Review review2 = reviewRepository.save(Review.builder()
+//                    .member(member)
+//                    .reviewCreateDate(LocalDate.now())
+//                    .reviewModifyDate(LocalDate.now())
+//                    .reviewRating(5.0)
+//                    .room(room)
+//                    .reviewContent("5점")
+//                    .memberName("간")
+//                    .build());
+//
+//            Review review3 = reviewRepository.save(Review.builder()
+//                    .member(member)
+//                    .reviewCreateDate(LocalDate.now())
+//                    .reviewModifyDate(LocalDate.now())
+//                    .reviewRating(4.0)
+//                    .room(room)
+//                    .reviewContent("4점")
+//                    .memberName("난")
+//                    .build());
+//
+//            Review review4 = reviewRepository.save(Review.builder()
+//                    .member(member)
+//                    .reviewCreateDate(LocalDate.now())
+//                    .reviewModifyDate(LocalDate.now())
+//                    .reviewRating(3.0)
+//                    .room(room)
+//                    .reviewContent("3점")
+//                    .memberName("닫")
 //                    .build());
 //
 //            room.getReviews().add(review);
@@ -399,7 +430,7 @@
 //                    .pwd("1234")
 //                    .memberTel("010-1111-2222")
 //                    .nickname("안수언")
-//                    .memberOriginalFileName("Originl")
+//                    .memberOriginalFileName("image150.jpg")
 //                    .memberSaveFileName("save1")
 //                    .joinDate(LocalDate.of(2022,9,27))
 //                    .role(Role.MEMBER)
@@ -640,50 +671,7 @@
 //                    .build());
 //
 //
-//            /**위시리스트 등록**/
-////            wishlistRepository.save(WishList.builder()
-////                    .member(member)
-////                    .accommodation(accommodation)
-////                    .build());
 //
-//            for (int i=0; i < 100; i++) {
-//
-//                Accommodation build = Accommodation.builder()
-//                        .accomName("보령(대천) 너울펜션" + i)
-//                        .accomTel("050350577805")
-//                        .accomCategory(motel)
-//                        .region(region)
-//                        .accomAddress1(save.getRegion().getValue())
-//                        .accomAddress2(region.getRegion().getValue())
-//                        .accomRating(3.1)
-//                        .accomWishlistCount(110)
-//                        .totalReviewNum(1103)
-//                        .latitude(36.3196)
-//                        .longitude(126.5092)
-//                        .lowPrice((i*10000)+50000 + i)
-//                        .reserveRange(60)
-//                        .checkIn(LocalTime.of(15, 0))
-//                        .checkOut(LocalTime.of(11, 0))
-//                        .build();
-//
-//
-//                Accommodation save1 = accommodationRepository.save(build);
-//
-//                AccomImage image = accommodationImageRepository.save(AccomImage.builder()
-//                        .accomOriginFilename("image" + i + ".jpg")
-//                        .accomSaveFilename("image4.jpg")
-//                        .accommodation(save1)
-//                        .build());
-//
-//
-//            }
-////
-////                WishList build1 = WishList.builder()
-////                        .member(member)
-////                        .accommodation(save)
-////                        .build();
-////                wishlistRepository.save(build1);
-////            }
 //
 //
 //            /** 장바구니 등록 **/
@@ -740,8 +728,38 @@
 //                    .member(member)
 //                    .reviewCreateDate(LocalDate.now())
 //                    .reviewModifyDate(LocalDate.now())
-//                    .reviewRating(2.73)
+//                    .reviewRating(2.6)
 //                    .memberName("안수언")
+//                    .reviewContent("너무별로에요")
+//                    .room(room)
+//                    .build());
+//
+//            Review review1 = reviewRepository.save(Review.builder()
+//                    .member(member)
+//                    .reviewCreateDate(LocalDate.now())
+//                    .reviewModifyDate(LocalDate.now())
+//                    .reviewRating(3.4)
+//                    .memberName("가")
+//                    .reviewContent("너무별로에요")
+//                    .room(room)
+//                    .build());
+//
+//            Review review2 = reviewRepository.save(Review.builder()
+//                    .member(member)
+//                    .reviewCreateDate(LocalDate.now())
+//                    .reviewModifyDate(LocalDate.now())
+//                    .reviewRating(4.7)
+//                    .memberName("가나다라마바사")
+//                    .reviewContent("너무별로에요")
+//                    .room(room)
+//                    .build());
+//
+//            Review review3 = reviewRepository.save(Review.builder()
+//                    .member(member)
+//                    .reviewCreateDate(LocalDate.now())
+//                    .reviewModifyDate(LocalDate.now())
+//                    .reviewRating(5.0)
+//                    .memberName("ABCDEFGH")
 //                    .reviewContent("너무별로에요")
 //                    .room(room)
 //                    .build());
@@ -992,10 +1010,3 @@
 //
 //    }
 //}
-//
-//
-//
-//
-//
-//
-//

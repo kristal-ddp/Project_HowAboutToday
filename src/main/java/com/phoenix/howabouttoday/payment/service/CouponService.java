@@ -21,7 +21,7 @@ public class CouponService {
     private final CouponRepository couponRepository;
 
 
-    public List<CouponDTO> getCoupon(Long memberNum){
+    public List<CouponDTO> findAll_Coupon(Long memberNum){
 
         List<CouponDTO> couponDTOList = couponRepository.findAllByMember_MemberNum(memberNum).stream()
                 .map(CouponDTO::new)

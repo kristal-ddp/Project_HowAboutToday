@@ -14,6 +14,8 @@ import com.phoenix.howabouttoday.room.entity.Review;
 import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -115,4 +117,16 @@ public class ReviewServiceImpl implements ReviewService {
 
         return reviewList;
     }
+
+    /** 호텔 상세페이지 통합 리뷰 전체조회 **/
+    public Slice<RoomReviewDTO> getRoomReviewList(Pageable pageable, Long roomNum) {
+
+        Slice<Review> page =
+                roomReviewRepository.findAllByRoom_RoomNum(pageable, roomNum);
+
+        Slice<RoomReviewDTO> roomReviewList = page.map(review -> new RoomReviewDTO(review));
+
+        return roomReviewList;
+    }
+
 }
