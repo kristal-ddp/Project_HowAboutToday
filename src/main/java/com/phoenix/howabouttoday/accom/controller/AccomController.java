@@ -137,11 +137,11 @@ public class AccomController {
         /** searchForm 반환 **/
         model.addAttribute("searchForm",searchForm);
 
-        List<AccomReviewDTO.ResponseDto> reviewlist = accomReviewService.findAllByAccom(accomNum);
-        for (AccomReviewDTO.ResponseDto responseDto : reviewlist) {
-            System.out.println("responseDto.getAccomReviewRating() = " + responseDto.getAccomReviewRating());
-        }
-        model.addAttribute("reviewlist",reviewlist);//리뷰 리스트 출력
+//        List<AccomReviewDTO.ResponseDto> reviewlist = accomReviewService.findAllByAccom(accomNum);
+//        for (AccomReviewDTO.ResponseDto responseDto : reviewlist) {
+//            System.out.println("responseDto.getAccomReviewRating() = " + responseDto.getAccomReviewRating());
+//        }
+//        model.addAttribute("reviewlist",reviewlist);//리뷰 리스트 출력
         return "accom/hotel/hotel-single";
     }
     @PostMapping("hotel-single")

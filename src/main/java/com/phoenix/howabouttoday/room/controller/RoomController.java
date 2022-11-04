@@ -44,8 +44,8 @@ public class RoomController {
 
         RoomDetailDTO roomDetailDTO = roomService.findOne_Room(roomNum);
 
-        List<RoomReviewDTO> rList = roomService.findAll_Review(roomNum);
-        model.addAttribute("rlist",rList); //객실 리뷰 리스트
+//        List<RoomReviewDTO> rList = roomService.findAll_Review(roomNum);
+//        model.addAttribute("rlist",rList); //객실 리뷰 리스트
 
         model.addAttribute("roomDetailDTO",roomDetailDTO); //객실 디테일
 
