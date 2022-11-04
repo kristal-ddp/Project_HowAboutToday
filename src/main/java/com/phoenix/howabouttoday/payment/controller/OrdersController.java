@@ -70,7 +70,7 @@ public class OrdersController {
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
         Integer totalPrice = orderService.getTotalPrice(cartNum);   //얘를 따로 이렇게 하는 게 맞을까??
-        List<CouponDTO> couponDTOList = couponService.getCoupon(customer.getNum());
+        List<CouponDTO> couponDTOList = couponService.findAll_Coupon(customer.getNum());
 
 
         model.addAttribute("totalPrice", totalPrice);
@@ -87,11 +87,9 @@ public class OrdersController {
 
     /* 주문삭제 */
     /* 주문은 삭제가 아니라 취소로 표시해두고 여러가지 제한을 두는 게 맞을 것 같기도 하다. */
-    @PostMapping("/deleteorders")
+    @PostMapping("/cancelorders")
     @ResponseBody
     public OrdersDeleteDTO getDelete(@LoginUser SessionDTO sessionDTO, @RequestBody OrdersDeleteDTO data) {
-
-        System.out.println("잘 들어오니?");
 
         Long cancelOrdersNum = orderService.cancelOrders(data);
         orderService.changeStatusOrders(cancelOrdersNum);
@@ -127,4 +125,5 @@ public class OrdersController {
         orderService.savePaymentData(customer.getNum(), ordersCreateDTO);
         return "redirect:/home";
     }
+
 }

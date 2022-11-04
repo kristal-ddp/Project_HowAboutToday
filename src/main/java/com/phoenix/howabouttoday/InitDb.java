@@ -1,3 +1,4 @@
+
 package com.phoenix.howabouttoday;
 
 
@@ -296,10 +297,9 @@ public class InitDb {
                     .build());
 
             /**위시리스트 등록**/
-//            wishlistRepository.save(WishList.builder()
-//                    .member(member)
-//                    .accommodation(accommodation)
-//                    .build());
+            wishlistRepository.save(WishList.builder())
+
+
 
             /** 장바구니 등록 **/
             Cart cart = cartRepository.save(Cart.builder()
@@ -670,50 +670,7 @@ public class InitDb {
                     .build());
 
 
-            /**위시리스트 등록**/
-//            wishlistRepository.save(WishList.builder()
-//                    .member(member)
-//                    .accommodation(accommodation)
-//                    .build());
 
-            for (int i=0; i < 100; i++) {
-
-                Accommodation build = Accommodation.builder()
-                        .accomName("보령(대천) 너울펜션" + i)
-                        .accomTel("050350577805")
-                        .accomCategory(motel)
-                        .region(region)
-                        .accomAddress1(save.getRegion().getValue())
-                        .accomAddress2(region.getRegion().getValue())
-                        .accomRating(3.1)
-                        .accomWishlistCount(110)
-                        .totalReviewNum(1103)
-                        .latitude(36.3196)
-                        .longitude(126.5092)
-                        .lowPrice((i*10000)+50000 + i)
-                        .reserveRange(60)
-                        .checkIn(LocalTime.of(15, 0))
-                        .checkOut(LocalTime.of(11, 0))
-                        .build();
-
-
-                Accommodation save1 = accommodationRepository.save(build);
-
-                AccomImage image = accommodationImageRepository.save(AccomImage.builder()
-                        .accomOriginFilename("image" + i + ".jpg")
-                        .accomSaveFilename("image4.jpg")
-                        .accommodation(save1)
-                        .build());
-
-
-            }
-//
-//                WishList build1 = WishList.builder()
-//                        .member(member)
-//                        .accommodation(save)
-//                        .build();
-//                wishlistRepository.save(build1);
-//            }
 
 
             /** 장바구니 등록 **/
@@ -1052,10 +1009,3 @@ public class InitDb {
 
     }
 }
-
-
-
-
-
-
-
