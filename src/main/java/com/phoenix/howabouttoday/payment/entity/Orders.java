@@ -6,17 +6,14 @@
 
 package com.phoenix.howabouttoday.payment.entity;
 
-import com.phoenix.howabouttoday.accom.entity.Region;
 import com.phoenix.howabouttoday.global.OrdersStatus;
 import com.phoenix.howabouttoday.global.OrdersStatusConverter;
 import com.phoenix.howabouttoday.member.entity.Member;
-import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,10 +68,6 @@ public class Orders {
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<Reservation> reservation = new ArrayList<>(); //이미지 fk를 위한 매핑
 
-    public void changeToReadyState(){
-        this.ordersStatus = OrdersStatus.PAYMENT_CANCEL;
-    }
-
     @Builder
     public Orders(Member member, String ordersTel, String ordersName, LocalDateTime ordersDate, Integer ordersPrice, String ordersType, OrdersStatus ordersStatus, String impUid, String merchantId, Long couponNum, Integer discountValue) {
         this.member = member;
@@ -90,4 +83,19 @@ public class Orders {
         this.couponNum = couponNum;
         this.discountValue = discountValue;
     }
+
+    public void changeStatusToCancel(){
+        this.ordersStatus = OrdersStatus.PAYMENT_CANCEL;
+    }
+
+    //스케쥴러로 상태 변경 시 사용할 메서드
+    public void changeStatusToInUse(){
+        this.ordersStatus = OrdersStatus.IN_USE;
+    }
+
+    //스케쥴러로 상태 변경 시 사용할 메서드
+    public void changeStatusToComplete(){
+        this.ordersStatus = OrdersStatus.DONE;
+    }
+
 }
