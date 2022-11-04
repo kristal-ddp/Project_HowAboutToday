@@ -20,7 +20,7 @@ public class AutoCompleteScheduler {
         출처: https://data-make.tistory.com/699 [Data Makes Our Future:티스토리]
     */
 
-    @Scheduled(cron = "0 0 * * * ?", zone = "Asia/Seoul") //매일 자정에 실행 초 분 시 일 달 기준 (ex) 0 0 0 10 1 1월 10일 자정에 실행
+    @Scheduled(cron = "0 0 0 * * ?", zone = "Asia/Seoul") //매일 자정에 실행 초 분 시 일 달 기준 (ex) 0 0 0 10 1 1월 10일 자정에 실행
     public void scheduleTaskUsingCronExpression() {
 
         autoCompleteSchedulerService.updateOrdersDetailToInUse();

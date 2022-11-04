@@ -33,7 +33,7 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
     List<Orders> changeOrdersStatusToInUse();
 
     @Query(value = "select o.* from orders o inner join reservation r on o.orders_num = r.orders_num and orders_status = '이용 중' and r.reserve_type = 'orderDetail'" +
-            " group by o.orders_num having max(r.reserve_use_end_date) = Date(date_add(now(), INTERVAL 10 DAY))", nativeQuery = true)
+            " group by o.orders_num having max(r.reserve_use_end_date) = Date(now())", nativeQuery = true)
     List<Orders> changeOrdersStatusToDone();
 
 }
