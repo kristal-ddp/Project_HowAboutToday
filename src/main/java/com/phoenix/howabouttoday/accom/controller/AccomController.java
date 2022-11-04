@@ -135,13 +135,9 @@ public class AccomController {
         /** searchForm 반환 **/
         model.addAttribute("searchForm",searchForm);
 
-        //아마 필요 없는 부분이 될듯??
-        List<AccomReviewDTO.ResponseDto> reviewlist = accomReviewService.findAllByAccom(accomNum);
-        for (AccomReviewDTO.ResponseDto responseDto : reviewlist) {
-            System.out.println("responseDto.getAccomReviewRating() = " + responseDto.getAccomReviewRating());
-            System.out.println("회원 이미지파일이름! = " + responseDto.getMemberFileName());
-        }
-        model.addAttribute("reviewlist",reviewlist);//리뷰 리스트 출력
+        /** 상세에 필요한 해당숙소키 반환 **/
+        model.addAttribute("accomNum",accomNum);
+
 
 
         return "accom/hotel/hotel-single";

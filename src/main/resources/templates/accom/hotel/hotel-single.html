@@ -8,6 +8,7 @@
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 
     <section class="breadcrumb-area bread-bg-7" th:style="|background-image: url(@{data/images/{originFileName}(originFileName=${accom.accomOriginFileName})})|">
         <div class="breadcrumb-wrap">
@@ -238,14 +239,15 @@
                                     <h2 class="title font-size-20">후기</h2>
                                 </div><!-- end single-content-item -->
                             </div><!-- end reviews -->
-                            <input type="hidden" id="reviewAccomNum" th:value="${categoryName}">
-                            <div class="review-box" id="rl">
+
+                            <div class="review-box">
                                 <div class="single-content-item padding-top-20px">
                                     <h3 class="title font-size-20" th:text="|총 ${accom.getTotalReviewNum()}개의 리뷰|"></h3>
 
 
                                     <!-- 리뷰 리스트 시작 -->
-<!--                                    <div class="comments-list padding-top-20px" th:each=" reviewlists: ${reviewlist}">-->
+                                    <input type="hidden" id="reviewAccomNum" th:value="${accomNum}">
+                                    <div class="comments-list padding-top-20px" id="rl">
 <!--                                        <div class="comment" >-->
 <!--                                            <div class="comment-avatar">-->
 <!--                                                <img class="avatar__img" alt="" th:src="|@{/data/images/{memberFileName}(memberFileName=${reviewlists.memberFileName})}|">-->
@@ -305,7 +307,7 @@
 <!--                                        </div>&lt;!&ndash; end comments &ndash;&gt;-->
 <!--                                        <br/>-->
 <!--                                        <div class="section-block"></div>-->
-<!--                                    </div>&lt;!&ndash; end comments-list &ndash;&gt;-->
+                                    </div><!-- end comments-list -->
                                     <!-- 리뷰 리스트 끝 -->
                                     <div class="single-content-item padding-top-30px"></div>
                                     <div class="btn-box load-more text-center">
@@ -521,19 +523,59 @@
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> <!-- Kakao SDK for JavaScript -->
 <script th:inline="javascript">
 
-    $(document).ready(function (){
-
-            load();
-
+    $("document").ready(function(){
+       load();
     });
+
 
     let reviewList = $("#reviewAccomNum").val();
     listLow= "";
     listData= "";
 
-    //페이지가 로드될때 리스트 가져오는 함수
-   const load = function () {
+     const review = function (result){
 
+        let review = result.content;
+
+
+        let newReview = "";
+        for (i = 0; i < review.length; i++) {
+            let star = "";
+            newReview +=     `<div class="comment" >`
+            newReview +=         `<div class="comment-avatar">`
+            newReview +=             `<img class="avatar__img" alt="" src="/data/images/${review[i].memberFileName}">`
+            newReview +=         `</div>`
+            newReview +=         `<div class="comment-body">`
+            newReview +=             `<div class="meta-data">`
+            newReview +=                 `<h3 class="comment__author">${review[i].accomMember}</h3>`
+            newReview +=                 `<div class="meta-data-inner d-flex">`
+            newReview +=                 `<span class="ratings d-flex align-items-center mr-1">`
+
+                    for (let j = 0; j < 5; j++) {
+                        if(Math.floor(review[i].accomReviewRating) > j){
+                            star += `<i class="la la-star"></i>`;
+                            continue;
+                        }
+                        star += `<i class="la la-star-o"></i>`;
+                    }
+
+            newReview += star;
+
+            newReview +=                 `</span>`
+            newReview +=                     `<p class="comment__date">${review[i].accomReviewCreate}</p>`
+            newReview +=                 `</div>`
+            newReview +=             `</div>`
+            newReview +=             `<p class="comment-content">${review[i].accomReviewContent}</p>`
+            newReview +=         `</div>`
+            newReview +=     `</div>`
+            newReview +=     `<div class="section-block"></div>`
+
+
+        }
+        return newReview;
+   }
+
+   //페이지가 로드될때 리스트 가져오는 함수
+   const load = function(){
 
       let reviewList = $("#reviewAccomNum").val();
       $.ajax({
@@ -551,18 +593,22 @@
           alert(JSON.stringify(error));
       });
 
-        //더보기 함수
+
+   }
+
+   //더보기 함수
       $("#loadMore").click(function (){
+
 
           let reviewList = $("#reviewAccomNum").val();
           $.ajax({
-              url: '/rest/accom/' + reviewList,
+              url: '/rest/single/' + reviewList + '?size=' + (listData.size+3),
               type: 'GET',
               data: listData,
               contentType: 'application/json; charset=utf-8',
           }).done(function (result) {
 
-              listLow = low(result);
+              listLow = review(result);
               listData = result;
 
               document.getElementById("rl").innerHTML = listLow;
@@ -570,52 +616,10 @@
           }).fail(function (error) {
               alert(JSON.stringify(error));
           });
+      })
 
-      });
 
-   const review = function (result){
-
-        let review = result.content;
-
-        let newReview = "";
-        for (i = 0; i < accom.length; i++) {
-
-            newReview += `<div class="comments-list padding-top-20px">`
-            newReview +=     `<div class="comment" >`
-            newReview +=         `<div class="comment-avatar">`
-            newReview +=             `<img class="avatar__img" alt="" th:src="/data/images/${review[i].memberFileName}">`
-            newReview +=         `</div>`
-            newReview +=         `<div class="comment-body">`
-            newReview +=             `<div class="meta-data">`
-            newReview +=                 `<h3 class="comment__author">${review[i].accomMember}</h3>`
-            newReview +=                 `<div class="meta-data-inner d-flex">`
-            newReview +=                 `<span class="ratings d-flex align-items-center mr-1">`
-            newReview +=                     `<th:block th:if="${reviewlists.accomReviewRating >= 5.0}">`
-            newReview +=                         `<i class="la la-star"></i>`
-            newReview +=                         `<i class="la la-star"></i>`
-            newReview +=                         `<i class="la la-star"></i>`
-            newReview +=                         `<i class="la la-star"></i>`
-            newReview +=                         `<i class="la la-star"></i>`
-            newReview +=                     `</th:block>`
-            newReview +=                 `</span>`
-            newReview +=                     `<p class="comment__date">${review[i].accomReviewCreate}</p>`
-            newReview +=                 `</div>`
-            newReview +=             `</div>`
-            newReview +=             `<p class="comment-content">${review[i].accomReviewContent}</p>`
-            newReview +=             `<div class="comment-reply d-flex align-items-center justify-content-between">`
-            newReview +=                 `<a class="theme-btn" href="#" data-toggle="modal" data-target="#replayPopupForm">`
-            newReview +=                     `<span class="la la-mail-reply mr-1">답글</span>`
-            newReview +=                 `</a>`
-            newReview +=             `</div>`
-            newReview +=         `</div>`
-            newReview +=     `</div><!-- end comments -->`
-            newReview +=     `<br/>`
-            newReview +=     `<div class="section-block"></div>`
-            newReview += `</div>`
-        }
-        return newReview;
-   }
-    //카카오맵
+    //카카오맵 시작
     var latitude  = [[${accom.latitude}]]
     var longitude = [[${accom.longitude}]]
     var accomName = [[${accom.accomName}]]
@@ -653,7 +657,8 @@
     });
 
     /* 맵, 줌 컨트롤 */
-    var mapTypeControl = new kakao.maps.MapTypeControl(); // 맵 컨트롤 생성
+    var mapTypeControl = new kakao.maps
+    .MapTypeControl(); // 맵 컨트롤 생성
     var zoomControl = new kakao.maps.ZoomControl(); // 줌 컨트롤 생성
 
     map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT); // 맵 컨트롤 추가
@@ -669,28 +674,26 @@
     self.href = 'https://map.kakao.com/link/map/' + encodeURIComponent('[[${accom.accomName}]]') + ',' + lat + ',' + lng;
     }
 
-    //초기화
-    function resetKakaoMap(){
-        map.setCenter(mapCenter);
-        map.setLevel(mapOption.level);
-    }
-
+   //초기화
+   function resetKakaoMap(){
+       map.setCenter(mapCenter);
+       map.setLevel(mapOption.level);
+   }
+   //카카오맵 로직 끝
 
     function roomDetails(roomNum){
-        $("#hiddenNum").attr("value",roomNum);
-        var searchForm = document.getElementById("searchForm")
-        searchForm.action = '/room-details'
+           $("#hiddenNum").attr("value",roomNum);
+           var searchForm = document.getElementById("searchForm")
+           searchForm.action = '/room-details'
 
-        searchForm.submit();
+           searchForm.submit();
 
     }
+
+
 
 
 </script>
-<!--    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41285ae46bc998ac5e0756fff1675a3c"></script> &lt;!&ndash; 카카오맵 API &ndash;&gt;-->
-<!--    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script> &lt;!&ndash; 카카오맵 라이브러리 &ndash;&gt;-->
-<!--    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> &lt;!&ndash; Kakao SDK for JavaScript &ndash;&gt;-->
-<!--    <script src="/js/hwt/accommodationLocation.js"></script>-->
 
 </th:block>
 
