@@ -44,8 +44,6 @@ public class AccommodationDTO {
     private List<RoomDetailDTO> room;
     private List<AccomViewFacilities> accomViewFacilities;
 
-
-
     public AccommodationDTO(Accommodation accom) {
         this.accomNum = accom.getAccomNum();
         this.accomName = accom.getAccomName();

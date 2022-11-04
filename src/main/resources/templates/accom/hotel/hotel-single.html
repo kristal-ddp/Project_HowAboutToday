@@ -4,39 +4,17 @@
       layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
-
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-
-    <section class="breadcrumb-area bread-bg-7" th:style="|background-image: url(@{data/images/{originFileName}(originFileName=${accom.accomOriginFileName})})|">
-        <div class="breadcrumb-wrap">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="breadcrumb-btn">
-                            <a class="d-none"
-                               data-fancybox="hotel-single-main-gallery"
-                               data-src="/images/img2.jpg"
-                               data-caption="Showing image - 02"
-                               data-speed="700"></a>
-                            <a class="d-none"
-                               data-fancybox="hotel-single-main-gallery"
-                               data-src="/images/img3.jpg"
-                               data-caption="Showing image - 03"
-                               data-speed="700"></a>
-                            <a class="d-none"
-                               data-fancybox="hotel-single-main-gallery"
-                               data-src="/images/img4.jpg"
-                               data-caption="Showing image - 04"
-                               data-speed="700"></a>
-                        </div><!-- end breadcrumb-btn -->
-                    </div><!-- end col-lg-12 -->
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </div><!-- end breadcrumb-wrap -->
-    </section><!-- end breadcrumb-area -->
+    <section class="room-detail-bread">
+        <div class="full-width-slider carousel-action">
+            <div class="full-width-slide-item" th:each="accomImage :${accom.accommodationImage}">
+                <img th:src="|/data/images/${accomImage.accomOriginFilename}|" alt="">
+            </div><!-- end full-width-slide-item -->
+        </div><!-- end full-width-slider -->
+    </section><!-- end room-detail-bread -->
     <!-- ================================
         END BREADCRUMB AREA
     ================================= -->
@@ -248,95 +226,13 @@
                                     <!-- 리뷰 리스트 시작 -->
                                     <input type="hidden" id="reviewAccomNum" th:value="${accomNum}">
                                     <div class="comments-list padding-top-20px" id="rl">
-<!--                                        <div class="comment" >-->
-<!--                                            <div class="comment-avatar">-->
-<!--                                                <img class="avatar__img" alt="" th:src="|@{/data/images/{memberFileName}(memberFileName=${reviewlists.memberFileName})}|">-->
-<!--                                            </div>-->
-<!--                                            <div class="comment-body">-->
-<!--                                                <div class="meta-data">-->
-<!--                                                    <h3 class="comment__author" th:text="${reviewlists.accomMember}"></h3>-->
-<!--                                                    <div class="meta-data-inner d-flex">-->
-<!--                                                    <span class="ratings d-flex align-items-center mr-1">-->
-<!--                                                        <th:block th:if="${reviewlists.accomReviewRating >= 5.0}">-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                        </th:block>-->
-<!--                                                        <th:block th:if="${reviewlists.accomReviewRating <= 4.9 and reviewlists.accomReviewRating >= 4.0}">-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star-o"></i>-->
-<!--                                                        </th:block>-->
-<!--                                                        <th:block th:if="${reviewlists.accomReviewRating <= 3.9 and reviewlists.accomReviewRating >= 3.0}">-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star-o"></i>-->
-<!--                                                            <i class="la la-star-o"></i>-->
-<!--                                                        </th:block>-->
-<!--                                                        <th:block th:if="${reviewlists.accomReviewRating <= 2.9 and reviewlists.accomReviewRating >= 2.0}">-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star-o"></i>-->
-<!--                                                            <i class="la la-star-o"></i>-->
-<!--                                                            <i class="la la-star-o"></i>-->
-<!--                                                        </th:block>-->
-<!--                                                        <th:block th:if="${reviewlists.accomReviewRating <= 1.9 and reviewlists.accomReviewRating >= 1.0}">-->
-<!--                                                            <i class="la la-star"></i>-->
-<!--                                                            <i class="la la-star-o"></i>-->
-<!--                                                            <i class="la la-star-o"></i>-->
-<!--                                                            <i class="la la-star-o"></i>-->
-<!--                                                            <i class="la la-star-o"></i>-->
-<!--                                                        </th:block>-->
-<!--                                                    </span>-->
-<!--                                                        <p class="comment__date" th:text="${reviewlists.accomReviewCreate}"></p>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                                <p class="comment-content" th:text="${reviewlists.accomReviewContent}"></p>-->
-<!--                                                <div class="comment-reply d-flex align-items-center justify-content-between">-->
-<!--                                                    <a class="theme-btn" href="#" data-toggle="modal"-->
-<!--                                                       data-target="#replayPopupForm">-->
-<!--                                                        <span class="la la-mail-reply mr-1">답글</span>-->
-<!--                                                    </a>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>&lt;!&ndash; end comments &ndash;&gt;-->
-<!--                                        <br/>-->
-<!--                                        <div class="section-block"></div>-->
+
                                     </div><!-- end comments-list -->
                                     <!-- 리뷰 리스트 끝 -->
                                     <div class="single-content-item padding-top-30px"></div>
                                     <div class="btn-box load-more text-center">
                                         <button class="theme-btn theme-btn-small theme-btn-transparent" type="button" id="loadMore">Lood More Review</button>
                                     </div>
-                                    <!-- reply -->
-<!--                                    <div class="comment comment-reply-item">-->
-<!--                                        <div class="comment-avatar">-->
-<!--                                            <img class="avatar__img" alt="" src="/images/team9.jpg">-->
-<!--                                        </div>-->
-<!--                                        <div class="comment-body">-->
-<!--                                            <div class="meta-data">-->
-<!--                                                <h3 class="comment__author">Jenny Doe</h3>-->
-<!--                                                <div class="meta-data-inner d-flex">-->
-<!--                                                    <span class="ratings d-flex align-items-center mr-1">-->
-<!--                                                        <i class="la la-star"></i>-->
-<!--                                                        <i class="la la-star"></i>-->
-<!--                                                        <i class="la la-star"></i>-->
-<!--                                                        <i class="la la-star"></i>-->
-<!--                                                        <i class="la la-star"></i>-->
-<!--                                                    </span>-->
-<!--                                                    <p class="comment__date">April 5, 2019</p>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <p class="comment-content">-->
-<!--                                                Lorem ipsum dolor sit amet, dolores mandamus moderatius ea ius, sed civibus vivendum imperdiet ei, amet tritani sea id. Ut veri diceret fierent mei, qui facilisi suavitate euripidis-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                    </div>&lt;!&ndash; end reply comments &ndash;&gt;-->
                                 </div><!-- end single-content-item -->
                             </div><!-- end review-box -->
                         </div><!-- end single-content-wrap -->
@@ -547,19 +443,17 @@
             newReview +=         `<div class="comment-body">`
             newReview +=             `<div class="meta-data">`
             newReview +=                 `<h3 class="comment__author">${review[i].accomMember}</h3>`
+             newReview +=                `<span class="d-block info__title hwt-font-title">객실명: ${review[i].roomReviewName}</span>`
             newReview +=                 `<div class="meta-data-inner d-flex">`
             newReview +=                 `<span class="ratings d-flex align-items-center mr-1">`
-
-                    for (let j = 0; j < 5; j++) {
-                        if(Math.floor(review[i].accomReviewRating) > j){
-                            star += `<i class="la la-star"></i>`;
-                            continue;
-                        }
-                        star += `<i class="la la-star-o"></i>`;
-                    }
-
+                                            for (let j = 0; j < 5; j++) {
+                                                if(Math.floor(review[i].accomReviewRating) > j){
+                                                    star += `<i class="la la-star"></i>`;
+                                                    continue;
+                                                }
+                                                star += `<i class="la la-star-o"></i>`;
+                                            }
             newReview += star;
-
             newReview +=                 `</span>`
             newReview +=                     `<p class="comment__date">${review[i].accomReviewCreate}</p>`
             newReview +=                 `</div>`
@@ -583,7 +477,7 @@
           type: 'GET',
           contentType: 'application/json; charset=utf-8',
       }).done(function (result) {
-
+        console.log(result);
         listLow = review(result);
         listData = result;
 

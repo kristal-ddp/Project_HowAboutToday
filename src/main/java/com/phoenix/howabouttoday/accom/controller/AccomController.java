@@ -21,6 +21,7 @@ import com.phoenix.howabouttoday.accom.service.*;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
+import com.phoenix.howabouttoday.room.dto.RoomDetailDTO;
 import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
 import com.phoenix.howabouttoday.room.service.RoomService;
@@ -138,8 +139,6 @@ public class AccomController {
 
         /** 상세에 필요한 해당숙소키 반환 **/
         model.addAttribute("accomNum",accomNum);
-
-
 
         return "accom/hotel/hotel-single";
     }
