@@ -92,8 +92,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .passwordParameter("pwd")
                 .loginProcessingUrl("/loginProc")
+                .failureHandler(customFailureHandler) // 로그인 실패 핸들러
                 .defaultSuccessUrl("/home")
-                .permitAll()
+//                .permitAll()
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))

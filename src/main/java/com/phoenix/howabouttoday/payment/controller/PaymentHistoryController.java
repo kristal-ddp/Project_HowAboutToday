@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.security.Principal;
 import java.util.Optional;
 
+import static com.phoenix.howabouttoday.payment.MemberDTOCHECK.doCheck;
+
 @AllArgsConstructor
 @Controller
 @Slf4j
@@ -48,6 +50,8 @@ public class PaymentHistoryController {
 //            sessionDTO = new SessionDTO(1l, "a@com", "123", "토에이", "010-9876-5432", Role.MEMBER);
 //            model.addAttribute("sessionDTO", sessionDTO);
 //        }
+
+        doCheck(model);
 
         Integer curPage = page.orElse(1);
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
@@ -82,6 +86,8 @@ public class PaymentHistoryController {
          * 3. 오더번호
          * 4.
          */
+
+        doCheck(model);
 
         Long ordersNum = page;
 

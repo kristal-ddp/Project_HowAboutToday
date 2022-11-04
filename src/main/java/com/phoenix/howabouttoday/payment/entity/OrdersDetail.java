@@ -7,16 +7,23 @@
 
 package com.phoenix.howabouttoday.payment.entity;
 
+import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.payment.enumType.ReviewStatus;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
+import com.phoenix.howabouttoday.room.entity.Room;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 
 @DiscriminatorValue("orderDetail")
 @Getter
@@ -25,6 +32,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class OrdersDetail extends Reservation {
 
-
+    public void writtenReview(){
+        this.isReviewWrited = ReviewStatus.POST_WRITE;
+    }
 
 }

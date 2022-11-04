@@ -36,8 +36,6 @@ public class Accommodation {
 
     //    @OneToMany() 추후에 지역 카테고리 entity 만든 후에 매핑필요
 
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_num")
     private Region region; //숙소 지역 번호
@@ -51,11 +49,10 @@ public class Accommodation {
     @Column(length = 200)
     private String accomAddress3; // 예: 나머지 도로명주소
 
-
     @Column(precision = 1, scale = 2)
     private Double accomRating;//숙소 평점
 
-    private Integer totalReviewNum;//숙소의 평점 수
+    private Integer totalReviewNum;//숙소의 리뷰 갯수
 
     private Integer accomWishlistCount; //즐겨찾기 버튼 갯수
 
@@ -80,6 +77,10 @@ public class Accommodation {
     //양방향 매핑을 위해 추가
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<Room> room = new ArrayList<>();    //이미지 fk를 위한 매핑
+
+    //숙소의 시설
+    @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
+    private List<AccomViewFacilities> accomViewFacilities = new ArrayList<>();
 
     @Builder
     public Accommodation(Long accomNum, String accomName, String accomTel, AccomCategory accomCategory, Region region, String accomAddress1,String accomAddress2,String accomAddress3, Double accomRating, Integer accomWishlistCount, Integer totalReviewNum, Double latitude, Double longitude, Integer lowPrice, Integer reserveRange, LocalTime checkIn, LocalTime checkOut) {

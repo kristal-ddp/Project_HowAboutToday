@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/layout">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 
 
     <!-- ================================
-                START HERO-WRAPPER AREA
-            ================================= -->
+        START HERO-WRAPPER AREA
+    ================================= -->
     <section class="hero-wrapper hero-wrapper2">
         <div class="hero-box pb-0 hwt-hero-box">
             <div id="fullscreen-slide-contain">
@@ -28,14 +30,17 @@
                         </div><!-- end hero-content -->
                         <div class="search-fields-container hwt-search-container">
                             <div class="contact-form-action hwt-search">
-                                <form action="#" class="row">
+                                <form id="searchForm" th:object="${searchForm}" class="row">
                                     <div class="col-lg-3 pr-0 hwt-search-element">
                                         <div class="input-box">
-                                            <label class="label-text">지역 / 숙소 이름</label>
-                                            <div class="form-group">
-                                                <span class="la la-map-marker form-icon"></span>
-                                                <input class="form-control" type="text" placeholder="지역 또는 숙소 이름을 입력하세요.">
-                                            </div>
+                                            <label class="label-text">카테고리</label>
+                                            <div class="select-contain home-select-category">
+                                                <select class="select-contain-select" id="categoryValue">
+                                                    <th:block  th:each="category : ${accomCategorys}">
+                                                    <option th:value="${category.name}" th:text="${category.viewName}">호텔</option>
+                                                    </th:block>
+                                                </select>
+                                            </div><!-- end select-contain -->
                                         </div>
                                     </div><!-- end col-lg-3 -->
                                     <div class="col-lg-3 pr-0 hwt-search-element">
@@ -43,7 +48,7 @@
                                             <label class="label-text">체크인 - 체크아웃</label>
                                             <div class="form-group">
                                                 <span class="la la-calendar form-icon"></span>
-                                                <input class="date-picker-multiple form-control" type="text" name="daterange" readonly>
+                                                <input class="date-picker-multiple form-control" type="text" name="daterange" th:field="*{daterange}" readonly>
                                             </div>
                                         </div>
                                     </div><!-- end col-lg-3 -->
@@ -73,7 +78,7 @@
                                                                 <label>성인</label>
                                                                 <div class="qtyBtn d-flex align-items-center">
                                                                     <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                                    <input type="text" name="adult_number" value="0">
+                                                                    <input type="text" th:field="*{adult_number}">
                                                                     <div class="qtyInc"><i class="la la-plus"></i></div>
                                                                 </div>
                                                             </div>
@@ -83,7 +88,7 @@
                                                                 <label>아동</label>
                                                                 <div class="qtyBtn d-flex align-items-center">
                                                                     <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                                    <input type="text" name="child_number" value="0">
+                                                                    <input type="text" th:field="*{child_number}">
                                                                     <div class="qtyInc"><i class="la la-plus"></i></div>
                                                                 </div>
                                                             </div>
@@ -95,7 +100,7 @@
                                     </div><!-- end col-lg-3 -->
                                 </form>
                                 <div class="btn-box pt-2 hwt-search-btn">
-                                    <a href="room-search-result.html" class="theme-btn hwt-btn-gray">검색</a>
+                                    <a th:href="|javascript:void(0)|" class="theme-btn hwt-btn-gray" th:onclick="searchSubmit()">검색</a>
                                 </div>
                             </div>
                         </div>
@@ -105,14 +110,14 @@
         </div>
     </section><!-- end hero-wrapper -->
     <!-- ================================
-            END HERO-WRAPPER AREA
-        ================================= -->
+        END HERO-WRAPPER AREA
+    ================================= -->
 
     <div class="section-block"></div>
 
     <!-- ================================
-            START INFO AREA
-        ================================= -->
+        START INFO AREA
+    ================================= -->
     <section class="info-area info-bg info-area2 padding-top-40px padding-bottom-60px hwt-info">
         <div class="container">
             <div class="row hwt-row-board">
@@ -191,14 +196,14 @@
         </div><!-- end container -->
     </section><!-- end info-area -->
     <!-- ================================
-            END INFO AREA
-        ================================= -->
+        END INFO AREA
+    ================================= -->
 
     <div class="section-block hwt-section-block"></div>
 
     <!-- ================================
-            START INFO AREA 2
-        ================================= -->
+        START INFO AREA 2
+    ================================= -->
     <section class="info-area info-bg info-area2 padding-top-80px padding-bottom-45px hwt-info2">
         <div class="container">
             <div class="row hwt-row-icon">
@@ -270,14 +275,14 @@
         </div><!-- end container -->
     </section><!-- end info-area -->
     <!-- ================================
-            END INFO AREA
-        ================================= -->
+        END INFO AREA
+    ================================= -->
 
     <div class="section-block"></div>
 
     <!-- ================================
-            START HOTEL AREA 2
-        ================================= -->
+        START HOTEL AREA 2
+    ================================= -->
     <section class="hotel-area section-bg padding-top-100px padding-bottom-100px overflow-hidden">
         <div class="container">
             <div class="row">
@@ -448,12 +453,12 @@
         </div><!-- end container-fluid -->
     </section><!-- end hotel-area -->
     <!-- ================================
-            END HOTEL AREA
-        ================================= -->
+        END HOTEL AREA
+    ================================= -->
 
     <!-- ================================
-            START DESTINATION AREA
-        ================================= -->
+        START DESTINATION AREA
+    ================================= -->
     <section class="destination-area padding-top-130px padding-bottom-80px">
         <div class="container">
             <div class="row align-items-center">
@@ -519,7 +524,7 @@
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div>
-                                <h3 class="card-title hwt-card-title"><a href="tour-details.html">경주</a></h3>
+                                <h3 class="card-title hwt-card-title"><a href="tour-details.html">경상북도</a></h3>
                             </div>
                             <div>
                                 <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
@@ -535,7 +540,7 @@
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div>
-                                <h3 class="card-title hwt-card-title"><a href="tour-details.html">전주</a></h3>
+                                <h3 class="card-title hwt-card-title"><a href="tour-details.html">전라북도</a></h3>
                             </div>
                             <div>
                                 <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
@@ -551,7 +556,7 @@
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div>
-                                <h3 class="card-title hwt-card-title"><a href="tour-details.html">여수</a></h3>
+                                <h3 class="card-title hwt-card-title"><a href="tour-details.html">전라남도</a></h3>
                             </div>
                             <div>
                                 <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
@@ -564,12 +569,12 @@
         </div><!-- end container -->
     </section><!-- end destination-area -->
     <!-- ================================
-            END DESTINATION AREA
-        ================================= -->
+        END DESTINATION AREA
+    ================================= -->
 
     <!-- ================================
-            START DISCOUNT AREA
-        ================================= -->
+        START DISCOUNT AREA
+    ================================= -->
     <section class="discount-area padding-top-120px padding-bottom-120px hwt-banner-wrap">
         <div class="container">
             <div class="row">
@@ -603,164 +608,56 @@
         </div><!-- end container -->
     </section><!-- end discount-area -->
     <!-- ================================
-            END DISCOUNT AREA
-        ================================= -->
+        END DISCOUNT AREA
+    ================================= -->
 
     <div class="section-block"></div>
 
     <th:block th:replace="fragments/bottom-bar::bottom-bar"></th:block>
-
-    <!-- start back-to-top -->
-    <div id="back-to-top">
-        <i class="la la-angle-up" title="Go top"></i>
-    </div>
-    <!-- end back-to-top -->
-
-    <!-- end modal-shared -->
-    <div class="modal-popup">
-        <input type="hidden" id="memberCheck" th:value="${memberCheck}">
-        <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle">회원가입</h5>
-                            <p class="font-size-14">안녕하세요! 회원가입을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" th:action="@{/member/join}" th:object="${memberDTO}">
-                                <div class="input-box">
-                                    <label class="label-text">닉네임</label>
-                                    <div class="form-group">
-                                        <span class="la la-user form-icon"></span>
-                                        <input class="form-control" type="text" th:field="*{nickname}" placeholder="닉네임" th:class="${#fields.hasErrors('nickname')}? 'form-control fieldError' : 'form-control'">
-                                        <span th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}" style="color: red; font-size:13px"></span>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">이메일 주소</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="text" th:field="*{email}" placeholder="이메일 주소" th:class="${#fields.hasErrors('email')}? 'form-control fieldError' : 'form-control'">
-                                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red; font-size:13px"></span>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" th:field="*{pwd}" placeholder="패스워드" th:class="${#fields.hasErrors('pwd')}? 'form-control fieldError' : 'form-control'">
-                                        <span th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}" style="color: red; font-size:13px"></span>
-                                    </div>
-                                </div><!-- end input-box -->
-                                <!--                                     <div class="input-box">-->
-                                <!--                                         <label class="label-text">패스워드 확인</label>-->
-                                <!--                                              <div class="form-group">-->
-                                <!--                                                  <span class="la la-lock form-icon"></span>-->
-                                <!--                                                  <input class="form-control" type="password" name="text" placeholder="패스워드 재입력">-->
-                                <!--                                             </div>-->
-                                <!--                                     </div>&lt;!&ndash; end input-box &ndash;&gt;-->
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" class="theme-btn w-100">회원가입</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 회원가입</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
+            <!-- start back-to-top -->
+            <div id="back-to-top">
+                <i class="la la-angle-up" title="Go top"></i>
             </div>
-        </div>
-    </div><!-- end modal-popup -->
+            <!-- end back-to-top -->
 
-    <!-- end modal-shared -->
-    <div class="modal-popup">
-        <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title title" id="exampleModalLongTitle2">로그인</h5>
-                            <p class="font-size-14">안녕하세요! 로그인을 환영합니다.</p>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-close"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="contact-form-action">
-                            <form method="post" action="/loginProc">
-                                <div class="input-box">
-                                    <label class="label-text">이메일</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope form-icon"></span>
-                                        <input class="form-control" type="email" name="email" id="email" placeholder="이메일 주소">
-                                    </div>
-                                </div><!-- end input-box -->
-                                <div class="input-box">
-                                    <label class="label-text">패스워드</label>
-                                    <div class="form-group mb-2">
-                                        <span class="la la-lock form-icon"></span>
-                                        <input class="form-control" type="password" name="pwd" id="pwd" placeholder="패스워드">
-                                    </div>
+            <!-- end modal-shared -->
+            <!-- 회원가입 모달 -->
+            <th:block th:replace="fragments/signUp::signUp"></th:block>
 
 
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <!--                                    <div class="custom-checkbox mb-0">-->
-                                        <!--                                        <input type="checkbox" id="rememberchb">-->
-                                        <!--                                        <label for="rememberchb">Remember me</label>-->
-                                        <!--                                    </div>-->
-                                        <p class="forgot-password">
-                                            <a href="recover">비밀번호를 잊으셨나요?</a>
-                                        </p>
-                                    </div>
-                                </div><!-- end input-box -->
+            <!-- end modal-shared -->
+            <!-- 로그인 모달 -->
+            <th:block th:replace="fragments/signIn::signIn"></th:block>
 
-                                <th:if test="${not empty error}">
-                                    <p id="valid" class="alert alert-danger" th:value="${exception}"></p>
-                                </th:if>
 
-                                <div class="btn-box pt-3 pb-4">
-                                    <button type="submit" id="login" class="theme-btn w-100">로그인</button>
-                                </div>
-                                <div class="action-box text-center">
-                                    <p class="font-size-14">SNS를 통한 로그인</p>
-                                    <ul class="social-profile py-3">
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
-                                        <li><a href="#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
-                                        <li><a href="#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
-                                        <li><a href="#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div><!-- end contact-form-action -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- end modal-popup -->
     <script>
-        $(document).ready(function () {
+        $(document).ready(function(){
 
             let memberCheck = $("#memberCheck").val();
+            let loginCheck = $("#loginCheck").val();
 
-            if (memberCheck == "true") {
+
+            if(memberCheck == "true"){
                 $("#memberJoin").click();
             }
 
+            if(loginCheck == "true"){
+                $("#loginBtn").click();
+            }
+
+
+
         })
+
+
+        function searchSubmit(){
+            var searchForm = document.getElementById("searchForm")
+            let category_name = $("#categoryValue").val();
+            searchForm.action = '/accom/' + category_name
+            searchForm.submit();
+
+
+        }
     </script>
 </th:block>
 

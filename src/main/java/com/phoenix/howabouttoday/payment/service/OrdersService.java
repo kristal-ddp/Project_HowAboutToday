@@ -11,6 +11,7 @@ import com.phoenix.howabouttoday.payment.dto.OrdersDirectDTO;
 import com.phoenix.howabouttoday.payment.entity.Coupon;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
+import com.phoenix.howabouttoday.payment.enumType.ReviewStatus;
 import com.phoenix.howabouttoday.payment.repository.AvailableDateRepository;
 import com.phoenix.howabouttoday.payment.repository.CouponRepository;
 import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
@@ -72,16 +73,18 @@ public class OrdersService {
         Room storeRoom = roomRepository.findById(ordersDirectDTO.getRoomNum()).orElseThrow(() -> new IllegalArgumentException(ordersDirectDTO.getRoomNum() + "번 Room 정보가 없습니다."));
 
         String[] splitDate = ordersDirectDTO.getDaterange().split("-");
-        String startDate = splitDate[0].strip();
-        String endDate = splitDate[1].strip();
+        LocalDate startDate = StringToParseDate(splitDate[0].strip());
+        LocalDate endDate = StringToParseDate(splitDate[1].strip());
+
+        Period between = Period.between(startDate, endDate);
 
         Cart saveCart = cartRepository.save(Cart.builder()
                 .member(member)
                 .room(storeRoom)
                 .reserveStatus(ReserveStatus.READY)
-                .reserveUseStartDate(StringToParseDate(startDate))
-                .reserveUseEndDate(StringToParseDate(endDate))
-                .reservePrice(storeRoom.getPrice())
+                .reserveUseStartDate(startDate)
+                .reserveUseEndDate(endDate)
+                .reservePrice(storeRoom.getPrice() * between.getDays())
                 .reserveAdultCount(ordersDirectDTO.getAdult_qty())
                 .reserveChildCount(ordersDirectDTO.getChild_qty())
                 .build());
@@ -170,11 +173,12 @@ public class OrdersService {
 
     /** 결제페이지에서 보여줄 총 금액을 구함. **/
     public Integer getTotalPrice(List<Long> cartNum){
-        List<Cart> cartList = cartRepository.findAllById(cartNum);
-        return cartList
-                .stream()
-                .mapToInt(Cart::getReservePrice)
-                .sum();
+        List<OrdersDetailVO> ordersDetailVOList = cartRepository.findAllById(cartNum).stream()
+                .map(OrdersDetailVO::new)
+                .collect(Collectors.toList());
+
+        return ordersDetailVOList.stream()
+                .mapToInt(OrdersDetailVO::totalPrice).sum();
     }
 
     /** 결제 완료시 cart에 있는 정보를 orderDetail로 변환해서 저장 **/
@@ -197,6 +201,7 @@ public class OrdersService {
                 .reservePrice(cart.getReservePrice())
                 .reserveAdultCount(cart.getReserveAdultCount())
                 .reserveChildCount(cart.getReserveChildCount())
+                .isReviewWrited(ReviewStatus.PRE_WRITE)
                 .build();
 
         for (int i = 0; i < period.getMonths() * 30 + period.getDays(); i++) {

@@ -34,9 +34,11 @@ public class CartDto {
         /** 장바구니에서 보여줄 것 **/
         private String roomName;
         private String roomFileName;
+        private int roomPrice;
 
         private LocalDate reserveUseStartDate;
         private LocalDate reserveUseEndDate;
+
 
         private int reservePrice;
         private int reserveAdultCount;
@@ -47,11 +49,12 @@ public class CartDto {
             this.cartNum = cart.getReserveNum();
             this.memberNum = cart.getMember().getMemberNum();
             this.roomNum = cart.getRoom().getRoomNum();
+            this.roomPrice = cart.getRoom().getPrice();
             this.roomName = cart.getRoom().getRoomName();
             this.roomFileName = cart.getRoom().getRoomImageList().get(0).getRoomOriginFileName();//대표가되는 첫번째 메인이지하나만 전달
             this.reserveUseStartDate = cart.getReserveUseStartDate();
             this.reserveUseEndDate = cart.getReserveUseEndDate();
-            this.reservePrice = cart.getRoom().getPrice();
+            this.reservePrice = cart.getReservePrice();
             this.reserveAdultCount = cart.getReserveAdultCount();
             this.reserveChildCount = cart.getReserveChildCount();
 

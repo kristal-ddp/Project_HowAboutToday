@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="layout/layout">
+
+<th:block layout:fragment="content">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ================================
+        START BREADCRUMB AREA
+    ================================= -->
+    <section class="breadcrumb-area bread-bg-7">
+        <div class="breadcrumb-wrap">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-content text-center">
+                            <div class="section-heading">
+                                <h1 style="text-shadow:1px 1px 1px #000;" class="sec__title text-white">인기 여행지</h1>
+                                <input type="hidden" id="currentRegion" th:value="${regionNum}">
+                            </div>
+                        </div><!-- end breadcrumb-content -->
+                    </div><!-- end col-lg-6 -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end breadcrumb-wrap -->
+    </section><!-- end breadcrumb-area -->
+    <!-- ================================
+        END BREADCRUMB AREA
+    ================================= -->
+
+    <!-- ================================
+        START CARD AREA
+    ================================= -->
+    <section class="card-area section--padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="filter-wrap margin-bottom-30px">
+                        <div class="filter-top d-flex align-items-center justify-content-between pb-4">
+                            <div>
+                                <h3 class="title font-size-40" th:text="${viewName.region.value}"></h3>
+                            </div>
+                        </div><!-- end filter-top -->
+                        <!--필터 창-->
+                        <div class="filter-bar d-flex align-items-center justify-content-between">
+                            <div class="filter-bar-filter d-flex flex-wrap align-items-center">
+                                <div class="filter-option">
+                                    <h3 class="title font-size-18">다른여행지 보기:</h3>
+                                </div>
+
+                            </div><!-- end filter-bar-filter -->
+                            <div class="select-contain">
+                                <select class="select-contain-select" id="region">
+                                    <th:block th:each="parent : ${parents}">
+                                    <option th:value="${parent.regionNum}" th:text="${parent.region.value}">서울특별시</option>
+                                    </th:block>
+                                </select>
+                            </div><!-- end select-contain -->
+                        </div><!-- end filter-bar -->
+                    </div><!-- end filter-wrap -->
+                </div><!-- end col-lg-12 -->
+            </div><!-- end row -->
+            <!--검색 및 필터 -->
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="sidebar mt-0">
+                        <div class="sidebar-widget">
+                            <h3 class="title">더 자세히 알고싶다면</h3>
+                            <div class="sidebar-category">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">카테고리를 선택하세요&nbsp;</a>
+                                            <ul class="dropdown-menu">
+                                                <th:block th:each="category : ${accomCategorys}">
+                                                    <li><a class="dropdown-item"th:href="@{/accom/{category_name}(category_name=${category.name})}" th:text="${category.viewName}">호텔</a></li>
+                                                </th:block>
+                                            </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 리스트 목록 시작 -->
+                <input type="hidden" id="cateName">
+                <div class="col-lg-8" id="ht" >
+
+                </div><!-- end col-lg-8 -->
+                <!-- 여기서 끝남ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+            </div><!-- end row -->
+<!--            <a th:href="|#anchor${size-5}|" id="accomAnchor"></a>-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="btn-box mt-3 text-center">
+
+                            <button type="button" class="theme-btn" id="loadMore"><i class="la la-refresh mr-1"></i>Load More</button>
+
+                    </div><!-- end btn-box -->
+                </div><!-- end col-lg-12 -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </section><!-- end card-area -->
+    <!-- ================================
+        END CARD AREA
+    ================================= -->
+
+    <div class="section-block"></div>
+
+
+
+    <!-- ================================
+        START CTA AREA
+    ================================= -->
+    <section class="cta-area cta-bg-2 bg-fixed padding-top-60px padding-bottom-60px breadcrumb-board">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 hwt-col-left">
+                    <div class="section-heading">
+                        <h2 class="sec__title font-size-30 text-white">Contact Us</h2>
+                        <p class="sec__desc text-white pt-1 hwt-font-content">오늘어때에 대해 궁금한 점이 있으신가요?</p>
+                    </div><!-- end section-heading -->
+                </div><!-- end col-lg-7 -->
+                <div class="col-lg-5 hwt-col-right">
+                    <div class="btn-box btn--box text-right">
+                        <a href="contact" class="theme-btn border-0 hwt-btn-white">고객센터</a>
+                    </div><!-- end btn-box -->
+                </div><!-- end col-lg-5 -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </section><!-- end cta-area -->
+    <!-- ================================
+        END CTA AREA
+    ================================= -->
+
+    <!-- ================================
+           START FOOTER AREA
+    ================================= -->
+    <!-- ================================
+           START FOOTER AREA
+    ================================= -->
+
+    <!-- start back-to-top -->
+    <div id="back-to-top">
+        <i class="la la-angle-up" title="Go top"></i>
+    </div>
+    <!-- end back-to-top -->
+
+    <!-- 회원가입 모달 -->
+    <th:block th:replace="fragments/signUp::signUp"></th:block>
+
+
+    <!-- end modal-shared -->
+    <!-- 로그인 모달 -->
+    <th:block th:replace="fragments/signIn::signIn"></th:block>
+
+
+    <!-- Template JS Files -->
+    <!--<script src="js/jquery-3.4.1.min.js"></script>-->
+    <!--<script src="js/jquery-ui.js"></script>-->
+    <!--<script src="js/popper.min.js"></script>-->
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <!--<script src="js/bootstrap-select.min.js"></script>-->
+    <!--<script src="js/moment.min.js"></script>-->
+    <!--<script src="js/daterangepicker.js"></script>-->
+    <!--<script src="js/owl.carousel.min.js"></script>-->
+    <!--<script src="js/jquery.fancybox.min.js"></script>-->
+    <!--<script src="js/jquery.countTo.min.js"></script>-->
+    <!--<script src="js/animated-headline.js"></script>-->
+    <!--<script src="js/jquery.ripples-min.js"></script>-->
+    <!--<script src="js/quantity-input.js"></script>-->
+    <!--<script src="js/main.js"></script>-->
+    <!--</body>-->
+    <!--</html>-->
+    <script>
+        let sortValue = $("#sort").val() + "/";
+        let category_name = $("#cateName").val();
+        let listLow = "";
+        let listData = "";
+        let keyword = "";
+        let priceRange = '1만원 - 50만원';
+        let regionNum = null;
+        let accomRating = "";
+        let region = null;
+        $(document).ready(function (){
+
+            load();
+            regionNum = $("#currentRegion").val();
+            $("#region").val(regionNum);
+
+        });
+
+
+
+
+        const low = function (result){
+
+            let accom = result.content;
+
+            let newlow = "";
+            for (i = 0; i < accom.length; i++) {
+
+                newlow += `<div class="card-item card-item-list">`
+                newlow += `<div class="card-img" id="anchor${i.count}">`
+                newlow += `<a class="d-block" href="/hotel-single?accomNum=${accom[i].accomNum}">`
+                newlow += `<img src="/data/images/${accom[i].accommodationImage.accomOriginFilename}" alt="hotel-img">`
+                newlow += `</a>`
+                newlow += `<a href="javascript:void(0)" onclick="saveWish(${accom[i].accomNum})">`
+                newlow += `<div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">`
+                newlow += `<i class="la la-heart-o"></i>`
+                newlow += `</div>`
+                newlow += `</a>`
+                newlow += `</div>`
+                newlow += `<div class="card-body">`
+                newlow += `<h3 class="card-title" ><a href="/hotel-single?accomNum=${accom[i].accomNum}">${accom[i].accomName}</a></h3>`
+                newlow += `<p class="card-meta">${accom[i].accomAddress}</p>`
+                newlow += `<div class="card-rating">`
+                newlow += `<span class="badge text-white">${accom[i].accomRating}</span>`
+                newlow += `<span class="review__text">평균</span>&nbsp;`
+                newlow += `<span class="rating__text">${accom[i].totalReviewNum}개의&nbsp;리뷰</span>`
+                newlow += `</div>`
+                newlow += `<div class="card-price d-flex align-items-center justify-content-between">`
+                newlow += `<p>`
+                newlow += `<span class="price__from">최소 가격 :</span>`
+                newlow += `<span class="price__num">${accom[i].lowPrice}원~</span>`
+                newlow += `</p>`
+                newlow += `<a href="/hotel-single?accomNum=${accom[i].accomNum}" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>`
+                newlow += `</div>`
+                newlow += `</div>`
+                newlow += `</div>`
+            }
+            return newlow;
+        }
+
+        //위시리스트 함수
+        function saveWish(accomNum){
+
+            $.ajax({
+                url: '/rest/wish/' + accomNum,
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+            }).done(function(result){
+
+                if(result){
+                    alert("위시리스트에서 삭제하였습니다.");
+
+                } else {
+                    alert("위시리스트에 저장하였습니다.");
+                }
+
+            }).fail(function(error){
+                alert("로그인 후 이용하세요.")
+            });
+        }
+
+
+
+        //페이지가 로드될때 리스트 가져오는 함수
+      const load = function () {
+
+
+          let regionNum = $("#currentRegion").val();
+          $.ajax({
+              url: '/rest/accom/ppl/' + regionNum,
+              type: 'GET',
+              contentType: 'application/json; charset=utf-8',
+          }).done(function (result) {
+
+            listLow = low(result);
+            listData = result;
+
+            document.getElementById("ht").innerHTML = listLow;
+
+          }).fail(function (error) {
+              alert(JSON.stringify(error));
+          });
+
+
+
+            //더보기 함수
+          $("#loadMore").click(function (){
+
+              let regionNum = $("#currentRegion").val();
+              $.ajax({
+                  url: '/rest/accom/ppl/' + regionNum + '?size=' + (listData.size+5),
+                  type: 'GET',
+                  data: listData,
+                  contentType: 'application/json; charset=utf-8',
+              }).done(function (result) {
+
+                  listLow = low(result);
+                  listData = result;
+
+                  document.getElementById("ht").innerHTML = listLow;
+
+              }).fail(function (error) {
+                  alert(JSON.stringify(error));
+              });
+
+          });
+
+          //유저가 다른여행지보기를 변경했을때 실행되는 함수
+          $("#region").on("change",function(){
+              let region = $("#region").val();
+
+              window.location.href = '/accom/ppl/' + region;
+          });
+
+
+
+      }
+    </script>
+</th:block>
+
+</html>

@@ -30,7 +30,7 @@ public class MemberApiController {
 
         /* 변경된 세션 등록 */
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(memberDTO.getNickname(), memberDTO.getPwd()));
+                new UsernamePasswordAuthenticationToken(memberDTO.getEmail(), memberDTO.getPwd()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 

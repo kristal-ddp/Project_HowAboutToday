@@ -77,4 +77,11 @@ public class OrdersDetailVO {
         this.checkIn = ordersDetail.getRoom().getAccommodation().getCheckIn().toString();
         this.checkOut = ordersDetail.getRoom().getAccommodation().getCheckOut().toString();
     }
+
+
+    //즉시 결제시 사용하는 날짜 * 금액을 반환하는 메서드
+    public Integer totalPrice(){
+        return Integer.parseInt(getPrice());
+    }
+
 }
