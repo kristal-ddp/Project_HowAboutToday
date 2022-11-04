@@ -7148,53 +7148,6 @@ body {
   .step-bar-list .step-bar.step-bar-active::before, .step-bar-list .step-bar.step-bar-active::after {
     background-color: #40CC6F; }
 
-   .step-bar-list .step-bar1 {
-         position: relative;
-         z-index: 1; }
-         .step-bar-list .step-bar1::before, .step-bar-list .step-bar1::after {
-           display: block;
-           position: absolute;
-           background-color: #F5F7FC;
-           height: 4px;
-           content: '';
-           width: 50%;
-           left: 0;
-           top: 25px;
-           z-index: -1; }
-         .step-bar-list .step-bar1::after {
-           left: auto;
-           right: 0; }
-         .step-bar-list .step-bar1 .icon-element {
-           text-indent: 0;
-           background-color: #fff;
-           color: #0d233e;
-           -webkit-box-shadow: 0 0 40px rgba(82, 85, 90, 0.1);
-           -moz-box-shadow: 0 0 40px rgba(82, 85, 90, 0.1);
-           box-shadow: 0 0 40px rgba(82, 85, 90, 0.1);
-           border: 2px solid rgba(128, 137, 150, 0.2); }
-         .step-bar-list .step-bar1.step-bar-active .icon-element {
-           text-indent: -9999px;
-           position: relative;
-           background-color: #cc4040;
-           border-color: #cc4040; }
-           .step-bar-list .step-bar1.step-bar-active .icon-element::before {
-             position: absolute;
-             content: "\f00c";
-             font-family: "Line Awesome Free";
-             top: 0;
-             left: 50%;
-             -webkit-transform: translateX(-50%);
-             -moz-transform: translateX(-50%);
-             -ms-transform: translateX(-50%);
-             -o-transform: translateX(-50%);
-             transform: translateX(-50%);
-             color: #fff;
-             font-size: 26px;
-             text-indent: 0;
-             font-weight: 900; }
-         .step-bar-list .step-bar1.step-bar-active::before, .step-bar-list .step-bar1.step-bar-active::after {
-           background-color: #cc4040; }
-
 /*===== payment-received-list =======*/
 .payment-received-list .icon-element {
   width: 30px;

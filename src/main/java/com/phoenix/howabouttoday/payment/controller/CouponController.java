@@ -22,7 +22,7 @@ public class CouponController {
     private final CouponService couponService;
 
     @GetMapping("user-dashboard-coupon")
-    public String getUserDashboardProfile(@LoginUser SessionDTO sessionDTO, Model model) {
+    public String getUserDashboardProfile(@LoginUser SessionDTO sessionDTO, Model model, @RequestParam(value="roomNum",required=false) Long memberNum) {
 
         if (sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -30,11 +30,13 @@ public class CouponController {
 
         doCheck(model);
 
+        /** 회원 Object 반환하는 로직 **/
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
 
-        // List<CouponDTO> cList = couponService.getCoupon(memberNum);
-
-        Long memberNum = sessionDTO.getMemberNum();
-        List<CouponDTO> cList = couponService.findAll_Coupon(memberNum);
+        List<CouponDTO> cList = couponService.getCoupon(memberNum);
         model.addAttribute("clist",cList);
 
         return "member/userdashboard/user-dashboard-coupon";
