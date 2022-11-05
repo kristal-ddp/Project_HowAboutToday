@@ -35,12 +35,19 @@ public class CommentServiceImpl implements CommentService{
         return commentFormDTO.getCommentNum();
     }
 
-    // 이벤트 게시판 댓글 삭제
+    // 이벤트 게시판 댓글 수정
     @Override
-    public void delete(Long commentNum) {
+    public void editComment(Long commentNum, CommentFormDTO commentFormDTO) {
 
         Comment comment = commentRepository.findById(commentNum).orElse(null);
+        comment.editComment(comment.getCommentNum(), commentFormDTO);
+    }
 
+    // 이벤트 게시판 댓글 삭제
+    @Override
+    public void deleteComment(Long commentNum) {
+
+        Comment comment = commentRepository.findById(commentNum).orElse(null);
         commentRepository.delete(comment);
     }
 }

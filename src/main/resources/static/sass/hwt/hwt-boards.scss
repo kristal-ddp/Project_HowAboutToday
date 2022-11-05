@@ -255,3 +255,22 @@
 .btn-comment-right {
     padding-left: 20px;
 }
+
+.form-comments-edit {
+    line-height: inherit;
+    padding: 10px 20px 10px 40px;
+    font-size: 13px;
+    color: #0d233e;
+    border-color: rgba(128, 137, 150, 0.2);
+    box-shadow: none;
+    transition: all 0.3s;
+    background-color: #fff;
+}
+
+.comment-icon {
+    position: absolute;
+    color: #5d646d;
+    font-size: 18px;
+    margin-left: 15px;
+    margin-top: 15px;
+}

@@ -44,7 +44,6 @@ public class Comment {
 
     // Event 댓글 수정
     public void editComment(Long commentNum, CommentFormDTO commentFormDTO) {
-        this.commentNum = commentNum;
         this.commentContent = commentFormDTO.getCommentContent();
     }
 

@@ -44,7 +44,7 @@ public class Event {
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<EventImage> eventImageList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
     @OrderBy("comment_num asc")
     private List<Comment> comments = new ArrayList<>();
 
