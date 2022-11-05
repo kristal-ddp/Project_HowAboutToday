@@ -120,7 +120,7 @@
                                     <!-- Comment Edit -->
                                     <form th:action="@{|/event/${eventDetailDTO.eventNum}/comments/${commentListDTO.commentNum}|}" method="post"
                                           th:object="${commentFormDTO}" class="collapse comment-edit-form" th:id="|form-edit${i.count}|">
-                                        <input type="hidden" th:value="${eventDetailDTO.eventNum}" class="edit-eventNum">
+                                        <input type="hidden" th:value="${eventDetailDTO.eventNum}" id="edit-eventNum">
                                         <input type="hidden" th:value="${commentListDTO.commentNum}" id="edit-commentNum">
                                         <div class="input-box comment-input-box">
                                             <div class="edit-label-btn">
