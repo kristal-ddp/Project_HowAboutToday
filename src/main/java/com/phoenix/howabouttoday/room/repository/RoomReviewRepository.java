@@ -1,6 +1,9 @@
 package com.phoenix.howabouttoday.room.repository;
 
 import com.phoenix.howabouttoday.room.entity.Review;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -30,5 +33,11 @@ public interface RoomReviewRepository extends JpaRepository<Review,Long> {
     List<Review> findAllByRoom_RoomNum(Long roomNum);
 
     List<Review> findAllByMember_MemberNum(Long memberId);
+
+    /** 숙소 상세페이지 리뷰 리스트 **/
+    @EntityGraph(attributePaths = {"member","room"})
+    Slice<Review> findAllByRoom_RoomNum(Pageable pageable, Long roomNum);
+
+
 
 }

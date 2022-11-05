@@ -111,30 +111,6 @@
                                 <!-- 후기 리스트 -->
                                 <div class="review-box">
                                     <div class="single-content-item padding-top-40px">
-                                        <h3 class="title font-size-20" th:text="|${roomDetailDTO.roomReviewNum}개의 리뷰|"></h3>
-                                        <div class="comments-list padding-top-7px">
-                                            <div class="comment" th:each="reviewList : ${rlist}">
-                                                <div class="comment-body">
-                                                    <div class="meta-data">
-                                                        <h3 class="comment__author" th:text="${reviewList.nickname}">투숙객 이름</h3>
-                                                        <div class="meta-data-inner d-flex">
-                                                    <span class="ratings d-flex align-items-center mr-1" th:text="|${reviewList.reviewRating}점 /|">
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                        <i class="la la-star"></i>
-                                                    </span>
-                                                            <p class="comment__date" th:text="${reviewList.reviewCreatedDate}">2022.11.13</p>
-                                                        </div>
-                                                    </div>
-                                                    <p class="comment-content" th:text="${reviewList.reviewContent}">
-                                                        후기 내용
-                                                    </p>
-                                                </div>
-                                            </div><!-- end comments -->
-                                        </div><!-- end comments-list -->
-
                                         <!-- 후기 작성 -->
                                         <div th:if="${ordersDetailDTOList.size() != 0}" class="comment-forum padding-top-40px">
                                             <div class="form-box">
@@ -201,9 +177,14 @@
                                                 </div><!-- end form-content -->
                                             </div><!-- end form-box -->
                                         </div><!-- end comment-forum -->
-
-
-                                       
+                                        <h3 class="title font-size-20" th:text="|${roomDetailDTO.roomReviewNum}개의 리뷰|"></h3>
+                                        <input type="hidden" id="rRoomNum" th:value="${roomNum}">
+                                        <div class="comments-list padding-top-20px" id="rl">
+                                        </div><!-- end comments-list -->
+                                            <div class="single-content-item padding-top-30px"></div>
+                                        <div class="btn-box load-more text-center">
+                                            <button class="theme-btn theme-btn-small theme-btn-transparent" type="button" id="loadMore">Lood More Review</button>
+                                        </div>
                                     </div><!-- end single-content-item -->
                                 </div><!-- end review-box -->
                             </div><!-- end single-content-wrap -->
@@ -376,6 +357,97 @@
     </div><!-- end modal-popup -->
     
     <script>
+
+        $("document").ready(function(){
+            load();
+        });
+
+        let rList = $("#rRoomNum").val();
+        listLow= "";
+        listData= "";
+
+        const review = function (result){
+
+                let review = result.content;
+
+
+                let newReview = "";
+                for (i = 0; i < review.length; i++) {
+                    let star = "";
+                    newReview +=                `<div class="comment">`
+                    newReview +=                `<div class="comment-avatar">`
+                    newReview +=                    `<img class="avatar__img" alt="" src="/data/images/${review[i].reviewFileName}">`
+                    newReview +=                `</div>`
+                    newReview +=                    `<div class="comment-body">`
+                    newReview +=                        `<div class="meta-data">`
+                    newReview +=                            `<h3 class="comment__author">${review[i].nickname}</h3>`
+                    newReview +=                            `<div class="meta-data-inner d-flex">`
+                    newReview +=                                `<span class="ratings d-flex align-items-center mr-1">`
+                                                                    for (let j = 0; j < 5; j++) {
+                                                                        if(Math.floor(review[i].reviewRating) > j){
+                                                                            star += `<i class="la la-star"></i>`;
+                                                                            continue;
+                                                                        }
+                                                                    star += `<i class="la la-star-o"></i>`;
+                                                                    }
+                    newReview += star;
+                    newReview +=                                `</span>`
+                    newReview +=                                `<p class="comment__date">${review[i].reviewCreatedDate}"</p>`
+                    newReview +=                            `</div>`
+                    newReview +=                        `</div>`
+                    newReview +=                        `<p class="comment-content">${review[i].reviewContent}</p>`
+                    newReview +=                    `</div>`
+                    newReview +=                `</div>`
+                    newReview +=                `<div class="section-block"></div>`
+
+                }
+                return newReview;
+        }
+
+       //페이지가 로드될때 리스트 가져오는 함수
+       const load = function(){
+
+          let reviewList = $("#rRoomNum").val();
+          $.ajax({
+              url: '/roomReview/' + reviewList,
+              type: 'GET',
+              contentType: 'application/json; charset=utf-8',
+          }).done(function (result) {
+
+             listLow = review(result);
+             listData = result;
+
+            document.getElementById("rl").innerHTML = listLow;
+
+          }).fail(function (error) {
+              alert(JSON.stringify(error));
+          });
+
+
+       }
+
+       //더보기 함수
+          $("#loadMore").click(function (){
+
+
+              let reviewList = $("#rRoomNum").val();
+              $.ajax({
+                  url: '/roomReview/' + reviewList + '?size=' + (listData.size+1),
+                  type: 'GET',
+                  data: listData,
+                  contentType: 'application/json; charset=utf-8',
+              }).done(function (result) {
+
+                    console.log(result);
+                  listLow = review(result);
+                  listData = result;
+
+                  document.getElementById("rl").innerHTML = listLow;
+
+              }).fail(function (error) {
+                  alert(JSON.stringify(error));
+              });
+          })
 
         function roomSubmit(){
             const roomNum = document.querySelector("#roomNum").value;

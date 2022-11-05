@@ -21,6 +21,7 @@ import com.phoenix.howabouttoday.accom.service.*;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
+import com.phoenix.howabouttoday.room.dto.RoomDetailDTO;
 import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
 import com.phoenix.howabouttoday.room.service.RoomService;
@@ -85,8 +86,6 @@ public class AccomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-
-
         /** 화면에 표시할 한글카테고리 이름 조회**/
         String viewName = accomCategoryService.getAccomViewName(category_name);
 
@@ -114,9 +113,10 @@ public class AccomController {
 
     //숙소 상세
     @GetMapping("hotel-single")
-    public String getHotelSingle(@LoginUser SessionDTO sessionDTO, Model model,
+    public String getHotelSingle(@LoginUser SessionDTO sessionDTO,
                                  @RequestParam Long accomNum,
-                                 SearchForm searchForm){
+                                 SearchForm searchForm,
+                                 Model model){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -137,41 +137,18 @@ public class AccomController {
         /** searchForm 반환 **/
         model.addAttribute("searchForm",searchForm);
 
-//        List<AccomReviewDTO.ResponseDto> reviewlist = accomReviewService.findAllByAccom(accomNum);
-//        for (AccomReviewDTO.ResponseDto responseDto : reviewlist) {
-//            System.out.println("responseDto.getAccomReviewRating() = " + responseDto.getAccomReviewRating());
-//        }
-//        model.addAttribute("reviewlist",reviewlist);//리뷰 리스트 출력
+        /** 상세에 필요한 해당숙소키 반환 **/
+        model.addAttribute("accomNum",accomNum);
+
         return "accom/hotel/hotel-single";
     }
     @PostMapping("hotel-single")
     public String postHotelSingle(){return "accom/hotel/hotel-single";}
 
-    @GetMapping("singleSearch")
-    public String getHotelSingleSearch(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum) {
-
-        if(sessionDTO != null) {
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
-
-
-        System.out.println("accomNum!!!!!!!!!!!!! = " + accomNum);
-        Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보
-        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
-
-        model.addAttribute("roomlist",roomList); //객실 리스트
-        model.addAttribute("accommodation",accomList);
-
-        return "accom/hotel/hotel-single";
-    }
-
-
     /** 인기여행지 컨트롤러 **/
     @GetMapping("/accom/ppl/{regionNum}")
     public String pplTourist(@PathVariable(required = false) Long regionNum,
                              Model model){
-
-
 
 
         /** 로그인및 회원가입을 위한 Object 반환하는 로직 **/
