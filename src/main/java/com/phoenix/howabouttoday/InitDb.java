@@ -298,6 +298,7 @@ public class InitDb {
             /**위시리스트 등록**/
 //            wishlistRepository.save(WishList.builder()
 //                    .member(member)
+
 //                    .accommodation(accommodation)
 //                    .build());
 
@@ -642,9 +643,7 @@ public class InitDb {
 
             /**위시리스트 등록**/
 //            wishlistRepository.save(WishList.builder()
-//                    .member(member)
-//                    .accommodation(accommodation)
-//                    .build());
+
 
             for (int i=0; i < 100; i++) {
 

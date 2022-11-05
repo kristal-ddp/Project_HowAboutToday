@@ -10,7 +10,6 @@ import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
-import org.springframework.data.domain.SliceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,7 +18,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -58,11 +56,11 @@ public class EventServiceImpl implements EventService {
     // 게시글 작성
     @Override
     @Transactional
-    public void addEvent(EventDTO eventDTO, List<MultipartFile> eventImageList) throws Exception {
+    public void addEvent(EventFormDTO eventFormDTO, List<MultipartFile> eventImageList) throws Exception {
 
-        Member member = memberRepository.findById(eventDTO.getMemberNum()).orElse(null);
+        Member member = memberRepository.findById(eventFormDTO.getMemberNum()).orElse(null);
 
-        Event event = new Event(member, eventDTO);
+        Event event = new Event(member, eventFormDTO);
         Long eventNum = eventRepository.save(event).getEventNum();
 
         List<EventImage> eventImages = addImage(eventNum, eventImageList);
@@ -76,12 +74,12 @@ public class EventServiceImpl implements EventService {
     // 게시글 수정
     @Override
     @Transactional
-    public void editEvent(Long eventNum, EventDTO eventDTO) throws Exception {
+    public void editEvent(Long eventNum, EventFormDTO eventFormDTO) throws Exception {
 
         Event event = eventRepository.findById(eventNum).orElse(null);
-        event.editEvent(event.getEventNum(), eventDTO);
+        event.editEvent(event.getEventNum(), eventFormDTO);
 
-        List<EventImage> eventImages = addImage(eventNum, eventDTO.getEventImageList());
+        List<EventImage> eventImages = addImage(eventNum, eventFormDTO.getEventImageList());
 
         for(EventImage eventImage : eventImages) {
             eventImageRepository.save(eventImage);
