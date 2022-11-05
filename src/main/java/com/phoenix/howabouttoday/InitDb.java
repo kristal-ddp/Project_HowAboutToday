@@ -1,287 +1,305 @@
+package com.phoenix.howabouttoday;
 
 
-//package com.phoenix.howabouttoday;
-//
-//
-//import com.phoenix.howabouttoday.accom.entity.*;
-//import com.phoenix.howabouttoday.accom.repository.*;
-//import com.phoenix.howabouttoday.board.entity.Reply;
-//import com.phoenix.howabouttoday.member.wishlist.domain.WishList;
-//import com.phoenix.howabouttoday.payment.entity.Coupon;
-//import com.phoenix.howabouttoday.payment.entity.CouponRules;
-//import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
-//import com.phoenix.howabouttoday.payment.enumType.DiscountType;
-//import com.phoenix.howabouttoday.payment.enumType.ReviewStatus;
-//import com.phoenix.howabouttoday.payment.repository.CouponRepository;
-//import com.phoenix.howabouttoday.payment.repository.CouponRulesRepository;
-//import com.phoenix.howabouttoday.room.entity.Review;
-//import com.phoenix.howabouttoday.board.repository.*;
-//import com.phoenix.howabouttoday.global.OrdersStatus;
-//import com.phoenix.howabouttoday.global.RegionType;
-//import com.phoenix.howabouttoday.member.entity.Role;
-//import com.phoenix.howabouttoday.member.entity.Member;
-//import com.phoenix.howabouttoday.member.repository.MemberRepository;
-//import com.phoenix.howabouttoday.member.wishlist.domain.WishlistRepository;
-//import com.phoenix.howabouttoday.payment.entity.Orders;
-//import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
-//
-//import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
-//
-//
-//import com.phoenix.howabouttoday.reserve.domain.CartRepository;
-//import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
-//import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
-//import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
-//import com.phoenix.howabouttoday.room.entity.AvailableDate;
-//import com.phoenix.howabouttoday.room.entity.*;
-//import com.phoenix.howabouttoday.room.repository.*;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Component;
-//
-//import javax.annotation.PostConstruct;
-//import javax.persistence.EntityManager;
-//import javax.transaction.Transactional;
-//import java.time.LocalDate;
-//import java.time.LocalDateTime;
-//import java.time.LocalTime;
-//import java.time.temporal.ChronoUnit;
-//import java.util.Optional;
-//
-//@Component
-//@RequiredArgsConstructor
-//public class InitDb {
-//
-//    private final InitService initService;
-//
-//    @PostConstruct
-//    public void init(){
-//        initService.dbInit1();
-//        initService.dbInit2();
-//    }
-//
-//    @Component
-//    @Transactional
-//    @RequiredArgsConstructor
-//    static class InitService {
-//
-//        private final EntityManager em;
-//
-//        private final MemberRepository memberRepository;
-//        private final RegionRepository regionRepository;
-//        private final CartRepository cartRepository;
-//        private final AccommodationRepository accommodationRepository;
-//        private final FacilitiesRepository facilitiesRepository;
-//        private final AccomViewFaciltiesRepository accomViewFaciltiesRepositoryory;
-//        private final BoardCategoryRepository boardCategoryRepository;
-//        private final BoardRepository boardRepository;
-//        private final EventImageRepository eventImageRepository;
-//        private final EventRepository eventRepository;
-//        private final RoomImageRepository roomImageRepository;
-//        private final RoomRepository roomRepository;
-//        private final ReviewRepository reviewRepository;
-//        private final ReplyRepository replyRepository;
-//        private final AmenitiesRepository amenitiesRepository;
-//        private final ServiceRepository serviceRepository;
-//        private final WishlistRepository wishlistRepository;
-//        private final OrdersRepository ordersRepository;
-////        private final OrdersDetailRepository ordersDetailRepository;
-//        private final AccommodationImageRepository accommodationImageRepository;
-//        private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
-//        private final CouponRepository couponRepository;
-//        private final CouponRulesRepository couponRulesRepository;
-//        private final AccomViewFaciltiesRepository accomViewFaciltiesRepository;
-//
-//        private final AccomCategoryRepository accomCategoryRepository;
-//        public void dbInit1() {
-//
-//            /**회원등록**/
-//            Member member = memberRepository.save(Member.builder()
-//                    .email("aaa@naver.com")
-//                    .pwd("123")
-//                    .memberTel("010-1234-5678")
-//                    .nickname("이동우")
+import com.phoenix.howabouttoday.accom.entity.*;
+import com.phoenix.howabouttoday.accom.repository.*;
+import com.phoenix.howabouttoday.board.entity.Reply;
+import com.phoenix.howabouttoday.payment.entity.Coupon;
+import com.phoenix.howabouttoday.payment.entity.CouponRules;
+import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
+import com.phoenix.howabouttoday.payment.enumType.DiscountType;
+import com.phoenix.howabouttoday.payment.enumType.ReviewStatus;
+import com.phoenix.howabouttoday.payment.repository.CouponRepository;
+import com.phoenix.howabouttoday.payment.repository.CouponRulesRepository;
+import com.phoenix.howabouttoday.room.entity.Review;
+import com.phoenix.howabouttoday.board.repository.*;
+import com.phoenix.howabouttoday.global.OrdersStatus;
+import com.phoenix.howabouttoday.global.RegionType;
+import com.phoenix.howabouttoday.member.entity.Role;
+import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.member.repository.MemberRepository;
+import com.phoenix.howabouttoday.member.wishlist.domain.WishlistRepository;
+import com.phoenix.howabouttoday.payment.entity.Orders;
+import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 
-//                    .memberOriginalFileName("image0.jpg")
+import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 
 
+import com.phoenix.howabouttoday.reserve.domain.CartRepository;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
+import com.phoenix.howabouttoday.room.entity.AvailableDate;
+import com.phoenix.howabouttoday.room.entity.*;
+import com.phoenix.howabouttoday.room.repository.*;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
-//                    .memberSaveFileName("save")
-//                    .joinDate(LocalDate.of(2022,10,27))
-//                    .role(Role.MEMBER)
-//                    .build());
-//
-//
-//            /** 쿠폰 생성 **/
-//            CouponRules couponRules1 = couponRulesRepository.save(CouponRules.builder()
-//                    .couponName("가입축하 쿠폰")
-//                    .period(60)
-//                    .discountType(DiscountType.FLAT)
-//                    .discountValue(10000)
-//                    .discountMinPrice(75000)
-//                    .discountMaxPrice(10000)
-//                    .couponContent("가입축하 쿠폰입니다.")
-//                    .build());
-//
-//            CouponRules couponRules2 = couponRulesRepository.save(CouponRules.builder()
-//                    .couponName("겨울여행 쿠폰")
-//                    .period(30)
-//                    .discountType(DiscountType.FIXED)
-//                    .discountValue(10)
-//                    .discountMinPrice(75100)
-//                    .discountMaxPrice(100000)
-//                    .couponContent("안전한 겨울여행을 위한 쿠폰입니다.")
-//                    .build());
-//
-//            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
-//
-//            Coupon coupon1 = couponRepository.save(Coupon.builder()
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 
+@Component
+@RequiredArgsConstructor
+public class InitDb {
+
+    private final InitService initService;
+
+    @PostConstruct
+    public void init(){
+        initService.dbInit1();
+        initService.dbInit2();
+    }
+
+    @Component
+    @Transactional
+    @RequiredArgsConstructor
+    static class InitService {
+
+        private final EntityManager em;
+
+        private final MemberRepository memberRepository;
+        private final RegionRepository regionRepository;
+        private final CartRepository cartRepository;
+        private final AccommodationRepository accommodationRepository;
+        private final FacilitiesRepository facilitiesRepository;
+        private final AccomViewFaciltiesRepository accomViewFaciltiesRepositoryory;
+        private final BoardCategoryRepository boardCategoryRepository;
+        private final BoardRepository boardRepository;
+        private final EventImageRepository eventImageRepository;
+        private final EventRepository eventRepository;
+        private final RoomImageRepository roomImageRepository;
+        private final RoomRepository roomRepository;
+        private final ReviewRepository reviewRepository;
+        private final ReplyRepository replyRepository;
+        private final AmenitiesRepository amenitiesRepository;
+        private final ServiceRepository serviceRepository;
+        private final WishlistRepository wishlistRepository;
+        private final OrdersRepository ordersRepository;
+//        private final OrdersDetailRepository ordersDetailRepository;
+        private final AccommodationImageRepository accommodationImageRepository;
+        private final RoomViewAmenitiesRepository roomViewAmenitiesRepository;
+        private final CouponRepository couponRepository;
+        private final CouponRulesRepository couponRulesRepository;
+        private final AccomViewFaciltiesRepository accomViewFaciltiesRepository;
+
+        private final AccomCategoryRepository accomCategoryRepository;
+        public void dbInit1() {
+
+            /**회원등록**/
+            Member member = memberRepository.save(Member.builder()
+                    .email("aaa@naver.com")
+                    .pwd("123")
+                    .memberTel("010-1234-5678")
+                    .nickname("이동우")
+                    .memberOriginalFileName("Originl")
+                    .memberSaveFileName("save")
+                    .joinDate(LocalDate.of(2022,10,27))
+                    .role(Role.MEMBER)
+                    .build());
+
+
+            /** 쿠폰 생성 **/
+            CouponRules couponRules1 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("가입축하 쿠폰")
+                    .period(60)
+                    .discountType(DiscountType.FLAT)
+                    .discountValue(10000)
+                    .discountMinPrice(75000)
+                    .discountMaxPrice(10000)
+                    .couponContent("가입축하 쿠폰입니다.")
+                    .build());
+
+            CouponRules couponRules2 = couponRulesRepository.save(CouponRules.builder()
+                    .couponName("겨울여행 쿠폰")
+                    .period(30)
+                    .discountType(DiscountType.FIXED)
+                    .discountValue(10)
+                    .discountMinPrice(75100)
+                    .discountMaxPrice(100000)
+                    .couponContent("안전한 겨울여행을 위한 쿠폰입니다.")
+                    .build());
+
+            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
+
+            Coupon coupon1 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules1)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .startDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
+                    .build());
+
+            Coupon coupon2 = couponRepository.save(Coupon.builder()
+                    .couponRules(couponRules2)
+                    .member(member)
+                    .status(CouponStatus.AVAILABLE)
+                    .startDate(LocalDate.now())
+                    .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
+                    .build());
+
+            member.getCoupons().add(coupon1);
+            member.getCoupons().add(coupon2);
+
+
+            /**지역 등록 **/
+
+            Region save = regionRepository.save(Region.builder()
+                    .region(RegionType.BUSAN)
+                    .build());
+
+            Region region = regionRepository.save(Region.builder()
+                    .region(RegionType.SAHA)
+                    .parentRegion(save)
+
+                    .build());
+
+            regionRepository.save(Region.builder()
+                    .region(RegionType.DONGNAE)
+                    .parentRegion(save)
+
+                    .build());
+
+            /** 카테고리 등록 **/
+
+            AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
+                    .name("hotel")
+                    .viewName("호텔")
+                    .build());
+
+
+
+
+            /**숙소 등록**/
+            Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
+                    .accomName("보령(대천) 너울펜션")
+                    .accomTel("050350577805")
+                    .accomCategory(hotel)
+                    .region(region)
+                    .accomRating(4.4)
+                    .accomWishlistCount(110)
+                    .totalReviewNum(1103)
+                    .latitude(36.3196)
+                    .longitude(126.5092)
+                    .checkIn(LocalTime.of(15, 0))
+                    .checkOut(LocalTime.of(11, 0))
+                    .lowPrice(45000)
+                    .reserveRange(60)
+                    .build());
+
+
+
+            /** 숙소시설 등록 **/
+            Facilities saveFac = facilitiesRepository.save(Facilities.builder()
+                    .facility(Facility.TELEVISION)
+                    .faciltiesOriginalFileName("image5.jpg")
+                    .faciltiesSaveFilename("image7.jpg")
+                    .build());
+
+            accomViewFaciltiesRepository.save(AccomViewFacilities.builder()
+                    .accommodation(accommodation)
+                    .facilities(saveFac)
+                    .build());
+
+
+            /** 숙소이미지 등록 **/
+            accommodationImageRepository.save( AccomImage.builder()
+                    .accomOriginFilename("image0.jpg")
+                    .accomSaveFilename("image0.jpg")
+                    .accommodation(accommodation)
+                    .build());
+
+
+            /** 객실등록 **/
+            Room room = roomRepository.save(Room.builder()
+                    .accommodation(accommodation)
+                    .roomName("너울펜션 스위트룸")
+                    .defaultGuest(2)
+                    .maxGuest(10)
+                    .price(35000)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
+                    .roomInfo("임시 객실정보 입니다")
+                    .build());
+
+            Room room1 = roomRepository.save(Room.builder()
+                    .accommodation(accommodation)
+                    .roomName("너울펜션 디럭스룸")
+                    .defaultGuest(2)
+                    .maxGuest(10)
+                    .price(4000000)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
+                    .roomInfo("임시 객실정보 입니다")
+                    .build());
+
+            Room room4 = roomRepository.save(Room.builder()
+                    .accommodation(accommodation)
+                    .roomName("너울펜션 기가막힌 룸")
+                    .defaultGuest(2)
+                    .maxGuest(10)
+                    .roomRating(0D)
+                    .roomReviewNum(0)
+                    .price(80000)
+                    .roomInfo("임시 객실정보 입니다")
+                    .build());
+
+
+            /** 객실 이미지 등록 **/
+            roomImageRepository.save(RoomImage.builder()
+                    .roomOriginFileName("image0.jpg")
+                    .roomSaveFileName("image0.jpg")
+                    .room(room)
+                    .build());
+
+            roomImageRepository.save(RoomImage.builder()
+                    .roomOriginFileName("image0.jpg")
+                    .roomSaveFileName("image0.jpg")
+                    .room(room1)
+                    .build());
+
+            roomImageRepository.save(RoomImage.builder()
+                    .roomOriginFileName("image0.jpg")
+                    .roomSaveFileName("image0.jpg")
+                    .room(room4)
+                    .build());
+
+
+            /** 객실 오락시설 등록 **/
+            Amenities amenities = amenitiesRepository.save(Amenities.builder()
+                    .amenitiesName(AmenitiesNames.FREE_WI_FI)
+                    .build());
+
+            Amenities amenities1 = amenitiesRepository.save(Amenities.builder()
+                    .amenitiesName(AmenitiesNames.BATHTUB)
+                    .build());
+
+            /** 객실 서비스 등록 **/
+            serviceRepository.save(Service.builder()
+                    .serviceName(ServiceNames.MASSAGE)
+                    .build());
+
+            /** 객실과 오락시설 등록 **/
+            roomViewAmenitiesRepository.save(RoomViewAmenities.builder()
+                    .room(room)
+                    .amenities(amenities)
+                    .build());
+
+            roomViewAmenitiesRepository.save(RoomViewAmenities.builder()
+                    .room(room)
+                    .amenities(amenities1)
+                    .build());
+
+            /**위시리스트 등록**/
+//            wishlistRepository.save(WishList.builder()
 //                    .member(member)
-//                    .status(CouponStatus.AVAILABLE)
-//                    .startDate(LocalDate.now())
-//                    .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
-//                    .build());
-//
-//            Coupon coupon2 = couponRepository.save(Coupon.builder()
-//                    .couponRules(couponRules2)
-//                    .member(member)
-//                    .status(CouponStatus.AVAILABLE)
-//                    .startDate(LocalDate.now())
-
-//                    .member(member)
-//                    .status(CouponStatus.AVAILABLE)
-//                    .startDate(LocalDate.now())
-//                    .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
-//                    .build());
-//
-//            Coupon coupon2 = couponRepository.save(Coupon.builder()
-//                    .couponRules(couponRules2)
-//                    .member(member)
-//                    .status(CouponStatus.AVAILABLE)
-//                    .startDate(LocalDate.now())
-
-//                    .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
-//                    .build());
-//
-//            member.getCoupons().add(coupon1);
-//            member.getCoupons().add(coupon2);
-//
-//
-//            /**지역 등록 **/
-//
-//            Region save = regionRepository.save(Region.builder()
-//                    .region(RegionType.BUSAN)
-//                    .build());
-//
-//            Region region = regionRepository.save(Region.builder()
-//                    .region(RegionType.SAHA)
-//                    .parentRegion(save)
-//
-//                    .build());
-//
-//            regionRepository.save(Region.builder()
-//                    .region(RegionType.DONGNAE)
-//                    .parentRegion(save)
-//
-//                    .build());
-//
-//            /** 카테고리 등록 **/
-//
-//            AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
-//                    .name("hotel")
-//                    .viewName("호텔")
-//                    .build());
-//
-//
-//
-//
-//            /**숙소 등록**/
-//            Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
-//                    .accomName("보령(대천) 너울펜션")
-//                    .accomTel("050350577805")
-//                    .accomCategory(hotel)
-//                    .region(region)
-//                    .accomRating(4.4)
-//                    .accomWishlistCount(110)
-//                    .totalReviewNum(1103)
-//                    .latitude(36.3196)
-//                    .longitude(126.5092)
-//                    .checkIn(LocalTime.of(15, 0))
-//                    .checkOut(LocalTime.of(11, 0))
-//                    .lowPrice(45000)
-//                    .reserveRange(60)
-//                    .build());
-//
-//
-//
-//            /** 숙소시설 등록 **/
-//            Facilities saveFac = facilitiesRepository.save(Facilities.builder()
-//                    .facility(Facility.TELEVISION)
-//                    .faciltiesOriginalFileName("image5.jpg")
-//                    .faciltiesSaveFilename("image7.jpg")
-//                    .build());
-//
-//            accomViewFaciltiesRepository.save(AccomViewFacilities.builder()
 
 //                    .accommodation(accommodation)
-//                    .facilities(saveFac)
-//                    .build());
-//
-//
-//            /** 숙소이미지 등록 **/
-//            accommodationImageRepository.save( AccomImage.builder()
-//                    .accomOriginFilename("image0.jpg")
-//                    .accomSaveFilename("image0.jpg")
-//                    .accommodation(accommodation)
-//                    .build());
-//
-//
-//            /** 객실등록 **/
-//            Room room = roomRepository.save(Room.builder()
-//                    .accommodation(accommodation)
-//                    .roomName("너울펜션 스위트룸")
-//                    .defaultGuest(2)
-//                    .maxGuest(10)
-//                    .price(35000)
-//                    .roomRating(0D)
-//                    .roomReviewNum(0)
-//                    .roomInfo("임시 객실정보 입니다")
-//                    .build());
-//
-//            Room room1 = roomRepository.save(Room.builder()
-//                    .accommodation(accommodation)
-//                    .roomName("너울펜션 디럭스룸")
-//                    .defaultGuest(2)
-//                    .maxGuest(10)
-//                    .price(4000000)
-//                    .roomRating(0D)
-//                    .roomReviewNum(0)
-//                    .roomInfo("임시 객실정보 입니다")
-//                    .build());
-//
-//            Room room4 = roomRepository.save(Room.builder()
-//                    .accommodation(accommodation)
-//                    .roomName("너울펜션 기가막힌 룸")
-//                    .defaultGuest(2)
-//                    .maxGuest(10)
-//                    .roomRating(0D)
-//                    .roomReviewNum(0)
-//                    .price(80000)
-//                    .roomInfo("임시 객실정보 입니다")
-//                    .build());
-//
-//
-//            /** 객실 이미지 등록 **/
-//            roomImageRepository.save(RoomImage.builder()
-//                    .roomOriginFileName("image0.jpg")
-//                    .roomSaveFileName("image0.jpg")
-//                    .room(room)
-//                    .build());
-//
-//            roomImageRepository.save(RoomImage.builder()
-//                    .roomOriginFileName("image0.jpg")
-//                    .roomSaveFileName("image0.jpg")
-//                    .room(room1)
 //                    .build());
 //
 //            roomImageRepository.save(RoomImage.builder()
@@ -316,7 +334,7 @@
 //                    .amenities(amenities1)
 //                    .build());
 //
-//            /**위시리스트 등록**/
+//            
 //            wishlistRepository.save(WishList.builder()
 //                    .member(member)
 //                    .accommodation(accommodation)
