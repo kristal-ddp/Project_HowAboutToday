@@ -19,6 +19,7 @@ public class RoomReviewDTO {
     private String reviewContent; // 리뷰 내용
 
     private Double reviewRating;
+    private String reviewFileName;//멤버 사진
 
     public RoomReviewDTO(Review review) {
 
@@ -28,7 +29,7 @@ public class RoomReviewDTO {
         this.reviewCreatedDate = review.getReviewCreateDate();
         this.reviewContent = review.getReviewContent();
         this.reviewRating = review.getReviewRating();
-
+        this.reviewFileName = review.getMember().getMemberOriginalFileName();
     }
 
 }
