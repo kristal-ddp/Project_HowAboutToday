@@ -12,13 +12,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
-
-
 @RestController
 @RequestMapping("/rest/accom")
 @RequiredArgsConstructor
 public class AccomRestController {
-
 
 
     private final AccomodationService accomodationService;

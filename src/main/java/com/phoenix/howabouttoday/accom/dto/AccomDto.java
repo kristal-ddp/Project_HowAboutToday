@@ -50,7 +50,8 @@ public class AccomDto {
             this.accomAddress = accommodation.getAccomAddress1() +  " "
                     +  accommodation.getAccomAddress2() + " " + accommodation.getAccomAddress3();
             this.accomRating = accommodation.getAccomRating();
-            this.totalReviewNum = accommodation.getTotalReviewNum();
+            this.totalReviewNum = accommodation.getRoom().stream()
+                    .mapToInt((room) -> room.getRoomReviewNum()).sum();
             this.accomNum = accommodation.getAccomNum();
             this.accommodationImage = new AccomImageDto.ResponseDto(accommodation.getAccommodationImage().get(0));
             this.lowPrice = DecimalFormat.getInstance().format(accommodation.getLowPrice());
