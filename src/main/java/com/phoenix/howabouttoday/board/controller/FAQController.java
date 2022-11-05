@@ -1,7 +1,6 @@
 package com.phoenix.howabouttoday.board.controller;
 
 import com.phoenix.howabouttoday.board.dto.*;
-import com.phoenix.howabouttoday.board.entity.BoardCategory;
 import com.phoenix.howabouttoday.board.service.FAQService;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
@@ -22,7 +21,7 @@ public class FAQController {
     private final FAQService faqService;
 
     // FAQ 리스트 페이지
-    @GetMapping("faq")
+    @GetMapping("/faq")
     public String faqList(@LoginUser SessionDTO sessionDTO, Model model,
                           @RequestParam(defaultValue = "") String keyword, MemberDTO memberDTO){
 
@@ -39,22 +38,22 @@ public class FAQController {
     }
 
     // FAQ 작성 페이지
-    @GetMapping("admin/faq-add")
-    public String faqAdd(@ModelAttribute("FAQDTO") FAQDTO FAQDTO,
+    @GetMapping("/admin/faq-add")
+    public String faqAdd(@ModelAttribute("FAQFormDTO") FAQFormDTO FAQFormDTO,
                          @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        FAQDTO.setMemberNum(sessionDTO.getMemberNum());
+        FAQFormDTO.setMemberNum(sessionDTO.getMemberNum());
 
         return "board/faq-add";
     }
 
     // FAQ 작성
-    @PostMapping("admin/faq-add")
-    public String faqAdd(@Valid FAQDTO FAQDTO, BindingResult bindingResult,
+    @PostMapping("/admin/faq-add")
+    public String faqAdd(@Valid FAQFormDTO FAQFormDTO, BindingResult bindingResult,
                          @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
@@ -67,13 +66,13 @@ public class FAQController {
             return "board/faq-add";
         }
 
-        faqService.addFAQ(FAQDTO);
+        faqService.addFAQ(FAQFormDTO);
 
         return "redirect:/faq";
     }
 
     // FAQ 수정 페이지
-    @GetMapping("admin/faq-edit/{boardNum}")
+    @GetMapping("/admin/faq-edit/{boardNum}")
     public String faqEdit(@PathVariable Long boardNum, Model model,
                           @LoginUser SessionDTO sessionDTO, MemberDTO memberDTO){
 
@@ -89,8 +88,8 @@ public class FAQController {
     }
 
     // FAQ 수정
-    @PostMapping("admin/faq-edit/{boardNum}")
-    public String faqEdit(@PathVariable Long boardNum, @Valid FAQDTO FAQDTO, BindingResult bindingResult,
+    @PostMapping("/admin/faq-edit/{boardNum}")
+    public String faqEdit(@PathVariable Long boardNum, @Valid FAQFormDTO FAQFormDTO, BindingResult bindingResult,
                           @LoginUser SessionDTO sessionDTO, Model model){
 
         if(bindingResult.hasErrors()) {
@@ -106,13 +105,13 @@ public class FAQController {
             return "board/faq-edit";
         }
 
-        faqService.editFAQ(boardNum, FAQDTO);
+        faqService.editFAQ(boardNum, FAQFormDTO);
 
         return "redirect:/faq";
     }
 
     // FAQ 삭제
-    @GetMapping("admin/faq-delete/{boardNum}")
+    @GetMapping("/admin/faq-delete/{boardNum}")
     public String faqDelete(@PathVariable Long boardNum) {
 
         BoardDetailDTO boardDetailDTO = faqService.findOne_FAQ(boardNum);

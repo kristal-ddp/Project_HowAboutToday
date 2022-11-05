@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class EventDTO {
+public class EventFormDTO {
 
     // 게시판 작성, 수정 : Event
 

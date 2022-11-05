@@ -17,7 +17,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,7 +25,7 @@ public class AboutUsController {
     private final BoardService boardService;
 
     // 오늘어때 정보 리스트 페이지
-    @GetMapping("aboutUs")
+    @GetMapping("/aboutUs")
     public String aboutUsList(@LoginUser SessionDTO sessionDTO, Model model,
                               @PageableDefault Pageable pageable, MemberDTO memberDTO){
 
@@ -44,7 +43,7 @@ public class AboutUsController {
 
     // 오늘어때 정보 리스트 더보기
     @ResponseBody
-    @GetMapping("aboutUs-more")
+    @GetMapping("/aboutUs-more")
     public Slice<BoardListDTO> aboutUsList(@PageableDefault Pageable pageable){
 
         pageable = PageRequest.of(pageable.getPageNumber(), 3, Sort.Direction.DESC, "board_num");
@@ -54,7 +53,7 @@ public class AboutUsController {
     }
 
     // 오늘어때 정보 디테일 페이지
-    @GetMapping("aboutUs/{boardNum}")
+    @GetMapping("/aboutUs/{boardNum}")
     public String aboutUsDetails(@LoginUser SessionDTO sessionDTO, Model model,
                                  @PathVariable Long boardNum, MemberDTO memberDTO){
 
@@ -69,22 +68,22 @@ public class AboutUsController {
     }
 
     // 오늘어때 정보 작성 페이지
-    @GetMapping("admin/aboutUs-add")
-    public String aboutUsAdd(@ModelAttribute("boardDTO") BoardDTO boardDTO,
+    @GetMapping("/admin/aboutUs-add")
+    public String aboutUsAdd(@ModelAttribute("boardFormDTO") BoardFormDTO boardFormDTO,
                              @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
-        boardDTO.setMemberNum(sessionDTO.getMemberNum());
+        boardFormDTO.setMemberNum(sessionDTO.getMemberNum());
 
         return "board/aboutUs-add";
     }
 
     // 오늘어때 정보 작성
-    @PostMapping("admin/aboutUs-add")
-    public String aboutUsAdd(@Valid BoardDTO boardDTO, BindingResult bindingResult,
+    @PostMapping("/admin/aboutUs-add")
+    public String aboutUsAdd(@Valid BoardFormDTO boardFormDTO, BindingResult bindingResult,
                              @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
@@ -92,14 +91,14 @@ public class AboutUsController {
             return "board/aboutUs-add";
         }
 
-        boardDTO.setBoardCategoryNum(2L);
-        boardService.addBoard(boardDTO);
+        boardFormDTO.setBoardCategoryNum(2L);
+        boardService.addBoard(boardFormDTO);
 
         return "redirect:/aboutUs";
     }
 
     // 오늘어때 정보 수정 페이지
-    @GetMapping("admin/aboutUs-edit/{boardNum}")
+    @GetMapping("/admin/aboutUs-edit/{boardNum}")
     public String aboutUsEdit(@PathVariable Long boardNum, Model model,
                               @LoginUser SessionDTO sessionDTO, MemberDTO memberDTO){
 
@@ -115,8 +114,8 @@ public class AboutUsController {
     }
 
     // 오늘어때 정보 수정
-    @PostMapping("admin/aboutUs-edit/{boardNum}")
-    public String aboutUsEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO, BindingResult bindingResult,
+    @PostMapping("/admin/aboutUs-edit/{boardNum}")
+    public String aboutUsEdit(@PathVariable Long boardNum, @Valid BoardFormDTO boardFormDTO, BindingResult bindingResult,
                               @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
@@ -132,13 +131,13 @@ public class AboutUsController {
             return "board/notice-edit";
         }
 
-        boardService.editBoard(boardNum, boardDTO);
+        boardService.editBoard(boardNum, boardFormDTO);
 
         return "redirect:/aboutUs/{boardNum}";
     }
 
     // 오늘어때 정보 삭제
-    @GetMapping("admin/aboutUs-delete/{boardNum}")
+    @GetMapping("/admin/aboutUs-delete/{boardNum}")
     public String aboutUsDelete(@PathVariable Long boardNum) {
 
         BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);

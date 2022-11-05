@@ -185,3 +185,101 @@
         }
     }
 }
+
+// Event
+.comment-size {
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    h3 {
+        color: #5d646d;
+        font-size: 12pt;
+    }
+}
+
+.comment-nickname {
+    font-weight: 600;
+    margin-bottom: 5pt;
+}
+
+.comment-content {
+    margin-top: 0;
+    margin-bottom: 5pt;
+}
+
+.comment-create {
+    font-size: 10pt;
+    color: #9ea5ae;
+}
+
+.btn-comments-wrap {
+    padding: 20px 10px;
+}
+
+.btn-comments {
+    position: absolute;
+    right: 83px;
+    font-size: 15px;
+}
+
+.comment-input-box {
+    padding: 20px 30px;
+
+    label {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+}
+
+.form-comments {
+    resize: none;
+    height: 70px!important;
+}
+
+.btn-comment-box {
+    position: absolute;
+    right: 55px;
+    top: 22px;
+}
+
+.btn-comment {
+    border: none;
+    background-color: unset;
+    color: #566578;
+    padding: 0;
+    line-height: 0;
+    font-size: 15px;
+}
+
+.btn-comment-right {
+    padding-left: 20px;
+}
+
+.form-comments-edit {
+    line-height: inherit;
+    padding: 10px 20px 10px 40px;
+    font-size: 13px;
+    color: #0d233e;
+    border-color: rgba(128, 137, 150, 0.2);
+    box-shadow: none;
+    transition: all 0.3s;
+    background-color: #fff;
+}
+
+.comment-icon {
+    position: absolute;
+    color: #5d646d;
+    font-size: 18px;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.edit-label-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-box {
+    padding-right: 12px;
+}

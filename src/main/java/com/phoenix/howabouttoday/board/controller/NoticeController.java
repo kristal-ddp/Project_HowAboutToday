@@ -22,7 +22,7 @@ public class NoticeController {
     private final BoardService boardService;
 
     // 공지사항 리스트 페이지
-    @GetMapping("notice")
+    @GetMapping("/notice")
     public String noticeList(@LoginUser SessionDTO sessionDTO, Model model,
                              @PageableDefault Pageable pageable, MemberDTO memberDTO){
 
@@ -40,7 +40,7 @@ public class NoticeController {
 
     // 공지사항 리스트 더보기
     @ResponseBody
-    @GetMapping("notice-more")
+    @GetMapping("/notice-more")
     public Slice<BoardListDTO> noticeList(@PageableDefault Pageable pageable){
 
         pageable = PageRequest.of(pageable.getPageNumber(), 5, Sort.Direction.DESC, "board_num");
@@ -50,7 +50,7 @@ public class NoticeController {
     }
 
     // 공지사항 디테일 페이지
-    @GetMapping("notice/{boardNum}")
+    @GetMapping("/notice/{boardNum}")
     public String noticeDetails(@PathVariable Long boardNum, Model model,
                                 @LoginUser SessionDTO sessionDTO, MemberDTO memberDTO){
 
@@ -65,23 +65,23 @@ public class NoticeController {
     }
 
     // 공지사항 작성 페이지
-    @GetMapping("admin/notice-add")
-    public String noticeAdd(@ModelAttribute("boardDTO") BoardDTO boardDTO,
+    @GetMapping("/admin/notice-add")
+    public String noticeAdd(@ModelAttribute("boardFormDTO") BoardFormDTO boardFormDTO,
                             @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(sessionDTO == null) {
             return "/loginProc";
         }
 
-        boardDTO.setMemberNum(sessionDTO.getMemberNum());
+        boardFormDTO.setMemberNum(sessionDTO.getMemberNum());
         model.addAttribute("sessionDTO", sessionDTO);
 
         return "board/notice-add";
     }
 
     // 공지사항 작성
-    @PostMapping("admin/notice-add")
-    public String noticeAdd(@Valid BoardDTO boardDTO, BindingResult bindingResult,
+    @PostMapping("/admin/notice-add")
+    public String noticeAdd(@Valid BoardFormDTO boardFormDTO, BindingResult bindingResult,
                             @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
@@ -94,14 +94,14 @@ public class NoticeController {
             return "board/notice-add";
         }
 
-        boardDTO.setBoardCategoryNum(1L);
-        boardService.addBoard(boardDTO);
+        boardFormDTO.setBoardCategoryNum(1L);
+        boardService.addBoard(boardFormDTO);
 
         return "redirect:/notice";
     }
 
     // 공지사항 수정 페이지
-    @GetMapping("admin/notice-edit/{boardNum}")
+    @GetMapping("/admin/notice-edit/{boardNum}")
     public String noticeEdit(@PathVariable Long boardNum, Model model,
                              @LoginUser SessionDTO sessionDTO, MemberDTO memberDTO){
 
@@ -117,8 +117,8 @@ public class NoticeController {
     }
 
     // 공지사항 수정
-    @PostMapping("admin/notice-edit/{boardNum}")
-    public String noticeEdit(@PathVariable Long boardNum, @Valid BoardDTO boardDTO, BindingResult bindingResult,
+    @PostMapping("/admin/notice-edit/{boardNum}")
+    public String noticeEdit(@PathVariable Long boardNum, @Valid BoardFormDTO boardFormDTO, BindingResult bindingResult,
                              @LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(bindingResult.hasErrors()) {
@@ -134,13 +134,13 @@ public class NoticeController {
             return "board/notice-edit";
         }
 
-        boardService.editBoard(boardNum, boardDTO);
+        boardService.editBoard(boardNum, boardFormDTO);
 
         return "redirect:/notice/{boardNum}";
     }
 
     // 공지사항 삭제
-    @GetMapping("admin/notice-delete/{boardNum}")
+    @GetMapping("/admin/notice-delete/{boardNum}")
     public String noticeDelete(@PathVariable Long boardNum) {
 
         BoardDetailDTO boardDetailDTO = boardService.findOne_Board(boardNum);
