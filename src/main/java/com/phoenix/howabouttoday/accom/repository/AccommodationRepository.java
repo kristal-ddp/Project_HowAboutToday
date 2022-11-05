@@ -44,6 +44,9 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
     findByRegion_ParentRegion_RegionNum(Long regionNum,Pageable pageable);
 
 
+    List<Accommodation> findAllByAccomNum(Long accomNum);
+
+
 }
 
 
