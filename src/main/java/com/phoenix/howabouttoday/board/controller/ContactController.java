@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class ContactController {
 
     // 고객센터
-    @GetMapping("contact")
+    @GetMapping("/contact")
     public String contact(@LoginUser SessionDTO sessionDTO, Model model, MemberDTO memberDTO){
 
         if(sessionDTO != null) {

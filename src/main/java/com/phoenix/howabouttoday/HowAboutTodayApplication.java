@@ -12,5 +12,4 @@ public class HowAboutTodayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HowAboutTodayApplication.class, args);
 	}
-
 }

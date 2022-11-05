@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Setter
 public class EventDetailDTO {
 
-    // 게시판 리스트 페이지 : Notice, FAQ, About Us
+    // 게시판 디테일 페이지 : Event
 
     private Long memberNum; // 회원번호
     private Long eventNum; // 이벤트 게시글 번호
@@ -23,7 +23,9 @@ public class EventDetailDTO {
     private LocalDate eventCreate; // 이벤트 게시일
     private String date; // 이벤트 시작일 - 종료일
     private List<EventImageDTO> eventImageList; // 이벤트 이미지
+    private List<CommentListDTO> commentList; // 이벤트 댓글
 
+    // Entity → DTO
     public EventDetailDTO(Event event) {
         this.memberNum = event.getMember().getMemberNum();
         this.eventNum = event.getEventNum();
@@ -34,6 +36,10 @@ public class EventDetailDTO {
         this.eventImageList = event.getEventImageList()
                 .stream()
                 .map(EventImageDTO::new)
+                .collect(Collectors.toList());
+        this.commentList = event.getComments()
+                .stream()
+                .map(CommentListDTO::new)
                 .collect(Collectors.toList());
     }
 
