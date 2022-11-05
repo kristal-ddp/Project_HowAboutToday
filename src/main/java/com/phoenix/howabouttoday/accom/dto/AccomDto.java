@@ -59,8 +59,6 @@ public class AccomDto {
             this.totalReviewNum = accommodation.getRoom().stream()
                     .mapToInt(room -> room.getRoomReviewNum())
                     .sum();
-
-
             this.accomNum = accommodation.getAccomNum();
             this.accommodationImage = new AccomImageDto.ResponseDto(accommodation.getAccommodationImage().get(0));
             this.lowPrice = DecimalFormat.getInstance().format(accommodation.getLowPrice());

@@ -70,7 +70,7 @@ public class OrdersController {
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
         List<OrdersDetailVO> infoList = orderService.getCartData(cartNum);
         Integer totalPrice = orderService.getTotalPrice(cartNum);   //얘를 따로 이렇게 하는 게 맞을까??
-        List<CouponDTO> couponDTOList = couponService.getCoupon(customer.getNum());
+        List<CouponDTO> couponDTOList = couponService.findAll_Coupon(customer.getNum());
 
 
         model.addAttribute("totalPrice", totalPrice);

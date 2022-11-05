@@ -1,7 +1,7 @@
 package com.phoenix.howabouttoday.board.entity;
 
-import com.phoenix.howabouttoday.board.dto.BoardDTO;
-import com.phoenix.howabouttoday.board.dto.FAQDTO;
+import com.phoenix.howabouttoday.board.dto.BoardFormDTO;
+import com.phoenix.howabouttoday.board.dto.FAQFormDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -43,35 +43,35 @@ public class Board {
     private LocalDate boardCreate; // 게시일
 
     // (Notice, About Us) 게시글 작성
-    public Board(Member member, BoardCategory boardCategory, BoardDTO boardDTO) {
+    public Board(Member member, BoardCategory boardCategory, BoardFormDTO boardFormDTO) {
         this.member = member;
         this.boardCategory = boardCategory;
-        this.boardTitle = boardDTO.getBoardTitle();
-        this.boardContent = boardDTO.getBoardContent();
+        this.boardTitle = boardFormDTO.getBoardTitle();
+        this.boardContent = boardFormDTO.getBoardContent();
         this.boardCreate = LocalDate.now();
     }
 
     // FAQ 게시글 작성
-    public Board(Member member, BoardCategory boardCategory, FAQDTO FAQDTO) {
+    public Board(Member member, BoardCategory boardCategory, FAQFormDTO FAQFormDTO) {
         this.member = member;
         this.boardCategory = boardCategory;
-        this.boardTitle = FAQDTO.getBoardTitle();
-        this.boardContent = FAQDTO.getBoardContent();
+        this.boardTitle = FAQFormDTO.getBoardTitle();
+        this.boardContent = FAQFormDTO.getBoardContent();
         this.boardCreate = LocalDate.now();
     }
 
     // (Notice, About Us) 게시글 수정
-    public void editBoard(Long boardNum, BoardDTO boardDTO) {
+    public void editBoard(Long boardNum, BoardFormDTO boardFormDTO) {
         this.boardNum = boardNum;
-        this.boardTitle = boardDTO.getBoardTitle();
-        this.boardContent = boardDTO.getBoardContent();
+        this.boardTitle = boardFormDTO.getBoardTitle();
+        this.boardContent = boardFormDTO.getBoardContent();
     }
 
     // FAQ 게시글 수정
-    public void editFAQ(Long boardNum, BoardCategory boardCategory, FAQDTO FAQDTO) {
+    public void editFAQ(Long boardNum, BoardCategory boardCategory, FAQFormDTO FAQFormDTO) {
         this.boardNum = boardNum;
         this.boardCategory = boardCategory;
-        this.boardTitle = FAQDTO.getBoardTitle();
-        this.boardContent = FAQDTO.getBoardContent();
+        this.boardTitle = FAQFormDTO.getBoardTitle();
+        this.boardContent = FAQFormDTO.getBoardContent();
     }
 }

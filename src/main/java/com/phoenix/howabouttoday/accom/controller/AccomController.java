@@ -108,7 +108,6 @@ public class AccomController {
         model.addAttribute("searchForm",searchForm);
 
         return "accom/hotel/hotel-list";
-
     }
 
     //숙소 상세
