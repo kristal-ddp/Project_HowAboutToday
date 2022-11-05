@@ -1,4 +1,5 @@
-//
+
+
 //package com.phoenix.howabouttoday;
 //
 //
@@ -99,7 +100,11 @@
 //                    .pwd("123")
 //                    .memberTel("010-1234-5678")
 //                    .nickname("이동우")
+
 //                    .memberOriginalFileName("image0.jpg")
+
+
+
 //                    .memberSaveFileName("save")
 //                    .joinDate(LocalDate.of(2022,10,27))
 //                    .role(Role.MEMBER)
@@ -130,7 +135,7 @@
 //            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
 //
 //            Coupon coupon1 = couponRepository.save(Coupon.builder()
-//                    .couponRules(couponRules1)
+
 //                    .member(member)
 //                    .status(CouponStatus.AVAILABLE)
 //                    .startDate(LocalDate.now())
@@ -142,6 +147,19 @@
 //                    .member(member)
 //                    .status(CouponStatus.AVAILABLE)
 //                    .startDate(LocalDate.now())
+
+//                    .member(member)
+//                    .status(CouponStatus.AVAILABLE)
+//                    .startDate(LocalDate.now())
+//                    .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
+//                    .build());
+//
+//            Coupon coupon2 = couponRepository.save(Coupon.builder()
+//                    .couponRules(couponRules2)
+//                    .member(member)
+//                    .status(CouponStatus.AVAILABLE)
+//                    .startDate(LocalDate.now())
+
 //                    .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
 //                    .build());
 //
@@ -204,6 +222,7 @@
 //                    .build());
 //
 //            accomViewFaciltiesRepository.save(AccomViewFacilities.builder()
+
 //                    .accommodation(accommodation)
 //                    .facilities(saveFac)
 //                    .build());
@@ -278,6 +297,44 @@
 //                    .build());
 //
 //            Amenities amenities1 = amenitiesRepository.save(Amenities.builder()
+//                    .amenitiesName(AmenitiesNames.BATHTUB)
+//                    .build());
+//
+//            /** 객실 서비스 등록 **/
+//            serviceRepository.save(Service.builder()
+//                    .serviceName(ServiceNames.MASSAGE)
+//                    .build());
+//
+//            /** 객실과 오락시설 등록 **/
+//            roomViewAmenitiesRepository.save(RoomViewAmenities.builder()
+//                    .room(room)
+//                    .amenities(amenities)
+//                    .build());
+//
+//            roomViewAmenitiesRepository.save(RoomViewAmenities.builder()
+//                    .room(room)
+//                    .amenities(amenities1)
+//                    .build());
+//
+//            /**위시리스트 등록**/
+//            wishlistRepository.save(WishList.builder()
+//                    .member(member)
+//                    .accommodation(accommodation)
+//                    .build());
+//
+//            roomImageRepository.save(RoomImage.builder()
+//                    .roomOriginFileName("image0.jpg")
+//                    .roomSaveFileName("image0.jpg")
+//                    .room(room4)
+//                    .build());
+//
+//
+//            /** 객실 오락시설 등록 **/
+//            Amenities amenities2 = amenitiesRepository.save(Amenities.builder()
+//                    .amenitiesName(AmenitiesNames.FREE_WI_FI)
+//                    .build());
+//
+//            Amenities Amenities3 = amenitiesRepository.save(Amenities.builder()
 //                    .amenitiesName(AmenitiesNames.BATHTUB)
 //                    .build());
 //

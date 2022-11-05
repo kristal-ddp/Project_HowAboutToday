@@ -13,6 +13,7 @@ import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
 @Getter
@@ -51,8 +52,14 @@ public class AccommodationDTO {
         this.accomCategory = accom.getAccomCategory();
         this.region = accom.getRegion();
         this.accomAddress = accom.getAccomAddress1() + " " + accom.getAccomAddress2() + " " + accom.getAccomAddress3();
-        this.accomRating = accom.getAccomRating();
-        this.totalReviewNum = accom.getTotalReviewNum();
+        this.accomRating = accom.getRoom().stream()
+                .mapToDouble(room -> room.getRoomRating())
+                .average().getAsDouble();
+        DecimalFormat df1 = new DecimalFormat("0.0");
+        this.accomRating = Double.valueOf(df1.format(this.accomRating));
+        this.totalReviewNum = accom.getRoom().stream()
+                .mapToInt(room -> room.getRoomReviewNum())
+                .sum();
         this.accomWishlistCount = accom.getAccomWishlistCount();
         this.checkIn = accom.getCheckIn();
         this.checkOut = accom.getCheckOut();
