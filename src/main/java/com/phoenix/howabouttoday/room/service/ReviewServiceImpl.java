@@ -58,6 +58,7 @@ public class ReviewServiceImpl implements ReviewService {
         Long memberNum = 0l;
 
         if(sessionDTO != null){
+            System.out.println("서비스멤버넘 = " + sessionDTO.getMemberNum());
             memberNum = sessionDTO.getMemberNum();
         }
 
