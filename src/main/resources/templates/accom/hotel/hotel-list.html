@@ -9,7 +9,18 @@
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
+    <th:block th:if="${viewName} == '호텔'">
     <section class="breadcrumb-area bread-bg-7">
+    </th:block>
+    <th:block th:if="${viewName} == '모텔'">
+    <section class="breadcrumb-area bread-bg-11">
+    </th:block>
+    <th:block th:if="${viewName} == '펜션/풀빌라'">
+        <section class="breadcrumb-area bread-bg-12">
+    </th:block>
+    <th:block th:if="${viewName} == '게스트하우스'">
+        <section class="breadcrumb-area bread-bg-13">
+    </th:block>
         <div class="breadcrumb-wrap">
             <div class="container">
                 <div class="row align-items-center">

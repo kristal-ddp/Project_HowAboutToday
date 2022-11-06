@@ -2836,20 +2836,20 @@ body {
   z-index: 1;
   background-size: cover;
   background-position: center; }
-  .breadcrumb-area::before {
+  /*.breadcrumb-area::before {
     position: absolute;
     content: "";
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: none; linear-gradient(80deg, #000000, #01060d);
+    linear-gradient(80deg, #000000, #01060d);
     background-position: 50% 50%;
     animation: background-move 20s linear infinite;
     background-size: 100vw auto, 100% 100%;
     opacity: 0.3;
-    z-index: -1; }
-  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    z-index: -1; }*/
+ @media only screen and (min-width: 768px) and (max-width: 991px) {
     .svg .image-box {
       display: none; } }
   @media only screen and (min-width: 480px) and (max-width: 767px) {
@@ -2857,7 +2857,7 @@ body {
       display: none; } }
   @media only screen and (min-width: 320px) and (max-width: 479px) {
     .breadcrumb-area .image-box {
-      display: none; } }
+      display: none; } }*/
 
 /*==== bread-bg ======*/
 .bread-bg {
@@ -2885,19 +2885,29 @@ body {
 
 /*==== bread-bg-7 ======*/
 .bread-bg-7 {
-  background-image: url("../data/images/image0.jpg"); }
+  background-image: url("../data/images/hotelimage.jpg"); }
 
 /*==== bread-bg-8 ======*/
 .bread-bg-8 {
-  background-image: url("../images/bread-bg7.jpg"); }
+  background-image: url("../images/bread-bg6.jpg"); }
 
 /*==== bread-bg-9 ======*/
 .bread-bg-9 {
-  background-image: url("../images/bread-bg8.jpg"); }
+  background-image: url("../images/bread-bg7.jpg"); }
 
 /*==== bread-bg-10 ======*/
 .bread-bg-10 {
-  background-image: url("../images/bread-bg9.jpg"); }
+  background-image: url("../images/bread-bg8.jpg"); }
+
+.bread-bg-11 {
+  background-image: url("../data/images/motelimage.jpg"); }
+
+.bread-bg-12 {
+  background-image: url("../data/images/poolvillaimage.jpg"); }
+
+.bread-bg-13 {
+  background-image: url("../data/images/hanokimage.jpg"); }
+
 
 /*==== bread-svg ======*/
 .bread-svg {

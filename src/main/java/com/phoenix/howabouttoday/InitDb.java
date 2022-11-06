@@ -52,8 +52,8 @@ public class InitDb {
 
     @PostConstruct
     public void init(){
-        initService.dbInit1();
-        initService.dbInit2();
+//        initService.dbInit1();
+//        initService.dbInit2();
     }
 
     @Component
@@ -105,46 +105,46 @@ public class InitDb {
 
 
             /** 쿠폰 생성 **/
-            CouponRules couponRules1 = couponRulesRepository.save(CouponRules.builder()
-                    .couponName("가입축하 쿠폰")
-                    .period(60)
-                    .discountType(DiscountType.FLAT)
-                    .discountValue(10000)
-                    .discountMinPrice(75000)
-                    .discountMaxPrice(10000)
-                    .couponContent("가입축하 쿠폰입니다.")
-                    .build());
-
-            CouponRules couponRules2 = couponRulesRepository.save(CouponRules.builder()
-                    .couponName("겨울여행 쿠폰")
-                    .period(30)
-                    .discountType(DiscountType.FIXED)
-                    .discountValue(10)
-                    .discountMinPrice(75100)
-                    .discountMaxPrice(100000)
-                    .couponContent("안전한 겨울여행을 위한 쿠폰입니다.")
-                    .build());
-
-            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
-
-            Coupon coupon1 = couponRepository.save(Coupon.builder()
-                    .couponRules(couponRules1)
-                    .member(member)
-                    .status(CouponStatus.AVAILABLE)
-                    .startDate(LocalDate.now())
-                    .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
-                    .build());
-
-            Coupon coupon2 = couponRepository.save(Coupon.builder()
-                    .couponRules(couponRules2)
-                    .member(member)
-                    .status(CouponStatus.AVAILABLE)
-                    .startDate(LocalDate.now())
-                    .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
-                    .build());
-
-            member.getCoupons().add(coupon1);
-            member.getCoupons().add(coupon2);
+//            CouponRules couponRules1 = couponRulesRepository.save(CouponRules.builder()
+//                    .couponName("가입축하 쿠폰")
+//                    .period(60)
+//                    .discountType(DiscountType.FLAT)
+//                    .discountValue(10000)
+//                    .discountMinPrice(75000)
+//                    .discountMaxPrice(10000)
+//                    .couponContent("가입축하 쿠폰입니다.")
+//                    .build());
+//
+//            CouponRules couponRules2 = couponRulesRepository.save(CouponRules.builder()
+//                    .couponName("겨울여행 쿠폰")
+//                    .period(30)
+//                    .discountType(DiscountType.FIXED)
+//                    .discountValue(10)
+//                    .discountMinPrice(75100)
+//                    .discountMaxPrice(100000)
+//                    .couponContent("안전한 겨울여행을 위한 쿠폰입니다.")
+//                    .build());
+//
+//            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
+//
+//            Coupon coupon1 = couponRepository.save(Coupon.builder()
+//                    .couponRules(couponRules1)
+//                    .member(member)
+//                    .status(CouponStatus.AVAILABLE)
+//                    .startDate(LocalDate.now())
+//                    .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
+//                    .build());
+//
+//            Coupon coupon2 = couponRepository.save(Coupon.builder()
+//                    .couponRules(couponRules2)
+//                    .member(member)
+//                    .status(CouponStatus.AVAILABLE)
+//                    .startDate(LocalDate.now())
+//                    .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
+//                    .build());
+//
+//            member.getCoupons().add(coupon1);
+//            member.getCoupons().add(coupon2);
 
 
             /**지역 등록 **/
@@ -1042,7 +1042,7 @@ public class InitDb {
 //                    reservation.getRoom().getAvailableDate().add(newDate);
 //                }
 //            }
-//        }
-//
-//    }
-//}
+        }
+
+    }
+}
