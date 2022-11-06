@@ -47,6 +47,9 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
     List<Accommodation> findAllByAccomNum(Long accomNum);
 
 
+    /** 인기숙소 리스트 반환 */
+    Slice<Accommodation>
+    findByAccomRatingGreaterThan(Double accomRating,Pageable pageable);
 }
 
 

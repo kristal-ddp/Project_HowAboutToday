@@ -15,12 +15,11 @@ public class Amenities {
     @Column
     private Long amenitiesNum;//시설번호
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="room_roomNum")
-    private Room room; //객실 번호
 
     @Enumerated(EnumType.STRING)
     private AmenitiesNames amenitiesName;//시설이름
+
+    private String amenitiesOriginalFileName;
 
     @Builder
     public Amenities(Long amenitiesNum, AmenitiesNames amenitiesName) {
