@@ -222,7 +222,6 @@
                                             </a>
                                         </li>
                                         <li class="nav-item col-lg-3 row-cols-1">
-                                            <!-- th:onclick="clickOrdersType(this.getAttribute('value'))" value라고 쓰지만 th:value로 했음 value도 되는지는 모르겠다. th를 이용해서 onclick하는방법 -->
                                             <a class="nav-link active" id="vbank-tab" data-toggle="tab" th:name="payment"  href="#vbank" data-value="vbank" role="tab" aria-controls="vbank" aria-selected="true">
                                                 <i class="la la-check icon-element"></i>
                                                 <img src="/images/vbank.png" alt="">
@@ -273,19 +272,17 @@
 
 
     <script th:inline="javascript">
-
         const payTab = document.querySelectorAll(`[name='payment']`);
         let pay_method = 'vbank';
         payTab.forEach(type => type.addEventListener('click',() => {
             pay_method = type.getAttribute("data-value");
-            document.querySelectorAll("ordersType")[0].value = pay_method;
-            console.log(pay_method);
+            document.querySelectorAll("[name='ordersType']")[0].value = pay_method;
         }))
 
         const name  = [[${infoList.get(0).getAccomName()}]];
         // const buyer_name = [[${customer.getNickname()}]];
         // const buyer_tel = [[${customer.getMemberTel()}]];
-        const merchant_uid = [[${customer.getNum()}]] + new Date().getTime().toString();
+        const merchant_uid = [[${customer.getMemberNum()}]] + new Date().getTime().toString();
         let amount = Number([[${totalPrice}]]);
         const originPrice= Number([[${totalPrice}]]);
         const buyer_email = [[${customer.getEmail()}]];
