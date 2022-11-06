@@ -83,4 +83,8 @@ public class Member {
     this.pwd = pwd;
   }
 
+  public void addCoupon(Coupon coupon){
+    this.coupons.add(coupon);
+  }
+
 }

@@ -5,8 +5,10 @@ import com.phoenix.howabouttoday.member.dto.MailDTO;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
+import com.phoenix.howabouttoday.payment.CouponFactory;
 import com.phoenix.howabouttoday.payment.entity.Coupon;
 import com.phoenix.howabouttoday.payment.entity.CouponRules;
+import com.phoenix.howabouttoday.payment.enumType.CouponNumber;
 import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
 import com.phoenix.howabouttoday.payment.enumType.DiscountType;
 import com.phoenix.howabouttoday.payment.repository.CouponRepository;
@@ -31,66 +33,21 @@ import java.util.UUID;
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;
-    private final CouponRulesRepository couponRulesRepository;
-    private final CouponRepository couponRepository;
 
     private final PasswordEncoder passwordEncoder;
 
     private final BCryptPasswordEncoder encoder;
+    private final CouponFactory couponFactory;
 
     @Transactional
     public Long join(MemberDTO DTO) {
         DTO.setPwd(encoder.encode(DTO.getPwd()));
 
-
         Member member = memberRepository.save(DTO.toEntity());
-
-
-        /** 쿠폰 생성 **/
-        CouponRules couponRules1 = couponRulesRepository.save(CouponRules.builder()
-                .couponName("가입축하 쿠폰")
-                .period(60)
-                .discountType(DiscountType.FLAT)
-                .discountValue(10000)
-                .discountMinPrice(51000)
-                .discountMaxPrice(10000)
-                .couponContent("가입축하 쿠폰입니다.")
-                .build());
-
-        CouponRules couponRules2 = couponRulesRepository.save(CouponRules.builder()
-                .couponName("겨울여행 쿠폰")
-                .period(30)
-                .discountType(DiscountType.FIXED)
-                .discountValue(10)
-                .discountMinPrice(50000)
-                .discountMaxPrice(100000)
-                .couponContent("안전한 겨울여행을 위한 쿠폰입니다.")
-                .build());
-
-        //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
-
-        Coupon coupon1 = couponRepository.save(Coupon.builder()
-                .couponRules(couponRules1)
-                .member(member)
-                .status(CouponStatus.AVAILABLE)
-                .startDate(LocalDate.now())
-                .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
-                .build());
-
-        Coupon coupon2 = couponRepository.save(Coupon.builder()
-                .couponRules(couponRules2)
-                .member(member)
-                .status(CouponStatus.AVAILABLE)
-                .startDate(LocalDate.now())
-                .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
-                .build());
-
-        member.getCoupons().add(coupon1);
-        member.getCoupons().add(coupon2);
+        couponFactory.create(CouponNumber.FIRST, member);
 
         return member.getMemberNum();
     }
-
 //    원래 join 메서드
 //    @Transactional
 //    public Long join(MemberDTO DTO) {

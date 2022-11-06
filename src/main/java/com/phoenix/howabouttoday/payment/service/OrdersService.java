@@ -83,8 +83,8 @@ public class OrdersService {
                 .reserveUseStartDate(startDate)
                 .reserveUseEndDate(endDate)
                 .reservePrice(storeRoom.getPrice() * between.getDays())
-                .reserveAdultCount(ordersDirectDTO.getAdult_qty())
-                .reserveChildCount(ordersDirectDTO.getChild_qty())
+                .reserveAdultCount(ordersDirectDTO.getAdult_number())
+                .reserveChildCount(ordersDirectDTO.getChild_number())
                 .build());
 
         OrdersDetailVO ordersDetailVO = new OrdersDetailVO(saveCart);

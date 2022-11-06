@@ -68,22 +68,9 @@ public class PaymentHistoryController {
     /* 마이페이지-예약탭-결제상세내역  */
     @GetMapping(value = {"bookingDetail/{page}"})
     public String getUserOrderDetail(@LoginUser SessionDTO sessionDTO, Model model, Principal principal, @PathVariable(name = "page") Long page){
-
-
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-//        else{
-//            sessionDTO = new SessionDTO(1l, "aaa@naver.com", "123", "이동우", "010-1234-5678", Role.MEMBER);
-//            model.addAttribute("sessionDTO", sessionDTO);
-//        }
-
-        /**
-         * 1. get방식
-         * 2. 회원정보
-         * 3. 오더번호
-         * 4.
-         */
 
         doCheck(model);
 
