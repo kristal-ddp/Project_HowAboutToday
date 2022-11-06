@@ -446,11 +446,7 @@
             let endDate = strings[1].trim();
 
             if(startDate==endDate){
-                Swal.fire({
-                        icon:'warning',
-                        title:'체크인/체크아웃 날짜가 같을 수 없습니다. ',
-                    });
-
+                swalWarning("체크인/체크아웃 날짜가 같을 수 없습니다.")
                 return;
             }
 
@@ -458,12 +454,7 @@
                 .then((response)=>response.json())
                 .then((result)=> {
                     if (result.data === true){
-                        Swal.fire({
-                                    icon:'warning',
-                                    title:'이미 장바구니에 저장되어 있습니다. ',
-
-                        });
-
+                        swalWarning("장바구니에 존재하는 객실입니다.")
                     }
                     else{
 

@@ -10,7 +10,6 @@ import java.util.Arrays;
  */
 @Getter
 public enum Facility {
-
     BOUTIQUE_BRAND("부티크 브랜드"),PARKING_OK("주차가능"),OCEAN_VIEW("바다전망"),
     BREAKFAST("조식운영(뷔페)"),NEER_BEACH("해수욕장 인근"),PAID_LAUNDRY("유료세탁"),
     LUGGAGE_STORAGE("수화물보관"),PC_ROUNGE("PC라운지"),FITNESS("피트니스"),
@@ -18,8 +17,6 @@ public enum Facility {
     ALL_TIME_DESK("24시간 데스크"),COFFEE_SHOP("커피숍"),SPA("스파/월풀/욕조"),EAT_OK("식사가능"),
     KARAOKE("노래방"),GAME("게임"),POOL("수영장"),BBQ("바베큐"),STORE("매점/편의점"),
     VILLA("독채객실"),SEASONING("기본양념"),POOL_VILLA("풀빌라");
-
-
 
 
     private String value;

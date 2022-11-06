@@ -131,4 +131,9 @@ const swalAlert = (message) => {
     })
 }
 
-
+const swalWarning = (message) => {
+    Swal.fire({
+        icon : 'warning',
+        title: message
+    })
+}
