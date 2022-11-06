@@ -103,18 +103,18 @@ $(function() {
     // Event 게시판 더보기 Content
     const eventLow = function (result){
 
-        let board = result.content;
+        let event = result.content;
         let newlow = "";
 
-        for (i = 0; i < board.length; i++) {
+        for (i = 0; i < event.length; i++) {
 
             newlow += `<div class="col-lg-4 responsive-column col-board">`
             newlow += `<div class="card-item blog-card">`
-            newlow += `<input type="hidden" id="${board[i].eventNum}">`
-            newlow += `<div class="card-footer d-flex align-items-center justify-content-between hwt-board-list" onclick="location.href='/event/${board[i].eventNum}'">`
+            newlow += `<input type="hidden" id="${event[i].eventNum}">`
+            newlow += `<div class="card-footer d-flex align-items-center justify-content-between hwt-board-list" onclick="location.href='/event/${event[i].eventNum}'">`
             newlow += `<div class="author-content d-flex hwt-board-title">`
-            newlow += `<div class="author-bio"><a class="author__title">${board[i].eventTitle}</a></div>`
-            newlow += `<div class="hwt-board-date"><a class="author__title">${board[i].eventStart} - ${board[i].eventEnd}</a></div></div>`
+            newlow += `<div class="author-bio"><a class="author__title">${event[i].eventTitle}</a></div>`
+            newlow += `<div class="hwt-board-date"><a class="author__title">${event[i].date}</a></div></div>`
             newlow += `<div class="post-share"><ul><li><a><i class="la la-share icon-element hwt-icon"></i></a></li></ul></div>`
             newlow += `</div></div></div>`
         }
