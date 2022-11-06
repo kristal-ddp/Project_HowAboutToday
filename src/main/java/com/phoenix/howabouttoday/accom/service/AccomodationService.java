@@ -146,6 +146,15 @@ public class AccomodationService {
 
     }
 
+    /** 인기숙소 조회 **/
+    public Slice<AccommodationDTO> findByPplAccoms(Pageable pageable){
+
+        // 숙소평점이 3.0보다 높은 숙소들을 조회해온다
+        Slice<Accommodation> findAccoms = accommodationRepository.findByAccomRatingGreaterThan(3.0, pageable);
+
+        return findAccoms.map(accom -> new AccommodationDTO(accom));
+    }
+
     /** 스트링타입을 LocalDate타입으로 파싱해주는 메서드 **/
     public LocalDate StringToParseDate(String date){
 

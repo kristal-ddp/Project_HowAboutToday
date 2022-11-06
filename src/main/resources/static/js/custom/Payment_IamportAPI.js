@@ -21,10 +21,15 @@ const requestPay = () => {
         buyer_postcode: buyer_postcode,
     }, function (rsp) { // callback
         if (rsp.success) {
-            alert("결제 성공")
+            Swal.fire({
+                icon:'success',
+                title:'결제 성공 ',
+
+            });
+
             successRequest(rsp.imp_uid, rsp.merchant_uid);
         } else {
-            alert("실패!!!!!!!!!!!!!!!!!!!")
+            swalAlert("결제 실패")
         }
     });
 }

@@ -35,6 +35,8 @@ public class OrdersDetailVO {
     private String checkIn;
     private String checkOut;
 
+    private String roomNum;
+
     public OrdersDetailVO(Cart cart) {
         Period period = Period.between(cart.getReserveUseStartDate(), cart.getReserveUseEndDate());
         String startDay = cart.getReserveUseStartDate().getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
@@ -54,6 +56,7 @@ public class OrdersDetailVO {
         this.roomName = cart.getRoom().getRoomName();
         this.checkIn = cart.getRoom().getAccommodation().getCheckIn().toString();
         this.checkOut = cart.getRoom().getAccommodation().getCheckOut().toString();
+        this.roomNum = cart.getRoom().getRoomNum().toString();
     }
 
     public OrdersDetailVO(OrdersDetail ordersDetail) {

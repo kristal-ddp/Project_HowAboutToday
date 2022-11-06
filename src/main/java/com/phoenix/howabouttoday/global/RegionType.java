@@ -55,6 +55,9 @@ public enum RegionType {
     /** 시/군/구 (울산) **/
     ULJU("울주군"),
 
+    /** 세종 **/
+    _SEJONG(""),
+
     /** 시/군/구 (경기) **/
     GAPYEONG("가평군"),GOYANG_DEOKYANG("고양시 덕양구"), GOYANG_SEO("고양시 일산서구"),
     GOYANG_DONG("고양시 일산동구"), GWACHEON("과천시"),
