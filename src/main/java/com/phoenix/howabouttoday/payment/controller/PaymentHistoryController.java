@@ -10,7 +10,6 @@ import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
-import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.payment.dto.OrdersDTO;
 import com.phoenix.howabouttoday.payment.service.PaymentHistoryService;
 import lombok.AllArgsConstructor;
@@ -18,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,7 +53,7 @@ public class PaymentHistoryController {
 
         Integer curPage = page.orElse(1);
         MemberDTO customer = memberService.getSessionUser(sessionDTO.getMemberNum());
-        Page<OrdersDTO> ordersDTOList = paymentHistoryService.pagingAllByMember(PageRequest.of(curPage - 1, 5, Sort.by("ordersNum").ascending()), customer.getNum());
+        Page<OrdersDTO> ordersDTOList = paymentHistoryService.pagingAllByMember(PageRequest.of(curPage - 1, 5, Sort.by("ordersNum").ascending()), customer.getMemberNum());
 
         model.addAttribute("customer", customer);
         model.addAttribute("ordersDTOList", ordersDTOList);

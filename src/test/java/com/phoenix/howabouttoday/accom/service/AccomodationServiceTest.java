@@ -29,17 +29,17 @@ class AccomodationServiceTest {
     @Test
     public void 예약된날의_객실_테스트() throws Exception{
 
-        Long accomNum = 1L;
-        SearchForm searchForm = new SearchForm();
-        searchForm.setReserveDate("2022/10/21 - 2022/10/19");
-        Accommodation byAccomNum = accomodationService.findByAccomNum(accomNum, searchForm);
-        List<Room> room = byAccomNum.getRoom();
-        for (Room room1 : room) {
-            System.out.println("room1.getRoomName() = " + room1.getRoomName());
+//        Long accomNum = 1L;
+//        SearchForm searchForm = new SearchForm();
+//        searchForm.setReserveDate("2022/10/21 - 2022/10/19");
+//        Accommodation byAccomNum = accomodationService.findByAccomNum(accomNum, searchForm);
+//        List<Room> room = byAccomNum.getRoom();
+//        for (Room room1 : room) {
+//            System.out.println("room1.getRoomName() = " + room1.getRoomName());
 
         }
     }
     
     
 
-}
+//}
