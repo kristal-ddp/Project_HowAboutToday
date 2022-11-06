@@ -729,7 +729,7 @@ public class InitDb {
             ordersRepository.save(order);
 
 
-            객실예약정보_입력(member.getMemberNum());
+//            객실예약정보_입력(member.getMemberNum());
 
             /** 주문 등록 **/
 
