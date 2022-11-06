@@ -459,7 +459,7 @@
             let endDate = strings[1].trim();
 
             if(startDate==endDate){
-                alert("체크인/체크아웃 날짜가 같을 수 없습니다.")
+                swalWarning("체크인/체크아웃 날짜가 같을 수 없습니다.")
                 return;
             }
 
@@ -467,7 +467,7 @@
                 .then((response)=>response.json())
                 .then((result)=> {
                     if (result.data === true){
-                        alert("장바구니에 존재하는 객실입니다.")
+                        swalWarning("장바구니에 존재하는 객실입니다.")
                     }
                     else{
                         alert("서밋")

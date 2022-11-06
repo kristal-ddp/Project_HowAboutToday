@@ -196,7 +196,7 @@ public class InitDb {
 
             /** 숙소시설 등록 **/
             Facilities saveFac = facilitiesRepository.save(Facilities.builder()
-                    .facility(Facility.TELEVISION)
+                    .facility(Facility.BBQ)
                     .faciltiesOriginalFileName("image5.jpg")
                     .faciltiesSaveFilename("image7.jpg")
                     .build());
@@ -272,11 +272,11 @@ public class InitDb {
 
             /** 객실 오락시설 등록 **/
             Amenities amenities = amenitiesRepository.save(Amenities.builder()
-                    .amenitiesName(AmenitiesNames.FREE_WI_FI)
+                    .amenitiesName(AmenitiesNames.COMMON_KITCHEN)
                     .build());
 
             Amenities amenities1 = amenitiesRepository.save(Amenities.builder()
-                    .amenitiesName(AmenitiesNames.BATHTUB)
+                    .amenitiesName(AmenitiesNames.COMMON_LIVING_ROOM)
                     .build());
 
             /** 객실 서비스 등록 **/
@@ -570,7 +570,7 @@ public class InitDb {
 
             /** 숙소시설 등록 **/
             Facilities saveFac = facilitiesRepository.save(Facilities.builder()
-                    .facility(Facility.PETS_ALLOWED)
+                    .facility(Facility.ALL_TIME_DESK)
                     .faciltiesOriginalFileName("image3.jpg")
                     .faciltiesSaveFilename("image3.jpg")
                     .build());
@@ -632,7 +632,7 @@ public class InitDb {
 
             /** 객실 오락시설 등록 **/
             Amenities amenities = amenitiesRepository.save(Amenities.builder()
-                    .amenitiesName(AmenitiesNames.HAIR_DRYER)
+                    .amenitiesName(AmenitiesNames.COUPLE_ROOM)
                     .build());
 
             /** 객실 서비스 등록 **/

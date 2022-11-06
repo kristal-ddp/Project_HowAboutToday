@@ -5,10 +5,14 @@ package com.phoenix.howabouttoday.accom.entity;
  */
 
 public enum Facility {
-    WIFI("와이파이"),SWIMMING_POOL("수영장"),TELEVISION("삼성 40인치 TV"),COFFEE("커피"),AIR_CONDITIONING("공기청정기"),FITNESS_FACILLITY("피트니스-시설"),
-    FRIDGE("냉장고"),WINE_BAR("와인바"),ENTERTAINMENT("오락시설"),SECUREVAULT("보안 금고"),FREEPARKING("무료 주차"),
-    ELEVATOR_IN_BUILDING("엘리베이터 있음"),HANDICAP_ACCESSIBLE("장애인 이용 가능"),FIRE_PLACE("난방 가능"),PETS_ALLOWED("애완 동물 허용");
 
+    BOUTIQUE_BRAND("부티크 브랜드"),PARKING_OK("주차가능"),OCEAN_VIEW("바다전망"),
+    BREAKFAST("조식운영(뷔페)"),NEER_BEACH("해수욕장 인근"),PAID_LAUNDRY("유료세탁"),
+    LUGGAGE_STORAGE("수화물보관"),PC_ROUNGE("PC라운지"),FITNESS("피트니스"),
+    BUSINESS("비즈니스"),LOOFTOP("루프탑"),SMOKING_ZONE("흡연구역"),RESTAURENT("레스토랑"),
+    ALL_TIME_DESK("24시간 데스크"),COFFEE_SHOP("커피숍"),SPA("스파/월풀/욕조"),EAT_OK("식사가능"),
+    KARAOKE("노래방"),GAME("게임"),POOL("수영장"),BBQ("바베큐"),STORE("매점/편의점"),
+    VILLA("독채객실"),SEASONING("기본양념"),POOL_VILLA("풀빌라");
 
 
     private String krName;
