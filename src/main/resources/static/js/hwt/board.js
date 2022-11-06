@@ -13,6 +13,23 @@ $(function() {
         $('#' + id  + '-content').css('display', 'block'); // 해당 카테고리 게시글만 보임
     });
 
+    // FAQ 게시글 작성 시, 카테고리 Validation
+    $('#faq-add').click(function(){
+
+        let category = $('#boardCategoryNum').val();
+
+        if(category == null || category == ""){
+            Swal.fire({
+                icon: 'error',
+                title: '카테고리를 선택하세요.',
+            });
+            return false;
+        }else{
+            $('#faq-form').submit();
+        }
+
+    });
+
 
     // (Notice, Event, About Us) 게시판 더보기 버튼 클릭 시
     let page = 0;
@@ -52,7 +69,10 @@ $(function() {
             $('#loadMore').before(listLow); // #loadMore의 바깥쪽의 바로 위에 출력
 
             if(result.content.length < 1){
-                alert("게시글이 더 이상 존재하지 않습니다.");
+                Swal.fire({
+                    icon: 'info',
+                    title: '게시글이 더 이상 존재하지 않습니다.',
+                });
                 $('#loadMore').css('display', 'none');
             }
         });

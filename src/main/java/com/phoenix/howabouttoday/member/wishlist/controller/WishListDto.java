@@ -52,9 +52,9 @@ public class WishListDto {
             this.wishListNum = wishList.getReserveNum();
             this.memberNum = wishList.getMember().getMemberNum();
             this.accomNum = wishList.getAccommodation().getAccomNum();
-//            this.accomImageFileName = wishList.getAccommodation().getAccommodationImage().get(0).getAccomOriginFilename();
+            this.accomImageFileName = wishList.getAccommodation().getAccommodationImage().get(0).getAccomOriginFilename();
             this.accomName = wishList.getAccommodation().getAccomName();
-//            this.accomAdress = wishList.getAccommodation().getAccomAddress();
+            this.accomAdress = wishList.getAccommodation().getAccomAddress1() + " " + wishList.getAccommodation().getAccomAddress2() + " " + wishList.getAccommodation().getAccomAddress3();
             this.accomRating = wishList.getAccommodation().getAccomRating();
             this.reviewCount = wishList.getAccommodation().getTotalReviewNum();
             this.accomPrice = wishList.getAccommodation().getLowPrice();

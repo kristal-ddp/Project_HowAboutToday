@@ -24,4 +24,12 @@ public class RegionServiceImpl implements RegionService {
     public List<Region> findAllChild() {
         return regionRepository.findAllByParentRegionIsNotNull();
     }
+
+    /** regionNum에 해당하는 지역 조회 **/
+    @Override
+    public Region findByNum(Long regionNum){
+        Region findRegion = regionRepository.findById(regionNum).orElseThrow(() -> new IllegalArgumentException("해당 지역은 존재하지 않습니다"));
+
+        return findRegion;
+    }
 }

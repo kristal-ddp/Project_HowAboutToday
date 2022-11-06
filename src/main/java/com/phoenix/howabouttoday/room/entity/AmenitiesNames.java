@@ -2,9 +2,12 @@ package com.phoenix.howabouttoday.room.entity;
 
 public enum AmenitiesNames {
 
-    TWO_SOFA("2인용 소파"),SAMSUNG_LED_TV("40인치 삼성 LED TV"),FREE_WI_FI("무료 와이파이"),PRIVATE_POOL("프라이빗 풀"),
-    ROOM_SERVICE("24시간 룸서비스"),AIR_CONDITIONING("공기 청정기"),DIRECT_DIAL_PHONE("직통 전화"),
-    HAIR_DRYER("헤어 드라이어"),BATHTUB("스파/월풀/욕조"),SAFE_DEPOSIT_BOX("안전 금고"),LUGGAGE_STORAGE("수하물 보관소"),TWIN_BED("트윈베드");
+   FREE_MOVIE("무료영화(OTT)"),PARTY_ROOM("파티룸"),WI_FI("와이파이"),PARTY_OK("파티가능"),
+   ROOM_NO_SMOKING("객실금연"),COMMON_KITCHEN("공용주방"),COMMON_LIVING_ROOM("공용거실"),
+    DORMITORY("도미토리"),COUPLE_ROOM("커플룸"),TWIN_BED("트윈베드"),OUTDOOR_POOL("야외수영장"),
+    ROOM_PC("객실내PC"),VOD("VOD"),HIGH_END_PC("고사양PC"),AIR_CLEANER("공기청정기"),
+    OUTDOOR_TERRACE("야외테라스"),MIRROR_ROOM("거울룸"),COUPLE_PC("커플PC"),INDIVIDUAL_BBQ("개별바베큐"),
+    DUPLEX_ROOM("복층구조"),EVENT_OK("이벤트가능");
 
 
     private String krName;

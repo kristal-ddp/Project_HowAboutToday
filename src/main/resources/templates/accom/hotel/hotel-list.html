@@ -9,7 +9,7 @@
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
-    <section class="breadcrumb-area bread-bg-7">
+    <section class="breadcrumb-area breadcrumb-board">
         <div class="breadcrumb-wrap">
             <div class="container">
                 <div class="row align-items-center">
@@ -23,6 +23,9 @@
                 </div><!-- end row -->
             </div><!-- end container -->
         </div><!-- end breadcrumb-wrap -->
+        <div class="bread-svg-box">
+            <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
+        </div><!-- end bread-svg -->
     </section><!-- end breadcrumb-area -->
     <!-- ================================
         END BREADCRUMB AREA
@@ -43,12 +46,36 @@
                         </div><!-- end filter-top -->
                         <!--필터 창-->
                         <div class="filter-bar d-flex align-items-center justify-content-between">
-                            <div class="filter-bar-filter d-flex flex-wrap align-items-center">
-                                <div class="filter-option">
-                                    <h3 class="title font-size-18">정렬:</h3>
-                                </div>
+                            <!--                            <div class="filter-bar-filter d-flex flex-wrap align-items-center">-->
+                            <!--                                <div class="filter-option">-->
+                            <!--                                    <h3 class="title font-size-18">정렬:</h3>-->
+                            <!--                                </div>-->
 
-                            </div><!-- end filter-bar-filter -->
+                            <!--                            </div>&lt;!&ndash; end filter-bar-filter &ndash;&gt;-->
+
+                            <div class="main-menu-content hwt-accom-region" style="margin-left: 15px; padding-bottom: 0;">
+                                <nav>
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void(0)">지역 <i class="la la-angle-down"></i></a>
+                                            <ul class="dropdown-menu-item">
+                                                <th:block th:each="parentRegion : ${parentRegions}">
+                                                    <li>
+                                                        <a href="javascript:void(0)" th:text="${parentRegion.region.value}">서울특별시 <i class="la la-plus"></i></a>
+                                                        <ul class="sub-menu">
+                                                            <th:block th:each="childRegion : ${parentRegion.childRegions}">
+                                                                <li><a th:href="|javascript:void(0)|" href="" th:onclick="searchRegion([[${childRegion.regionNum}]])"
+                                                                       th:text="${childRegion.region.value}">강남구</a></li>
+                                                            </th:block>
+                                                        </ul>
+                                                    </li>
+                                                </th:block>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div><!-- end main-menu-content -->
+
                             <div class="select-contain">
                                 <select class="select-contain-select" id="sort">
                                     <option value="asc">가격: 낮은순</option>
@@ -64,12 +91,12 @@
                 <div class="col-lg-4">
                     <div class="sidebar mt-0">
                         <div class="sidebar-widget">
-                                <h3 class="title stroke-shape" th:text="|${viewName} 검색|">호텔 검색</h3>
-                                <div class="sidebar-widget-item">
-                                    <form id="searchForm" th:object="${searchForm}" method="get">
-                                        <input type="hidden" id="hiddenNum" name="accomNum" value="">
-                                        <input type="hidden" th:field="*{adult_number}">
-                                        <input type="hidden" th:field="*{child_number}">
+                            <h3 class="title stroke-shape" th:text="|${viewName} 검색|">호텔 검색</h3>
+                            <div class="sidebar-widget-item">
+                                <form id="searchForm" th:object="${searchForm}" method="get">
+                                    <input type="hidden" id="hiddenNum" name="accomNum" value="">
+                                    <input type="hidden" th:field="*{adult_number}">
+                                    <input type="hidden" th:field="*{child_number}">
                                     <div class="contact-form-action">
                                         <div class="input-box">
                                             <label class="label-text" th:text="|${viewName} 이름|">호텔 이름</label>
@@ -86,29 +113,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </form>
-                                </div><!-- end sidebar-widget-item -->
-                                <!--                            <div class="sidebar-widget-item">-->
-                                <!--                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">-->
-                                <!--                                    <label class="font-size-16">성인</label>-->
-                                <!--                                    <div class="qtyBtn d-flex align-items-center">-->
-                                <!--                                        <div class="qtyDec"><i class="la la-minus"></i></div>-->
-                                <!--                                        <input type="text" name="adult" value="0">-->
-                                <!--                                        <div class="qtyInc"><i class="la la-plus"></i></div>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>&lt;!&ndash; end qty-box &ndash;&gt;-->
-                                <!--                                <div class="qty-box mb-2 d-flex align-items-center justify-content-between">-->
-                                <!--                                    <label class="font-size-16">아동</label>-->
-                                <!--                                    <div class="qtyBtn d-flex align-items-center">-->
-                                <!--                                        <div class="qtyDec"><i class="la la-minus"></i></div>-->
-                                <!--                                        <input type="text" name="child" value="0">-->
-                                <!--                                        <div class="qtyInc"><i class="la la-plus"></i></div>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>&lt;!&ndash; end qty-box &ndash;&gt;-->
-                                <!--                            </div>&lt;!&ndash; end sidebar-widget-item &ndash;&gt;-->
-                                <div class="btn-box pt-2">
-                                    <button class="theme-btn hwt-btn-gray" id="keyword_Btn">검 색</button>
-                                </div>
+                                </form>
+                            </div><!-- end sidebar-widget-item -->
+                            <div class="btn-box pt-2">
+                                <button class="theme-btn hwt-btn-gray" id="keyword_Btn">검 색</button>
+                            </div>
 
                         </div><!-- end sidebar-widget -->
                         <div class="sidebar-widget">
@@ -134,7 +143,7 @@
                                     <input type="radio" id="s1" name="starCheck" class="star" value="5">
                                     <label for="s1">
                                     <span class="ratings d-flex align-items-center">
-                                        <i >&nbsp;5점 이하 &nbsp;</i>
+                                        <i class="starFont">&nbsp;5점 이하 &nbsp;</i>
                                         <i class="la la-star"></i>
                                         <i class="la la-star"></i>
                                         <i class="la la-star"></i>
@@ -148,7 +157,7 @@
                                     <input type="radio" id="s2" name="starCheck" class="star" value="4">
                                     <label for="s2">
                                     <span class="ratings d-flex align-items-center">
-                                        <i >&nbsp;4점 이하 &nbsp;</i>
+                                        <i class="starFont">&nbsp;4점 이하 &nbsp;</i>
                                         <i class="la la-star"></i>
                                         <i class="la la-star"></i>
                                         <i class="la la-star"></i>
@@ -161,7 +170,7 @@
                                     <input type="radio" id="s3" name="starCheck" class="star" value="3">
                                     <label for="s3">
                                     <span class="ratings d-flex align-items-center">
-                                        <i>&nbsp;3점 이하 &nbsp;</i>
+                                        <i class="starFont">&nbsp;3점 이하 &nbsp;</i>
                                         <i class="la la-star"></i>
                                         <i class="la la-star"></i>
                                         <i class="la la-star"></i>
@@ -174,7 +183,7 @@
                                     <input type="radio" id="s4" name="starCheck" class="star" value="2">
                                     <label for="s4">
                                     <span class="ratings d-flex align-items-center">
-                                        <i>&nbsp;2점 이하 &nbsp;</i>
+                                        <i class="starFont">&nbsp;2점 이하 &nbsp;</i>
                                         <i class="la la-star"></i>
                                         <i class="la la-star"></i>
                                         <i class="la la-star-o"></i>
@@ -187,7 +196,7 @@
                                     <input type="radio" id="s5" name="starCheck" class="star" value="1">
                                     <label for="s5">
                                     <span class="ratings d-flex align-items-center">
-                                        <i>&nbsp;1점 이하 &nbsp;</i>
+                                        <i class="starFont">&nbsp;1점 이하 &nbsp;</i>
                                         <i class="la la-star"></i>
                                         <i class="la la-star-o"></i>
                                         <i class="la la-star-o"></i>
@@ -198,28 +207,7 @@
                                 </div>
                             </div>
                         </div><!-- end sidebar-widget -->
-                        <div class="sidebar-widget">
-                            <h3 class="title stroke-shape">지역</h3>
-                            <div class="sidebar-category">
-                                <ul class="nav flex-column">
 
-                                    <th:block th:each="parentRegion : ${parentRegions}">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                           role="button" aria-expanded="false" th:text="${parentRegion.region.value}">서울</a>
-
-                                        <ul class="dropdown-menu">
-                                            <th:block th:each="childRegion, i : ${parentRegion.childRegions}">
-                                                <li><a th:href="|javascript:void(0)|" class="dropdown-item"href="#"
-                                                       th:onclick="searchRegion([[${childRegion.regionNum}]])" th:text="${childRegion.region.value}">관악구</a></li>
-                                            </th:block>
-                                        </ul>
-                                    </li>
-                                    </th:block>
-                                </ul>
-
-                            </div>
-                        </div><!-- end sidebar-widget -->
                     </div><!-- end sidebar -->
                 </div><!-- end col-lg-4 -->
                 <!-- 리스트 목록 시작 -->
@@ -229,13 +217,11 @@
                 </div><!-- end col-lg-8 -->
                 <!-- 여기서 끝남ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
             </div><!-- end row -->
-<!--            <a th:href="|#anchor${size-5}|" id="accomAnchor"></a>-->
+            <!--            <a th:href="|#anchor${size-5}|" id="accomAnchor"></a>-->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="btn-box mt-3 text-center">
-
-                            <button type="button" class="theme-btn" id="loadMore"><i class="la la-refresh mr-1"></i>Load More</button>
-
+                        <button type="button" class="theme-btn" id="loadMore"><i class="la la-refresh mr-1"></i>더 보기</button>
                     </div><!-- end btn-box -->
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->
@@ -302,9 +288,7 @@
     <script>
 
         $(document).ready(function (){
-
             load();
-
         });
 
         let sortValue = $("#sort").val() + "/";
@@ -339,8 +323,7 @@
                 newlow += `<h3 class="card-title" ><a href="javascript:void(0)" onclick="accomSingle(${accom[i].accomNum})">${accom[i].accomName}</a></h3>`
                 newlow += `<p class="card-meta">${accom[i].accomAddress}</p>`
                 newlow += `<div class="card-rating">`
-                newlow += `<span class="badge text-white">${accom[i].accomRating}</span>`
-                newlow += `<span class="review__text">평균</span>&nbsp;`
+                newlow += `<span class="badge text-white">${accom[i].accomRating}</span>&nbsp;&nbsp;`
                 newlow += `<span class="rating__text">${accom[i].totalReviewNum}개의&nbsp;리뷰</span>`
                 newlow += `</div>`
                 newlow += `<div class="card-price d-flex align-items-center justify-content-between">`
@@ -466,7 +449,7 @@
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
             }).done(function(result){
-
+                console.log(result);
                 listLow = low(result);
                 listData = result;
 
@@ -515,13 +498,13 @@
                 }
 
             }).fail(function(error){
-                alert(JSON.stringify(error));
+                alert("로그인 후 이용하세요.");
             });
         }
 
 
-        //페이지가 로드될때 리스트 가져오는 함수
-      const load = function () {
+       //페이지가 로드될때 리스트 가져오는 함수
+       const load = function () {
 
 
           let category_name = $("#cateName").val();
@@ -561,8 +544,6 @@
               });
 
           });
-
-
 
       }
     </script>

@@ -12,8 +12,13 @@ import com.phoenix.howabouttoday.payment.dto.RoomReviewCreateResponseDTO;
 import com.phoenix.howabouttoday.payment.enumType.ReviewResponseCode;
 import com.phoenix.howabouttoday.payment.service.CouponService;
 import com.phoenix.howabouttoday.payment.service.OrdersService;
+import com.phoenix.howabouttoday.room.dto.RoomReviewDTO;
 import com.phoenix.howabouttoday.room.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +28,13 @@ import org.springframework.web.bind.annotation.*;
 public class RestReviewController {
 
     private final ReviewService reviewService;
+    //더보기 방식을 위한 리스트
+    @GetMapping("{roomNum}")
+    public Slice<RoomReviewDTO> roomReviews(@PathVariable(required = false) Long roomNum,
+                                            @PageableDefault(page = 0, size = 3, sort = "reviewNum", direction = Sort.Direction.DESC) Pageable pageable) {
+
+        return reviewService.getRoomReviewList(pageable, roomNum);
+    }
 
     @PostMapping("/save")
     public RoomReviewCreateResponseDTO postReviewSave(Model model, @LoginUser SessionDTO sessionDTO,@RequestBody RoomReviewCreateRequestDTO roomReviewCreateRequestDTO){

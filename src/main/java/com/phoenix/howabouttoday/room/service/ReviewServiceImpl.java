@@ -6,17 +6,16 @@ import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.dto.OrdersDetailDTO;
 import com.phoenix.howabouttoday.payment.dto.RoomReviewCreateRequestDTO;
 import com.phoenix.howabouttoday.payment.dto.RoomReviewCreateResponseDTO;
-import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.entity.OrdersDetail;
 import com.phoenix.howabouttoday.payment.enumType.ReviewResponseCode;
 import com.phoenix.howabouttoday.payment.repository.OrdersDetailRepository;
-import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.room.dto.*;
 import com.phoenix.howabouttoday.room.entity.Review;
 import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.repository.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,6 +57,7 @@ public class ReviewServiceImpl implements ReviewService {
         Long memberNum = 0l;
 
         if(sessionDTO != null){
+            System.out.println("서비스멤버넘 = " + sessionDTO.getMemberNum());
             memberNum = sessionDTO.getMemberNum();
         }
 
@@ -73,9 +73,10 @@ public class ReviewServiceImpl implements ReviewService {
         Member member = memberRepository.findById(sessionDTO.getMemberNum()).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 멤버가 없습니다.", sessionDTO.getMemberNum())));
         Room room = roomRepository.findById(roomReviewCreateRequestDTO.getRoomNum()).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 객실 정보가 없습니다.", roomReviewCreateRequestDTO.getRoomNum())));
         room.calculateRating(roomReviewCreateRequestDTO.getRating());
+        room.getAccommodation().increaseRating();
 
         OrdersDetail ordersDetail = ordersDetailRepository.findById(roomReviewCreateRequestDTO.getOrdersDetailNum()).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 주문정보가 없습니다.", roomReviewCreateRequestDTO.getOrdersDetailNum())));
-        ordersDetail.writtenReview();
+        ordersDetail.writingComplete();
 
         Review review = Review.builder()
                 .member(member)
@@ -118,4 +119,16 @@ public class ReviewServiceImpl implements ReviewService {
 
         return reviewList;
     }
+
+    /** 호텔 상세페이지 통합 리뷰 전체조회 **/
+    public Slice<RoomReviewDTO> getRoomReviewList(Pageable pageable, Long roomNum) {
+
+        Slice<Review> page =
+                roomReviewRepository.findAllByRoom_RoomNum(pageable, roomNum);
+
+        Slice<RoomReviewDTO> roomReviewList = page.map(review -> new RoomReviewDTO(review));
+
+        return roomReviewList;
+    }
+
 }

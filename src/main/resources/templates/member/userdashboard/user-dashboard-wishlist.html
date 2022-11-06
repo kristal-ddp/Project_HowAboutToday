@@ -58,9 +58,9 @@
                                         <div class="card-item">
                                             <div class="card-img">
                                                 <a th:href="@{/hotel-single}" href="hotel-single.html" class="d-block">
-                                                    <img src="/images/room1.jpg" alt="hotel-img">
+                                                    <img th:src="@{/data/images/{accomImage}(accomImage=${wish.accomImageFileName})}" src="/images/room1.jpg" alt="hotel-img">
                                                 </a>
-                                                <span class="badge" th:text="'오늘어떄 추천!'">베스트셀러 여부</span>
+
                                                 <a th:href="|javascript:void(0)|" th:onclick="deleteById([[${wish.wishListNum}]])">
                                                 <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Remove"> <!--리무브구간 자바스크립트로 처리요함 -->
                                                     <i class="la la-heart"></i>
@@ -68,7 +68,7 @@
                                                 </a>
                                             </div>
                                             <div class="card-body">
-                                                <h3 class="card-title"><a th:href="@{/hotel-single}" href="hotel-single.html" th:text="${wish.accomName}">숙소 이름</a></h3>
+                                                <h3 class="card-title justify-"><a th:href="@{/hotel-single}" href="hotel-single.html" th:text="${wish.accomName}">숙소 이름</a></h3>
                                                 <p class="card-meta" th:text="${wish.accomAdress}" >숙소 주소</p>
                                                 <div class="card-rating">
                                                     <span class="badge text-white" th:text="${wish.accomRating}">별점 수치</span>

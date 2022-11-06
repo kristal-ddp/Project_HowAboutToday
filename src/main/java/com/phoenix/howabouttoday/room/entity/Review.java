@@ -1,7 +1,9 @@
 package com.phoenix.howabouttoday.room.entity;
 
 
+import com.phoenix.howabouttoday.accom.entity.AccomViewFacilities;
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
+import com.phoenix.howabouttoday.board.entity.Reply;
 import com.phoenix.howabouttoday.member.entity.Member;
 
 import com.phoenix.howabouttoday.payment.dto.RoomReviewCreateRequestDTO;
@@ -13,6 +15,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -43,5 +47,9 @@ public class Review {
     @Column(scale = 1)
     private Double reviewRating;
     private String reviewContent;
+
+    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
+    private List<Reply> replys = new ArrayList<>();
+
 
 }

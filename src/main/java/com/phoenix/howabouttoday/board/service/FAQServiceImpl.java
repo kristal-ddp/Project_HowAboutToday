@@ -63,12 +63,12 @@ public class FAQServiceImpl implements FAQService {
     // 게시글 작성
     @Override
     @Transactional
-    public void addFAQ(FAQDTO FAQDTO) {
+    public void addFAQ(FAQFormDTO FAQFormDTO) {
 
-        Member member = memberRepository.findById(FAQDTO.getMemberNum()).orElse(null);
-        BoardCategory boardCategory = boardCategoryRepository.findById(FAQDTO.getBoardCategoryNum()).orElse(null);
+        Member member = memberRepository.findById(FAQFormDTO.getMemberNum()).orElse(null);
+        BoardCategory boardCategory = boardCategoryRepository.findById(FAQFormDTO.getBoardCategoryNum()).orElse(null);
 
-        Board board = new Board(member, boardCategory, FAQDTO);
+        Board board = new Board(member, boardCategory, FAQFormDTO);
         boardRepository.save(board);
 
     }
@@ -76,10 +76,12 @@ public class FAQServiceImpl implements FAQService {
     // 게시글 수정
     @Override
     @Transactional
-    public void editFAQ(Long boardNum, FAQDTO FAQDTO) {
+    public void editFAQ(Long boardNum, FAQFormDTO FAQFormDTO) {
 
         Board board = boardRepository.findById(boardNum).orElse(null);
-        board.editFAQ(board.getBoardNum(), FAQDTO);
+        BoardCategory boardCategory = boardCategoryRepository.findById(FAQFormDTO.getBoardCategoryNum()).orElse(null);
+
+        board.editFAQ(board.getBoardNum(), boardCategory, FAQFormDTO);
     }
 
     // 게시글 삭제

@@ -52,8 +52,8 @@ public class InitDb {
 
     @PostConstruct
     public void init(){
-        initService.dbInit1();
-        initService.dbInit2();
+//        initService.dbInit1();
+//        initService.dbInit2();
     }
 
     @Component
@@ -298,6 +298,7 @@ public class InitDb {
             /**위시리스트 등록**/
 //            wishlistRepository.save(WishList.builder()
 //                    .member(member)
+
 //                    .accommodation(accommodation)
 //                    .build());
 
@@ -642,9 +643,7 @@ public class InitDb {
 
             /**위시리스트 등록**/
 //            wishlistRepository.save(WishList.builder()
-//                    .member(member)
-//                    .accommodation(accommodation)
-//                    .build());
+
 
             for (int i=0; i < 100; i++) {
 
@@ -992,7 +991,6 @@ public class InitDb {
 
     }
 }
-
 
 
 

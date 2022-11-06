@@ -39,13 +39,14 @@ public class AccomodationService {
     private final RegionRepository regionRepository;
     private final AccommodationImageRepository accommodationImageRepository;
 
+
     /** 지역이 없을때 전체조회 **/
     public Slice<AccomDto.ResponsePageDto> getAccomPageList(Pageable pageable,String category_name , String keyword,int maxPrice,int minPrice, Double accomRating) {
 
         Slice<Accommodation> page =
                 accommodationRepository.
-                        findByAccomCategory_NameAndLowPriceLessThanEqualAndLowPriceGreaterThanEqualAndAccomRatingLessThanEqualAndAccomNameContaining(category_name,
-                                maxPrice, minPrice, pageable,accomRating, keyword);
+                       findByAccomCategory_NameAndLowPriceLessThanEqualAndLowPriceGreaterThanEqualAndAccomRatingLessThanEqualAndAccomNameContaining(category_name,
+                        maxPrice, minPrice, pageable,accomRating, keyword);
 
         Slice<AccomDto.ResponsePageDto> accomPageList = page.map(accom -> new AccomDto.ResponsePageDto(accom));
 
@@ -113,7 +114,7 @@ public class AccomodationService {
                 .accomName(accommodation.getAccomName())
                 .accomTel(accommodation.getAccomTel())
 //                .accomAddress(accommodation.getAccomAddress())
-                .accomRating(accommodation.getAccomRating())
+                //.accomRating(accommodation.getAccomRating())
                 .accomWishlistCount(accommodation.getAccomWishlistCount())
 //                .totalreviewNum(accommodation.getTotalReviewNum())
                 .latitude(accommodation.getLatitude())
@@ -134,6 +135,25 @@ public class AccomodationService {
         return accommodation;
     }
 
+
+    /** 부모 regionNum에 따른 전체리스트 조회 **/
+    public Slice<AccomDto.ResponsePageDto> findByRegionNum(Long regionNum, Pageable pageable){
+
+        Slice<Accommodation> findAccoms = accommodationRepository.findByRegion_ParentRegion_RegionNum(regionNum, pageable);
+
+        return findAccoms.map(accom -> new AccomDto.ResponsePageDto(accom));
+
+
+    }
+
+    /** 인기숙소 조회 **/
+    public Slice<AccommodationDTO> findByPplAccoms(Pageable pageable){
+
+        // 숙소평점이 3.0보다 높은 숙소들을 조회해온다
+        Slice<Accommodation> findAccoms = accommodationRepository.findByAccomRatingGreaterThan(3.0, pageable);
+
+        return findAccoms.map(accom -> new AccommodationDTO(accom));
+    }
 
     /** 스트링타입을 LocalDate타입으로 파싱해주는 메서드 **/
     public LocalDate StringToParseDate(String date){
