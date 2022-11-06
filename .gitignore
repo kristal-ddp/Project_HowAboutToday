@@ -39,6 +39,9 @@ out/
 ### QueryDSL ###
 generated/
 
+### IMAGE ###
+/src/main/resources/static/data/images/image*.jpg
+
 
 
 src/main/resources/static/data/images/image1667577432932.jpg

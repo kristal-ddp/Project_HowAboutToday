@@ -78,10 +78,10 @@
                                     <th scope="row">
                                         <div class="table-content product-content d-flex align-items-center">
                                             <div class="cabin-type-img flex-shrink-0"> <!-- 숙소 이미지 -->
-                                                <a href="@{/room-details}"><img src="/images/room1.jpg" alt=""></a>
+                                                <a th:href="@{/room-details(roomNum=${info.roomNum})}"><img src="/images/room1.jpg" alt=""></a>
                                             </div>
                                             <div class="product-content">
-                                                <a href="room-details.html" class="title px-2" th:href="@{/room-details}"
+                                                <a href="room-details.html" class="title px-2" th:href="@{/room-details(roomNum=${info.roomNum})}"
                                                    th:text="${info.getAccomName()}">
                                                     호텔 방 이름</a>
                                                 <div class="product-info-wrap">
