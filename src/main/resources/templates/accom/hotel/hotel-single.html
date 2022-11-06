@@ -5,6 +5,7 @@
 
 <th:block layout:fragment="content">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script src="https://kit.fontawesome.com/b5f47a576f.js" crossorigin="anonymous"></script>
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
@@ -105,10 +106,10 @@
                                         <div class="col-lg-4 responsive-column" >
                                             <div class="single-tour-feature d-flex align-items-center mb-3" th:each="fac : ${accom.accomViewFacilities}">
                                                 <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="fa-duotone fa-tv-retro"></i>
+                                                    <i class="fa-solid fa-desktop" th:class="${fac.facilities.faciltiesOriginalFileName}"></i>
                                                 </div>
                                                 <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium" th:text="${fac.facilities.facility.krName}">WI-FI</h3>
+                                                    <h3 class="title font-size-15 font-weight-medium" th:text="${fac.facilities.facility.value}">WI-FI</h3>
                                                 </div>
                                             </div><!-- end single-tour-feature -->
                                         </div><!-- end col-lg-4 -->
@@ -266,7 +267,7 @@
                                         <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
                                             <label class="font-size-16">성인</label>
                                             <div class="qtyBtn d-flex align-items-center">
-                                                <div class="qtyDec"><i class="la la-minus"></i></div>
+                                                <div id="qtyDec" class="qtyDec"><i class="la la-minus"></i></div>
                                                 <input type="text" th:field="*{adult_number}" >
                                                 <div class="qtyInc"><i class="la la-plus"></i></div>
                                             </div>
@@ -583,6 +584,16 @@
            searchForm.submit();
 
     }
+
+    //성인이 0명이 안되게끔 검증하는 로직
+    $("#qtyDec").on("click",function(){
+        let adultValue = $("#adult_number").val();
+
+        if(adultValue == 1){
+            $("#adult_number").val(1);
+            return false;
+        }
+    });
 
 
 

@@ -215,7 +215,7 @@
                                         <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
                                             <label class="font-size-16">성인 </label>
                                             <div class="qtyBtn d-flex align-items-center">
-                                                <div class="qtyDec"><i class="la la-minus"></i></div>
+                                                <div class="qtyDec" id="qtyDec"><i class="la la-minus"></i></div>
                                                 <input id="adult_qty" type="text" th:field="*{adult_number}" >
                                                 <div class="qtyInc"><i class="la la-plus"></i></div>
                                             </div>
@@ -527,7 +527,15 @@
             });
         });
 
+        //성인이 0명이 안되게끔 검증하는 로직
+        $("#qtyDec").on("click",function(){
+            let adultValue = $("#adult_qty").val();
 
+            if(adultValue == 1){
+                $("#adult_qty").val(1);
+                return false;
+            }
+        });
     </script>
 </th:block>
 
