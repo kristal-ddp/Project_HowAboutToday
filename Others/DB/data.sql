@@ -1,9 +1,14 @@
 SELECT * FROM how_about_today_db.board;
 
 -- Memeber
+-- 비밀번호 : 수정1!
 INSERT INTO member (email, pwd, member_tel, nickname, member_original_file_name, member_save_file_name, join_date, role)
 VALUES
-("gom@naver.com","$2a$10$MSVLjtJa.76e5XcX1lZNaOBXJm0vVF.YbnUyTx52g8NO/A/5/1Eb6","010-1234-5678","곰돌이", "Originl", "save", "2022-10-27", "ADMIN");
+("kristal@gmail.com","$2a$10$lErLokL9sgQ44zVIqq77lePtqkMWP06Bb91RT0XmMbsATtPXgfNM6","010-5586-1420","관리자", "Originl", "save", "2022-10-27", "ADMIN"),
+("gom@naver.com","$2a$10$lErLokL9sgQ44zVIqq77lePtqkMWP06Bb91RT0XmMbsATtPXgfNM6","010-1234-5678","곰돌이", "Originl", "save", "2022-10-27", "MEMBER"),
+("soo@naver.com","$2a$10$lErLokL9sgQ44zVIqq77lePtqkMWP06Bb91RT0XmMbsATtPXgfNM6","010-1234-5678","수정", "Originl", "save", "2022-10-27", "MEMBER"),
+("young@naver.com","$2a$10$lErLokL9sgQ44zVIqq77lePtqkMWP06Bb91RT0XmMbsATtPXgfNM6","010-1234-5678","영", "Originl", "save", "2022-10-27", "MEMBER"),
+("jin@naver.com","$2a$10$lErLokL9sgQ44zVIqq77lePtqkMWP06Bb91RT0XmMbsATtPXgfNM6","010-1234-5678","진", "Originl", "save", "2022-10-27", "MEMBER");
 
 -- Board Category
 INSERT INTO board_category (board_category_name, board_parent_num)
@@ -406,3 +411,19 @@ VALUES
 (21, "8.png", "8.png"),
 (21, "9.png", "9.png"),
 (21, "10.png", "10.png");
+
+-- Event Comment
+INSERT INTO comment (comment_content, comment_create, event_num, member_num)
+VALUES
+('너무 좋아요~!', '2022-11-06 14:47:39.420743', '21', '2'),
+('대박', '2022-11-06 14:47:42.439671', '21', '3'),
+('우와!!!', '2022-11-06 14:48:10.571269', '21', '2'),
+('멋진 이벤트네요', '2022-11-06 14:48:28.724383', '21', '4'),
+('좋아요!!', '2022-11-06 14:48:46.285295', '21', '5'),
+('ㅎㅎㅎ', '2022-11-06 14:48:46.285295', '21', '6'),
+('너무 좋아요~!', '2022-11-06 14:47:39.420743', '20', '2'),
+('대박', '2022-11-06 14:47:42.439671', '20', '3'),
+('우와!!!', '2022-11-06 14:48:10.571269', '20', '2'),
+('멋진 이벤트네요', '2022-11-06 14:48:28.724383', '20', '4'),
+('좋아요!!', '2022-11-06 14:48:46.285295', '20', '5'),
+('ㅎㅎㅎ', '2022-11-06 14:48:46.285295', '20', '6');
