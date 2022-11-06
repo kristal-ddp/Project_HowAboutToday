@@ -46,12 +46,12 @@
                         </div><!-- end filter-top -->
                         <!--필터 창-->
                         <div class="filter-bar d-flex align-items-center justify-content-between">
-<!--                            <div class="filter-bar-filter d-flex flex-wrap align-items-center">-->
-<!--                                <div class="filter-option">-->
-<!--                                    <h3 class="title font-size-18">정렬:</h3>-->
-<!--                                </div>-->
+                            <!--                            <div class="filter-bar-filter d-flex flex-wrap align-items-center">-->
+                            <!--                                <div class="filter-option">-->
+                            <!--                                    <h3 class="title font-size-18">정렬:</h3>-->
+                            <!--                                </div>-->
 
-<!--                            </div>&lt;!&ndash; end filter-bar-filter &ndash;&gt;-->
+                            <!--                            </div>&lt;!&ndash; end filter-bar-filter &ndash;&gt;-->
 
                             <div class="main-menu-content hwt-accom-region" style="margin-left: 15px; padding-bottom: 0;">
                                 <nav>
@@ -60,15 +60,15 @@
                                             <a href="javascript:void(0)">지역 <i class="la la-angle-down"></i></a>
                                             <ul class="dropdown-menu-item">
                                                 <th:block th:each="parentRegion : ${parentRegions}">
-                                                <li>
-                                                    <a href="javascript:void(0)" th:text="${parentRegion.region.value}">서울특별시 <i class="la la-plus"></i></a>
-                                                    <ul class="sub-menu">
-                                                        <th:block th:each="childRegion : ${parentRegion.childRegions}">
-                                                        <li><a th:href="|javascript:void(0)|" href="" th:onclick="searchRegion([[${childRegion.regionNum}]])"
-                                                               th:text="${childRegion.region.value}">강남구</a></li>
-                                                        </th:block>
-                                                    </ul>
-                                                </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)" th:text="${parentRegion.region.value}">서울특별시 <i class="la la-plus"></i></a>
+                                                        <ul class="sub-menu">
+                                                            <th:block th:each="childRegion : ${parentRegion.childRegions}">
+                                                                <li><a th:href="|javascript:void(0)|" href="" th:onclick="searchRegion([[${childRegion.regionNum}]])"
+                                                                       th:text="${childRegion.region.value}">강남구</a></li>
+                                                            </th:block>
+                                                        </ul>
+                                                    </li>
                                                 </th:block>
                                             </ul>
                                         </li>
@@ -91,12 +91,12 @@
                 <div class="col-lg-4">
                     <div class="sidebar mt-0">
                         <div class="sidebar-widget">
-                                <h3 class="title stroke-shape" th:text="|${viewName} 검색|">호텔 검색</h3>
-                                <div class="sidebar-widget-item">
-                                    <form id="searchForm" th:object="${searchForm}" method="get">
-                                        <input type="hidden" id="hiddenNum" name="accomNum" value="">
-                                        <input type="hidden" th:field="*{adult_number}">
-                                        <input type="hidden" th:field="*{child_number}">
+                            <h3 class="title stroke-shape" th:text="|${viewName} 검색|">호텔 검색</h3>
+                            <div class="sidebar-widget-item">
+                                <form id="searchForm" th:object="${searchForm}" method="get">
+                                    <input type="hidden" id="hiddenNum" name="accomNum" value="">
+                                    <input type="hidden" th:field="*{adult_number}">
+                                    <input type="hidden" th:field="*{child_number}">
                                     <div class="contact-form-action">
                                         <div class="input-box">
                                             <label class="label-text" th:text="|${viewName} 이름|">호텔 이름</label>
@@ -113,11 +113,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </form>
-                                </div><!-- end sidebar-widget-item -->
-                                <div class="btn-box pt-2">
-                                    <button class="theme-btn hwt-btn-gray" id="keyword_Btn">검 색</button>
-                                </div>
+                                </form>
+                            </div><!-- end sidebar-widget-item -->
+                            <div class="btn-box pt-2">
+                                <button class="theme-btn hwt-btn-gray" id="keyword_Btn">검 색</button>
+                            </div>
 
                         </div><!-- end sidebar-widget -->
                         <div class="sidebar-widget">
@@ -217,7 +217,7 @@
                 </div><!-- end col-lg-8 -->
                 <!-- 여기서 끝남ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
             </div><!-- end row -->
-<!--            <a th:href="|#anchor${size-5}|" id="accomAnchor"></a>-->
+            <!--            <a th:href="|#anchor${size-5}|" id="accomAnchor"></a>-->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="btn-box mt-3 text-center">
@@ -288,9 +288,7 @@
     <script>
 
         $(document).ready(function (){
-
             load();
-
         });
 
         let sortValue = $("#sort").val() + "/";
@@ -546,8 +544,6 @@
               });
 
           });
-
-
 
       }
     </script>

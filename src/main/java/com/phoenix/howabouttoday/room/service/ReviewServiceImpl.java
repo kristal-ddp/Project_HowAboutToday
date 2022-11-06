@@ -73,6 +73,7 @@ public class ReviewServiceImpl implements ReviewService {
         Member member = memberRepository.findById(sessionDTO.getMemberNum()).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 멤버가 없습니다.", sessionDTO.getMemberNum())));
         Room room = roomRepository.findById(roomReviewCreateRequestDTO.getRoomNum()).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 객실 정보가 없습니다.", roomReviewCreateRequestDTO.getRoomNum())));
         room.calculateRating(roomReviewCreateRequestDTO.getRating());
+        room.getAccommodation().increaseRating();
 
         OrdersDetail ordersDetail = ordersDetailRepository.findById(roomReviewCreateRequestDTO.getOrdersDetailNum()).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 주문정보가 없습니다.", roomReviewCreateRequestDTO.getOrdersDetailNum())));
         ordersDetail.writingComplete();

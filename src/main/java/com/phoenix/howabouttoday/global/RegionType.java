@@ -130,13 +130,11 @@ public enum RegionType {
     TONGYEONG("통영시"), HADONG("하동군"), HAMYANG("함양군"), HAPCHEON("합천군") ,
 
     /** 시/군/구 (제주) **/
-    SEOGWIPO("서귀포시"), JEJU_JEJU("제주시");
+    SEOGWIPO("서귀포시"), JEJU_JEJU("제주시"),
 
-
-
+    SEJONG_SEJONG("세종시");
 
     private String value;
-
 
     RegionType(String value) {
         this.value = value;

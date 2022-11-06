@@ -1,6 +1,6 @@
 package com.phoenix.howabouttoday.board.entity;
 
-import com.phoenix.howabouttoday.board.dto.EventDTO;
+import com.phoenix.howabouttoday.board.dto.EventFormDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -44,27 +44,31 @@ public class Event {
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<EventImage> eventImageList = new ArrayList<>();
 
-    // Event 게시글 작성
-    public Event(Member member, EventDTO eventDTO) {
+    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
+    @OrderBy("comment_num asc")
+    private List<Comment> comments = new ArrayList<>();
 
-        String[] splitDate = eventDTO.getDate().split(" - ");
+    // Event 게시글 작성
+    public Event(Member member, EventFormDTO eventFormDTO) {
+
+        String[] splitDate = eventFormDTO.getDate().split(" - ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
         this.member = member;
-        this.eventTitle = eventDTO.getEventTitle();
+        this.eventTitle = eventFormDTO.getEventTitle();
         this.eventCreate = LocalDate.now();
         this.eventStart = LocalDate.parse(splitDate[0], formatter);
         this.eventEnd = LocalDate.parse(splitDate[1], formatter);
     }
 
     // Event 게시글 수정
-    public void editEvent(Long eventNum, EventDTO eventDTO) {
+    public void editEvent(Long eventNum, EventFormDTO eventFormDTO) {
 
-        String[] splitDate = eventDTO.getDate().split(" - ");
+        String[] splitDate = eventFormDTO.getDate().split(" - ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
         this.eventNum = eventNum;
-        this.eventTitle = eventDTO.getEventTitle();
+        this.eventTitle = eventFormDTO.getEventTitle();
         this.eventStart = LocalDate.parse(splitDate[0], formatter);
         this.eventEnd = LocalDate.parse(splitDate[1], formatter);
     }
