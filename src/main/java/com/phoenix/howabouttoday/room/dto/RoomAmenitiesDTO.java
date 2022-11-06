@@ -18,10 +18,13 @@ public class RoomAmenitiesDTO {
 
     private AmenitiesNames amenitiesName; //시설 이름
 
+    private String originFileName;
+
     public RoomAmenitiesDTO(RoomViewAmenities roomViewAmenities) {
         this.roomNum = roomViewAmenities.getRoom().getRoomNum();
         this.amenitiesName = roomViewAmenities.getAmenities().getAmenitiesName();
         this.amenitiesNum = roomViewAmenities.getAmenities().getAmenitiesNum();
+        this.originFileName = roomViewAmenities.getAmenities().getAmenitiesOriginalFileName();
 
     }
 

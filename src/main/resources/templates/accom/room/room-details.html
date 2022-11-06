@@ -5,7 +5,7 @@
 
 <th:block layout:fragment="content">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-
+    <script src="https://kit.fontawesome.com/b5f47a576f.js" crossorigin="anonymous"></script>
     <!-- ================================
         상단 객실 이미지 시작
     ================================= -->
@@ -32,6 +32,7 @@
                             <ul>
                                 <li><a data-scroll="description" href="#description" class="scroll-link active">상세설명</a></li>
                                 <li><a data-scroll="amenities" href="#amenities" class="scroll-link">어메니티</a></li>
+
                                 <li><a data-scroll="reviews" href="#reviews" class="scroll-link">리뷰</a></li>
                             </ul>
                         </div>
@@ -66,7 +67,6 @@
                                     </div><!-- end single-content-item -->
                                     <div class="section-block"></div>
                                 </div><!-- end description -->
-
                                 <!-- 주요 시설 -->
                                 <div id="amenities" class="page-scroll">
                                     <div class="single-content-item padding-top-40px padding-bottom-40px">
@@ -75,10 +75,10 @@
                                             <div class="col-lg-4 responsive-column" th:each="amenities : ${alist}">
                                                 <div class="single-tour-feature d-flex align-items-center mb-3">
                                                     <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                        <i class="la la-check"></i>
+                                                        <i class="la la-check" th:class="${amenities.originFileName}"></i>
                                                     </div>
                                                     <div class="single-feature-titles">
-                                                        <h3 class="title font-size-15 font-weight-medium" th:text="${amenities.amenitiesName}">2인 소파</h3>
+                                                        <h3 class="title font-size-15 font-weight-medium" th:text="${amenities.amenitiesName.value}">2인 소파</h3>
                                                     </div>
                                                 </div><!-- end single-tour-feature -->
                                             </div><!-- end col-lg-4 -->

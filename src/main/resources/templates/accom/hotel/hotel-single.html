@@ -106,8 +106,8 @@
                                 <h3 class="title font-size-20">편의 시설</h3>
                                 <div class="amenities-feature-item pt-4">
                                     <div class="row">
-                                        <div class="col-lg-4 responsive-column" >
-                                            <div class="single-tour-feature d-flex align-items-center mb-3" th:each="fac : ${accom.accomViewFacilities}">
+                                        <div class="col-lg-4 responsive-column" th:each="fac : ${accom.accomViewFacilities}" >
+                                            <div class="single-tour-feature d-flex align-items-center mb-3">
                                                 <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
                                                     <i class="fa-solid fa-desktop" th:class="${fac.facilities.faciltiesOriginalFileName}"></i>
                                                 </div>
@@ -289,10 +289,8 @@
                                                 class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
                                                 class="la la-calendar mr-2"></i>예약 날짜 조회</button>
                                         <hr/>
-                                        <a href="/user-dashboard-wishlist"
-
-                                           class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
-                                                class="la la-heart-o mr-2"></i>찜 추가하기</a>
+                                        <a  href="javascript:void(0)" th:onclick="saveWish([[${accomNum}]])" class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent">
+                                            <i class="la la-heart-o mr-2"></i>찜 추가하기</a>
                                     </div>
                                 </div><!-- end sidebar-widget -->
                             </form>
@@ -598,6 +596,26 @@
         }
     });
 
+    //위시리스트 함수
+    function saveWish(accomNum){
+
+        $.ajax({
+            url: '/rest/wish/' + accomNum,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+        }).done(function(result){
+
+            if(result){
+                alert("위시리스트에서 삭제하였습니다.");
+
+            } else {
+                alert("위시리스트에 저장하였습니다.");
+            }
+
+        }).fail(function(error){
+            alert("로그인 후 이용하세요.");
+        });
+    }
 
 
 
