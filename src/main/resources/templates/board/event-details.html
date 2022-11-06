@@ -102,12 +102,10 @@
 
                                 <!-- Comment Content -->
                                 <div class="form-title-wrap hwt-board-title btn-comments-wrap">
-<!--                                        <th:block sec:authorize="isAuthenticated()"-->
-<!--                                            th:if="${#authentication.getPrincipal().getUsername() == commentListDTO.email} "access="hasRole('ADMIN')">-->
 
                                     <!-- 관리자인 경우, 모든 댓글의 수정, 삭제 버튼이 다 보임 -->
                                     <th:block sec:authorize="hasRole('ADMIN')">
-                                        <div class="hwt-details-bottom-left btn-comments">
+                                        <div class="hwt-details-bottom-left btn-comments collapse show" th:id="|form-edit${i.count}|">
                                             <button type="button" class="btn-comment" data-toggle="collapse" th:data-target="|#form-edit${i.count}|">수정</button>
                                             <button type="button" class="btn-comment btn-comment-right"
                                                 th:onclick="|comment.commentDelete('${eventDetailDTO.eventNum}', '${commentListDTO.commentNum}')|">삭제</button>
@@ -116,34 +114,37 @@
 
                                     <!-- 회원인 경우, 자기가 쓴 댓글의 수정, 삭제 버튼이 보임 -->
                                     <th:block sec:authorize="hasRole('MEMBER')" th:if="${#authentication.getPrincipal().getUsername() == commentListDTO.email}">
-                                        <div class="hwt-details-bottom-left btn-comments">
+                                        <div class="hwt-details-bottom-left btn-comments collapse show" th:id="|form-edit${i.count}|">
                                             <button type="button" class="btn-comment" data-toggle="collapse" th:data-target="|#form-edit${i.count}|">수정</button>
                                             <button type="button" class="btn-comment btn-comment-right"
                                                 th:onclick="|comment.commentDelete('${eventDetailDTO.eventNum}', '${commentListDTO.commentNum}')|">삭제</button>
                                         </div>
                                     </th:block>
 
-                                    <div class="comment-nickname" th:text="${commentListDTO.nickname}">닉네임</div>
-                                    <div class="comment-content" th:text="${commentListDTO.commentContent}">댓글 내용</div>
-                                    <div class="comment-create" th:text="${#temporals.format(commentListDTO.commentCreate, 'yyyy.MM.dd. hh:mm')}">댓글 작성일</div>
+                                    <div class="collapse show" th:id="|form-edit${i.count}|">
+                                        <div class="comment-nickname" th:text="${commentListDTO.nickname}">닉네임</div>
+                                        <div class="comment-content" th:text="${commentListDTO.commentContent}">댓글 내용</div>
+                                        <div class="comment-create" th:text="${#temporals.format(commentListDTO.commentCreate, 'yyyy.MM.dd. hh:mm')}">댓글 작성일</div>
+                                    </div>
 
                                     <!-- Comment Edit -->
                                     <form th:action="@{|/event/${eventDetailDTO.eventNum}/comments/${commentListDTO.commentNum}|}" method="post"
                                           th:object="${commentFormDTO}" class="collapse comment-edit-form" th:id="|form-edit${i.count}|">
                                         <input type="hidden" th:value="${eventDetailDTO.eventNum}" id="edit-eventNum">
                                         <input type="hidden" th:value="${commentListDTO.commentNum}" id="edit-commentNum">
-                                        <div class="input-box comment-input-box">
+                                        <div class="input-box comment-edit-box">
                                             <div class="edit-label-btn">
                                                 <th:block sec:authorize="isAuthenticated()">
                                                     <label class="label-text" th:text="${sessionDTO.nickname}">닉네임</label>
                                                 </th:block>
                                                 <div class="btn-box edit-box">
                                                     <button type="button" class="btn-comment" id="edit-comment">등록</button>
+                                                    <button type="button" class="btn-comment btn-comment-right" data-toggle="collapse" th:data-target="|#form-edit${i.count}|">취소</button>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <span class="la la-pencil form-icon comment-icon"></span>
-                                                <textarea class="message-control form-control form-comments form-comments-edit"
+                                                <textarea class="message-control form-control form-comments form-comments-edit" th:text="${commentListDTO.commentContent}"
                                                     th:value="${commentListDTO.commentContent}" id="edit-commentContent"></textarea>
                                             </div>
                                         </div>
