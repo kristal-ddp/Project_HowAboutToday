@@ -502,15 +502,25 @@
                 contentType: 'application/json; charset=utf-8',
             }).done(function (result) {
 
-                if (result) {
-                    alert("위시리스트에서 삭제하였습니다.");
+                if(result){
+                    Swal.fire({
+                            icon:'success',
+                            title:'위시리스트에서 삭제하였습니다. ',
+                    });
 
                 } else {
-                    alert("위시리스트에 저장하였습니다.");
+                    Swal.fire({
+                            icon:'success',
+                            title:'위시리스트에 저장하였습니다. ',
+                    });
+
                 }
 
-            }).fail(function (error) {
-                alert("로그인 후 이용하세요.");
+            }).fail(function(error){
+                Swal.fire({
+                        icon:'error',
+                        title:'로그인 후 이용하세요. ',
+                });
             });
         }
 
