@@ -81,9 +81,8 @@ public class Room {
     public void calculateRating(Double inputRating){
         addReviewCount();
         this.roomRating = (this.roomRating * (getRoomReviewNum() - 1) + inputRating) / getRoomReviewNum();
+
     }
-
-
 }
 
 

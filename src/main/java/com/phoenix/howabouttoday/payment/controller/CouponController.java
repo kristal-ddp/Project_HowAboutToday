@@ -34,7 +34,7 @@ public class CouponController {
         // List<CouponDTO> cList = couponService.getCoupon(memberNum);
 
         Long memberNum = sessionDTO.getMemberNum();
-        List<CouponDTO> cList = couponService.getCoupon(memberNum);
+        List<CouponDTO> cList = couponService.findAll_Coupon(memberNum);
         model.addAttribute("clist",cList);
 
         return "member/userdashboard/user-dashboard-coupon";

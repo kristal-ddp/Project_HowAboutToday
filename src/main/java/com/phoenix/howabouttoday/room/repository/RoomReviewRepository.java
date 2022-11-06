@@ -24,7 +24,7 @@ public interface RoomReviewRepository extends JpaRepository<Review,Long> {
 
     /** 한 멤버가 한 객실을 짧은 기간(14일이내) 여러번 예약했을 때 리뷰작성이 가능한 모든 주문번호를 찾아서 반환 **/
     @Query(value = "select r.reserve_num from member m inner join reservation r where r.reserve_type = 'orderDetail' and m.member_num = r.member_num and m.member_num = :#{#memberNum} " +
-            "and room_num = :#{#roomNum} and reserve_use_end_date <= Date(now()) and reserve_use_end_date > Date(date_add(now(), INTERVAL -14 DAY)) and is_review_writed = '작성 전' and reserve_status = 'COMPLETE' group by room_num;", nativeQuery = true)
+            "and room_num = :#{#roomNum} and reserve_use_end_date <= Date(now()) and reserve_use_end_date > Date(date_add(now(), INTERVAL -14 DAY)) and is_review_writed = '작성 전' and reserve_status = 'COMPLETE' group by room_num, r.reserve_num;", nativeQuery = true)
     List<Long> writeableOrdersDetail(@Param(value = "memberNum") Long memberNum, @Param(value = "roomNum") Long roomNum);
 
     @Query(value = "select count(m.member_num) from member m inner join reservation r where m.member_num = r.member_num and r.reserve_type = 'orderDetail' and m.member_num = :#{#memberNum} and r.room_num = :#{#roomNum}", nativeQuery = true)

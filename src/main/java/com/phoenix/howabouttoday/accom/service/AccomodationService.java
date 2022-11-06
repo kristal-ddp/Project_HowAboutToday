@@ -39,6 +39,7 @@ public class AccomodationService {
     private final RegionRepository regionRepository;
     private final AccommodationImageRepository accommodationImageRepository;
 
+
     /** 지역이 없을때 전체조회 **/
     public Slice<AccomDto.ResponsePageDto> getAccomPageList(Pageable pageable,String category_name , String keyword,int maxPrice,int minPrice, Double accomRating) {
 
@@ -113,7 +114,7 @@ public class AccomodationService {
                 .accomName(accommodation.getAccomName())
                 .accomTel(accommodation.getAccomTel())
 //                .accomAddress(accommodation.getAccomAddress())
-                .accomRating(accommodation.getAccomRating())
+                //.accomRating(accommodation.getAccomRating())
                 .accomWishlistCount(accommodation.getAccomWishlistCount())
 //                .totalreviewNum(accommodation.getTotalReviewNum())
                 .latitude(accommodation.getLatitude())
