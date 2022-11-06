@@ -1,5 +1,7 @@
 package com.phoenix.howabouttoday.room.entity;
 
+import com.phoenix.howabouttoday.global.AmenTypeConverter;
+import com.phoenix.howabouttoday.global.FacTypeConverter;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,7 +18,7 @@ public class Amenities {
     private Long amenitiesNum;//시설번호
 
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = AmenTypeConverter.class)
     private AmenitiesNames amenitiesName;//시설이름
 
     private String amenitiesOriginalFileName;
