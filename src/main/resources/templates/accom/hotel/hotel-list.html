@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
-      layout:decorate="layout/layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html" layout:decorate="layout/layout">
 
 <th:block layout:fragment="content">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
+
     <th:block th:if="${viewName} == '호텔'">
-    <section class="breadcrumb-area bread-bg-7">
+        <section class="breadcrumb-area bread-bg-7">
     </th:block>
     <th:block th:if="${viewName} == '모텔'">
-    <section class="breadcrumb-area bread-bg-11">
+        <section class="breadcrumb-area bread-bg-11">
     </th:block>
     <th:block th:if="${viewName} == '펜션/풀빌라'">
         <section class="breadcrumb-area bread-bg-12">
@@ -21,19 +20,25 @@
     <th:block th:if="${viewName} == '게스트하우스'">
         <section class="breadcrumb-area bread-bg-13">
     </th:block>
-        <div class="breadcrumb-wrap">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-12">
-                        <div class="breadcrumb-content text-center">
-                            <div class="section-heading">
-                                <h1 style="text-shadow:1px 1px 1px #000;" class="sec__title text-white" th:text="${viewName}">Hotel</h1>
-                            </div>
-                        </div><!-- end breadcrumb-content -->
-                    </div><!-- end col-lg-6 -->
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </div><!-- end breadcrumb-wrap -->
+    <!-- <section class="breadcrumb-area breadcrumb-board"> -->
+    <div class="breadcrumb-wrap">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-content text-center">
+                        <div class="section-heading">
+                            <h1 style="text-shadow:1px 1px 1px #000;" class="sec__title text-white" th:text="${viewName}">Hotel</h1>
+                        </div>
+                    </div><!-- end breadcrumb-content -->
+                </div><!-- end col-lg-6 -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end breadcrumb-wrap -->
+    <div class="bread-svg-box">
+        <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none">
+            <polygon points="100 0 50 10 0 0 0 10 100 10"></polygon>
+        </svg>
+    </div><!-- end bread-svg -->
     </section><!-- end breadcrumb-area -->
     <!-- ================================
         END BREADCRUMB AREA
@@ -54,12 +59,12 @@
                         </div><!-- end filter-top -->
                         <!--필터 창-->
                         <div class="filter-bar d-flex align-items-center justify-content-between">
-<!--                            <div class="filter-bar-filter d-flex flex-wrap align-items-center">-->
-<!--                                <div class="filter-option">-->
-<!--                                    <h3 class="title font-size-18">정렬:</h3>-->
-<!--                                </div>-->
+                            <!--                            <div class="filter-bar-filter d-flex flex-wrap align-items-center">-->
+                            <!--                                <div class="filter-option">-->
+                            <!--                                    <h3 class="title font-size-18">정렬:</h3>-->
+                            <!--                                </div>-->
 
-<!--                            </div>&lt;!&ndash; end filter-bar-filter &ndash;&gt;-->
+                            <!--                            </div>&lt;!&ndash; end filter-bar-filter &ndash;&gt;-->
 
                             <div class="main-menu-content hwt-accom-region" style="margin-left: 15px; padding-bottom: 0;">
                                 <nav>
@@ -68,15 +73,14 @@
                                             <a href="javascript:void(0)">지역 <i class="la la-angle-down"></i></a>
                                             <ul class="dropdown-menu-item">
                                                 <th:block th:each="parentRegion : ${parentRegions}">
-                                                <li>
-                                                    <a href="javascript:void(0)" th:text="${parentRegion.region.value}">서울특별시 <i class="la la-plus"></i></a>
-                                                    <ul class="sub-menu">
-                                                        <th:block th:each="childRegion : ${parentRegion.childRegions}">
-                                                        <li><a th:href="|javascript:void(0)|" href="" th:onclick="searchRegion([[${childRegion.regionNum}]])"
-                                                               th:text="${childRegion.region.value}">강남구</a></li>
-                                                        </th:block>
-                                                    </ul>
-                                                </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)" th:text="${parentRegion.region.value}">서울특별시 <i class="la la-plus"></i></a>
+                                                        <ul class="sub-menu">
+                                                            <th:block th:each="childRegion : ${parentRegion.childRegions}">
+                                                                <li><a th:href="|javascript:void(0)|" href="" th:onclick="searchRegion([[${childRegion.regionNum}]])" th:text="${childRegion.region.value}">강남구</a></li>
+                                                            </th:block>
+                                                        </ul>
+                                                    </li>
                                                 </th:block>
                                             </ul>
                                         </li>
@@ -99,12 +103,12 @@
                 <div class="col-lg-4">
                     <div class="sidebar mt-0">
                         <div class="sidebar-widget">
-                                <h3 class="title stroke-shape" th:text="|${viewName} 검색|">호텔 검색</h3>
-                                <div class="sidebar-widget-item">
-                                    <form id="searchForm" th:object="${searchForm}" method="get">
-                                        <input type="hidden" id="hiddenNum" name="accomNum" value="">
-                                        <input type="hidden" th:field="*{adult_number}">
-                                        <input type="hidden" th:field="*{child_number}">
+                            <h3 class="title stroke-shape" th:text="|${viewName} 검색|">호텔 검색</h3>
+                            <div class="sidebar-widget-item">
+                                <form id="searchForm" th:object="${searchForm}" method="get">
+                                    <input type="hidden" id="hiddenNum" name="accomNum" value="">
+                                    <input type="hidden" th:field="*{adult_number}">
+                                    <input type="hidden" th:field="*{child_number}">
                                     <div class="contact-form-action">
                                         <div class="input-box">
                                             <label class="label-text" th:text="|${viewName} 이름|">호텔 이름</label>
@@ -121,11 +125,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </form>
-                                </div><!-- end sidebar-widget-item -->
-                                <div class="btn-box pt-2">
-                                    <button class="theme-btn hwt-btn-gray" id="keyword_Btn">검 색</button>
-                                </div>
+                                </form>
+                            </div><!-- end sidebar-widget-item -->
+                            <div class="btn-box pt-2">
+                                <button class="theme-btn hwt-btn-gray" id="keyword_Btn">검 색</button>
+                            </div>
 
                         </div><!-- end sidebar-widget -->
                         <div class="sidebar-widget">
@@ -150,67 +154,67 @@
                                 <div class="radio-inline mb-0">
                                     <input type="radio" id="s1" name="starCheck" class="star" value="5">
                                     <label for="s1">
-                                    <span class="ratings d-flex align-items-center">
-                                        <i class="starFont">&nbsp;5점 이하 &nbsp;</i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
+                                        <span class="ratings d-flex align-items-center">
+                                            <i class="starFont">&nbsp;5점 이하 &nbsp;</i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star"></i>
 
-                                    </span>
+                                        </span>
                                     </label>
                                 </div>
                                 <div class="radio-inline mb-0">
                                     <input type="radio" id="s2" name="starCheck" class="star" value="4">
                                     <label for="s2">
-                                    <span class="ratings d-flex align-items-center">
-                                        <i class="starFont">&nbsp;4점 이하 &nbsp;</i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star-o"></i>
-                                    </span>
+                                        <span class="ratings d-flex align-items-center">
+                                            <i class="starFont">&nbsp;4점 이하 &nbsp;</i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star-o"></i>
+                                        </span>
                                     </label>
                                 </div>
                                 <div class="radio-inline mb-0">
                                     <input type="radio" id="s3" name="starCheck" class="star" value="3">
                                     <label for="s3">
-                                    <span class="ratings d-flex align-items-center">
-                                        <i class="starFont">&nbsp;3점 이하 &nbsp;</i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star-o"></i>
-                                        <i class="la la-star-o"></i>
-                                    </span>
+                                        <span class="ratings d-flex align-items-center">
+                                            <i class="starFont">&nbsp;3점 이하 &nbsp;</i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star-o"></i>
+                                            <i class="la la-star-o"></i>
+                                        </span>
                                     </label>
                                 </div>
                                 <div class="radio-inline mb-0">
                                     <input type="radio" id="s4" name="starCheck" class="star" value="2">
                                     <label for="s4">
-                                    <span class="ratings d-flex align-items-center">
-                                        <i class="starFont">&nbsp;2점 이하 &nbsp;</i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star-o"></i>
-                                        <i class="la la-star-o"></i>
-                                        <i class="la la-star-o"></i>
-                                    </span>
+                                        <span class="ratings d-flex align-items-center">
+                                            <i class="starFont">&nbsp;2점 이하 &nbsp;</i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star-o"></i>
+                                            <i class="la la-star-o"></i>
+                                            <i class="la la-star-o"></i>
+                                        </span>
                                     </label>
                                 </div>
                                 <div class="radio-inline mb-0">
                                     <input type="radio" id="s5" name="starCheck" class="star" value="1">
                                     <label for="s5">
-                                    <span class="ratings d-flex align-items-center">
-                                        <i class="starFont">&nbsp;1점 이하 &nbsp;</i>
-                                        <i class="la la-star"></i>
-                                        <i class="la la-star-o"></i>
-                                        <i class="la la-star-o"></i>
-                                        <i class="la la-star-o"></i>
-                                        <i class="la la-star-o"></i>
-                                    </span>
+                                        <span class="ratings d-flex align-items-center">
+                                            <i class="starFont">&nbsp;1점 이하 &nbsp;</i>
+                                            <i class="la la-star"></i>
+                                            <i class="la la-star-o"></i>
+                                            <i class="la la-star-o"></i>
+                                            <i class="la la-star-o"></i>
+                                            <i class="la la-star-o"></i>
+                                        </span>
                                     </label>
                                 </div>
                             </div>
@@ -225,11 +229,11 @@
                 </div><!-- end col-lg-8 -->
                 <!-- 여기서 끝남ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
             </div><!-- end row -->
-<!--            <a th:href="|#anchor${size-5}|" id="accomAnchor"></a>-->
+            <!--            <a th:href="|#anchor${size-5}|" id="accomAnchor"></a>-->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="btn-box mt-3 text-center">
-                        <button type="button" class="theme-btn" id="loadMore"><i class="la la-refresh mr-1"></i>Load More</button>
+                        <button type="button" class="theme-btn" id="loadMore"><i class="la la-refresh mr-1"></i>더 보기</button>
                     </div><!-- end btn-box -->
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->
@@ -295,10 +299,8 @@
     <!--</html>-->
     <script>
 
-        $(document).ready(function (){
-
+        $(document).ready(function () {
             load();
-
         });
 
         let sortValue = $("#sort").val() + "/";
@@ -311,62 +313,62 @@
         let accomRating = "";
 
 
-        const low = function (result){
+        const low = function (result) {
 
             let accom = result.content;
 
             let newlow = "";
             for (i = 0; i < accom.length; i++) {
 
-                newlow += `<div class="card-item card-item-list">`
-                newlow += `<div class="card-img" id="anchor${i.count}">`
-                newlow += `<a class="d-block" href="javascript:void(0)" onclick="accomSingle(${accom[i].accomNum})">`
-                newlow += `<img src="/data/images/${accom[i].accommodationImage.accomOriginFilename}" alt="hotel-img">`
-                newlow += `</a>`
-                newlow += `<a href="javascript:void(0)" onclick="saveWish(${accom[i].accomNum})">`
-                newlow += `<div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">`
-                newlow += `<i class="la la-heart-o"></i>`
-                newlow += `</div>`
-                newlow += `</a>`
-                newlow += `</div>`
-                newlow += `<div class="card-body">`
-                newlow += `<h3 class="card-title" ><a href="javascript:void(0)" onclick="accomSingle(${accom[i].accomNum})">${accom[i].accomName}</a></h3>`
-                newlow += `<p class="card-meta">${accom[i].accomAddress}</p>`
-                newlow += `<div class="card-rating">`
-                newlow += `<span class="badge text-white">${accom[i].accomRating}</span>&nbsp;&nbsp;`
-                newlow += `<span class="rating__text">${accom[i].totalReviewNum}개의&nbsp;리뷰</span>`
-                newlow += `</div>`
-                newlow += `<div class="card-price d-flex align-items-center justify-content-between">`
-                newlow += `<p>`
-                newlow += `<span class="price__from">최소 가격 :</span>`
-                newlow += `<span class="price__num">${accom[i].lowPrice}원~</span>`
-                newlow += `</p>`
-                newlow += `<a href="javascript:void(0)" onclick="accomSingle(${accom[i].accomNum})" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>`
-                newlow += `</div>`
-                newlow += `</div>`
-                newlow += `</div>`
+                newlow += `<div class="card-item card-item-list">`;
+                newlow += `<div class="card-img" id="anchor${i.count}">`;
+                newlow += `<a class="d-block" href="javascript:void(0)" onclick="accomSingle(${accom[i].accomNum})">`;
+                newlow += `<img src="/data/images/${accom[i].accommodationImage.accomOriginFilename}" alt="hotel-img">`;
+                newlow += `</a>`;
+                newlow += `<a href="javascript:void(0)" onclick="saveWish(${accom[i].accomNum})">`;
+                newlow += `<div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Wishlist" id="wishList">`;
+                newlow += `<i class="la la-heart-o"></i>`;
+                newlow += `</div>`;
+                newlow += `</a>`;
+                newlow += `</div>`;
+                newlow += `<div class="card-body">`;
+                newlow += `<h3 class="card-title" ><a href="javascript:void(0)" onclick="accomSingle(${accom[i].accomNum})">${accom[i].accomName}</a></h3>`;
+                newlow += `<p class="card-meta">${accom[i].accomAddress}</p>`;
+                newlow += `<div class="card-rating">`;
+                newlow += `<span class="badge text-white">${accom[i].accomRating}</span>&nbsp;&nbsp;`;
+                newlow += `<span class="rating__text">${accom[i].totalReviewNum}개의&nbsp;리뷰</span>`;
+                newlow += `</div>`;
+                newlow += `<div class="card-price d-flex align-items-center justify-content-between">`;
+                newlow += `<p>`;
+                newlow += `<span class="price__from">최소 가격 :</span>`;
+                newlow += `<span class="price__num">${accom[i].lowPrice}원~</span>`;
+                newlow += `</p>`;
+                newlow += `<a href="javascript:void(0)" onclick="accomSingle(${accom[i].accomNum})" class="btn-text" >방 정보<i class="la la-angle-right"></i></a>`;
+                newlow += `</div>`;
+                newlow += `</div>`;
+                newlow += `</div>`;
             }
             return newlow;
-        }
+        };
 
-        function accomSingle(accomNum){
-            $("#hiddenNum").attr("value",accomNum);
-            var searchForm = document.getElementById("searchForm")
-            searchForm.action = '/hotel-single?'
+        function accomSingle(accomNum) {
+            $("#hiddenNum").attr("value", accomNum);
+            var searchForm = document.getElementById("searchForm");
+            searchForm.action = '/hotel-single?';
 
             searchForm.submit();
 
         }
 
         //평점에 따른 리스트를 가져오는 함수
-        $(".star").on("change",function (){
+        $(".star").on("change", function () {
 
             let accomStar = [];
 
-            $(".star").each(function (index){
+            $(".star").each(function (index) {
                 let starChecked = $("#s" + (index + 1)).is(":checked");
 
-                if(starChecked){
+                if (starChecked) {
                     accomStar.push($("#s" + (index + 1)).val());
                 }
             });
@@ -378,54 +380,54 @@
                     '&regionNo=' + regionNum + '&accomRating=' + accomRating,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
-            }).done(function(result){
+            }).done(function (result) {
 
                 listLow = low(result);
                 listData = result;
 
                 document.getElementById("ht").innerHTML = listLow;
 
-            }).fail(function(error){
+            }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
 
 
-        })
+        });
 
 
         //유저가 검색어에 따른 검색결과를 보고싶지 않아 검색창을 지울때 발생하는 이벤트
-        $("#keyword").on("change",function(){
+        $("#keyword").on("change", function () {
             keyword = $("#keyword").val();
 
-        })
+        });
 
         //키워드 이름검색을 눌렀을때 실행되는 함수
-       $("#keyword_Btn").on("click", function (){
+        $("#keyword_Btn").on("click", function () {
 
-          /** 이름으로 검색했을떄는 지역이 아닌 이름검색결과만 보이게 지역을 초기화 **/
-          regionNum = null;
-          keyword = $("#keyword").val();
+            /** 이름으로 검색했을떄는 지역이 아닌 이름검색결과만 보이게 지역을 초기화 **/
+            regionNum = null;
+            keyword = $("#keyword").val();
 
-           $.ajax({
-               url: '/rest/accom/' + sortValue + category_name + '?keyword=' + keyword + '&priceRange=' + priceRange + '&accomRating=' + accomRating,
-               type: 'GET',
-               contentType: 'application/json; charset=utf-8',
-           }).done(function(result){
+            $.ajax({
+                url: '/rest/accom/' + sortValue + category_name + '?keyword=' + keyword + '&priceRange=' + priceRange + '&accomRating=' + accomRating,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+            }).done(function (result) {
 
-               listLow = low(result);
-               listData = result;
+                listLow = low(result);
+                listData = result;
 
 
-               document.getElementById("ht").innerHTML = listLow;
+                document.getElementById("ht").innerHTML = listLow;
 
-           }).fail(function(error){
-               alert(JSON.stringify(error));
-           });
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
 
-       })
+        });
 
         //가격 검색을 적용했을때 실행되는 함수
-        $("#price_Btn").on("click", function (){
+        $("#price_Btn").on("click", function () {
 
 
             priceRange = $("#amount2").val();
@@ -435,7 +437,7 @@
                 url: '/rest/accom/' + sortValue + category_name + '?keyword=' + keyword + '&priceRange=' + priceRange + "&regionNo=" + regionNum + '&accomRating=' + accomRating,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
-            }).done(function(result){
+            }).done(function (result) {
 
                 listLow = low(result);
                 listData = result;
@@ -443,11 +445,11 @@
 
                 document.getElementById("ht").innerHTML = listLow;
 
-            }).fail(function(error){
+            }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
 
-        })
+        });
 
         //지역에따른 리스트 조회 함수
         function searchRegion(regionNo) {
@@ -458,106 +460,104 @@
                 url: '/rest/accom/' + sortValue + category_name + "?priceRange=" + priceRange + "&keyword=" + keyword + "&regionNo=" + regionNo + '&accomRating=' + accomRating,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
-            }).done(function(result){
-
+            }).done(function (result) {
+                console.log(result);
                 listLow = low(result);
                 listData = result;
 
                 document.getElementById("ht").innerHTML = listLow;
 
-            }).fail(function(error){
+            }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
 
         }
 
         //높은순 낮은순 조회에 대한 정렬 함수
-       $("#sort").on("change", function(){
+        $("#sort").on("change", function () {
 
-           sortValue = $("#sort").val() + "/";
+            sortValue = $("#sort").val() + "/";
 
             $.ajax({
                 url: '/rest/accom/' + sortValue + category_name + "?priceRange=" + priceRange + "&regionNo=" + regionNum + '&accomRating=' + accomRating,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
-            }).done(function(result){
+            }).done(function (result) {
 
                 listLow = low(result);
                 listData = result;
                 document.getElementById("ht").innerHTML = listLow;
 
-            }).fail(function(error){
+            }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
 
         });
         //위시리스트 함수
-        function saveWish(accomNum){
+        function saveWish(accomNum) {
 
             $.ajax({
                 url: '/rest/wish/' + accomNum,
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
-            }).done(function(result){
+            }).done(function (result) {
 
-                if(result){
+                if (result) {
                     alert("위시리스트에서 삭제하였습니다.");
 
                 } else {
                     alert("위시리스트에 저장하였습니다.");
                 }
 
-            }).fail(function(error){
+            }).fail(function (error) {
                 alert("로그인 후 이용하세요.");
             });
         }
 
 
-       //페이지가 로드될때 리스트 가져오는 함수
-       const load = function () {
+        //페이지가 로드될때 리스트 가져오는 함수
+        const load = function () {
 
 
-          let category_name = $("#cateName").val();
-          $.ajax({
-              url: '/rest/accom/' + category_name + '?priceRange=' + priceRange,
-              type: 'GET',
-              contentType: 'application/json; charset=utf-8',
-          }).done(function (result) {
+            let category_name = $("#cateName").val();
+            $.ajax({
+                url: '/rest/accom/' + category_name + '?priceRange=' + priceRange,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+            }).done(function (result) {
 
-            listLow = low(result);
-            listData = result;
+                listLow = low(result);
+                listData = result;
 
-            document.getElementById("ht").innerHTML = listLow;
+                document.getElementById("ht").innerHTML = listLow;
 
-          }).fail(function (error) {
-              alert(JSON.stringify(error));
-          });
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
 
             //더보기 함수
-          $("#loadMore").click(function (){
+            $("#loadMore").click(function () {
 
-              let category_name = $("#cateName").val();
-              $.ajax({
-                  url: '/rest/accom/' + sortValue  + category_name + '?keyword=' + keyword + "&regionNo=" + regionNum + '&priceRange=' + priceRange + '&accomRating=' + accomRating + '&size=' + (listData.size+5),
-                  type: 'GET',
-                  data: listData,
-                  contentType: 'application/json; charset=utf-8',
-              }).done(function (result) {
+                let category_name = $("#cateName").val();
+                $.ajax({
+                    url: '/rest/accom/' + sortValue + category_name + '?keyword=' + keyword + "&regionNo=" + regionNum + '&priceRange=' + priceRange + '&accomRating=' + accomRating + '&size=' + (listData.size + 5),
+                    type: 'GET',
+                    data: listData,
+                    contentType: 'application/json; charset=utf-8',
+                }).done(function (result) {
 
-                  listLow = low(result);
-                  listData = result;
+                    listLow = low(result);
+                    listData = result;
 
-                  document.getElementById("ht").innerHTML = listLow;
+                    document.getElementById("ht").innerHTML = listLow;
 
-              }).fail(function (error) {
-                  alert(JSON.stringify(error));
-              });
+                }).fail(function (error) {
+                    alert(JSON.stringify(error));
+                });
 
-          });
+            });
 
-
-
-      }
+        }
     </script>
 </th:block>
 

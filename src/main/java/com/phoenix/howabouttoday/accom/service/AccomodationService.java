@@ -39,6 +39,7 @@ public class AccomodationService {
     private final RegionRepository regionRepository;
     private final AccommodationImageRepository accommodationImageRepository;
 
+
     /** 지역이 없을때 전체조회 **/
     public Slice<AccomDto.ResponsePageDto> getAccomPageList(Pageable pageable,String category_name , String keyword,int maxPrice,int minPrice, Double accomRating) {
 
@@ -113,7 +114,7 @@ public class AccomodationService {
                 .accomName(accommodation.getAccomName())
                 .accomTel(accommodation.getAccomTel())
 //                .accomAddress(accommodation.getAccomAddress())
-                .accomRating(accommodation.getAccomRating())
+                //.accomRating(accommodation.getAccomRating())
                 .accomWishlistCount(accommodation.getAccomWishlistCount())
 //                .totalreviewNum(accommodation.getTotalReviewNum())
                 .latitude(accommodation.getLatitude())
@@ -143,6 +144,15 @@ public class AccomodationService {
         return findAccoms.map(accom -> new AccomDto.ResponsePageDto(accom));
 
 
+    }
+
+    /** 인기숙소 조회 **/
+    public Slice<AccommodationDTO> findByPplAccoms(Pageable pageable){
+
+        // 숙소평점이 3.0보다 높은 숙소들을 조회해온다
+        Slice<Accommodation> findAccoms = accommodationRepository.findByAccomRatingGreaterThan(3.0, pageable);
+
+        return findAccoms.map(accom -> new AccommodationDTO(accom));
     }
 
     /** 스트링타입을 LocalDate타입으로 파싱해주는 메서드 **/

@@ -50,7 +50,8 @@ public class AccomController {
 
     // 메인 화면
     @GetMapping(value = {"/", "home"})
-    public String home(@LoginUser SessionDTO sessionDTO, Model model){
+    public String home(@LoginUser SessionDTO sessionDTO, Model model,
+                       @PageableDefault(page = 0,size = 10,sort = "accomRating",direction = Sort.Direction.DESC) Pageable pageable){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -59,6 +60,10 @@ public class AccomController {
         /**화면에 표시할 숙소카테고리 조회 **/
         List<AccomCategoryDto.ResponseDto> accomCategorys = accomCategoryService.findAccomList();
         model.addAttribute("accomCategorys",accomCategorys);
+
+        /** 인기숙소 리스트 조회 **/
+        Slice<AccommodationDTO> pplAccoms = accommodationService.findByPplAccoms(pageable);
+        model.addAttribute("pplAccoms",pplAccoms);
 
         MemberDTO memberDTO = new MemberDTO();
         model.addAttribute("memberDTO",memberDTO);
