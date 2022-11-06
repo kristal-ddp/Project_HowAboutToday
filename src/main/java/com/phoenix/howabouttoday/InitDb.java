@@ -105,46 +105,46 @@ public class InitDb {
 
 
             /** 쿠폰 생성 **/
-            CouponRules couponRules1 = couponRulesRepository.save(CouponRules.builder()
-                    .couponName("가입축하 쿠폰")
-                    .period(60)
-                    .discountType(DiscountType.FLAT)
-                    .discountValue(10000)
-                    .discountMinPrice(75000)
-                    .discountMaxPrice(10000)
-                    .couponContent("가입축하 쿠폰입니다.")
-                    .build());
-
-            CouponRules couponRules2 = couponRulesRepository.save(CouponRules.builder()
-                    .couponName("겨울여행 쿠폰")
-                    .period(30)
-                    .discountType(DiscountType.FIXED)
-                    .discountValue(10)
-                    .discountMinPrice(75100)
-                    .discountMaxPrice(100000)
-                    .couponContent("안전한 겨울여행을 위한 쿠폰입니다.")
-                    .build());
-
-            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
-
-            Coupon coupon1 = couponRepository.save(Coupon.builder()
-                    .couponRules(couponRules1)
-                    .member(member)
-                    .status(CouponStatus.AVAILABLE)
-                    .startDate(LocalDate.now())
-                    .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
-                    .build());
-
-            Coupon coupon2 = couponRepository.save(Coupon.builder()
-                    .couponRules(couponRules2)
-                    .member(member)
-                    .status(CouponStatus.AVAILABLE)
-                    .startDate(LocalDate.now())
-                    .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
-                    .build());
-
-            member.getCoupons().add(coupon1);
-            member.getCoupons().add(coupon2);
+//            CouponRules couponRules1 = couponRulesRepository.save(CouponRules.builder()
+//                    .couponName("가입축하 쿠폰")
+//                    .period(60)
+//                    .discountType(DiscountType.FLAT)
+//                    .discountValue(10000)
+//                    .discountMinPrice(75000)
+//                    .discountMaxPrice(10000)
+//                    .couponContent("가입축하 쿠폰입니다.")
+//                    .build());
+//
+//            CouponRules couponRules2 = couponRulesRepository.save(CouponRules.builder()
+//                    .couponName("겨울여행 쿠폰")
+//                    .period(30)
+//                    .discountType(DiscountType.FIXED)
+//                    .discountValue(10)
+//                    .discountMinPrice(75100)
+//                    .discountMaxPrice(100000)
+//                    .couponContent("안전한 겨울여행을 위한 쿠폰입니다.")
+//                    .build());
+//
+//            //최소결제와 최대할인금액도 rules에서 만드는 게 맞을까?
+//
+//            Coupon coupon1 = couponRepository.save(Coupon.builder()
+//                    .couponRules(couponRules1)
+//                    .member(member)
+//                    .status(CouponStatus.AVAILABLE)
+//                    .startDate(LocalDate.now())
+//                    .endDate(LocalDate.now().plusDays(couponRules1.getPeriod()))
+//                    .build());
+//
+//            Coupon coupon2 = couponRepository.save(Coupon.builder()
+//                    .couponRules(couponRules2)
+//                    .member(member)
+//                    .status(CouponStatus.AVAILABLE)
+//                    .startDate(LocalDate.now())
+//                    .endDate(LocalDate.now().plusDays(couponRules2.getPeriod()))
+//                    .build());
+//
+//            member.getCoupons().add(coupon1);
+//            member.getCoupons().add(coupon2);
 
 
             /**지역 등록 **/
@@ -677,323 +677,399 @@ public class InitDb {
 
             }
 //
-//                WishList build1 = WishList.builder()
-//                        .member(member)
-//                        .accommodation(save)
-//                        .build();
-//                wishlistRepository.save(build1);
+//
+//
+//            accommodationImageRepository.save( AccomImage.builder()
+//                    .accomOriginFilename("image5.jpg")
+//                    .accomSaveFilename("image1.jpg")
+//                    .accommodation(accommodation2)
+//                    .build());
+//
+//            accommodationImageRepository.save( AccomImage.builder()
+//                    .accomOriginFilename("image6.jpg")
+//                    .accomSaveFilename("image1.jpg")
+//                    .accommodation(accommodation3)
+//                    .build());
+//
+//            accommodationImageRepository.save( AccomImage.builder()
+//                    .accomOriginFilename("image7.jpg")
+//                    .accomSaveFilename("image1.jpg")
+//                    .accommodation(accommodation4)
+//                    .build());
+//
+//            accommodationImageRepository.save( AccomImage.builder()
+//                    .accomOriginFilename("image8.jpg")
+//                    .accomSaveFilename("image1.jpg")
+//                    .accommodation(accommodation5)
+//                    .build());
+//
+//
+//            /** 객실등록 **/
+//            Room room = roomRepository.save(Room.builder()
+//                    .accommodation(accommodation)
+//                    .roomName("아폴로룸")
+//                    .defaultGuest(2)
+//                    .maxGuest(10)
+//                    .price(70000)
+//                    .roomRating(0D)
+//                    .roomReviewNum(0)
+//                    .roomInfo("임시 객실정보 입니다")
+//                    .build());
+//
+//            /** 객실 이미지 등록 **/
+//            roomImageRepository.save(RoomImage.builder()
+//                    .roomOriginFileName("image3.jpg")
+//                    .roomSaveFileName("image3.jpg")
+//                    .room(room)
+//                    .build());
+//
+//            /** 객실 오락시설 등록 **/
+//            Amenities amenities = amenitiesRepository.save(Amenities.builder()
+//                    .amenitiesName(AmenitiesNames.HAIR_DRYER)
+//                    .build());
+//
+//            /** 객실 서비스 등록 **/
+//            serviceRepository.save(Service.builder()
+//                    .serviceName(ServiceNames.LAUNDRY)
+//                    .build());
+//
+//
+//
+//
+//
+//            /** 장바구니 등록 **/
+//            Cart cart = cartRepository.save(Cart.builder()
+//                    .member(member)
+//                    .room(room)
+//                    .reserveUseStartDate(LocalDate.of(2022, 11, 20))
+//                    .reserveUseEndDate(LocalDate.of(2022, 11, 22))
+//                    .reservePrice(room.getPrice())
+//                    .reserveAdultCount(3)
+//                    .reserveChildCount(1)
+//                    .build());
+//
+//            /** 예약 등록 **/
+//            Orders order = Orders.builder()
+//                    .ordersTel(member.getMemberTel())
+//                    .ordersName(member.getNickname())
+//                    .ordersDate(LocalDateTime.now())
+//                    .ordersPrice(room.getPrice())
+//                    .ordersType("card")
+//                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
+//                    .member(member)
+//                    .discountValue(0)
+//                    .impUid("def")
+//                    .build();
+//
+//            OrdersDetail ordersDetail = OrdersDetail.builder()
+//                    .member(cart.getMember())
+//                    .accommodation(cart.getAccommodation())
+//                    .room(cart.getRoom())
+//                    .orders(order)
+//                    .reserveStatus(ReserveStatus.READY)
+//                    .reserveUseStartDate(cart.getReserveUseStartDate())
+//                    .reserveUseEndDate(cart.getReserveUseEndDate())
+//                    .reservePrice(cart.getReservePrice())
+//                    .reserveAdultCount(cart.getReserveAdultCount())
+//                    .reserveChildCount(cart.getReserveChildCount())
+//                    .build();
+//
+//            order.getReservation().add(ordersDetail);
+//            member.getOrders().add(order);
+//
+////            ordersDetailRepository.save(ordersDetail);
+//            ordersRepository.save(order);
+//
+//
+//            객실예약정보_입력(member.getMemberNum());
+//
+//            /** 주문 등록 **/
+//
+//
+//            /** 댓글 등록 **/
+//            Review review = reviewRepository.save(Review.builder()
+//                    .member(member)
+//                    .reviewCreateDate(LocalDate.now())
+//                    .reviewModifyDate(LocalDate.now())
+//                    .reviewRating(2.6)
+//                    .memberName("안수언")
+//                    .reviewContent("너무별로에요")
+//                    .room(room)
+//                    .build());
+//
+//            Review review1 = reviewRepository.save(Review.builder()
+//                    .member(member)
+//                    .reviewCreateDate(LocalDate.now())
+//                    .reviewModifyDate(LocalDate.now())
+//                    .reviewRating(3.4)
+//                    .memberName("가")
+//                    .reviewContent("너무별로에요")
+//                    .room(room)
+//                    .build());
+//
+//            Review review2 = reviewRepository.save(Review.builder()
+//                    .member(member)
+//                    .reviewCreateDate(LocalDate.now())
+//                    .reviewModifyDate(LocalDate.now())
+//                    .reviewRating(4.7)
+//                    .memberName("가나다라마바사")
+//                    .reviewContent("너무별로에요")
+//                    .room(room)
+//                    .build());
+//
+//            Review review3 = reviewRepository.save(Review.builder()
+//                    .member(member)
+//                    .reviewCreateDate(LocalDate.now())
+//                    .reviewModifyDate(LocalDate.now())
+//                    .reviewRating(5.0)
+//                    .memberName("ABCDEFGH")
+//                    .reviewContent("너무별로에요")
+//                    .room(room)
+//                    .build());
+//
+//            room.getReviews().add(review);
+//
+//
+//
+//
+//            /** 리플 **/
+//            replyRepository.save(Reply.builder()
+//                    .member(member)
+//                    .review(review)
+//                    .content("언제나 최선을 다하겠습니다")
+//                    .replyCreatedDate(LocalDateTime.now())
+//                    .replyModifyDate(LocalDateTime.now())
+//                    .build());
+//
+//
+//            /** 매핑테이블들 **/
+//
+//
+//        }
+//
+//        public void dbInit3(){
+//            /**회원등록**/
+//            Member member = memberRepository.save(Member.builder()
+//                    .email("bbb1@naver.com")
+//                    .pwd("1234")
+//                    .memberTel("010-5555-2323")
+//                    .nickname("정영진")
+//                    .memberOriginalFileName("Originl")
+//                    .memberSaveFileName("save")
+//                    .joinDate(LocalDate.of(2021,9,27))
+//                    .role(Role.MEMBER)
+//                    .build());
+//        }
+//
+//        public void insertReserve(){
+//
+//            /**회원등록**/
+//            Member member = memberRepository.save(Member.builder()
+//                    .email("a@com")
+//                    .pwd("1111")
+//                    .memberTel("010-9876-5432")
+//                    .nickname("토에이")
+//                    .memberOriginalFileName("Originl")
+//                    .memberSaveFileName("save")
+//                    .joinDate(LocalDate.now())
+//                    .role(Role.MEMBER)
+//                    .build());
+//
+//
+//            /**지역 등록 **/
+//            Region save = regionRepository.save(Region.builder()
+//                    .region(RegionType.SEOUL)
+//                    .build());
+//
+//            Region region = regionRepository.save(Region.builder()
+//                    .region(RegionType.GWANAK)
+//                    .parentRegion(save)
+//                    .build());
+//
+//            regionRepository.save(Region.builder()
+//                    .region(RegionType.SEODEAMOON)
+//                    .parentRegion(save)
+//                    .build());
+//
+//            AccomCategory guesthouse = accomCategoryRepository.save(AccomCategory.builder()
+//                    .name("guesthouse")
+//                    .viewName("게스트하우스")
+//                    .build());
+//
+//            AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
+//                    .name("hotel")
+//                    .viewName("호텔")
+//                    .build());
+//
+//
+//            /**숙소 등록**/
+//            Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
+//                    .accomName("제주도 라르고 게스트하우스")
+//                    .accomTel("01045020614")
+//                    .accomCategory(guesthouse)
+//                    .region(region)
+//
+////                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
+//                    .accomRating(3.9)
+//                    .accomWishlistCount(100)
+//                    .totalReviewNum(238)
+//                    .latitude(36.3196)
+//                    .longitude(126.5092)
+//                    .checkIn(LocalTime.of(13, 0))
+//                    .checkOut(LocalTime.of(12, 0))
+//                    .lowPrice(33000)
+//                    .reserveRange(14)
+//                    .build());
+//
+//            accommodationImageRepository.save( AccomImage.builder()
+//                    .accomOriginFilename("image9.jpg")
+//                    .accomSaveFilename("image1.jpg")
+//                    .accommodation(accommodation)
+//                    .build());
+//
+//            Room room1 = roomRepository.save(Room.builder()
+//                    .accommodation(accommodation)
+//                    .roomName("우리 집 같은 내방룸")
+//                    .defaultGuest(2)
+//                    .maxGuest(2)
+//                    .roomRating(0D)
+//                    .roomReviewNum(0)
+//                    .stayStartDate(LocalDate.now())
+//                    .stayEndDate(LocalDate.of(2022,10, 28))
+//                    .price(43000)
+//                    .roomInfo("임시 객실정보 입니다")
+//                    .build());
+//
+//            Room room2 = roomRepository.save(Room.builder()
+//                    .accommodation(accommodation)
+//                    .roomName("너네집 차가운 방")
+//                    .defaultGuest(2)
+//                    .maxGuest(3)
+//                    .roomRating(0D)
+//                    .roomReviewNum(0)
+//                    .stayStartDate(LocalDate.now())
+//                    .stayEndDate(LocalDate.of(2022,10, 28))
+//                    .price(65000)
+//                    .roomInfo("임시 객실정보 입니다")
+//                    .build());
+//
+//            Room room3 = roomRepository.save(Room.builder()
+//                    .accommodation(accommodation)
+//                    .roomName("언제나 눕게 되는 방")
+//                    .defaultGuest(2)
+//                    .maxGuest(4)
+//                    .roomRating(0D)
+//                    .roomReviewNum(0)
+//                    .stayStartDate(LocalDate.now())
+//                    .stayEndDate(LocalDate.of(2022,10, 28))
+//                    .price(34000)
+//                    .roomInfo("임시 객실정보 입니다")
+//                    .build());
+//
+//            Room room4 = roomRepository.save(Room.builder()
+//                    .accommodation(accommodation)
+//                    .roomName("너와 나의 연결방")
+//                    .defaultGuest(2)
+//                    .maxGuest(4)
+//                    .roomRating(0D)
+//                    .roomReviewNum(0)
+//                    .stayStartDate(LocalDate.now())
+//                    .stayEndDate(LocalDate.of(2022,10, 28))
+//                    .price(82000)
+//                    .roomInfo("임시 객실정보 입니다")
+//                    .build());
+//
+//            Integer plusDay = 0;
+//
+//            Orders order = makeOrder(member, plusDay++);
+//            Orders order1 = makeOrder(member, plusDay++);
+//            Orders order2 = makeOrder(member, plusDay++);
+//            Orders order3 = makeOrder(member, plusDay++);
+//            Orders order4 = makeOrder(member, plusDay++);
+//            Orders order5 = makeOrder(member, plusDay++);
+//            Orders order6 = makeOrder(member, plusDay++);
+//            Orders order7 = makeOrder(member, plusDay++);
+//            Orders order8 = makeOrder(member, plusDay++);
+//            Orders order9 = makeOrder(member, plusDay++);
+//            Orders order10 = makeOrder(member, plusDay++);
+//            Orders order11 = makeOrder(member, plusDay++);
+//            Orders order12 = makeOrder(member, plusDay++);
+//
+//            makeOrderDetail(member, room1, ordersRepository.save(order));
+//            makeOrderDetail(member, room1, ordersRepository.save(order1));
+//            makeOrderDetail(member, room2, ordersRepository.save(order2));
+//            makeOrderDetail(member, room2, ordersRepository.save(order3));
+//            makeOrderDetail(member, room2, ordersRepository.save(order4));
+//            makeOrderDetail(member, room3, ordersRepository.save(order5));
+//            makeOrderDetail(member, room3, ordersRepository.save(order6));
+//            makeOrderDetail(member, room3, ordersRepository.save(order7));
+//            makeOrderDetail(member, room4, ordersRepository.save(order8));
+//            makeOrderDetail(member, room4, ordersRepository.save(order9));
+//            makeOrderDetail(member, room1, ordersRepository.save(order10));
+//            makeOrderDetail(member, room1, ordersRepository.save(order11));
+//            makeOrderDetail(member, room1, ordersRepository.save(order12));
+//
+//
+//            member.getOrders().add(order);
+//
+////            ordersDetailRepository.save(ordersDetail);
+//            ordersRepository.save(order);
+//
+//
+//            객실예약정보_입력(member.getMemberNum());
+//
+//        }
+//
+//        public Orders makeOrder(Member member, Integer day){
+//            return Orders.builder()
+//                    .ordersTel(member.getMemberTel())
+//                    .ordersName(member.getNickname())
+//                    .ordersDate(LocalDateTime.now().plusDays(day))
+//                    .ordersPrice(35000)
+//                    .ordersType("card")
+//                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
+//                    .discountValue(0)
+//                    .member(member)
+//                    .build();
+//        }
+//
+//        public OrdersDetail makeOrderDetail(Member member, Room room, Orders orders){
+//
+//            OrdersDetail od = OrdersDetail.builder()
+//                    .member(member)
+//                    .accommodation(room.getAccommodation())
+//                    .room(room)
+//                    .orders(orders)
+//                    .reserveStatus(ReserveStatus.READY)
+//                    .reserveUseStartDate(room.getStayStartDate())
+//                    .reserveUseEndDate(room.getStayEndDate())
+//                    .reservePrice(room.getPrice())
+//                    .reserveAdultCount(2)
+//                    .reserveChildCount(2)
+//                    .build();
+//            orders.getReservation().add(od);
+//            return od;
+//        }
+//
+//        public void 객실예약정보_입력(Long memberId) {
+//
+//            Orders orders = ordersRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 주문이 존재하지 않습니다.", memberId)));
+//
+//            for (Reservation reservation : orders.getReservation()) {
+//                LocalDate ldStart = reservation.getReserveUseStartDate();
+//                LocalDate ldEnd = reservation.getReserveUseEndDate();
+//
+//                Long days = ChronoUnit.DAYS.between(ldStart, ldEnd);
+//
+//                for (Long i = 0L; i < days; i++) {
+//                    AvailableDate newDate = AvailableDate.builder()
+//                            .date(ldStart.plusDays(i))
+//                            .room(reservation.getRoom())
+//                            .build();
+//                    reservation.getRoom().getAvailableDate().add(newDate);
+//                }
 //            }
-
-
-            /** 장바구니 등록 **/
-            Cart cart = cartRepository.save(Cart.builder()
-                    .member(member)
-                    .room(room)
-                    .reserveUseStartDate(LocalDate.of(2022, 11, 20))
-                    .reserveUseEndDate(LocalDate.of(2022, 11, 22))
-                    .reservePrice(room.getPrice())
-                    .reserveAdultCount(3)
-                    .reserveChildCount(1)
-                    .build());
-
-            /** 예약 등록 **/
-            Orders order = Orders.builder()
-                    .ordersTel(member.getMemberTel())
-                    .ordersName(member.getNickname())
-                    .ordersDate(LocalDateTime.now())
-                    .ordersPrice(room.getPrice())
-                    .ordersType("card")
-                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
-                    .member(member)
-                    .discountValue(0)
-                    .impUid("def")
-                    .build();
-
-            OrdersDetail ordersDetail = OrdersDetail.builder()
-                    .member(cart.getMember())
-                    .accommodation(cart.getAccommodation())
-                    .room(cart.getRoom())
-                    .orders(order)
-                    .reserveStatus(ReserveStatus.READY)
-                    .reserveUseStartDate(cart.getReserveUseStartDate())
-                    .reserveUseEndDate(cart.getReserveUseEndDate())
-                    .reservePrice(cart.getReservePrice())
-                    .reserveAdultCount(cart.getReserveAdultCount())
-                    .reserveChildCount(cart.getReserveChildCount())
-                    .build();
-
-            order.getReservation().add(ordersDetail);
-            member.getOrders().add(order);
-
-//            ordersDetailRepository.save(ordersDetail);
-            ordersRepository.save(order);
-
-
-            객실예약정보_입력(member.getMemberNum());
-
-            /** 주문 등록 **/
-
-
-            /** 댓글 등록 **/
-            Review review = reviewRepository.save(Review.builder()
-                    .member(member)
-                    .reviewCreateDate(LocalDate.now())
-                    .reviewModifyDate(LocalDate.now())
-                    .reviewRating(2.73)
-                    .memberName("안수언")
-                    .reviewContent("너무별로에요")
-                    .room(room)
-                    .build());
-
-            room.getReviews().add(review);
-
-
-
-
-            /** 리플 **/
-            replyRepository.save(Reply.builder()
-                    .member(member)
-                    .review(review)
-                    .content("언제나 최선을 다하겠습니다")
-                    .replyCreatedDate(LocalDateTime.now())
-                    .replyModifyDate(LocalDateTime.now())
-                    .build());
-
-
-            /** 매핑테이블들 **/
-
-
-        }
-
-        public void dbInit3(){
-            /**회원등록**/
-            Member member = memberRepository.save(Member.builder()
-                    .email("bbb1@naver.com")
-                    .pwd("1234")
-                    .memberTel("010-5555-2323")
-                    .nickname("정영진")
-                    .memberOriginalFileName("Originl")
-                    .memberSaveFileName("save")
-                    .joinDate(LocalDate.of(2021,9,27))
-                    .role(Role.MEMBER)
-                    .build());
-        }
-
-        public void insertReserve(){
-
-            /**회원등록**/
-            Member member = memberRepository.save(Member.builder()
-                    .email("a@com")
-                    .pwd("1111")
-                    .memberTel("010-9876-5432")
-                    .nickname("토에이")
-                    .memberOriginalFileName("Originl")
-                    .memberSaveFileName("save")
-                    .joinDate(LocalDate.now())
-                    .role(Role.MEMBER)
-                    .build());
-
-
-            /**지역 등록 **/
-            Region save = regionRepository.save(Region.builder()
-                    .region(RegionType.SEOUL)
-                    .build());
-
-            Region region = regionRepository.save(Region.builder()
-                    .region(RegionType.GWANAK)
-                    .parentRegion(save)
-                    .build());
-
-            regionRepository.save(Region.builder()
-                    .region(RegionType.SEODEAMOON)
-                    .parentRegion(save)
-                    .build());
-
-            AccomCategory guesthouse = accomCategoryRepository.save(AccomCategory.builder()
-                    .name("guesthouse")
-                    .viewName("게스트하우스")
-                    .build());
-
-            AccomCategory hotel = accomCategoryRepository.save(AccomCategory.builder()
-                    .name("hotel")
-                    .viewName("호텔")
-                    .build());
-
-
-            /**숙소 등록**/
-            Accommodation accommodation = accommodationRepository.save(Accommodation.builder()
-                    .accomName("제주도 라르고 게스트하우스")
-                    .accomTel("01045020614")
-                    .accomCategory(guesthouse)
-                    .region(region)
-
-//                    .accomAddress("제주도 서귀포시 성산읍 13길 10")
-                    .accomRating(3.9)
-                    .accomWishlistCount(100)
-                    .totalReviewNum(238)
-                    .latitude(36.3196)
-                    .longitude(126.5092)
-                    .checkIn(LocalTime.of(13, 0))
-                    .checkOut(LocalTime.of(12, 0))
-                    .lowPrice(33000)
-                    .reserveRange(14)
-                    .build());
-
-            accommodationImageRepository.save( AccomImage.builder()
-                    .accomOriginFilename("image9.jpg")
-                    .accomSaveFilename("image1.jpg")
-                    .accommodation(accommodation)
-                    .build());
-
-            Room room1 = roomRepository.save(Room.builder()
-                    .accommodation(accommodation)
-                    .roomName("우리 집 같은 내방룸")
-                    .defaultGuest(2)
-                    .maxGuest(2)
-                    .roomRating(0D)
-                    .roomReviewNum(0)
-                    .stayStartDate(LocalDate.now())
-                    .stayEndDate(LocalDate.of(2022,10, 28))
-                    .price(43000)
-                    .roomInfo("임시 객실정보 입니다")
-                    .build());
-
-            Room room2 = roomRepository.save(Room.builder()
-                    .accommodation(accommodation)
-                    .roomName("너네집 차가운 방")
-                    .defaultGuest(2)
-                    .maxGuest(3)
-                    .roomRating(0D)
-                    .roomReviewNum(0)
-                    .stayStartDate(LocalDate.now())
-                    .stayEndDate(LocalDate.of(2022,10, 28))
-                    .price(65000)
-                    .roomInfo("임시 객실정보 입니다")
-                    .build());
-
-            Room room3 = roomRepository.save(Room.builder()
-                    .accommodation(accommodation)
-                    .roomName("언제나 눕게 되는 방")
-                    .defaultGuest(2)
-                    .maxGuest(4)
-                    .roomRating(0D)
-                    .roomReviewNum(0)
-                    .stayStartDate(LocalDate.now())
-                    .stayEndDate(LocalDate.of(2022,10, 28))
-                    .price(34000)
-                    .roomInfo("임시 객실정보 입니다")
-                    .build());
-
-            Room room4 = roomRepository.save(Room.builder()
-                    .accommodation(accommodation)
-                    .roomName("너와 나의 연결방")
-                    .defaultGuest(2)
-                    .maxGuest(4)
-                    .roomRating(0D)
-                    .roomReviewNum(0)
-                    .stayStartDate(LocalDate.now())
-                    .stayEndDate(LocalDate.of(2022,10, 28))
-                    .price(82000)
-                    .roomInfo("임시 객실정보 입니다")
-                    .build());
-
-            Integer plusDay = 0;
-
-            Orders order = makeOrder(member, plusDay++);
-            Orders order1 = makeOrder(member, plusDay++);
-            Orders order2 = makeOrder(member, plusDay++);
-            Orders order3 = makeOrder(member, plusDay++);
-            Orders order4 = makeOrder(member, plusDay++);
-            Orders order5 = makeOrder(member, plusDay++);
-            Orders order6 = makeOrder(member, plusDay++);
-            Orders order7 = makeOrder(member, plusDay++);
-            Orders order8 = makeOrder(member, plusDay++);
-            Orders order9 = makeOrder(member, plusDay++);
-            Orders order10 = makeOrder(member, plusDay++);
-            Orders order11 = makeOrder(member, plusDay++);
-            Orders order12 = makeOrder(member, plusDay++);
-
-            makeOrderDetail(member, room1, ordersRepository.save(order));
-            makeOrderDetail(member, room1, ordersRepository.save(order1));
-            makeOrderDetail(member, room2, ordersRepository.save(order2));
-            makeOrderDetail(member, room2, ordersRepository.save(order3));
-            makeOrderDetail(member, room2, ordersRepository.save(order4));
-            makeOrderDetail(member, room3, ordersRepository.save(order5));
-            makeOrderDetail(member, room3, ordersRepository.save(order6));
-            makeOrderDetail(member, room3, ordersRepository.save(order7));
-            makeOrderDetail(member, room4, ordersRepository.save(order8));
-            makeOrderDetail(member, room4, ordersRepository.save(order9));
-            makeOrderDetail(member, room1, ordersRepository.save(order10));
-            makeOrderDetail(member, room1, ordersRepository.save(order11));
-            makeOrderDetail(member, room1, ordersRepository.save(order12));
-
-
-            member.getOrders().add(order);
-
-//            ordersDetailRepository.save(ordersDetail);
-            ordersRepository.save(order);
-
-
-            객실예약정보_입력(member.getMemberNum());
-
-        }
-
-        public Orders makeOrder(Member member, Integer day){
-            return Orders.builder()
-                    .ordersTel(member.getMemberTel())
-                    .ordersName(member.getNickname())
-                    .ordersDate(LocalDateTime.now().plusDays(day))
-                    .ordersPrice(35000)
-                    .ordersType("card")
-                    .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
-                    .discountValue(0)
-                    .member(member)
-                    .build();
-        }
-
-        public OrdersDetail makeOrderDetail(Member member, Room room, Orders orders){
-
-            OrdersDetail od = OrdersDetail.builder()
-                    .member(member)
-                    .accommodation(room.getAccommodation())
-                    .room(room)
-                    .orders(orders)
-                    .reserveStatus(ReserveStatus.READY)
-                    .reserveUseStartDate(room.getStayStartDate())
-                    .reserveUseEndDate(room.getStayEndDate())
-                    .reservePrice(room.getPrice())
-                    .reserveAdultCount(2)
-                    .reserveChildCount(2)
-                    .build();
-            orders.getReservation().add(od);
-            return od;
-        }
-
-        public void 객실예약정보_입력(Long memberId) {
-
-            Orders orders = ordersRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 주문이 존재하지 않습니다.", memberId)));
-
-            for (Reservation reservation : orders.getReservation()) {
-                LocalDate ldStart = reservation.getReserveUseStartDate();
-                LocalDate ldEnd = reservation.getReserveUseEndDate();
-
-                Long days = ChronoUnit.DAYS.between(ldStart, ldEnd);
-
-                for (Long i = 0L; i < days; i++) {
-                    AvailableDate newDate = AvailableDate.builder()
-                            .date(ldStart.plusDays(i))
-                            .room(reservation.getRoom())
-                            .build();
-                    reservation.getRoom().getAvailableDate().add(newDate);
-                }
-            }
         }
 
     }
 }
-
-
-
-
-
-
