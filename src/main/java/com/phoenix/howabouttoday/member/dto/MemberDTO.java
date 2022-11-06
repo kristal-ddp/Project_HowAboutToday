@@ -4,7 +4,6 @@ import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
 import lombok.*;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
@@ -16,7 +15,7 @@ import java.time.LocalDate;
 
 public class MemberDTO {
 
-    private Long num;
+    private Long memberNum;
 
     @Pattern(regexp = "^(?:\\w+\\.?)*\\w+@(?:\\w+\\.)+\\w+$", message = "이메일 형식이 올바르지 않습니다.")
     @NotBlank(message = "이메일 필수 입력")

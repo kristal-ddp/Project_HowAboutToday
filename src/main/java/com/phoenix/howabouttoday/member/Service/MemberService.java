@@ -1,5 +1,7 @@
 package com.phoenix.howabouttoday.member.Service;
 
+import com.phoenix.howabouttoday.global.MailUtil;
+import com.phoenix.howabouttoday.member.dto.MailDTO;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
@@ -10,8 +12,10 @@ import com.phoenix.howabouttoday.payment.enumType.DiscountType;
 import com.phoenix.howabouttoday.payment.repository.CouponRepository;
 import com.phoenix.howabouttoday.payment.repository.CouponRulesRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
@@ -20,6 +24,7 @@ import org.springframework.validation.FieldError;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 
 @RequiredArgsConstructor
@@ -28,6 +33,8 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final CouponRulesRepository couponRulesRepository;
     private final CouponRepository couponRepository;
+
+    private final PasswordEncoder passwordEncoder;
 
     private final BCryptPasswordEncoder encoder;
 
@@ -109,21 +116,50 @@ public class MemberService {
     /* 회원수정 (dirty checking) */
     @Transactional
     public void modify(MemberDTO memberDTO) {
-        Member member = memberRepository.findById(memberDTO.toEntity().getMemberNum()).orElseThrow(() ->
+        Member member = memberRepository.findById(memberDTO.getMemberNum()).orElseThrow(() ->
                 new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
 
 
         String encPassword = encoder.encode(memberDTO.getPwd());
-        member.modify(memberDTO.getMemberTel(), encPassword);
+        member.modify(encPassword,memberDTO.getNickname(),memberDTO.getMemberTel());
+
     }
 
+    // 비밀번호 찾기
+    public Member pwdFind(String email) throws Exception {
+
+        // 회원정보 불러오기
+        Member member = memberRepository.findByEmail(email).orElse(null);
+
+        // 이메일 전송
+        if(member!=null) {
+
+            // 임시 비밀번호 생성
+            String tempPwd = UUID.randomUUID().toString().replace("-", ""); // - 제거
+            tempPwd = tempPwd.substring(0, 10); // 10자리로 생성
+
+            System.out.print("임시 비밀번호 : " + tempPwd);
+            member.findPwd(tempPwd);
+
+            // 이메일 전송
+            MailUtil mail = new MailUtil();
+            mail.sendMail(member);
+
+            // 암호화된 임시 비밀번호 저장
+            member.findPwd(passwordEncoder.encode(member.getPwd()));
+
+            memberRepository.save(member);
+        }
+        return member;
+
+    }
 
 
     public MemberDTO getSessionUser(Long memberNum){
         Member member = memberRepository.findById(memberNum).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 멤버 정보가 없습니다.", memberNum)));
 
         return MemberDTO.builder()
-                .num(member.getMemberNum())
+                .memberNum(member.getMemberNum())
                 .email(member.getEmail())
                 .pwd(member.getPwd())
                 .nickname(member.getNickname())
@@ -137,7 +173,7 @@ public class MemberService {
         Member member = memberRepository.findByEmail(email).get();
 
         return MemberDTO.builder()
-                .num(member.getMemberNum())
+                .memberNum(member.getMemberNum())
                 .email(member.getEmail())
                 .pwd(member.getPwd())
                 .nickname(member.getNickname())
@@ -151,7 +187,7 @@ public class MemberService {
         Member member = memberRepository.findById(memberNum).get();
 
         MemberDTO customer = MemberDTO.builder()
-                .num(member.getMemberNum())
+                .memberNum(member.getMemberNum())
                 .email(member.getEmail())
                 .nickname(member.getNickname())
                 .memberTel(member.getMemberTel())

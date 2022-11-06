@@ -4,23 +4,31 @@ package com.phoenix.howabouttoday.member.controller;
 import com.phoenix.howabouttoday.accom.dto.SearchForm;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.Service.MemberService;
+import com.phoenix.howabouttoday.member.dto.MailDTO;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
+import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.member.validator.CustomValidators;
 import com.phoenix.howabouttoday.room.dto.MyReviewDTO;
 import com.phoenix.howabouttoday.room.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,6 +38,8 @@ public class MemberController {
     private final CustomValidators.EmailValidator EmailValidator;
     private final ReviewService reviewService;
 
+    private final AuthenticationManager authenticationManager;
+
     /* 커스텀 유효성 검증을 위해 추가 */
     @InitBinder
     public void validatorBinder(WebDataBinder binder) {
@@ -38,12 +48,10 @@ public class MemberController {
     }
 
 
-
     @GetMapping("/member/join")
     public String join() {
         return "/home";
     }
-
 
 
     @PostMapping("/member/join")
@@ -68,18 +76,18 @@ public class MemberController {
 //            return "redirect:/member/join";
 //        }
         SearchForm searchForm = new SearchForm();
-        model.addAttribute("searchForm",searchForm);
-        if(result.hasErrors()){
+        model.addAttribute("searchForm", searchForm);
+        if (result.hasErrors()) {
 
             boolean memberCheck = true;
-            model.addAttribute("memberCheck",memberCheck);
-            model.addAttribute("memberDTO",memberDTO);
+            model.addAttribute("memberCheck", memberCheck);
+            model.addAttribute("memberDTO", memberDTO);
 
 //            Map<String, String> validatorResult = memberService.validateHandling(errors);
 //            for (String key : validatorResult.keySet()) {
 //                model.addAttribute(key, validatorResult.get(key));
 
-            return  "/home";
+            return "/home";
         }
 
 
@@ -93,8 +101,9 @@ public class MemberController {
     }
 
     @GetMapping("/loginProc")
-    public String login(@RequestParam(value = "error", required = false)String error,
-                        @RequestParam(value = "exception", required = false)String exception,
+    public String login(@RequestParam(value = "error", required = false) String error,
+                        @RequestParam(value = "exception", required = false) String exception,
+                        SearchForm searchForm,
                         Model model) {
 
         model.addAttribute("error", error);
@@ -102,10 +111,13 @@ public class MemberController {
 
 
         MemberDTO memberDTO = new MemberDTO();
-        model.addAttribute("memberDTO",memberDTO);
+        model.addAttribute("memberDTO", memberDTO);
 
         boolean loginCheck = true;
-        model.addAttribute("loginCheck",loginCheck);
+        model.addAttribute("loginCheck", loginCheck);
+
+
+        model.addAttribute("searchForm",searchForm);
 
         return "/home";
 
@@ -116,6 +128,7 @@ public class MemberController {
         return "member/logout";
     }
 
+
     /* 회원정보 수정 */
     @GetMapping("/modify")
     public String modify(@LoginUser SessionDTO sessionDTO, Model model) {
@@ -125,19 +138,77 @@ public class MemberController {
             model.addAttribute("sessionDTO", sessionDTO);
 
         }
-        return "/member/modify";
+        return "/user-dashboard-setting";
     }
 
+    @PostMapping("/modify")
+    public String modify(MemberDTO memberDTO, Model model) {
 
+        System.out.println("memberDTO.getEmail() = " + memberDTO.getEmail());
 
+        memberService.modify(memberDTO);
+
+        /* 변경된 세션 등록 */
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(memberDTO.getEmail(), memberDTO.getPwd()));
+
+        System.out.println("asdasdasdasdasdasdasd!!!!!!!!!");
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return "redirect:/home";
+
+    }
+
+    //비밀번호 찾기
     @GetMapping("recover")
-    public String getRecover(){
-        return "member/recover";
+    public String pwdFind(@ModelAttribute("memberDTO") MemberDTO memberDTO) {
+        return "/member/recover";
     }
+
+
+
     @PostMapping("recover")
-    public String postRecover(){
-        return "member/recover";
+    public String pwdFind(MemberDTO memberDTO, BindingResult bindingResult, Model model) throws Exception {
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("memberDTO", memberDTO);
+            System.out.println("aaaa");
+            return "/member/recover";
+        }
+        Member member = memberService.pwdFind(memberDTO.getEmail());
+
+        if(member == null) {
+            bindingResult.addError(new FieldError("memberDTO", "email", "이메일이 올바르지 않습니다."));
+            return "/member/recover";
+        }
+
+        return "redirect:/home";
     }
+
+    @PostMapping("/memberRecover")
+    @ResponseBody
+    public String existsMember(@RequestBody MemberDTO memberDTO, Model model) throws Exception {
+        Member member = memberService.pwdFind(memberDTO.getEmail());
+        if(member == null){
+            return "{\"data\":false}";
+        }
+
+        return "{\"data\":true}";
+    }
+
+
+
+//    @GetMapping("recover")
+//    public String getRecover(){
+//        return "member/recover";
+//    }
+//
+//
+//    @PostMapping("recover")
+//    public String postRecover(){
+//        return "member/recover";
+//    }
 
     @GetMapping("user-dashboard")
     public String getUserDashboard(@LoginUser SessionDTO sessionDTO, Model model) {
@@ -204,7 +275,7 @@ public class MemberController {
         return "member/userdashboard/user-dashboard-reviews";
     }
 
-    @GetMapping("user-dashboard-settings")
+    @GetMapping("/user-dashboard-settings")
     public String getUserDashboardSettings(@LoginUser SessionDTO sessionDTO, Model model) {
 
         if(sessionDTO != null) {

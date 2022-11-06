@@ -5,17 +5,17 @@ import org.apache.commons.mail.HtmlEmail;
 
 public class MailUtil {
 
-    public void sendMail(Member member) throws Exception{
+    public static void sendMail(Member member) throws Exception{
 
         // Mail Server 설정
         String charSet = "utf-8";
         String host = "smtp.gmail.com";
-        String userId = ""; // Google ID
-        String password = ""; // Google App Pwd
+        String userId = "howabouttoday55"; // Google ID
+        String password = "ksdmruzqtybcbzwk"; // Google App Pwd
 
         // 보내는 사람 정보
-        String fromEmail = "how-about-today@hwt.com";
-        String fromName = "오늘어때";
+        String fromEmail = "howabouttoday55@gmail.com";
+        String fromName = "howabouttoday";
 
         // 메일 정보
         String subject = "";

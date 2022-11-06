@@ -78,4 +78,9 @@ public class Member {
 
   }
 
+  //비밀번호 찾기
+  public void findPwd(String pwd) {
+    this.pwd = pwd;
+  }
+
 }

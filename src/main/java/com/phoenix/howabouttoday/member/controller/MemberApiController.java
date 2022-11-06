@@ -26,14 +26,14 @@ public class MemberApiController {
 
     @PutMapping("/member")
     public ResponseEntity<String> modify(@RequestBody MemberDTO memberDTO) {
+
         memberService.modify(memberDTO);
 
         /* 변경된 세션 등록 */
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(memberDTO.getMemberTel(), memberDTO.getPwd()));
+                new UsernamePasswordAuthenticationToken(memberDTO.getMemberNum(), memberDTO.getPwd()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 }

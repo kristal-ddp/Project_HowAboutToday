@@ -1,3 +1,27 @@
+
+	//비밀번호 확인
+$(function(){
+    $("#alert-success").hide();
+    $("#alert-danger").hide();
+    $("input").keyup(function(){
+        var pwd=$("#pwd").val();
+        var pwdCheck=$("#pwdCheck").val();
+        if(pwd != "" || pwdCheck != ""){
+            if(pwd == pwdCheck){
+                $("#alert-success").show();
+                $("#alert-danger").hide();
+                $("#btn-member-modify").removeAttr("disabled");
+            }else{
+                $("#alert-success").hide();
+                $("#alert-danger").show();
+                $("#btn-member-modify").attr("disabled", "disabled");
+            }
+        }
+    });
+});
+
+
+
 const main = {
     init : function() {
         const _this = this;
@@ -11,11 +35,11 @@ const main = {
     modify : function () {
         const data = {
             memberNum: $('#memberNum').val(),
-            username: $('#username').val(),
+            memberTel: $('#memberTel').val(),
             nickname: $('#nickname').val(),
             pwd: $('#pwd').val()
         }
-        if(!data.nickname || data.nickname.trim() === "" || !data.pwd || data.pwd.trim() === "") {
+        if(!data.nickname || data.nickname.trim() === "" || !data.pwd || data.pwd.trim() === "" || !data.memberTel || data.memberTel.trim() === "") {
             alert("공백 또는 입력하지 않은 부분이 있습니다.");
             return false;
         } else if(?=.*[0-9])(?=.*[a-z])(?=.*\W)(?=\S+$).{6,12}/.test(data.password)) {
