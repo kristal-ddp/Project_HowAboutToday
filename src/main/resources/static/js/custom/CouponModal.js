@@ -47,7 +47,7 @@ couponApply.forEach((button) => {
                     $('#exampleModalCenteredScrollable').modal("hide");
                 }
                 else{
-                    alert(result.failReason);
+                    swalAlert(result.failReason);
                 }
             })
             .catch((error) => {

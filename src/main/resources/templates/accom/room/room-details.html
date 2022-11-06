@@ -392,7 +392,7 @@
                                                                     }
                     newReview += star;
                     newReview +=                                `</span>`
-                    newReview +=                                `<p class="comment__date">${review[i].reviewCreatedDate}"</p>`
+                    newReview +=                                `<p class="comment__date">${review[i].reviewCreatedDate}</p>`
                     newReview +=                            `</div>`
                     newReview +=                        `</div>`
                     newReview +=                        `<p class="comment-content">${review[i].reviewContent}</p>`
@@ -420,7 +420,8 @@
             document.getElementById("rl").innerHTML = listLow;
 
           }).fail(function (error) {
-              alert(JSON.stringify(error));
+              swalAlert("로그인 후 이용해주세요.");
+
           });
 
 
@@ -445,7 +446,8 @@
                   document.getElementById("rl").innerHTML = listLow;
 
               }).fail(function (error) {
-                  alert(JSON.stringify(error));
+                  swalAlert("로그인 후 이용해주세요.");
+
               });
           })
 
@@ -459,7 +461,11 @@
             let endDate = strings[1].trim();
 
             if(startDate==endDate){
-                alert("체크인/체크아웃 날짜가 같을 수 없습니다.")
+                Swal.fire({
+                        icon:'warning',
+                        title:'체크인/체크아웃 날짜가 같을 수 없습니다. ',
+                    });
+
                 return;
             }
 
@@ -467,10 +473,15 @@
                 .then((response)=>response.json())
                 .then((result)=> {
                     if (result.data === true){
-                        alert("장바구니에 존재하는 객실입니다.")
+                        Swal.fire({
+                                    icon:'warning',
+                                    title:'이미 장바구니에 저장되어 있습니다. ',
+
+                        });
+
                     }
                     else{
-                        alert("서밋")
+
                         const roomForm = document.querySelector("form[name='roomForm']");
                         console.log(roomForm)
                         roomForm.submit();
@@ -486,7 +497,11 @@
 
             //== 인원수를 전부다 0명으로 체크했을때 검사 ==//
             if((adultQty+childQty) == 0){
-                alert("인원수는 0명 이하일 수 없습니다.");
+                Swal.fire({
+                        icon:'warning',
+                        title:'인원수는 0명 이하일 수 없습니다. ',
+                });
+
                 return;
             }
 
@@ -496,7 +511,11 @@
             let endDate = strings[1].trim();
 
             if(startDate==endDate){
-                alert("체크인/체크아웃 날짜가 같을 수 없습니다.")
+                Swal.fire({
+                                    icon:'warning',
+                                    title:'체크인/체크아웃 날짜가 같을 수 없습니다. ',
+                        });
+
                 return;
             }
             cartForm = JSON.stringify({
@@ -517,13 +536,22 @@
             }).done(function(result){
 
                 if(result == "true"){
-                    alert("장바구니에 존재하는 객실입니다.");
+                    Swal.fire({
+                        icon:'warning',
+                        title:'이미 장바구니에 저장되어 있습니다. ',
+                    });
                 } else{
-                    alert("장바구니에 저장되었습니다.");
+                    Swal.fire({
+                        icon:'success',
+                        title:'장바구니에 저장되었습니다. ',
+                    });
+
+
                     window.location.href = '/cart/';
                 }
             }).fail(function (error){
-                alert(JSON.stringify(error));
+                swalAlert("로그인 후 이용해주세요.");
+
             });
         });
 
