@@ -103,4 +103,12 @@ public class Accommodation {
         this.checkOut = checkOut;
     }
 
+    public void increaseRating(){
+        this.accomRating = this.room.stream()
+                .mapToDouble(room -> room.getRoomRating())
+                .average().getAsDouble();
+        this.totalReviewNum += 1;
+
+    }
+
 }

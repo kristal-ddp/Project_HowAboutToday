@@ -38,8 +38,6 @@ class AccomodationServiceTest {
             System.out.println("room1.getRoomName() = " + room1.getRoomName());
 
         }
-
-
     }
     
     

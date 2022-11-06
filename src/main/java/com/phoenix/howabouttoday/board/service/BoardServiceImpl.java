@@ -13,9 +13,6 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
@@ -52,22 +49,22 @@ public class BoardServiceImpl implements BoardService {
     // 게시글 작성
     @Override
     @Transactional
-    public void addBoard(BoardDTO boardDTO) {
+    public void addBoard(BoardFormDTO boardFormDTO) {
 
-        Member member = memberRepository.findById(boardDTO.getMemberNum()).orElse(null);
-        BoardCategory boardCategory = boardCategoryRepository.findById(boardDTO.getBoardCategoryNum()).orElse(null);
+        Member member = memberRepository.findById(boardFormDTO.getMemberNum()).orElse(null);
+        BoardCategory boardCategory = boardCategoryRepository.findById(boardFormDTO.getBoardCategoryNum()).orElse(null);
 
-        Board board = new Board(member, boardCategory, boardDTO);
+        Board board = new Board(member, boardCategory, boardFormDTO);
         boardRepository.save(board);
     }
 
     // 게시글 수정
     @Override
     @Transactional
-    public void editBoard(Long boardNum, BoardDTO boardDTO) {
+    public void editBoard(Long boardNum, BoardFormDTO boardFormDTO) {
 
         Board board = boardRepository.findById(boardNum).orElse(null);
-        board.editBoard(board.getBoardNum(), boardDTO);
+        board.editBoard(board.getBoardNum(), boardFormDTO);
     }
 
     // 게시글 삭제

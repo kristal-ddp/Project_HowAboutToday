@@ -30,7 +30,7 @@ public enum RegionType {
     KANGNAM("강남구"), KANGDONG("강동구"), KANGBUK("강북구"), KANGSEO("강서구"), GWANAK("관악구"),
     GWANGJIN("광진구"), GURO("구로구"), KEUMCHEON("금천구"), NOWON("노원구"), DOBONG("도봉구"), DONGDEAMOON("동대문구"),
     DONGJAK("동작구"), MAPO("마포구"), SEODEAMOON("서대문구"), SEOCHO("서초구") , SEONGDONG("성동구"), SEONGBOOK("성북구"), SONGPA("송파구"), YANGCHEON("양천구"),
-    YEONGDEUNGPO("영등포구"), YONGSAN("용산구"), EUNPYEONG("은평구"), JONGRO("종로구"), JUNG("중구"), JUNGNANG("종랑구"),
+    YEONGDEUNGPO("영등포구"), YONGSAN("용산구"), EUNPYEONG("은평구"), JONGRO("종로구"), JUNG("중구"), JUNGNANG("중랑구"),
 
 
     /** 시/군/구 (부산) **/
@@ -93,8 +93,8 @@ public enum RegionType {
 
     /** 시/군/구 (전북) **/
     GOCHANG("고창군"), GUNSAN("군산시") , GIMJE("김제시") , NAMWON("남원시") ,
-    BUAN("부안군"), MUJU("무주군") , SUNCHANG("") , WANJU("완주군") , IKSAN("익산시") ,
-    IMSIL("임실군"), JANGSU("장수군") , JEONJU_DEOKJIN("전주시 덕진구"), JEONJU_WANSAN("전주시 완산구"), JEONGEUP("") ,
+    BUAN("부안군"), MUJU("무주군") , SUNCHANG("순창군") , WANJU("완주군") , IKSAN("익산시") ,
+    IMSIL("임실군"), JANGSU("장수군") , JEONJU_DEOKJIN("전주시 덕진구"), JEONJU_WANSAN("전주시 완산구"), JEONGEUP("정읍시") ,
     JINAN("진안군"),
 
     /** 시/군/구 (전남) **/
@@ -119,7 +119,7 @@ public enum RegionType {
     /** 시/군/구 (경남) **/
     GEOJE("거제시") , GEOCHANG("거창군") , GOSEONG("고성군") , GIMHAE("김해시") ,
     NAMHAE("남해군") , MIRYANG("밀양시"),
-    SACHEON("사천시") , SANCHEONG("산천궁") , YANGSAN("양산시") , UIRYEONG("의령군") ,
+    SACHEON("사천시") , SANCHEONG("산청군") , YANGSAN("양산시") , UIRYEONG("의령군") ,
     JINJU("진주시") , CHANGNYEONG("창녕군") ,
     MASAN_HAPPO("창원시 마산합포구") , MASAN_HUIWON("창원시 마산회원구") ,
     CHANGWON_SEONGSAN("창원시 성산구"),
@@ -127,13 +127,11 @@ public enum RegionType {
     TONGYEONG("통영시"), HADONG("하동군"), HAMYANG("함양군"), HAPCHEON("합천군") ,
 
     /** 시/군/구 (제주) **/
-    SEOGWIPO("서귀포시"), JEJU_JEJU("제주시");
+    SEOGWIPO("서귀포시"), JEJU_JEJU("제주시"),
 
-
-
+    SEJONG_SEJONG("세종시");
 
     private String value;
-
 
     RegionType(String value) {
         this.value = value;
