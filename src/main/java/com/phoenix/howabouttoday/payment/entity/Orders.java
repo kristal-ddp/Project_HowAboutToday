@@ -75,13 +75,28 @@ public class Orders {
         this.ordersName = ordersName;
         this.ordersDate = ordersDate;
         this.ordersPrice = ordersPrice;
-        this.ordersType = ordersType;
+        this.ordersType = getType(ordersType);
         this.ordersStatus = ordersStatus;
         this.impUid = impUid;
         this.merchantId = merchantId;
         this.discountedPrice = ordersPrice - discountValue;
         this.couponNum = couponNum;
         this.discountValue = discountValue;
+    }
+
+    private String getType(String ordersType){
+
+        if(ordersType.equals("vbank")){
+            return "가상계좌";
+        }
+        else if(ordersType.equals("card")){
+            return "카드";
+        }
+        else if(ordersType.equals("phone")){
+            return "핸드폰결제";
+        }
+
+        return "알 수 없음";
     }
 
     public void changeStatusToCancel(){

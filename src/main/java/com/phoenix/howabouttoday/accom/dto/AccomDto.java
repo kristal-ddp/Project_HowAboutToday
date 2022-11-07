@@ -63,12 +63,5 @@ public class AccomDto {
             this.accommodationImage = new AccomImageDto.ResponseDto(accommodation.getAccommodationImage().get(0));
             this.lowPrice = DecimalFormat.getInstance().format(accommodation.getLowPrice());
         }
-
-        public void setTotalReviewNum(Integer reviewNum){
-            this.totalReviewNum = reviewNum;
-        }
     }
-
-
-
 }

@@ -52,9 +52,8 @@ public class Member {
   @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
   private List<Coupon> coupons = new ArrayList<>();
 
-  /* nickname과 password만 수정 가능 */
-  public void modify(String nickname, String pwd, String memberTel) {
-    this.nickname = nickname;
+  /* 전화번호와 password만 수정 가능 */
+  public void modify(String pwd, String memberTel) {
     this.pwd = pwd;
     this.memberTel = memberTel;
   }
@@ -71,4 +70,21 @@ public class Member {
     this.memberOriginalFileName = memberOriginalFileName;
     this.memberSaveFileName = memberSaveFileName;
   }
+  //회원정보 수정
+  public void modify(String pwd, String nickname, String memberTel ) {
+    this.pwd = pwd;
+    this.nickname = nickname;
+    this.memberTel = memberTel;
+
+  }
+
+  //비밀번호 찾기
+  public void findPwd(String pwd) {
+    this.pwd = pwd;
+  }
+
+  public void addCoupon(Coupon coupon){
+    this.coupons.add(coupon);
+  }
+
 }
