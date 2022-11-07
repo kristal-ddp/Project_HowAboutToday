@@ -64,7 +64,7 @@
                                 </th>
                                 <td>
                                     <div class="table-content px-2">
-                                        <h3 class="title color-text text-lg-right" th:text="${customer.getMemberTel()}">010-4502-0614</h3>
+                                        <h3 class="title color-text text-lg-right" th:text="${ordersDTO.getOrdersTel()}">010-4502-0614</h3>
                                     </div>
                                 </td>
                             </tr>
@@ -128,7 +128,7 @@
                             </th>
                             <td>
                                 <div class="table-content px-2">
-                                    <h3 class="title color-text text-lg-right">테스트</h3>
+                                    <h3 class="title color-text text-lg-right" th:text="${ordersDTO.getOrdersType()}">테스트</h3>
                                 </div>
                             </td>
                         </tr>

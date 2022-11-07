@@ -1,5 +1,7 @@
 package com.phoenix.howabouttoday.accom.entity;
 
+import com.phoenix.howabouttoday.global.FacTypeConverter;
+import com.phoenix.howabouttoday.global.RegionTypeConverter;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,7 +25,8 @@ public class Facilities {
     @Column
     private Long facilitiesNum;//시설번호
 
-    @Enumerated(EnumType.STRING)
+
+    @Convert(converter = FacTypeConverter.class)
     private Facility facility;//시설이름
 
     private String faciltiesOriginalFileName;

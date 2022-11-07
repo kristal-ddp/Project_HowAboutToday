@@ -5,6 +5,7 @@
 
 <th:block layout:fragment="content">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script src="https://kit.fontawesome.com/b5f47a576f.js" crossorigin="anonymous"></script>
     <!-- ================================
         START BREADCRUMB AREA
     ================================= -->
@@ -73,8 +74,11 @@
                                                 <div class="row padding-top-20px">
                                                     <div class="col-lg-6 responsive-column">
                                                         <div class="single-tour-feature d-flex align-items-center mb-3">
-                                                            <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-2">
-                                                                <i class="la la-check"></i>
+                                                            <div class="sidebar-list">
+                                                                <ul class="list-items">
+                                                                    <li><i class="la la-check icon-element hwt-btn-gray mr-2"></i>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
                                                             <div class="single-feature-titles">
                                                                 <h3 class="title font-size-15 font-weight-medium"
@@ -102,13 +106,13 @@
                                 <h3 class="title font-size-20">편의 시설</h3>
                                 <div class="amenities-feature-item pt-4">
                                     <div class="row">
-                                        <div class="col-lg-4 responsive-column" >
-                                            <div class="single-tour-feature d-flex align-items-center mb-3" th:each="fac : ${accom.accomViewFacilities}">
+                                        <div class="col-lg-4 responsive-column" th:each="fac : ${accom.accomViewFacilities}" >
+                                            <div class="single-tour-feature d-flex align-items-center mb-3">
                                                 <div class="single-feature-icon icon-element ml-0 flex-shrink-0 mr-3">
-                                                    <i class="fa-duotone fa-tv-retro"></i>
+                                                    <i class="fa-solid fa-desktop" th:class="${fac.facilities.faciltiesOriginalFileName}"></i>
                                                 </div>
                                                 <div class="single-feature-titles">
-                                                    <h3 class="title font-size-15 font-weight-medium" th:text="${fac.facilities.facility.krName}">WI-FI</h3>
+                                                    <h3 class="title font-size-15 font-weight-medium" th:text="${fac.facilities.facility.value}">WI-FI</h3>
                                                 </div>
                                             </div><!-- end single-tour-feature -->
                                         </div><!-- end col-lg-4 -->
@@ -246,8 +250,8 @@
                                     <div class="sidebar-widget-item">
                                         <div class="sidebar-book-title-wrap mb-3">
                                             <p><span class="text-form"></span><span
-                                                    class="text-value hwt-amounts mr-1">Room 검색</span></p>
-                                            <p class="font-size-14 line-height-24">Room 예약 날짜 조회</p>
+                                                    class="text-value hwt-amounts mr-1">객실 검색</span></p>
+                                            <p class="font-size-14 line-height-24">객실 예약 날짜 조회</p>
                                         </div>
                                     </div><!-- end sidebar-widget-item -->
                                     <div class="sidebar-widget-item">
@@ -266,7 +270,7 @@
                                         <div class="qty-box mb-2 d-flex align-items-center justify-content-between">
                                             <label class="font-size-16">성인</label>
                                             <div class="qtyBtn d-flex align-items-center">
-                                                <div class="qtyDec"><i class="la la-minus"></i></div>
+                                                <div id="qtyDec" class="qtyDec"><i class="la la-minus"></i></div>
                                                 <input type="text" th:field="*{adult_number}" >
                                                 <div class="qtyInc"><i class="la la-plus"></i></div>
                                             </div>
@@ -285,10 +289,8 @@
                                                 class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
                                                 class="la la-calendar mr-2"></i>예약 날짜 조회</button>
                                         <hr/>
-                                        <a href="/user-dashboard-wishlist"
-
-                                           class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent"><i
-                                                class="la la-heart-o mr-2"></i>찜 추가하기</a>
+                                        <a  href="javascript:void(0)" th:onclick="saveWish([[${accomNum}]])" class="theme-btn hwt-btn-gray text-center w-100 theme-btn-transparent">
+                                            <i class="la la-heart-o mr-2"></i>찜 추가하기</a>
                                     </div>
                                 </div><!-- end sidebar-widget -->
                             </form>
@@ -584,6 +586,36 @@
 
     }
 
+    //성인이 0명이 안되게끔 검증하는 로직
+    $("#qtyDec").on("click",function(){
+        let adultValue = $("#adult_number").val();
+
+        if(adultValue == 1){
+            $("#adult_number").val(1);
+            return false;
+        }
+    });
+
+    //위시리스트 함수
+    function saveWish(accomNum){
+
+        $.ajax({
+            url: '/rest/wish/' + accomNum,
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+        }).done(function(result){
+
+            if(result){
+                alert("위시리스트에서 삭제하였습니다.");
+
+            } else {
+                alert("위시리스트에 저장하였습니다.");
+            }
+
+        }).fail(function(error){
+            alert("로그인 후 이용하세요.");
+        });
+    }
 
 
 
