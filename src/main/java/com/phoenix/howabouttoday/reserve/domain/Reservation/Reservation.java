@@ -44,16 +44,16 @@ public abstract class Reservation {
     private Long reserveNum;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "member_num")
+    @JoinColumn(name = "memberNum")
     private Member member;
 
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "accom_num")
+    @JoinColumn(name = "accomNum")
     private Accommodation accommodation;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "room_num")
+    @JoinColumn(name = "roomNum")
     private Room room;
 
     @ManyToOne(fetch = LAZY)
