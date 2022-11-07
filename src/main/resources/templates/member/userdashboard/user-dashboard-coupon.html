@@ -40,7 +40,7 @@
                                             </div>
                                             <div class="card-price d-flex align-items-center justify-content-end ">
                                                 <p>
-                                                    <span class="price__num " th:text="|최대 ${coupon.getDiscountValue}${coupon.isFixed() ? '%' : '원'} 할인|">최대 얼마 할인</span>
+                                                    <span class="price__num " th:text="|최대 ${coupon.getDiscountMaxPrice()}원 할인|">최대 얼마 할인</span>
                                                 </p>
                                             </div>
                                         </div>
