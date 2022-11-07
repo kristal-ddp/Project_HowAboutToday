@@ -58,6 +58,7 @@ public class WishListDto {
             this.accomRating = wishList.getAccommodation().getAccomRating();
             this.reviewCount = wishList.getAccommodation().getTotalReviewNum();
             this.accomPrice = wishList.getAccommodation().getLowPrice();
+
         }
     }
 

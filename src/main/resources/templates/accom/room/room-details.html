@@ -61,6 +61,7 @@
                                         <h3 class="title font-size-20">이용규칙</h3>
                                         <p class="py-3"></p>
                                         <ul class="list-items">
+                                            <input type="hidden" id="maxGuest" th:value="${roomDetailDTO.maxGuest}">
                                             <li><i class="la la-dot-circle mr-2" th:text="| 최대 ${roomDetailDTO.maxGuest}인 이용 가능|"></i></li>
                                             <li><i class="la la-dot-circle mr-2"></i>금연 객실</li>
                                         </ul>
@@ -437,6 +438,20 @@
 
             let checkDate = $("#checkDate").val();
 
+
+
+            let adultQty = $("#adult_qty").val();
+            let childQty = $("#child_qty").val();
+            let maxGuest = $("#maxGuest").val();
+            //== 인원수를 전부다 0명으로 체크했을때 검사 ==//
+            if((adultQty+childQty) == 0){
+                alert("인원수는 0명 이하일 수 없습니다.");
+                return;
+            }else if((parseInt(adultQty)+parseInt(childQty)) > maxGuest){
+                alert("객실의 최대수용인원보다 클 수 없습니다")
+                return false;
+            }
+
             let strings = checkDate.split("-");
             let startDate = strings[0].trim();
             let endDate = strings[1].trim();
@@ -466,11 +481,14 @@
             let checkDate = $("#checkDate").val();
             let adultQty = $("#adult_qty").val();
             let childQty = $("#child_qty").val();
-
+            let maxGuest = $("#maxGuest").val();
             //== 인원수를 전부다 0명으로 체크했을때 검사 ==//
             if((adultQty+childQty) == 0){
                 alert("인원수는 0명 이하일 수 없습니다.");
                 return;
+            }else if((parseInt(adultQty)+parseInt(childQty)) > maxGuest){
+                alert("객실의 최대수용인원보다 클 수 없습니다")
+                return false;
             }
 
 
