@@ -31,8 +31,8 @@
                         <div class="single-content-nav" id="single-content-nav">
                             <ul>
                                 <li><a data-scroll="description" href="#description" class="scroll-link active">상세설명</a></li>
+                                <li><a data-scroll="amenities" href="#amenities" class="scroll-link">어메니티</a></li>
 
-                                <li><a data-scroll="amenities" href="#amenities" class="scroll-link">주요시설</a></li>
                                 <li><a data-scroll="reviews" href="#reviews" class="scroll-link">리뷰</a></li>
                             </ul>
                         </div>
@@ -68,14 +68,10 @@
                                     </div><!-- end single-content-item -->
                                     <div class="section-block"></div>
                                 </div><!-- end description -->
-
-                                <!-- 서비스 -->
-
-
                                 <!-- 주요 시설 -->
                                 <div id="amenities" class="page-scroll">
                                     <div class="single-content-item padding-top-40px padding-bottom-40px">
-                                        <h3 class="title font-size-20">주요시설</h3>
+                                        <h3 class="title font-size-20">어메니티</h3>
                                         <div class="row pt-4" >
                                             <div class="col-lg-4 responsive-column" th:each="amenities : ${alist}">
                                                 <div class="single-tour-feature d-flex align-items-center mb-3">
@@ -208,7 +204,7 @@
                                             <label class="font-size-16">아동 </label>
                                             <div class="qtyBtn d-flex align-items-center">
                                                 <div class="qtyDec"><i class="la la-minus"></i></div>
-                                                <input type="text" id="child_qty"  class="reserve-qty" th:field="*{child_number}">
+                                                <input type="text" id="child_qty" class="reserve-qty" th:field="*{child_number}">
                                                 <div class="qtyInc"><i class="la la-plus"></i></div>
                                             </div>
                                         </div><!-- end qty-box -->
@@ -223,18 +219,24 @@
                                     <h3 class="title stroke-shape">이 숙소를 추천하는 이유</h3>
                                     <div class="sidebar-list">
                                         <ul class="list-items">
-                                            <li><i class="la la-dollar icon-element mr-2"></i>최적의 가격으로 최상의 서비스</li>
-                                            <li><i class="la la-microphone icon-element mr-2"></i>연중무휴 24시간 고객 관리 가능</li>
+                                            <li><i class="la la-dollar icon-element hwt-btn-gray mr-2"></i>번거롭지 않은 최상의 가격 보장
+                                            </li>
+                                            <li><i class="la la-microphone icon-element hwt-btn-gray mr-2"></i>연중무휴 24시간 고객
+                                                관리 가능
+                                            </li>
+                                            <li><i class="la la-thumbs-up icon-element hwt-btn-gray mr-2"></i>직접 선택한 여행 및 활동
+                                            </li>
+                                            <li><i class="la la-file-text icon-element hwt-btn-gray mr-2"></i>무료 여행 보험</li>
                                         </ul>
                                     </div><!-- end sidebar-list -->
                                 </div><!-- end sidebar-widget -->
                                 <div class="sidebar-widget single-content-widget">
                                     <h3 class="title stroke-shape">문의</h3>
-                                    <p class="font-size-14 line-height-24">주저하지 말고 전화하세요. 저희 팀은 전문팀이고 고객님과 대화하게 되어 기쁩니다.</p>
+                                    <p class="font-size-14 line-height-24">주저하지 마시고 전화하세요.</p>
                                     <div class="sidebar-list pt-3">
                                         <ul class="list-items">
-                                            <li><i class="la la-phone icon-element mr-2"></i><a href="#">02-222-2222</a></li>
-                                            <li><i class="la la-envelope icon-element mr-2"></i><a href="mailto:info@trizen.com">pheonix@itwill.com</a></li>
+                                            <li><i class="la la-phone icon-element hwt-btn-gray mr-2"></i>02-6255-8002</li>
+                                            <li><i class="la la-envelope icon-element hwt-btn-gray mr-2"></i><a>pheonix@itwill.com</a></li>
                                         </ul>
                                     </div><!-- end sidebar-list -->
                                 </div><!-- end sidebar-widget -->
@@ -376,7 +378,7 @@
                                                                     }
                     newReview += star;
                     newReview +=                                `</span>`
-                    newReview +=                                `<p class="comment__date">${review[i].reviewCreatedDate}"</p>`
+                    newReview +=                                `<p class="comment__date">${review[i].reviewCreatedDate}</p>`
                     newReview +=                            `</div>`
                     newReview +=                        `</div>`
                     newReview +=                        `<p class="comment-content">${review[i].reviewContent}</p>`
@@ -404,7 +406,8 @@
             document.getElementById("rl").innerHTML = listLow;
 
           }).fail(function (error) {
-              alert(JSON.stringify(error));
+              swalAlert("로그인 후 이용해주세요.");
+
           });
 
 
@@ -429,7 +432,8 @@
                   document.getElementById("rl").innerHTML = listLow;
 
               }).fail(function (error) {
-                  alert(JSON.stringify(error));
+                  swalAlert("로그인 후 이용해주세요.");
+
               });
           })
 
@@ -457,7 +461,7 @@
             let endDate = strings[1].trim();
 
             if(startDate==endDate){
-                alert("체크인/체크아웃 날짜가 같을 수 없습니다.")
+                swalWarning("체크인/체크아웃 날짜가 같을 수 없습니다.")
                 return;
             }
 
@@ -465,10 +469,10 @@
                 .then((response)=>response.json())
                 .then((result)=> {
                     if (result.data === true){
-                        alert("장바구니에 존재하는 객실입니다.")
+                        swalWarning("장바구니에 존재하는 객실입니다.")
                     }
                     else{
-                        alert("서밋")
+
                         const roomForm = document.querySelector("form[name='roomForm']");
                         console.log(roomForm)
                         roomForm.submit();
@@ -484,7 +488,11 @@
             let maxGuest = $("#maxGuest").val();
             //== 인원수를 전부다 0명으로 체크했을때 검사 ==//
             if((adultQty+childQty) == 0){
-                alert("인원수는 0명 이하일 수 없습니다.");
+                Swal.fire({
+                        icon:'warning',
+                        title:'인원수는 0명 이하일 수 없습니다. ',
+                });
+
                 return;
             }else if((parseInt(adultQty)+parseInt(childQty)) > maxGuest){
                 alert("객실의 최대수용인원보다 클 수 없습니다")
@@ -497,7 +505,11 @@
             let endDate = strings[1].trim();
 
             if(startDate==endDate){
-                alert("체크인/체크아웃 날짜가 같을 수 없습니다.")
+                Swal.fire({
+                                    icon:'warning',
+                                    title:'체크인/체크아웃 날짜가 같을 수 없습니다. ',
+                        });
+
                 return;
             }
             cartForm = JSON.stringify({
@@ -518,13 +530,22 @@
             }).done(function(result){
 
                 if(result == "true"){
-                    alert("장바구니에 존재하는 객실입니다.");
+                    Swal.fire({
+                        icon:'warning',
+                        title:'이미 장바구니에 저장되어 있습니다. ',
+                    });
                 } else{
-                    alert("장바구니에 저장되었습니다.");
+                    Swal.fire({
+                        icon:'success',
+                        title:'장바구니에 저장되었습니다. ',
+                    });
+
+
                     window.location.href = '/cart/';
                 }
             }).fail(function (error){
-                alert(JSON.stringify(error));
+                swalAlert("로그인 후 이용해주세요.");
+
             });
         });
 

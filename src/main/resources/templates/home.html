@@ -14,9 +14,9 @@
         <div class="hero-box pb-0 hwt-hero-box">
             <div id="fullscreen-slide-contain">
                 <ul class="slides-container">
-                    <li><img src="/images/hero-bg2.jpg" alt=""></li>
-                    <li><img src="/images/hero--bg2.jpg" alt=""></li>
-                    <li><img src="/images/hero--bg3.jpg" alt=""></li>
+                    <li><img src="/images/hwt/busan.jpg" alt=""></li>
+                    <li><img src="/images/hwt/yeosu.jpg" alt=""></li>
+                    <li><img src="/images/hwt/gyeongju.jpg" alt=""></li>
                 </ul>
             </div><!-- End background slider -->
             <div class="container">
@@ -513,6 +513,7 @@
             <th:block th:replace="fragments/signIn::signIn"></th:block>
 
 
+
     <script>
         $(document).ready(function(){
 
@@ -549,7 +550,68 @@
 
 
         }
+
+
+         const header = $("meta[name='_csrf_header']").attr('content');
+    const token = $("meta[name='_csrf']").attr('content');
+
+    $('#checkEmail').on('click', function(){
+        checkEmail();
+    });
+
+    function checkEmail(){
+        const Email = $('#Email').val();
+        // const sendEmail = document.forms["sendEmail"];
+
+        if(!Email || Email.trim() === ""){
+            alert("이메일을 입력하세요.");
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: '/rest/checkEmail',
+                data: {
+                    'memberEmail': memberEmail
+                },
+                dataType: "text",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(header, token);
+                }
+            }).done(function(result){
+                console.log("result :" + result);
+                if (result == "true") {
+                    sendEmail();
+                    alert('임시비밀번호를 전송 했습니다.');
+                    window.location.href="/loginProc";
+                } else if (result == "false") {
+                    alert('가입되지 않은 이메일입니다.');
+                }
+            }).fail(function(error){
+                alert(JSON.stringify(error));
+            })
+        }
+    };
+
+    function sendEmail(){
+        const Email = $('#Email').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/sendPwd',
+            data: {
+                'memberEmail' : memberEmail
+            },
+            beforeSend: function(xhr){
+                xhr.setRequestHeader(header, token);
+            },
+            error: function(error){
+                alert(JSON.stringify(error));
+            }
+        })
+    }
     </script>
+
+
+
 </th:block>
 
 </html>

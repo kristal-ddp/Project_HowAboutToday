@@ -57,7 +57,7 @@ public class OrdersService {
 
     public Boolean cartDuplCheck(MemberDTO memberDTO, Long roomNum){
         /** 장바구니에 동일한 내역이 존재한다면. **/
-        if (cartRepository.existsByMember_MemberNumAndRoom_RoomNum(memberDTO.getNum(), roomNum)){
+        if (cartRepository.existsByMember_MemberNumAndRoom_RoomNum(memberDTO.getMemberNum(), roomNum)){
             return true;
         }
         return false;
@@ -67,7 +67,7 @@ public class OrdersService {
     /** 객실 -> 바로결제로 넘어오는 정보로 카트 객체만 만들어서 반환해줌. **/
     public List<OrdersDetailVO> getDirectData(MemberDTO memberDTO, OrdersDirectDTO ordersDirectDTO){
 
-        Member member = memberRepository.findById(memberDTO.getNum()).orElseThrow(() -> new IllegalArgumentException(memberDTO.getNum() + "번 멤버 정보가 없습니다."));
+        Member member = memberRepository.findById(memberDTO.getMemberNum()).orElseThrow(() -> new IllegalArgumentException(memberDTO.getMemberNum() + "번 멤버 정보가 없습니다."));
         Room storeRoom = roomRepository.findById(ordersDirectDTO.getRoomNum()).orElseThrow(() -> new IllegalArgumentException(ordersDirectDTO.getRoomNum() + "번 Room 정보가 없습니다."));
 
         String[] splitDate = ordersDirectDTO.getDaterange().split("-");
@@ -83,8 +83,8 @@ public class OrdersService {
                 .reserveUseStartDate(startDate)
                 .reserveUseEndDate(endDate)
                 .reservePrice(storeRoom.getPrice() * between.getDays())
-                .reserveAdultCount(ordersDirectDTO.getAdult_qty())
-                .reserveChildCount(ordersDirectDTO.getChild_qty())
+                .reserveAdultCount(ordersDirectDTO.getAdult_number())
+                .reserveChildCount(ordersDirectDTO.getChild_number())
                 .build());
 
         OrdersDetailVO ordersDetailVO = new OrdersDetailVO(saveCart);

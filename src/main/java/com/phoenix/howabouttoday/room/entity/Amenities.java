@@ -24,10 +24,8 @@ public class Amenities {
     private String amenitiesOriginalFileName;
 
     @Builder
-    public Amenities(Long amenitiesNum, AmenitiesNames amenitiesName) {
-        this.amenitiesNum = amenitiesNum;
+    public Amenities(AmenitiesNames amenitiesName, String amenitiesOriginalFileName) {
         this.amenitiesName = amenitiesName;
+        this.amenitiesOriginalFileName = amenitiesOriginalFileName;
     }
-
-
 }

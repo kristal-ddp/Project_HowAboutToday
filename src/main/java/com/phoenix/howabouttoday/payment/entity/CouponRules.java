@@ -1,6 +1,7 @@
 package com.phoenix.howabouttoday.payment.entity;
 
 
+import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
 import com.phoenix.howabouttoday.payment.enumType.CouponStatusConverter;
 import com.phoenix.howabouttoday.payment.enumType.DiscountType;
@@ -44,7 +45,20 @@ public class CouponRules {
     //최대할인금액
     private Integer discountMaxPrice;
 
-    public Boolean isFixed(){
+    public Boolean isFixed() {
         return discountType == DiscountType.FIXED;
     }
+
+    public Coupon makeCoupon(Member member){
+        Coupon coupon = Coupon.builder()
+                .couponRules(this)
+                .member(member)
+                .status(CouponStatus.AVAILABLE)
+                .startDate(LocalDate.now())
+                .endDate(LocalDate.now().plusDays(period))
+                .build();
+        return coupon;
+    }
+
+
 }
