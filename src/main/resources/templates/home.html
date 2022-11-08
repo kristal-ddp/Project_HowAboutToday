@@ -302,10 +302,10 @@
                                     <a th:href="@{/hotel-single(accomNum=${accom.accomNum})}" href="hotel-single.html" class="d-block">
                                         <img th:src="@{/data/images/{accomOriginFileName}(accomOriginFileName=${accom.accomOriginFileName})}" src="/images/img1.jpg" alt="hotel-img">
                                     </a>
-                                    <th:block th:if="${accom.accomRating > 0}">
+                                    <th:block th:if="${accom.accomRating > 4.5}">
                                     <span class="badge">오늘어때 추천</span>
                                     </th:block>
-                                    <th:block th:if="${accom.accomViewFacilities.size() >= 0}">
+                                    <th:block th:if="${accom.accomViewFacilities.size() >= 6}">
                                         <span class="badge badge-ribbon">시설좋은 숙소</span>
                                     </th:block>
                                 </div>
