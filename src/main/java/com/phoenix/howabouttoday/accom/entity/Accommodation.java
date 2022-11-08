@@ -116,17 +116,17 @@ public class Accommodation {
     }
 
     //== lowPrice 업데이트가 필요할때 쓰는 메서드 ==//
-//    public void modifyLowPrice(Accommodation accom){
-//
-//        int minPrice =1000000000;
-//        for (Room room : accom.getRoom()) {
-//
-//            if(room.getPrice() < minPrice){
-//                minPrice = room.getPrice();
-//                accom.setLowPrice(minPrice);
-//            }
-//        }
-//    }
+    public void modifyLowPrice(Accommodation accom){
+
+        int minPrice =1000000000;
+        for (Room room : accom.getRoom()) {
+
+            if(room.getPrice() < minPrice){
+                minPrice = room.getPrice();
+                accom.setLowPrice(minPrice);
+            }
+        }
+    }
 
 
 }

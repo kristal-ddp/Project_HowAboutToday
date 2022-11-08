@@ -91,6 +91,9 @@ public class AccomController {
             model.addAttribute("sessionDTO", sessionDTO);
         }
 
+        /**최저가 설정 로직**/
+//        List<Accommodation> accoms = accommodationService.getAccoms();
+
         /** 화면에 표시할 한글카테고리 이름 조회**/
         String viewName = accomCategoryService.getAccomViewName(category_name);
 
