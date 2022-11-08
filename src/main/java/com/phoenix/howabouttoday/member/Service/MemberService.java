@@ -1,9 +1,11 @@
 package com.phoenix.howabouttoday.member.Service;
 
+//import com.phoenix.howabouttoday.global.ImageUtil;
 import com.phoenix.howabouttoday.global.MailUtil;
 import com.phoenix.howabouttoday.member.dto.MailDTO;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.entity.Member;
+import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.repository.MemberRepository;
 import com.phoenix.howabouttoday.payment.CouponFactory;
 import com.phoenix.howabouttoday.payment.entity.Coupon;
@@ -22,7 +24,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -111,6 +115,23 @@ public class MemberService {
 
     }
 
+    // 이메일과 비밀번호 일치 여부 체크
+    // 회원탈퇴
+    public Member checkPwd(String email, String pwd) {
+        return memberRepository.findByEmail(email) // email로 회원을 조회하고
+                .filter(m -> this.passwordEncoder.matches(pwd, m.getPwd())) // 입력한 pwd와 암호화된 pwd(m.getPwd)가 같으면, 회원을 반환하고
+                .orElse(null); // 다르면 null을 반환한다
+    }
+
+    // 회원 탈퇴
+    @Transactional
+    public void withdraw(String email) {
+
+        Member member = memberRepository.findByEmail(email).orElse(null);
+        memberRepository.delete(member);
+    }
+
+
 
     public MemberDTO getSessionUser(Long memberNum){
         Member member = memberRepository.findById(memberNum).orElseThrow(() -> new IllegalArgumentException(String.format("%d번 멤버 정보가 없습니다.", memberNum)));
@@ -153,4 +174,8 @@ public class MemberService {
 
         return customer;
     }
+
+
 }
+
+

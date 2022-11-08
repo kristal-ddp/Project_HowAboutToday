@@ -412,15 +412,25 @@
                     console.log(data.data);
                     console.log(typeof data.data);
                     if(!data.data){
-                        alert("이메일이 올바르지 않거나 존재하지 않는 이메일입니다 다시 한번 확인해 주세요.");
+                        swalAlert("이메일이 올바르지 않거나 존재하지 않는 이메일입니다 다시 한번 확인해 주세요.");
                         closeLoadingWithMask()
                         return;
                     }
                     else{
-                        alert("임시 비밀번호가 메일로 전송되었습니다 메일을 확인해 주세요.") && closeLoadingWithMask();
+                      closeLoadingWithMask()
+                      Swal.fire({icon:'success',
+                           title:'임시 비밀번호가 메일로 전송되었습니다 메일을 확인해 주세요. ',
+
+                           }).then(result => {
+                               if(result.isConfirmed){
+                                 location.href = '/home';
+
+                               }
+                           });
+
 
                     }
-                    window.location.href = "/home";
+
                 })
                 .catch((error) => {
                     alert(error);
