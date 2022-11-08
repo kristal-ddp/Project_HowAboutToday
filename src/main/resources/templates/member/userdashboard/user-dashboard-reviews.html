@@ -46,8 +46,9 @@
                                                     <a th:href="@{/hotel-single(accomNum=${review.getAccomNum()})}">
                                                         <h3 class="comment__author" th:text="${review.getAccomName()}">Grand Plaza Serviced Apartments</h3>
                                                     </a>
-                                                    <h6 class="product-order-label" th:text="${review.getRoomName()}">Grand Plaza Serviced Apartments</h6>
-
+                                                    <a th:href="@{/room-details(accomNum=${review.getAccomNum()},roomNum=${review.getRoomNum()})}">
+                                                        <h6 class="product-order-label" th:text="${review.getRoomName()}">Grand Plaza Serviced Apartments</h6>
+                                                    </a>
                                                     <div class="meta-data-inner d-flex">
                                                     <span th:each="num : ${#numbers.sequence(1, 5)}" class="ratings d-flex align-items-center mr-1">
                                                         <i th:if="${review.getReviewRating() >= numStat.count}" class="la la-star"></i>
