@@ -606,14 +606,29 @@
         }).done(function(result){
 
             if(result){
-                alert("위시리스트에서 삭제하였습니다.");
+                Swal.fire({
+                        icon:'success',
+                        title:'위시리스트에서 삭제하였습니다. ',
+                });
 
+                return;
             } else {
-                alert("위시리스트에 저장하였습니다.");
+                Swal.fire({
+                        icon:'success',
+                        title:'위시리스트에 저장하였습니다. ',
+                });
+
+                return;
             }
 
         }).fail(function(error){
-            alert("로그인 후 이용하세요.");
+            Swal.fire({
+                    icon:'warning',
+                    title:'로그인 후 이용하세요. ',
+            });
+
+            return;
+
         });
     }
 
