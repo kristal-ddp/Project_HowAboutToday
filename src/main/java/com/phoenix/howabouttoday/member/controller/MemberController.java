@@ -12,6 +12,7 @@ import com.phoenix.howabouttoday.member.validator.CustomValidators;
 import com.phoenix.howabouttoday.room.dto.MyReviewDTO;
 import com.phoenix.howabouttoday.room.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,10 +24,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -196,6 +200,37 @@ public class MemberController {
 
         return "{\"data\":true}";
     }
+
+    // 회원탈퇴
+    @RequestMapping("/withdraw")
+    public String withdraw(@LoginUser SessionDTO sessionDTO, MemberDTO memberDTO,
+                           BindingResult bindingResult, Model model){
+
+            if(sessionDTO == null){
+                return "redirect:/home";
+            }
+            memberService.withdraw(sessionDTO.getEmail());
+            return "redirect:/member/logout";
+        }
+
+
+//    //프로필 사진 수정
+//    @PreAuthorize("isAuthenticated()")
+//    @GetMapping("/modifyProfileImg")
+//    public String modifyProfileImgView() {
+//        return "member/modifyProfileImg";
+//    }
+//
+//    @PostMapping("modifyProfileImg")
+//    public String modifyProfileImg(@LoginUser SessionDTO sessionDTO, HttpSession session, MultipartFile profileImg) throws IOException {
+//        String memberImageName = memberService.modifyProfileImg(sessionDTO.getId(), profileImg);
+//        session.setAttribute("memberImageName", memberImageName);
+//
+//        return "redirect:/member/mypage";
+//    }
+//
+
+
 
 
 

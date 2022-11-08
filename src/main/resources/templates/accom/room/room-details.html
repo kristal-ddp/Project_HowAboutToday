@@ -31,7 +31,7 @@
                         <div class="single-content-nav" id="single-content-nav">
                             <ul>
                                 <li><a data-scroll="description" href="#description" class="scroll-link active">상세설명</a></li>
-                                <li><a data-scroll="amenities" href="#amenities" class="scroll-link">어메니티</a></li>
+                                <li><a data-scroll="amenities" href="#amenities" class="scroll-link">시설 및 서비스</a></li>
 
                                 <li><a data-scroll="reviews" href="#reviews" class="scroll-link">리뷰</a></li>
                             </ul>
@@ -61,6 +61,7 @@
                                         <h3 class="title font-size-20">이용규칙</h3>
                                         <p class="py-3"></p>
                                         <ul class="list-items">
+                                            <input type="hidden" id="maxGuest" th:value="${roomDetailDTO.maxGuest}">
                                             <li><i class="la la-dot-circle mr-2" th:text="| 최대 ${roomDetailDTO.maxGuest}인 이용 가능|"></i></li>
                                             <li><i class="la la-dot-circle mr-2"></i>금연 객실</li>
                                         </ul>
@@ -70,7 +71,7 @@
                                 <!-- 주요 시설 -->
                                 <div id="amenities" class="page-scroll">
                                     <div class="single-content-item padding-top-40px padding-bottom-40px">
-                                        <h3 class="title font-size-20">어메니티</h3>
+                                        <h3 class="title font-size-20">시설 및 서비스</h3>
                                         <div class="row pt-4" >
                                             <div class="col-lg-4 responsive-column" th:each="amenities : ${alist}">
                                                 <div class="single-tour-feature d-flex align-items-center mb-3">
@@ -441,6 +442,20 @@
 
             let checkDate = $("#checkDate").val();
 
+
+
+            let adultQty = $("#adult_qty").val();
+            let childQty = $("#child_qty").val();
+            let maxGuest = $("#maxGuest").val();
+            //== 인원수를 전부다 0명으로 체크했을때 검사 ==//
+            if((adultQty+childQty) == 0){
+                alert("인원수는 0명 이하일 수 없습니다.");
+                return;
+            }else if((parseInt(adultQty)+parseInt(childQty)) > maxGuest){
+                alert("객실의 최대수용인원보다 클 수 없습니다")
+                return false;
+            }
+
             let strings = checkDate.split("-");
             let startDate = strings[0].trim();
             let endDate = strings[1].trim();
@@ -462,7 +477,7 @@
                         console.log(roomForm)
                         roomForm.submit();
                     }
-                });
+            });
         }
 
         $("#cart-button").click(function(){
@@ -470,7 +485,7 @@
             let checkDate = $("#checkDate").val();
             let adultQty = $("#adult_qty").val();
             let childQty = $("#child_qty").val();
-
+            let maxGuest = $("#maxGuest").val();
             //== 인원수를 전부다 0명으로 체크했을때 검사 ==//
             if((adultQty+childQty) == 0){
                 Swal.fire({
@@ -479,6 +494,9 @@
                 });
 
                 return;
+            }else if((parseInt(adultQty)+parseInt(childQty)) > maxGuest){
+                alert("객실의 최대수용인원보다 클 수 없습니다")
+                return false;
             }
 
 
@@ -520,10 +538,13 @@
                     Swal.fire({
                         icon:'success',
                         title:'장바구니에 저장되었습니다. ',
-                    });
-
+                    }).then(result => {
 
                     window.location.href = '/cart/';
+                });
+
+
+
                 }
             }).fail(function (error){
                 swalAlert("로그인 후 이용해주세요.");
