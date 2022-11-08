@@ -1,6 +1,5 @@
 package com.phoenix.howabouttoday.payment.entity;
 
-
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.enumType.CouponStatus;
 import com.phoenix.howabouttoday.payment.enumType.CouponStatusConverter;
