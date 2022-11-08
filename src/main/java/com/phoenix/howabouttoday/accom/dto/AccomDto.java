@@ -54,11 +54,13 @@ public class AccomDto {
             this.accomCategory = new AccomCategoryDto.ResponseDto(accommodation.getAccomCategory());
             this.accomAddress = accommodation.getAccomAddress1() +  " "
                     +  accommodation.getAccomAddress2() + " " + accommodation.getAccomAddress3();
-            this.accomRating = accommodation.getRoom().stream()
-                    .mapToDouble(room -> room.getRoomRating())
-                    .average().getAsDouble();
-            DecimalFormat df1 = new DecimalFormat("0.0");
-            this.accomRating = Double.valueOf(df1.format(this.accomRating));
+
+            this.accomRating = accommodation.getAccomRating();
+//            this.accomRating = accommodation.getRoom().stream()
+//                    .mapToDouble(room -> room.getRoomRating())
+//                    .average().getAsDouble();
+//            DecimalFormat df1 = new DecimalFormat("0.0");
+//            this.accomRating = Double.valueOf(df1.format(this.accomRating));
 
             this.totalReviewNum = accommodation.getRoom().stream()
                     .mapToInt(room -> room.getRoomReviewNum())
