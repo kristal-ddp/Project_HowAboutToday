@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,10 +62,18 @@ public class ReviewServiceImpl implements ReviewService {
             memberNum = sessionDTO.getMemberNum();
         }
 
-        List<Long> ordersDetailsNum = roomReviewRepository.writeableOrdersDetail(memberNum, roomNum);
-        List<OrdersDetailDTO> ordersDetails = ordersDetailRepository.findAllById(ordersDetailsNum).stream()
-                .map(OrdersDetailDTO::new)
-                .collect(Collectors.toList());
+        List<OrdersDetailDTO> ordersDetails = null;
+
+        try {
+            List<Long> ordersDetailsNum = roomReviewRepository.writeableOrdersDetail(memberNum, roomNum);
+            ordersDetails = ordersDetailRepository.findAllById(ordersDetailsNum).stream()
+                    .map(OrdersDetailDTO::new)
+                    .collect(Collectors.toList());
+        }
+        catch (Exception e){
+            System.out.println(e.toString());
+            ordersDetails = new ArrayList<>();
+        }
 
         return ordersDetails;
     }
