@@ -3,6 +3,7 @@ package com.phoenix.howabouttoday.member.dto;
 import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -37,6 +38,10 @@ public class MemberDTO {
     private String memberTel;
 
     private Role role;
+
+
+    private String memberImageName;
+    private MultipartFile profileImg;
 
     //DTO -> Entity
     public Member toEntity() {

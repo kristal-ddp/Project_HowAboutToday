@@ -10693,7 +10693,8 @@ VALUES
 ('좋아요!!', '2022-11-06 14:48:46.285295', '20', '5'),
 ('ㅎㅎㅎ', '2022-11-06 14:48:46.285295', '20', '3');
 
---쿠폰 종류 DB
+
+-- coupon data
 INSERT INTO how_about_today_db.coupon_rules VALUES (1,'신규 회원을 위한 50% 할인 쿠폰.','신규회원 50% 할인 쿠폰',50000,100000,'비율 할인',50,21);
 INSERT INTO how_about_today_db.coupon_rules VALUES (2,'혼자 여행하는 사람을 위한 쿠폰','혼여족을 20% 할인 쿠폰',20000,100000,'비율 할인',20,14);
 INSERT INTO how_about_today_db.coupon_rules VALUES (3,'다가오는 겨울을 따뜻하게 보내기 위한 쿠폰.','15% 할인 쿠폰',15000,75000,'비율 할인',15,60);
@@ -10706,6 +10707,7 @@ INSERT INTO how_about_today_db.coupon_rules VALUES (9,'결제 시 10% 할인 쿠
 INSERT INTO how_about_today_db.coupon_rules VALUES (10,'선착순 모텔 15% 할인 쿠폰입니다.','선착순 15% 할인 쿠폰',10000,50000,'비율 할인',15,30);
 INSERT INTO how_about_today_db.coupon_rules VALUES (11,'선착순 20,000원 할인 쿠폰입니다.','선착순 20,000원 할인 쿠폰',20000,100000,'금액 할인',20000,60);
 INSERT INTO how_about_today_db.coupon_rules VALUES (12,'선착순 펜션/풀빌라 10% 할인 쿠폰입니다.','선착순 10% 할인 쿠폰',10000,70000,'비율 할인',10,25);
+
 
 --멤버 가입 쿠폰
 insert into coupon (coupon_num, end_date, start_date, status, coupon_rules_num, member_num)

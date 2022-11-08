@@ -2,11 +2,16 @@ package com.phoenix.howabouttoday.member.entity;
 
 import com.phoenix.howabouttoday.board.entity.Board;
 import com.phoenix.howabouttoday.board.entity.Event;
+import com.phoenix.howabouttoday.member.wishlist.domain.WishList;
 import com.phoenix.howabouttoday.payment.entity.Coupon;
 import com.phoenix.howabouttoday.payment.entity.Orders;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
+import com.phoenix.howabouttoday.reserve.domain.Reservation.Reservation;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +57,16 @@ public class Member {
   @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
   private List<Coupon> coupons = new ArrayList<>();
 
+  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+  private List<WishList> wishLists = new ArrayList<>();
+
+  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+  private List<Cart> carts = new ArrayList<>();
+
+  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+  private List<Reservation> reservations = new ArrayList<>();
+
+
   /* 전화번호와 password만 수정 가능 */
   public void modify(String pwd, String memberTel) {
     this.pwd = pwd;
@@ -87,4 +102,11 @@ public class Member {
     this.coupons.add(coupon);
   }
 
+
+  // 회원 탈퇴
+  public void withdraw(Role role) {
+    this.role = role;
+  }
+
 }
+
