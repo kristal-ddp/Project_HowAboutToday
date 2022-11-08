@@ -294,3 +294,19 @@
 .edit-box {
     padding-right: 12px;
 }
+
+// About Us
+.counter-item {
+    &:hover {
+        .about-icon {
+        background-color: #566578!important;
+        color: #ffffff!important;
+        }
+    }
+}
+
+.counter-item-layout-2 {
+    &:hover {
+        border-color: #566578!important;
+    }
+}
