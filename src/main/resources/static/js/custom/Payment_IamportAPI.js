@@ -25,9 +25,11 @@ const requestPay = () => {
                 icon:'success',
                 title:'결제 성공 ',
 
+            }).then(result => {
+                successRequest(rsp.imp_uid, rsp.merchant_uid);
             });
 
-            successRequest(rsp.imp_uid, rsp.merchant_uid);
+
         } else {
             swalAlert("결제 실패")
         }
@@ -58,7 +60,7 @@ const successRequest = (imp_uid, merchant_uid) => {
 }
 
 const cancelConfirm = () => {
-    confirm("정말 취소하시겠습니까") && runCancel();
+    confirm("정말 취소하시겠습니까?") && runCancel();
 }
 
 const runCancel = () => {
