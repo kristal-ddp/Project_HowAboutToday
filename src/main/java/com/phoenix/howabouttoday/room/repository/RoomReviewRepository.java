@@ -30,6 +30,12 @@ public interface RoomReviewRepository extends JpaRepository<Review,Long> {
     @Query(value = "select count(m.member_num) from member m inner join reservation r where m.member_num = r.member_num and r.reserve_type = 'orderDetail' and m.member_num = :#{#memberNum} and r.room_num = :#{#roomNum}", nativeQuery = true)
     Optional<Long> checkReserve(@Param(value = "memberNum") Long memberNum, @Param(value = "roomNum") Long roomNum);
 
+    /** 멤버가 로그인을 했고, 예약을 한 상태에서 리뷰를 작성하지 않았을 때 **/
+    @Query(value = "select r.reserve_num from member m inner join reservation r where r.reserve_type = 'orderDetail' and m.member_num = r.member_num and m.member_num = :#{#memberNum} " +
+            "and room_num = :#{#roomNum} and is_review_writed = '작성 전' group by room_num, r.reserve_num;", nativeQuery = true)
+    List<Long> isReserve(@Param(value = "memberNum") Long memberNum, @Param(value = "roomNum") Long roomNum);
+
+
     List<Review> findAllByRoom_RoomNum(Long roomNum);
 
     List<Review> findAllByMember_MemberNum(Long memberId);
@@ -37,7 +43,5 @@ public interface RoomReviewRepository extends JpaRepository<Review,Long> {
     /** 숙소 상세페이지 리뷰 리스트 **/
     @EntityGraph(attributePaths = {"member","room"})
     Slice<Review> findAllByRoom_RoomNum(Pageable pageable, Long roomNum);
-
-
 
 }

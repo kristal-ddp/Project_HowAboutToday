@@ -60,7 +60,7 @@ public class RoomController {
         model.addAttribute("memberCheck",memberCheck);
 
 
-        List<OrdersDetailDTO> ordersDetailDTOList = reviewService.isExistOrderDetail(sessionDTO, roomNum);
+        List<OrdersDetailDTO> ordersDetailDTOList = reviewService.isReservation(sessionDTO, roomNum);
         model.addAttribute("ordersDetailDTOList", ordersDetailDTOList);
 
         return "accom/room/room-details";
