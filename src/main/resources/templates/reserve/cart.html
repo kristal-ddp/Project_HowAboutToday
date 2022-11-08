@@ -71,6 +71,7 @@
                        <input type="checkbox" style="margin-right: 20px" class="cart_checkbox" checked="checked" th:name="cartNum" th:value="${cart.cartNum}">
                                             <input type="hidden" class="total_reservePrice_input" th:value="${cart.reservePrice}">
                                             <input type="hidden" class="total_price_input" th:value="${cart.roomPrice}">
+
                                             
                                             <!-- <input type="hidden" class="total_price_input" th:value="${cart.getReservePrice()}"> -->
                                             
@@ -105,11 +106,12 @@
                                        </div>
                                     </div>
                                 </th>
-                                <td th:text="|${cart.roomPrice}원|">숙소 가격</td> <!-- 숙소 가격 필드 -->
+                                <td th:text="|${#numbers.formatInteger(cart.roomPrice, 3 , 'COMMA')}원|">숙소 가격</td> <!-- 숙소 가격 필드 -->
                                 <td>
                                     1
                                 </td>
-                                <td th:text="|${cart.getReservePrice()}원|">가격 * 수량 = 소계</td> <!-- 소계 필드 (수량필드 조작시 자바스크립트 렌더링 필요)-->
+                                <td th:text="|${#numbers.formatInteger(cart.getReservePrice(), 3 , 'COMMA')}원|">가격 * 수량 = 소계</td> <!-- 소계 필드 (수량필드 조작시 자바스크립트 렌더링 필요)-->
+
                                 <td>
                                     <div class="remove-wrap">
                                         <a th:href="|javascript:void(0)|" href="javascript:void(0)" class="btn font-size-18" th:onclick="deleteById([[${cart.getCartNum}]])" ><i class="la la-times"></i></a>
@@ -124,12 +126,7 @@
                     <div class="section-block"></div>
                     <div class="cart-actions d-flex justify-content-between align-items-center pt-4 pb-5">
                         <div class="contact-form-action">
-                            <form method="post" class="d-flex align-items-center">
-                                <div class="form-group mb-0 mr-3"> <!--쿠폰 영역시작 -->
-                                    <input class="form-control pl-3" type="text" name="text" placeholder="Coupon code">
-                                </div>
-                                <button type="button" class="theme-btn hwt-btn-gray"th:value="|쿠폰 적용|">쿠폰 적용</button>
-                            </form> <!-- 쿠폰영역 끝 -->
+
                         </div><!-- end contact-form-action -->
 
                     </div>
@@ -456,8 +453,14 @@
                 type: 'DELETE',
                 url: '/rest/cart/'+cartNum,
             }).done(function(){
-                alert("삭제가 완료되었습니다.");
-                window.location.reload();
+                Swal.fire({
+                        icon:'success',
+                        title:'삭제가 완료되었습니다. ',
+                }).then(result => {
+
+                    window.location.reload();
+                });
+
             }).fail(function(error){
                 alert(JSON.stringify(error));
             });

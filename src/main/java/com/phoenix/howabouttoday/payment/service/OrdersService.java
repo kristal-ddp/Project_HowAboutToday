@@ -18,7 +18,6 @@ import com.phoenix.howabouttoday.payment.repository.OrdersRepository;
 import com.phoenix.howabouttoday.reserve.domain.CartRepository;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.Cart;
 import com.phoenix.howabouttoday.reserve.domain.Reservation.ReserveStatus;
-import com.phoenix.howabouttoday.reserve.service.ReserveForm;
 import com.phoenix.howabouttoday.room.entity.AvailableDate;
 import com.phoenix.howabouttoday.room.entity.Room;
 import com.phoenix.howabouttoday.room.repository.RoomRepository;
@@ -40,7 +39,6 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -59,7 +57,7 @@ public class OrdersService {
 
     public Boolean cartDuplCheck(MemberDTO memberDTO, Long roomNum){
         /** 장바구니에 동일한 내역이 존재한다면. **/
-        if (cartRepository.existsByMember_MemberNumAndRoom_RoomNum(memberDTO.getNum(), roomNum)){
+        if (cartRepository.existsByMember_MemberNumAndRoom_RoomNum(memberDTO.getMemberNum(), roomNum)){
             return true;
         }
         return false;
@@ -69,7 +67,7 @@ public class OrdersService {
     /** 객실 -> 바로결제로 넘어오는 정보로 카트 객체만 만들어서 반환해줌. **/
     public List<OrdersDetailVO> getDirectData(MemberDTO memberDTO, OrdersDirectDTO ordersDirectDTO){
 
-        Member member = memberRepository.findById(memberDTO.getNum()).orElseThrow(() -> new IllegalArgumentException(memberDTO.getNum() + "번 멤버 정보가 없습니다."));
+        Member member = memberRepository.findById(memberDTO.getMemberNum()).orElseThrow(() -> new IllegalArgumentException(memberDTO.getMemberNum() + "번 멤버 정보가 없습니다."));
         Room storeRoom = roomRepository.findById(ordersDirectDTO.getRoomNum()).orElseThrow(() -> new IllegalArgumentException(ordersDirectDTO.getRoomNum() + "번 Room 정보가 없습니다."));
 
         String[] splitDate = ordersDirectDTO.getDaterange().split("-");
@@ -85,8 +83,8 @@ public class OrdersService {
                 .reserveUseStartDate(startDate)
                 .reserveUseEndDate(endDate)
                 .reservePrice(storeRoom.getPrice() * between.getDays())
-                .reserveAdultCount(ordersDirectDTO.getAdult_qty())
-                .reserveChildCount(ordersDirectDTO.getChild_qty())
+                .reserveAdultCount(ordersDirectDTO.getAdult_number())
+                .reserveChildCount(ordersDirectDTO.getChild_number())
                 .build());
 
         OrdersDetailVO ordersDetailVO = new OrdersDetailVO(saveCart);
@@ -152,6 +150,13 @@ public class OrdersService {
     /** 결제 저장시 새로운 결제정보를 생성해서 돌려줌. **/
     /** 왠지 이건 orders 클래스 내부에서 해도 될거 같은데... **/
     private Orders getOrder(OrdersCreateDTO ordersCreateDTO, Member member, List<Cart> cartList) {
+        Boolean isToday = false;
+        for (Cart cart :cartList) {
+            if(cart.getReserveUseStartDate().isEqual(LocalDate.now())){
+                isToday = true;
+            }
+        }
+
         Orders order = Orders.builder()
                 .member(member)
                 .ordersName(ordersCreateDTO.getName())
@@ -162,7 +167,7 @@ public class OrdersService {
                         .map(Cart::getReserveNum)
                         .collect(Collectors.toList())))
                 .ordersType(ordersCreateDTO.getOrdersType())
-                .ordersStatus(OrdersStatus.PAYMENT_COMPLETE)
+                .ordersStatus(isToday ? OrdersStatus.IN_USE : OrdersStatus.PAYMENT_COMPLETE)
                 .merchantId(ordersCreateDTO.getMerchantId())
                 .impUid(ordersCreateDTO.getImp_uid())
                 .couponNum(ordersCreateDTO.getUseCouponNum())
@@ -195,7 +200,7 @@ public class OrdersService {
                 .member(order.getMember())
                 .room(cart.getRoom())
                 .orders(order)
-                .reserveStatus(ReserveStatus.READY)
+                .reserveStatus(cart.getReserveUseStartDate().isEqual(LocalDate.now()) ? ReserveStatus.IN_USE : ReserveStatus.READY)
                 .reserveUseStartDate(cart.getReserveUseStartDate())
                 .reserveUseEndDate(cart.getReserveUseEndDate())
                 .reservePrice(cart.getReservePrice())
@@ -203,6 +208,7 @@ public class OrdersService {
                 .reserveChildCount(cart.getReserveChildCount())
                 .isReviewWrited(ReviewStatus.PRE_WRITE)
                 .build();
+
 
         for (int i = 0; i < period.getMonths() * 30 + period.getDays(); i++) {
             AvailableDate ad = AvailableDate.builder()
@@ -223,9 +229,9 @@ public class OrdersService {
                         LocalDate startDate = orderDetail.getReserveUseStartDate();
                         LocalDate endDate = orderDetail.getReserveUseEndDate().minusDays(1);
                         availableDateRepository.deleteAllByRoom_RoomNumAndOneDayBetween(orderDetail.getRoom().getRoomNum(), startDate, endDate);
-                        System.out.println("췍");
+                        orderDetail.changeToCancel();
                     });
-            orders.changeToReadyState();
+            orders.changeStatusToCancel();
         }
     }
     public Long cancelOrders(OrdersDeleteDTO ordersDeleteDTO){

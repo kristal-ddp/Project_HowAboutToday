@@ -25,6 +25,8 @@ public class AccomReviewDTO {
         private double accomReviewRating;//리뷰 평점
         private LocalDate accomReviewCreate;//리뷰 작성일
         private String accomReviewContent;//리뷰 내용
+        private String memberFileName;//멤버 사진
+        private String roomReviewName;//객실 이름
 
         public ResponseDto(Review review) {
             this.accomMember = review.getMember().getNickname();
@@ -32,7 +34,8 @@ public class AccomReviewDTO {
             this.accomReviewRating = review.getReviewRating();
             this.accomReviewCreate = review.getReviewCreateDate();
             this.accomReviewContent = review.getReviewContent();
-
+            this.memberFileName = review.getMember().getMemberOriginalFileName();
+            this.roomReviewName =review.getRoom().getRoomName();
         }
     }
 }

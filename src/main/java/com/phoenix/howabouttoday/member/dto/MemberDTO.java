@@ -3,8 +3,8 @@ package com.phoenix.howabouttoday.member.dto;
 import com.phoenix.howabouttoday.member.entity.Role;
 import com.phoenix.howabouttoday.member.entity.Member;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
@@ -13,10 +13,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class MemberDTO {
 
-    private Long num;
+    private Long memberNum;
 
     @Pattern(regexp = "^(?:\\w+\\.?)*\\w+@(?:\\w+\\.)+\\w+$", message = "이메일 형식이 올바르지 않습니다.")
     @NotBlank(message = "이메일 필수 입력")
@@ -39,6 +38,10 @@ public class MemberDTO {
     private String memberTel;
 
     private Role role;
+
+
+    private String memberImageName;
+    private MultipartFile profileImg;
 
     //DTO -> Entity
     public Member toEntity() {

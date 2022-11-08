@@ -12,6 +12,8 @@ import java.time.LocalDate;
 @Setter
 public class EventListDTO {
 
+    // 게시판 리스트 페이지 : Event
+
     private Long eventNum; // 이벤트 게시글 번호
     private String eventTitle; // 이벤트 게시글 제목
     private LocalDate eventCreate; // 이벤트 게시일

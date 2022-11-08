@@ -14,9 +14,9 @@
         <div class="hero-box pb-0 hwt-hero-box">
             <div id="fullscreen-slide-contain">
                 <ul class="slides-container">
-                    <li><img src="/images/hero-bg2.jpg" alt=""></li>
-                    <li><img src="/images/hero--bg2.jpg" alt=""></li>
-                    <li><img src="/images/hero--bg3.jpg" alt=""></li>
+                    <li><img src="/images/hwt/busan.jpg" alt=""></li>
+                    <li><img src="/images/hwt/yeosu.jpg" alt=""></li>
+                    <li><img src="/images/hwt/gyeongju.jpg" alt=""></li>
                 </ul>
             </div><!-- End background slider -->
             <div class="container">
@@ -77,7 +77,7 @@
                                                             <div class="qty-box d-flex align-items-center justify-content-between">
                                                                 <label>성인</label>
                                                                 <div class="qtyBtn d-flex align-items-center">
-                                                                    <div class="qtyDec"><i class="la la-minus"></i></div>
+                                                                    <div id="qtyDec" class="qtyDec"><i class="la la-minus"></i></div>
                                                                     <input type="text" th:field="*{adult_number}">
                                                                     <div class="qtyInc"><i class="la la-plus"></i></div>
                                                                 </div>
@@ -186,7 +186,7 @@
                                 </div><!-- end info-icon-->
                                 <div class="info-content">
                                     <!--                        <h4 class="info__title">Homey Comfort</h4>-->
-                                    <p class="info__desc">게하/한옥</p>
+                                    <p class="info__desc">게스트 하우스</p>
                                 </div><!-- end info-content -->
                             </a>
                         </div>
@@ -296,156 +296,39 @@
                 <div class="col-lg-12">
                     <div class="hotel-card-wrap">
                         <div class="hotel-card-carousel-2 carousel-action">
+                            <th:block th:each="accom : ${pplAccoms}">
                             <div class="card-item">
                                 <div class="card-img">
-                                    <a href="hotel-single.html" class="d-block">
-                                        <img src="/images/img1.jpg" alt="hotel-img">
+                                    <a th:href="@{/hotel-single(accomNum=${accom.accomNum})}" href="hotel-single.html" class="d-block">
+                                        <img th:src="@{/data/images/{accomOriginFileName}(accomOriginFileName=${accom.accomOriginFileName})}" src="/images/img1.jpg" alt="hotel-img">
                                     </a>
-                                    <span class="badge">Bestseller</span>
-                                    <span class="badge badge-ribbon">30% off</span>
+                                    <th:block th:if="${accom.accomRating > 0}">
+                                    <span class="badge">오늘어때 추천</span>
+                                    </th:block>
+                                    <th:block th:if="${accom.accomViewFacilities.size() >= 0}">
+                                        <span class="badge badge-ribbon">시설좋은 숙소</span>
+                                    </th:block>
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="card-title"><a href="hotel-single.html">The Millennium Hilton New York</a></h3>
-                                    <p class="card-meta">124 E Huron St, New york</p>
+                                    <h3 class="card-title"><a th:href="@{/hotel-single(accomNum=${accom.accomNum})}" href="hotel-single.html" th:text="${accom.accomName}">숙소 이름</a></h3>
+                                    <p class="card-meta" th:text="${accom.accomAddress}">숙소 주소</p>
                                     <div class="card-rating">
-                                        <span class="badge text-white">4.4/5</span>
-                                        <span class="review__text">Average</span>
-                                        <span class="rating__text">(30 Reviews)</span>
+                                        <span class="badge text-white" th:text="${accom.accomRating}">평점</span>&nbsp;
+
+                                        <span class="rating__text" th:text="|${accom.totalReviewNum}개의 리뷰|">(30 Reviews)</span>
                                     </div>
                                     <div class="card-price d-flex align-items-center justify-content-between">
                                         <p>
-                                            <span class="price__num">$90.00</span>
-                                            <span class="price__num before-price color-text-3">$120.00</span>
-                                            <span class="price__text">Per night</span>
+                                            <span class="price__from">최소 가격 :</span>
+                                            <span class="price__num" th:text="|${accom.lowPrice}원 ~|">숙소 가격</span>
+
                                         </p>
-                                        <a href="hotel-single.html" class="btn-text">See details<i class="la la-angle-right"></i></a>
+                                        <a th:href="@{/hotel-single(accomNum=${accom.accomNum})}" href="hotel-single.html" class="btn-text">방 정보<i class="la la-angle-right"></i></a>
                                     </div>
                                 </div>
                             </div><!-- end card-item -->
-                            <div class="card-item">
-                                <div class="card-img">
-                                    <a href="hotel-single.html" class="d-block">
-                                        <img src="/images/img2.jpg" alt="hotel-img">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title"><a href="hotel-single.html">Best Western Grant Park Hotel</a></h3>
-                                    <p class="card-meta">124 E Huron St, Chicago</p>
-                                    <div class="card-rating">
-                                        <span class="badge text-white">4.4/5</span>
-                                        <span class="review__text">Average</span>
-                                        <span class="rating__text">(30 Reviews)</span>
-                                    </div>
-                                    <div class="card-price d-flex align-items-center justify-content-between">
-                                        <p>
-                                            <span class="price__from">From</span>
-                                            <span class="price__num">$58.00</span>
-                                            <span class="price__text">Per night</span>
-                                        </p>
-                                        <a href="hotel-single.html" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div><!-- end card-item -->
-                            <div class="card-item">
-                                <div class="card-img">
-                                    <a href="hotel-single.html" class="d-block">
-                                        <img src="/images/img3.jpg" alt="hotel-img">
-                                    </a>
-                                    <span class="badge">Featured</span>
-                                    <span class="badge badge-ribbon">20% off</span>
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title"><a href="hotel-single.html">Hyatt Regency Maui Resort & Spa</a></h3>
-                                    <p class="card-meta">200 Nohea Kai Dr, Lahaina, HI</p>
-                                    <div class="card-rating">
-                                        <span class="badge text-white">4.4/5</span>
-                                        <span class="review__text">Average</span>
-                                        <span class="rating__text">(30 Reviews)</span>
-                                    </div>
-                                    <div class="card-price d-flex align-items-center justify-content-between">
-                                        <p>
-                                            <span class="price__num">$80.00</span>
-                                            <span class="price__num before-price color-text-3">$100.00</span>
-                                            <span class="price__text">Per night</span>
-                                        </p>
-                                        <a href="hotel-single.html" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div><!-- end card-item -->
-                            <div class="card-item">
-                                <div class="card-img">
-                                    <a href="hotel-single.html" class="d-block">
-                                        <img src="/images/img4.jpg" alt="hotel-img">
-                                    </a>
-                                    <span class="badge">Popular</span>
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title"><a href="hotel-single.html">Four Seasons Resort Maui at Wailea</a></h3>
-                                    <p class="card-meta">3900 Wailea Alanui Drive, Kihei, HI</p>
-                                    <div class="card-rating">
-                                        <span class="badge text-white">4.4/5</span>
-                                        <span class="review__text">Average</span>
-                                        <span class="rating__text">(30 Reviews)</span>
-                                    </div>
-                                    <div class="card-price d-flex align-items-center justify-content-between">
-                                        <p>
-                                            <span class="price__from">From</span>
-                                            <span class="price__num">$88.00</span>
-                                            <span class="price__text">Per night</span>
-                                        </p>
-                                        <a href="hotel-single.html" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div><!-- end card-item -->
-                            <div class="card-item">
-                                <div class="card-img">
-                                    <a href="hotel-single.html" class="d-block">
-                                        <img src="/images/img5.jpg" alt="hotel-img">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title"><a href="hotel-single.html">Ibis Styles London Heathrow</a></h3>
-                                    <p class="card-meta"> 272 Bath Road, Harlington, England</p>
-                                    <div class="card-rating">
-                                        <span class="badge text-white">4.4/5</span>
-                                        <span class="review__text">Average</span>
-                                        <span class="rating__text">(30 Reviews)</span>
-                                    </div>
-                                    <div class="card-price d-flex align-items-center justify-content-between">
-                                        <p>
-                                            <span class="price__from">From</span>
-                                            <span class="price__num">$88.00</span>
-                                            <span class="price__text">Per night</span>
-                                        </p>
-                                        <a href="hotel-single.html" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div><!-- end card-item -->
-                            <div class="card-item">
-                                <div class="card-img">
-                                    <a href="hotel-single.html" class="d-block">
-                                        <img src="/images/img6.jpg" alt="hotel-img">
-                                    </a>
-                                    <span class="badge badge-ribbon">10% off</span>
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title"><a href="hotel-single.html">Hotel Europe Saint Severin Paris</a></h3>
-                                    <p class="card-meta">38-40 Rue Saint Séverin, Paris, Paris</p>
-                                    <div class="card-rating">
-                                        <span class="badge text-white">4.4/5</span>
-                                        <span class="review__text">Average</span>
-                                        <span class="rating__text">(30 Reviews)</span>
-                                    </div>
-                                    <div class="card-price d-flex align-items-center justify-content-between">
-                                        <p>
-                                            <span class="price__num">$70.00</span>
-                                            <span class="price__num before-price color-text-3">$80.00</span>
-                                            <span class="price__text">Per night</span>
-                                        </p>
-                                        <a href="hotel-single.html" class="btn-text">See details<i class="la la-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div><!-- end card-item -->
+                            </th:block>
+
                         </div><!-- end hotel-card-carousel -->
                     </div>
                 </div><!-- end col-lg-12 -->
@@ -476,10 +359,10 @@
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div>
-                                <h3 class="card-title hwt-card-title"><a href="tour-details.html">제주도</a></h3>
+                                <h3 class="card-title hwt-card-title"><a href="/accom/ppl/17/">제주도</a></h3>
                             </div>
                             <div>
-                                <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
+                                <a href="/accom/ppl/17/" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
                                     숙소 조회 <i class="la la-arrow-right ml-1"></i></a>
                             </div>
                         </div>
@@ -492,10 +375,10 @@
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div>
-                                <h3 class="card-title hwt-card-title"><a href="tour-details.html">부산</a></h3>
+                                <h3 class="card-title hwt-card-title"><a href="/accom/ppl/2/">부산</a></h3>
                             </div>
                             <div>
-                                <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
+                                <a href="/accom/ppl/2/" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
                                     숙소 조회 <i class="la la-arrow-right ml-1"></i></a>
                             </div>
                         </div>
@@ -508,10 +391,10 @@
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div>
-                                <h3 class="card-title hwt-card-title"><a href="tour-details.html">강원도</a></h3>
+                                <h3 class="card-title hwt-card-title"><a href="/accom/ppl/10">강원도</a></h3>
                             </div>
                             <div>
-                                <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
+                                <a href="/accom/ppl/10" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
                                     숙소 조회 <i class="la la-arrow-right ml-1"></i></a>
                             </div>
                         </div>
@@ -524,10 +407,10 @@
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div>
-                                <h3 class="card-title hwt-card-title"><a href="tour-details.html">경주</a></h3>
+                                <h3 class="card-title hwt-card-title"><a href="/accom/ppl/15">경상북도</a></h3>
                             </div>
                             <div>
-                                <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
+                                <a href="/accom/ppl/15" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
                                     숙소 조회 <i class="la la-arrow-right ml-1"></i></a>
                             </div>
                         </div>
@@ -540,10 +423,10 @@
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div>
-                                <h3 class="card-title hwt-card-title"><a href="tour-details.html">전주</a></h3>
+                                <h3 class="card-title hwt-card-title"><a href="/accom/ppl/13">전라북도</a></h3>
                             </div>
                             <div>
-                                <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
+                                <a href="/accom/ppl/13" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
                                     숙소 조회 <i class="la la-arrow-right ml-1"></i></a>
                             </div>
                         </div>
@@ -556,10 +439,10 @@
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div>
-                                <h3 class="card-title hwt-card-title"><a href="tour-details.html">여수</a></h3>
+                                <h3 class="card-title hwt-card-title"><a href="/accom/ppl/14">전라남도</a></h3>
                             </div>
                             <div>
-                                <a href="hotel-list" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
+                                <a href="/accom/ppl/14" class="theme-btn theme-btn-small border-0 hwt-btn-white-fix">
                                     숙소 조회 <i class="la la-arrow-right ml-1"></i></a>
                             </div>
                         </div>
@@ -589,7 +472,7 @@
                                 <p class="sec__title mb-0 line-height-50 text-white hwt-banner-title">신규 회원을 위한 <br> 50% 할인 쿠폰</p>
                             </div><!-- end section-heading -->
                             <div class="btn-box pt-4 hwt-banner-content-btn">
-                                <a href="#" class="theme-btn border-0 hwt-btn-white">쿠폰 받기 <i class="la la-arrow-right ml-1"></i></a>
+                                <a href="#" id="loginBtn"  data-toggle="modal" data-target="#loginPopupForm" class="theme-btn border-0 hwt-btn-white">쿠폰 받기 <i class="la la-arrow-right ml-1"></i></a>
                             </div>
                         </div><!-- end discount-content -->
                         <!--                    <div class="company-logo">-->
@@ -630,6 +513,7 @@
             <th:block th:replace="fragments/signIn::signIn"></th:block>
 
 
+
     <script>
         $(document).ready(function(){
 
@@ -648,7 +532,15 @@
 
 
         })
+        //성인이 0명이 안되게끔 검증하는 로직
+        $("#qtyDec").on("click",function(){
+          let adultValue = $("#adult_number").val();
 
+          if(adultValue == 1){
+              $("#adult_number").val(1);
+              return false;
+          }
+        });
 
         function searchSubmit(){
             var searchForm = document.getElementById("searchForm")
@@ -658,7 +550,83 @@
 
 
         }
+
+
+         const header = $("meta[name='_csrf_header']").attr('content');
+    const token = $("meta[name='_csrf']").attr('content');
+
+    $('#checkEmail').on('click', function(){
+        checkEmail();
+    });
+
+    function checkEmail(){
+        const Email = $('#Email').val();
+        // const sendEmail = document.forms["sendEmail"];
+
+        if(!Email || Email.trim() === ""){
+            alert("이메일을 입력하세요.");
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: '/rest/checkEmail',
+                data: {
+                    'memberEmail': memberEmail
+                },
+                dataType: "text",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(header, token);
+                }
+            }).done(function(result){
+                console.log("result :" + result);
+                if (result == "true") {
+                    sendEmail();
+                    alert('임시비밀번호를 전송 했습니다.');
+                    window.location.href="/loginProc";
+                } else if (result == "false") {
+                    alert('가입되지 않은 이메일입니다.');
+                }
+            }).fail(function(error){
+                alert(JSON.stringify(error));
+            })
+        }
+    };
+
+    function sendEmail(){
+        const Email = $('#Email').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/sendPwd',
+            data: {
+                'memberEmail' : memberEmail
+            },
+            beforeSend: function(xhr){
+                xhr.setRequestHeader(header, token);
+            },
+            error: function(error){
+                alert(JSON.stringify(error));
+            }
+        })
+    };
+
+ // 페이지 호출하자마자 tmpConsole() 실행
+	$(document).ready(function(){
+		$("#coupon").trigger('click');
+		// 또는 $("#tmpBtn").click();
+	});
+
+	function tmpConsole(){
+		console.log('test');	// test
+	}
+
+
     </script>
+
+
+
+
+
+
 </th:block>
 
 </html>

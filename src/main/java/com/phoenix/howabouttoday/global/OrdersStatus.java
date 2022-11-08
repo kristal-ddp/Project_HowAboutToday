@@ -9,6 +9,7 @@ public enum OrdersStatus {
     
     PAYMENT_COMPLETE("결제완료"),
     PAYMENT_CANCEL("취소완료"),
+    IN_USE("이용 중"),
     DONE("이용완료");
 
     private String value;

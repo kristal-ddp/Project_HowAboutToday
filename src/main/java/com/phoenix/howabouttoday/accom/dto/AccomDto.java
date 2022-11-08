@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 
 
 public class AccomDto {
@@ -49,14 +50,18 @@ public class AccomDto {
             this.accomCategory = new AccomCategoryDto.ResponseDto(accommodation.getAccomCategory());
             this.accomAddress = accommodation.getAccomAddress1() +  " "
                     +  accommodation.getAccomAddress2() + " " + accommodation.getAccomAddress3();
-            this.accomRating = accommodation.getAccomRating();
-            this.totalReviewNum = accommodation.getTotalReviewNum();
+            this.accomRating = accommodation.getRoom().stream()
+                    .mapToDouble(room -> room.getRoomRating())
+                    .average().getAsDouble();
+            DecimalFormat df1 = new DecimalFormat("0.0");
+            this.accomRating = Double.valueOf(df1.format(this.accomRating));
+
+            this.totalReviewNum = accommodation.getRoom().stream()
+                    .mapToInt(room -> room.getRoomReviewNum())
+                    .sum();
             this.accomNum = accommodation.getAccomNum();
             this.accommodationImage = new AccomImageDto.ResponseDto(accommodation.getAccommodationImage().get(0));
             this.lowPrice = DecimalFormat.getInstance().format(accommodation.getLowPrice());
         }
     }
-
-
-
 }

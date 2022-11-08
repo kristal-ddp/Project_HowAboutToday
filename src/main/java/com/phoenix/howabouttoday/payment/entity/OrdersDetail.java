@@ -32,8 +32,23 @@ import java.time.LocalDate;
 @Entity
 public class OrdersDetail extends Reservation {
 
-    public void writtenReview(){
+    @Override
+    public void writingComplete(){
         this.isReviewWrited = ReviewStatus.POST_WRITE;
     }
 
+    @Override
+    public void changeToCancel(){
+        this.reserveStatus = ReserveStatus.CANCEL;
+    }
+
+    @Override
+    public void changeToInUse() {
+        this.reserveStatus = ReserveStatus.IN_USE;
+    }
+
+    @Override
+    public void changeToComplete() {
+        this.reserveStatus = ReserveStatus.COMPLETE;
+    }
 }

@@ -21,6 +21,7 @@ import com.phoenix.howabouttoday.accom.service.*;
 import com.phoenix.howabouttoday.config.auth.LoginUser;
 import com.phoenix.howabouttoday.member.dto.MemberDTO;
 import com.phoenix.howabouttoday.member.dto.SessionDTO;
+import com.phoenix.howabouttoday.room.dto.RoomDetailDTO;
 import com.phoenix.howabouttoday.room.dto.RoomImageDTO;
 import com.phoenix.howabouttoday.room.dto.RoomListDTO;
 import com.phoenix.howabouttoday.room.service.RoomService;
@@ -49,7 +50,8 @@ public class AccomController {
 
     // 메인 화면
     @GetMapping(value = {"/", "home"})
-    public String home(@LoginUser SessionDTO sessionDTO, Model model){
+    public String home(@LoginUser SessionDTO sessionDTO, Model model,
+                       @PageableDefault(page = 0,size = 10,sort = "accomRating",direction = Sort.Direction.DESC) Pageable pageable){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -58,6 +60,10 @@ public class AccomController {
         /**화면에 표시할 숙소카테고리 조회 **/
         List<AccomCategoryDto.ResponseDto> accomCategorys = accomCategoryService.findAccomList();
         model.addAttribute("accomCategorys",accomCategorys);
+
+        /** 인기숙소 리스트 조회 **/
+        Slice<AccommodationDTO> pplAccoms = accommodationService.findByPplAccoms(pageable);
+        model.addAttribute("pplAccoms",pplAccoms);
 
         MemberDTO memberDTO = new MemberDTO();
         model.addAttribute("memberDTO",memberDTO);
@@ -69,6 +75,7 @@ public class AccomController {
         SearchForm searchForm = new SearchForm();
         model.addAttribute("searchForm",searchForm);
         model.addAttribute("loginCheck",loginCheck);
+
         return "home";
     }
 
@@ -83,8 +90,6 @@ public class AccomController {
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
         }
-
-
 
         /** 화면에 표시할 한글카테고리 이름 조회**/
         String viewName = accomCategoryService.getAccomViewName(category_name);
@@ -108,14 +113,14 @@ public class AccomController {
         model.addAttribute("searchForm",searchForm);
 
         return "accom/hotel/hotel-list";
-
     }
 
     //숙소 상세
     @GetMapping("hotel-single")
-    public String getHotelSingle(@LoginUser SessionDTO sessionDTO, Model model,
+    public String getHotelSingle(@LoginUser SessionDTO sessionDTO,
                                  @RequestParam Long accomNum,
-                                 SearchForm searchForm){
+                                 SearchForm searchForm,
+                                 Model model){
 
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
@@ -136,32 +141,39 @@ public class AccomController {
         /** searchForm 반환 **/
         model.addAttribute("searchForm",searchForm);
 
-        List<AccomReviewDTO.ResponseDto> reviewlist = accomReviewService.findAllByAccom(accomNum);
-        for (AccomReviewDTO.ResponseDto responseDto : reviewlist) {
-            System.out.println("responseDto.getAccomReviewRating() = " + responseDto.getAccomReviewRating());
-        }
-        model.addAttribute("reviewlist",reviewlist);//리뷰 리스트 출력
+        /** 상세에 필요한 해당숙소키 반환 **/
+        model.addAttribute("accomNum",accomNum);
+
         return "accom/hotel/hotel-single";
     }
     @PostMapping("hotel-single")
     public String postHotelSingle(){return "accom/hotel/hotel-single";}
 
-    @GetMapping("singleSearch")
-    public String getHotelSingleSearch(@LoginUser SessionDTO sessionDTO, Model model,Long accomNum) {
-
-        if(sessionDTO != null) {
-            model.addAttribute("sessionDTO", sessionDTO);
-        }
+    /** 인기여행지 컨트롤러 **/
+    @GetMapping("/accom/ppl/{regionNum}")
+    public String pplTourist(@PathVariable(required = false) Long regionNum,
+                             Model model){
 
 
-        System.out.println("accomNum!!!!!!!!!!!!! = " + accomNum);
-        Accommodation accomList= accommodationService.findAccom(accomNum);//숙소 정보
-        List<RoomListDTO> roomList = roomService.findAll_Room(accomNum);
+        /** 로그인및 회원가입을 위한 Object 반환하는 로직 **/
+        MemberDTO memberDTO = new MemberDTO();
+        model.addAttribute("memberDTO",memberDTO);
+        boolean memberCheck = false;
+        model.addAttribute("memberCheck",memberCheck);
 
-        model.addAttribute("roomlist",roomList); //객실 리스트
-        model.addAttribute("accommodation",accomList);
+        /** 지역 반환 **/
+        Region viewName = regionService.findByNum(regionNum);
+        model.addAttribute("viewName",viewName);
+        model.addAttribute("regionNum",regionNum);
+        /** 다른여행지에 보여줄 부모지역 조회 **/
+        List<Region> parents = regionService.findAllParent();
+        model.addAttribute("parents",parents);
 
-        return "accom/hotel/hotel-single";
+        /**화면에 표시할 숙소카테고리 조회 **/
+        List<AccomCategoryDto.ResponseDto> accomCategorys = accomCategoryService.findAccomList();
+        model.addAttribute("accomCategorys",accomCategorys);
+
+        return "/accom/hotel/ppl-tourist";
     }
 
 

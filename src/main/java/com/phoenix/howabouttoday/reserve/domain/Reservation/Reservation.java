@@ -2,7 +2,6 @@ package com.phoenix.howabouttoday.reserve.domain.Reservation;
 
 
 import com.phoenix.howabouttoday.accom.entity.Accommodation;
-import com.phoenix.howabouttoday.global.OrdersStatusConverter;
 import com.phoenix.howabouttoday.member.entity.Member;
 import com.phoenix.howabouttoday.payment.entity.Orders;
 import com.phoenix.howabouttoday.payment.enumType.ReviewStatus;
@@ -45,16 +44,16 @@ public abstract class Reservation {
     private Long reserveNum;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "member_num")
+    @JoinColumn(name = "memberNum")
     private Member member;
 
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "accom_num")
+    @JoinColumn(name = "accomNum")
     private Accommodation accommodation;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "room_num")
+    @JoinColumn(name = "roomNum")
     private Room room;
 
     @ManyToOne(fetch = LAZY)
@@ -62,7 +61,7 @@ public abstract class Reservation {
     protected Orders orders;
 
     @Enumerated(EnumType.STRING)
-    private ReserveStatus reserveStatus;
+    protected ReserveStatus reserveStatus;
 
     private LocalDate reserveUseStartDate;
     private LocalDate reserveUseEndDate;
@@ -74,5 +73,12 @@ public abstract class Reservation {
     @Column
     @Convert(converter = ReviewStatusConverter.class)
     protected ReviewStatus isReviewWrited;
+
+
+    public void writingComplete(){}
+    public void changeToCancel() {}
+    public void changeToInUse() {}
+    public void changeToComplete() {}
+
 
 }

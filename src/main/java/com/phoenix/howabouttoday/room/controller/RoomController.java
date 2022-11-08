@@ -29,8 +29,11 @@ public class RoomController {
     public String getRoomDetails(@LoginUser SessionDTO sessionDTO, Model model, @RequestParam(value="roomNum",required=false) Long roomNum,
                                  SearchForm searchForm){
 
+
+
         if(sessionDTO != null) {
             model.addAttribute("sessionDTO", sessionDTO);
+            System.out.println("컨트롤러 멤버넘 = " + sessionDTO.getMemberNum());
         }
 
         List<RoomImageDTO> iList = roomService.findAll_Image(roomNum);
@@ -44,9 +47,7 @@ public class RoomController {
 
         RoomDetailDTO roomDetailDTO = roomService.findOne_Room(roomNum);
 
-        List<RoomReviewDTO> rList = roomService.findAll_Review(roomNum);
-        model.addAttribute("rlist",rList); //객실 리뷰 리스트
-
+        model.addAttribute("roomNum",roomNum);//객실 리뷰 리스트
         model.addAttribute("roomDetailDTO",roomDetailDTO); //객실 디테일
 
         /** 날짜와 성인 어린이값 반환 **/
@@ -58,8 +59,9 @@ public class RoomController {
         boolean memberCheck = false;
         model.addAttribute("memberCheck",memberCheck);
 
+
         List<OrdersDetailDTO> ordersDetailDTOList = reviewService.isExistOrderDetail(sessionDTO, roomNum);
-        model.addAttribute("ordersDetailDTOList",ordersDetailDTOList);
+        model.addAttribute("ordersDetailDTOList", ordersDetailDTOList);
 
         return "accom/room/room-details";
     }

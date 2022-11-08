@@ -8,7 +8,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.IntStream;
 
 
 @Getter
@@ -65,6 +68,7 @@ public class Accommodation {
     @Column(precision = 14, scale = 31)
     private Double longitude; //경도
 
+    @Setter
     private Integer lowPrice; //숙소의 객실 최저가
 
     private Integer reserveRange;//예약 가능일 범위(ex. 60 → 오늘부터 +60일까지 예약 가능)
@@ -102,5 +106,27 @@ public class Accommodation {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
+
+    public void increaseRating(){
+        this.accomRating = this.room.stream()
+                .mapToDouble(room -> room.getRoomRating())
+                .average().getAsDouble();
+        this.totalReviewNum += 1;
+
+    }
+
+    //== lowPrice 업데이트가 필요할때 쓰는 메서드 ==//
+//    public void modifyLowPrice(Accommodation accom){
+//
+//        int minPrice =1000000000;
+//        for (Room room : accom.getRoom()) {
+//
+//            if(room.getPrice() < minPrice){
+//                minPrice = room.getPrice();
+//                accom.setLowPrice(minPrice);
+//            }
+//        }
+//    }
+
 
 }

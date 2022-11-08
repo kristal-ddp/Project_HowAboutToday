@@ -13,6 +13,23 @@ $(function() {
         $('#' + id  + '-content').css('display', 'block'); // 해당 카테고리 게시글만 보임
     });
 
+    // FAQ 게시글 작성 시, 카테고리 Validation
+    $('#faq-add').click(function(){
+
+        let category = $('#boardCategoryNum').val();
+
+        if(category == null || category == ""){
+            Swal.fire({
+                icon: 'error',
+                title: '카테고리를 선택하세요.',
+            });
+            return false;
+        }else{
+            $('#faq-form').submit();
+        }
+
+    });
+
 
     // (Notice, Event, About Us) 게시판 더보기 버튼 클릭 시
     let page = 0;
@@ -52,7 +69,10 @@ $(function() {
             $('#loadMore').before(listLow); // #loadMore의 바깥쪽의 바로 위에 출력
 
             if(result.content.length < 1){
-                alert("게시글이 더 이상 존재하지 않습니다.");
+                Swal.fire({
+                    icon: 'info',
+                    title: '게시글이 더 이상 존재하지 않습니다.',
+                });
                 $('#loadMore').css('display', 'none');
             }
         });
@@ -83,18 +103,18 @@ $(function() {
     // Event 게시판 더보기 Content
     const eventLow = function (result){
 
-        let board = result.content;
+        let event = result.content;
         let newlow = "";
 
-        for (i = 0; i < board.length; i++) {
+        for (i = 0; i < event.length; i++) {
 
             newlow += `<div class="col-lg-4 responsive-column col-board">`
             newlow += `<div class="card-item blog-card">`
-            newlow += `<input type="hidden" id="${board[i].eventNum}">`
-            newlow += `<div class="card-footer d-flex align-items-center justify-content-between hwt-board-list" onclick="location.href='/event/${board[i].eventNum}'">`
+            newlow += `<input type="hidden" id="${event[i].eventNum}">`
+            newlow += `<div class="card-footer d-flex align-items-center justify-content-between hwt-board-list" onclick="location.href='/event/${event[i].eventNum}'">`
             newlow += `<div class="author-content d-flex hwt-board-title">`
-            newlow += `<div class="author-bio"><a class="author__title">${board[i].eventTitle}</a></div>`
-            newlow += `<div class="hwt-board-date"><a class="author__title">${board[i].eventStart} - ${board[i].eventEnd}</a></div></div>`
+            newlow += `<div class="author-bio"><a class="author__title">${event[i].eventTitle}</a></div>`
+            newlow += `<div class="hwt-board-date"><a class="author__title">${event[i].date}</a></div></div>`
             newlow += `<div class="post-share"><ul><li><a><i class="la la-share icon-element hwt-icon"></i></a></li></ul></div>`
             newlow += `</div></div></div>`
         }

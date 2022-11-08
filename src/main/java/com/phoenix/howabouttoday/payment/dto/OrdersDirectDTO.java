@@ -9,16 +9,16 @@ public class OrdersDirectDTO {
 
     private String daterange;
     private Long roomNum;
-    private Integer adult_qty;
-    private Integer child_qty;
+    private Integer adult_number;
+    private Integer child_number;
 
     public OrdersDirectDTO() {
     }
 
-    public OrdersDirectDTO(String daterange, Long roomNum, Integer adult_qty, Integer child_qty) {
+    public OrdersDirectDTO(String daterange, Long roomNum, Integer adult_number, Integer child_number) {
         this.daterange = daterange;
         this.roomNum = roomNum;
-        this.adult_qty = adult_qty;
-        this.child_qty = child_qty;
+        this.adult_number = adult_number;
+        this.child_number = child_number;
     }
 }

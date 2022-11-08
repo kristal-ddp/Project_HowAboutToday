@@ -14,8 +14,8 @@ public class ReserveForm {
     private LocalDate reserveUseStartDate;
     private LocalDate reserveUseEndDate;
 
-    private int reserveAdultCount;
-    private int reserveChildCount;
+    private int reserveAdultCount = 2;
+    private int reserveChildCount = 0;
 
 
 }

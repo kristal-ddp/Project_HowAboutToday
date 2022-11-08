@@ -12,13 +12,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
-
-
 @RestController
 @RequestMapping("/rest/accom")
 @RequiredArgsConstructor
 public class AccomRestController {
-
 
 
     private final AccomodationService accomodationService;
@@ -26,13 +23,11 @@ public class AccomRestController {
     /** 기본 조회 컨트롤러 **/
     @GetMapping("{category_name}")
     public Slice<AccomDto.ResponsePageDto> accommodations(@PathVariable(required = false) String category_name,
-                                               @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.ASC) Pageable pageable,
+                                                          @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.ASC) Pageable pageable,
                                                           @RequestParam(value = "keyword",required = false) String keyword,
                                                           @RequestParam(required = false) String priceRange,
                                                           @RequestParam(required = false) String regionNo,
                                                           @RequestParam(required = false) String accomRating) {
-
-
 
         /** 검색어가 없을경우 처리 로직 **/
         if(keyword==null || keyword.equals("") ){
@@ -46,7 +41,7 @@ public class AccomRestController {
 
         /** 평점정렬이 null일때 처리 로직 **/
         if(accomRating==null || accomRating.equals("")){
-           accomRating = "5";
+            accomRating = "5";
         }
         /** 파라미터로 온 string을 double로 형변환 **/
         Double rating = Double.parseDouble(accomRating);
@@ -64,18 +59,17 @@ public class AccomRestController {
         /** 지역이 있는경우 처리 로직 **/
         if(regionNo!=null){
             Long regionNum = Long.parseLong(regionNo);
-           return  accomodationService.getByRegionAccomPageList(regionNum,pageable,category_name,keyword,maxPrice,minPrice,rating);
+            return  accomodationService.getByRegionAccomPageList(regionNum,pageable,category_name,keyword,maxPrice,minPrice,rating);
         }
 
         return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice,rating);
-
 
     }
 
     /** 가격 낮은순 컨트롤러 **/
     @GetMapping("/asc/{category_name}")
     public Slice<AccomDto.ResponsePageDto> ascSort(@PathVariable(required = false) String category_name,
-                                                          @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.ASC) Pageable pageable,
+                                                   @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.ASC) Pageable pageable,
                                                    @RequestParam(value = "keyword",required = false) String keyword,
                                                    @RequestParam(required = false) String priceRange,
                                                    @RequestParam(required = false) String regionNo,
@@ -121,7 +115,7 @@ public class AccomRestController {
     /** 가격 높은순 컨트롤러 **/
     @GetMapping("/desc/{category_name}")
     public Slice<AccomDto.ResponsePageDto> descSort(@PathVariable(required = false) String category_name,
-                                                   @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.DESC) Pageable pageable,
+                                                    @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.DESC) Pageable pageable,
                                                     @RequestParam(value = "keyword",required = false) String keyword,
                                                     @RequestParam(required = false) String priceRange,
                                                     @RequestParam(required = false) String regionNo,
@@ -161,5 +155,12 @@ public class AccomRestController {
         return accomodationService.getAccomPageList(pageable,category_name,keyword,maxPrice,minPrice,rating);
     }
 
+    /** 인기여행지 컨트롤러 **/
+    @GetMapping("ppl/{regionNum}")
+    public Slice<AccomDto.ResponsePageDto> pplTourist(@PathVariable(required = false) Long regionNum,
+                                                      @PageableDefault(page = 0,size = 5,sort = "lowPrice",direction = Sort.Direction.ASC) Pageable pageable){
 
+
+        return accomodationService.findByRegionNum(regionNum,pageable);
+    }
 }
