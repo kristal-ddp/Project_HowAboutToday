@@ -757,9 +757,7 @@ public class InitDb {
                     .replyModifyDate(LocalDateTime.now())
                     .build());
 
-
             /** 매핑테이블들 **/
-
 
         }
 

@@ -59,10 +59,10 @@ public class RoomController {
         boolean memberCheck = false;
         model.addAttribute("memberCheck",memberCheck);
 
-        if(sessionDTO != null) {
-            List<OrdersDetailDTO> ordersDetailDTOList = reviewService.isExistOrderDetail(sessionDTO, roomNum);
-            model.addAttribute("ordersDetailDTOList", ordersDetailDTOList);
-        }
+
+        List<OrdersDetailDTO> ordersDetailDTOList = reviewService.isReservation(sessionDTO, roomNum);
+        model.addAttribute("ordersDetailDTOList", ordersDetailDTOList);
+
         return "accom/room/room-details";
     }
     @PostMapping("room-details")
