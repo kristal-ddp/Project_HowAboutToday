@@ -449,10 +449,10 @@
             let maxGuest = $("#maxGuest").val();
             //== 인원수를 전부다 0명으로 체크했을때 검사 ==//
             if((adultQty+childQty) == 0){
-                alert("인원수는 0명 이하일 수 없습니다.");
+                swalWarning("인원수는 0명 이하일 수 없습니다.");
                 return;
             }else if((parseInt(adultQty)+parseInt(childQty)) > maxGuest){
-                alert("객실의 최대수용인원보다 클 수 없습니다")
+                swalWarning("객실의 최대수용인원보다 클 수 없습니다")
                 return false;
             }
 
@@ -495,7 +495,7 @@
 
                 return;
             }else if((parseInt(adultQty)+parseInt(childQty)) > maxGuest){
-                alert("객실의 최대수용인원보다 클 수 없습니다")
+                swalWarning("객실의 최대수용인원보다 클 수 없습니다")
                 return false;
             }
 
