@@ -131,7 +131,7 @@
                                                                             <label class="label-text">성함</label>
                                                                             <div class="form-group">
                                                                                 <span class="la la-user form-icon"></span>
-                                                                                <input class="form-control" type="text" name="text" id="reviewMemberName" placeholder="투숙객 성함">
+                                                                                <input class="form-control" type="text" name="text" id="reviewMemberName" th:value="${sessionDTO?.getNickname()}" placeholder="투숙객 성함" th:disabled="disabled">
                                                                             </div>
                                                                         </div>
                                                                     </div>
