@@ -115,7 +115,7 @@ public class Accommodation {
 //        Integer totalRoomCount = this.room.stream().mapToInt(room -> room.getRoomReviewNum() != 0 ? 1 : 0).sum();
 
 
-        this.accomRating = totalRoomRating / totalRoomCount.doubleValue();
+        this.accomRating = Math.round((totalRoomRating / totalRoomCount.doubleValue()) * 10.0) / 10.0;
         this.totalReviewNum += 1;
     }
 

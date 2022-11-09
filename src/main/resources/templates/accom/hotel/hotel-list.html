@@ -335,7 +335,7 @@
                 newlow += `<h3 class="card-title" ><a href="javascript:void(0)" onclick="accomSingle(${accom[i].accomNum})">${accom[i].accomName}</a></h3>`;
                 newlow += `<p class="card-meta">${accom[i].accomAddress}</p>`;
                 newlow += `<div class="card-rating">`;
-                newlow += `<span class="badge text-white">${#numbers.formatDecimal(accom[i].accomRating, 1, 1)}</span>&nbsp;&nbsp;`;
+                newlow += `<span class="badge text-white">${accom[i].accomRating}</span>&nbsp;&nbsp;`;
                 newlow += `<span class="rating__text">${accom[i].totalReviewNum}개의&nbsp;리뷰</span>`;
                 newlow += `</div>`;
                 newlow += `<div class="card-price d-flex align-items-center justify-content-between">`;
