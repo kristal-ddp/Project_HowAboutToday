@@ -77,7 +77,7 @@
                                                     <div class="card-price d-flex align-items-center justify-content-between">
                                                         <p>
                                                             <span class="price__from" >최저가 :</span>&nbsp;
-                                                            <span class="price__num" th:text="|${#numbers.formatInteger(wish.accomLowPrice, 3 , 'COMMA') }원 ~|">숙소 가격</span>
+                                                            <span class="price__num" th:text="|${#numbers.formatInteger(wish.accomPrice, 3 , 'COMMA') }원 ~|">숙소 가격</span>
 
                                                         </p>
                                                         <a th:href="@{/hotel-single(accomNum=${wish.accomNum})}" href="hotel-single.html" class="btn-text">[[|상세 보기|]]<i class="la la-angle-right"></i></a>
@@ -169,8 +169,13 @@
                 type: 'DELETE',
                 url: '/rest/wish/' + wishListNum,
             }).done(function (){
-                alert("삭제가 완료되었습니다");
-                window.location.reload();
+                Swal.fire({
+                    icon:'success',
+                    title:'삭제가 완료되었습니다. ',
+                }).then(result => {
+
+                    window.location.reload();
+                });
             }).fail(function(error){
                 alert(JSON.stringify(error));
             });
