@@ -43,9 +43,9 @@ public class ReviewServiceImpl implements ReviewService {
         if(!isPaid(sessionDTO.getMemberNum(), roomReviewCreateRequestDTO.getRoomNum())){
             return new RoomReviewCreateResponseDTO(ReviewResponseCode.NOT_RESERVE);
         }
-        if(!withinTwoWeeks(sessionDTO.getMemberNum(), roomReviewCreateRequestDTO.getRoomNum())){
-            return new RoomReviewCreateResponseDTO(ReviewResponseCode.OVER_TWO_WEEKS);
-        }
+//        if(!withinTwoWeeks(sessionDTO.getMemberNum(), roomReviewCreateRequestDTO.getRoomNum())){
+//            return new RoomReviewCreateResponseDTO(ReviewResponseCode.OVER_TWO_WEEKS);
+//        }
 
         reviewSave(sessionDTO, roomReviewCreateRequestDTO);
 //        reviewNumUp()
@@ -57,7 +57,7 @@ public class ReviewServiceImpl implements ReviewService {
     public List<OrdersDetailDTO> isExistOrderDetail(SessionDTO sessionDTO, Long roomNum) {
         Long memberNum = 0l;
 
-        if(sessionDTO != null){
+        if (sessionDTO != null) {
             System.out.println("서비스멤버넘 = " + sessionDTO.getMemberNum());
             memberNum = sessionDTO.getMemberNum();
         }
@@ -69,8 +69,7 @@ public class ReviewServiceImpl implements ReviewService {
             ordersDetails = ordersDetailRepository.findAllById(ordersDetailsNum).stream()
                     .map(OrdersDetailDTO::new)
                     .collect(Collectors.toList());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString());
             ordersDetails = new ArrayList<>();
         }
@@ -101,6 +100,30 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public List<OrdersDetailDTO> isReservation(SessionDTO sessionDTO, Long roomNum) {
+        Long memberNum = 0l;
+
+        if (sessionDTO != null) {
+            System.out.println("서비스멤버넘 = " + sessionDTO.getMemberNum());
+            memberNum = sessionDTO.getMemberNum();
+        }
+
+        List<OrdersDetailDTO> ordersDetails = null;
+
+        try {
+            List<Long> ordersDetailsNum = roomReviewRepository.isReserve(memberNum, roomNum);
+            ordersDetails = ordersDetailRepository.findAllById(ordersDetailsNum).stream()
+                    .map(OrdersDetailDTO::new)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            ordersDetails = new ArrayList<>();
+        }
+
+        return ordersDetails;
+    }
+
+    @Override
     public Boolean isMember(SessionDTO sessionDTO) {
         return sessionDTO == null ? false : true;
     }
@@ -108,6 +131,10 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public Boolean isPaid(Long memberNum, Long roomNum) {
         Long result = roomReviewRepository.checkReserve(memberNum, roomNum).orElse(0L);
+
+        List<MyReviewDTO> reviewList = roomReviewRepository.findAllByMember_MemberNum(memberNum).stream()
+                .map(MyReviewDTO::new)
+                .collect(Collectors.toList());
 
         return result == 0 ? false : true;
     }

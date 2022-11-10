@@ -18,8 +18,8 @@ public interface ReviewService {
     RoomReviewCreateResponseDTO isPossibleWrite(SessionDTO sessionDTO, RoomReviewCreateRequestDTO roomReviewCreateRequestDTO);
     List<OrdersDetailDTO> isExistOrderDetail(SessionDTO sessionDTO, Long roomNum);
 
+    List<OrdersDetailDTO> isReservation(SessionDTO sessionDTO, Long roomNum);
     Boolean isMember(SessionDTO sessionDTO);
-
     Boolean isPaid(Long memberNum, Long roomNum);
     Boolean withinTwoWeeks(Long memberNum, Long roomNum);
 
